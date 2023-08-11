@@ -16,7 +16,7 @@
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.6",
     "framer-motion": "10.14",
-    "gray-matter": "4.0.3",
+    "gray-matter": "^4.0.3",
     "js-cookie": "3.0.5",
     "new-component": "5.0.2",
     "next": "13.4.12",
