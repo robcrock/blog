@@ -20,6 +20,8 @@ function DivisionGroupsDemo({
 
   const numOfItemsPerGroup = Math.floor(numOfItems / numOfGroups)
 
+  const totalNumInGroups = numOfGroups * numOfItemsPerGroup
+
   const remainder = includeRemainderArea ? numOfItems % numOfGroups : null
 
   // When we're splitting into 1-3 groups, display side-by-side
@@ -74,9 +76,18 @@ function DivisionGroupsDemo({
           <div className={styles.remainderArea}>
             <p className={styles.remainderHeading}>Remainder Area</p>
 
-            {range(remainder).map((index) => {
-              return <div key={index} className={styles.item} />
-            })}
+            {range(totalNumInGroups, numOfItems)
+              .reverse()
+              .map((index) => {
+                const layoutId = `${id}-${index}`
+                return (
+                  <motion.div
+                    layoutId={layoutId}
+                    key={layoutId}
+                    className={styles.item}
+                  />
+                )
+              })}
           </div>
         )}
 
