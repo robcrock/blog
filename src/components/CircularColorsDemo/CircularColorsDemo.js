@@ -3,6 +3,7 @@
 import React, { useState } from "react"
 import clsx from "clsx"
 import { Play, Pause, RotateCcw } from "react-feather"
+import { motion } from "framer-motion"
 
 import Card from "@/components/Card"
 import VisuallyHidden from "@/components/VisuallyHidden"
@@ -16,13 +17,13 @@ const COLORS = [
 ]
 
 function CircularColorsDemo() {
+  const id = React.useId()
   const [isPlaying, setIsPlaying] = useState(false)
-  // TODO: This value should increase by 1 every second:
   const [timeElapsed, setTimeElapsed] = useState(0)
 
   React.useEffect(() => {
+    if (isPlaying === false) return
     const intervalId = window.setInterval(() => {
-      if (isPlaying === false) return
       setTimeElapsed((currentTimeElapsed) => currentTimeElapsed + 1)
     }, 1000)
 
@@ -36,9 +37,8 @@ function CircularColorsDemo() {
     setTimeElapsed(0)
   }
 
-  // TODO: This value should cycle through the colors in the
-  // COLORS array:
-  const selectedColor = COLORS[0]
+  // Cycle through colors every 3 seconds
+  const selectedColor = COLORS[timeElapsed % COLORS.length]
 
   return (
     <Card as="section" className={styles.wrapper}>
@@ -48,7 +48,12 @@ function CircularColorsDemo() {
 
           return (
             <li className={styles.color} key={index}>
-              {isSelected && <div className={styles.selectedColorOutline} />}
+              {isSelected && (
+                <motion.div
+                  layoutId={`${id}-selected-color-outline`}
+                  className={styles.selectedColorOutline}
+                />
+              )}
               <div
                 className={clsx(
                   styles.colorBox,
