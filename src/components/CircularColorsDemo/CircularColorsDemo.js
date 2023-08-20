@@ -5,8 +5,8 @@ import clsx from "clsx"
 import { Play, Pause, RotateCcw } from "react-feather"
 import { motion } from "framer-motion"
 
-import Card from "@/components/Card"
-import VisuallyHidden from "@/components/VisuallyHidden"
+import Card from "../Card"
+import VisuallyHidden from "../VisuallyHidden"
 
 import styles from "./CircularColorsDemo.module.css"
 

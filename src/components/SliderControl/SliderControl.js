@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react"
 
-import Slider from '@/components/Slider';
-import styles from './SliderControl.module.css';
+import Slider from "../Slider"
+import styles from "./SliderControl.module.css"
 
 function SliderControl({ label, value, ...delegated }) {
-  const id = React.useId();
+  const id = React.useId()
 
   return (
     <div className={styles.wrapper}>
@@ -16,7 +16,7 @@ function SliderControl({ label, value, ...delegated }) {
       </div>
       <Slider {...delegated} value={value} id={id} />
     </div>
-  );
+  )
 }
 
-export default SliderControl;
+export default SliderControl

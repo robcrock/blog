@@ -1,10 +1,10 @@
 import React from "react"
 import { MDXRemote } from "next-mdx-remote/rsc"
 
-import BlogHero from "@/components/BlogHero"
+import BlogHero from "../../components/BlogHero"
 
 import styles from "./postSlug.module.css"
-import { loadBlogPost } from "@/helpers/file-helpers"
+import { loadBlogPost } from "../../helpers/file-helpers"
 import { BLOG_TITLE } from "../../constants"
 import { COMPONENT_MAP } from "../../helpers/mdx-components"
 

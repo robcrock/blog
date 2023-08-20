@@ -3,9 +3,9 @@ import React from "react"
 import clsx from "clsx"
 import { LayoutGroup, motion } from "framer-motion"
 
-import { range } from "@/utils"
-import Card from "@/components/Card"
-import SliderControl from "@/components/SliderControl"
+import { range } from "../../utils"
+import Card from "../Card"
+import SliderControl from "../SliderControl"
 
 import Equation from "./Equation"
 import styles from "./DivisionGroupsDemo.module.css"
