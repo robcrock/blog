@@ -1,0 +1,231 @@
+---
+title: "My Frontend Mentor Development Process"
+abstract: "The process I have polished after developing 10 projects on Frontend Mentor."
+publishedOn: "2024-07-07T12:00:00-0400"
+---
+
+# From Design to Deployment
+
+-- The advice given by FrontendMentors
+1. Download Code
+2. Download Figma
+3. Review the README.md
+4. Pick your stack
+5. Get to work
+
+## Initial Setup
+
+### Scaffold the New Repo
+
+Create a new repository and make that directory to your current working directory.
+
+```shell
+mkdir [project-name] && cd [project-name]
+```
+
+Now we will create a repo with with a bunch of code that we'll need to clear out later, but also sets us up for success. I am not trying to change my stack every month. For that reason I have chosen a tech I feel that I can get some meaningful repos in with that also aren't so high-level as to keep me outside of arms reach of what is happen behind the scenes.
+
+That stack is:
+- [TypeScript](https://www.typescriptlang.org/)
+- [React](https://react.dev/)
+- [NextJS](https://nextjs.org/)
+- [Tailwind](https://tailwindcss.com/)
+- [Shadcn](https://ui.shadcn.com/)
+
+Because this tech stack is so heavily used we benefit from a great developer experienct. You can spark a new repo with everything you need to get started with the following lines of code.
+
+```shell
+# instructions can also be found here: https://ui.shadcn.com/docs/installation/next
+
+npx create-next-app@latest . --typescript --tailwind --eslint
+```
+
+```shell
+npx shadcn-ui@latest init
+```
+
+The fourth setup step is where we add the default font from Shadcn to the layout. The code before you function component declaration should match the following block.
+
+```js
+import type { Metadata } from "next";
+import { Inter as FontSans } from "next/font/google"
+import "./globals.css";
+
+import { cn } from "@/lib/utils"
+
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+})
+````
+
+Next update the className of the body element.
+
+```html
+    <html lang="en">
+      <body className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable
+        )}>{children}</body>
+    </html>
+```
+
+Now we will update the `theme.extend.fontFaimly` in the `tailwind.config.js`
+
+```json
+const { fontFamily } = require("tailwindcss/defaultTheme")
+
+... additional code ...
+
+module.exports = {
+  darkMode: ["class"],
+  content: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"],
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ["var(--font-sans)", ...fontFamily.sans],
+      },
+    },
+  },
+}
+```
+
+I also feel like it make sense to set up prettier at this stage.
+
+```shell
+npm install -D prettier prettier-plugin-tailwindcss
+```
+
+```shell
+touch .prettierrc
+```
+
+Next you need to open the `.prettierrc` file and add the following config:
+```json
+{
+ "plugins": ["prettier-plugin-tailwindcss"]
+}
+```
+
+Go ahead a start up the project to make sure everything is working properly.
+
+```shell
+npm run dev
+```
+
+```shell
+git add .
+git commit -m "Complete initial setup with NextJS, Shadcn, Tailwind, and TypeScript. Added a prettierrc file and config to sort Tailwind classes and improve code formatting."
+```
+
+### First Deployment
+
+With our first commit behind us, we can create to repo and deploy to Vercel.
+
+```shell
+gh repo create
+```
+
+> Be sure to choose "Push an existing local repository to GitHub."
+
+Open up [Vercel](https://vercel.com/) and create a new project.
+
+-- REFERENCE THE post-001 image add-new-vercel-project
+
+From the dropdown, choose to import the repository you just created. Then scroll down and click `Deploy`. We don't need to set up anything custom at this point.
+
+-- REFERENCE THE post-001 image click-deploy
+
+Once the deployment is done you'll have a public link you can continue to develop and share with others.
+
+-- REFERENCE THE post-001 image deployment-celebration
+
+From here you can continue to the dashboard to monitor future deployments.
+
+### Clear Out the Boilerplate
+
+Next has done work recently to ship that initial repo with less filler code, but there is still more to remove before it's ready for the work we have to do for FrontendMento.
+
+Steps:
+1. Delete the content of the public folder
+2. Delete everything inside the main tag of the root `page.tsx`
+3. Make another commit `git commit -m "Remove NextJS boilerplate."`
+
+### Add Starter Code and Assets from Frontend Mentor
+
+Steps:
+1. Update the Title and Description  Metadata in the layout.tsx
+2. The `design` and `assets` folder can be moved to our `public` directory.
+  - The `Font` and `Images` directory should be moved to the top level of the public folder
+3. Update the `favicon.ico` with the one from Frontend Mentor
+4. Add sttarter content from the index.html to the `page.tsx`
+5. Update the tailwind config based off of Figma (Figma to Tailwind Plugin) of the style guide
+  - Another approach is to feed the style guide into ChatGPT
+
+```md
+Please convert this to code I can use to extend my 
+Tailwind config: 
+[Frontend Mentor Style Guide]
+```
+
+6. Update README
+7. [Optional] Add Attribution component
+
+```js
+// attribution.tsx
+
+import Link from "next/link";
+
+type TProps = {
+  name: string;
+  link: string;
+};
+
+export const Attribution = ({ name, link }: TProps) => {
+  return (
+    <div className="attribution decoration-none w-full font-light text-slate-400">
+      <span>Challenge by </span>
+      <Link className="text-white" href={"https://www.frontendmentor.io/"}>
+        <span className="font-bold text-slate-400">Frontend Mentor</span>
+      </Link>
+      <span>
+        . Coded by{" "}
+        <Link href={link}>
+          <span className="font-bold text-slate-400">{name}</span>
+        </Link>
+        .
+      </span>
+    </div>
+  );
+};
+```
+
+```js
+//page.tsx
+
+<Attribution
+  name={"Robert Crocker"}
+  link={"https://www.frontendmentor.io/profile/robcrock"}
+/>
+```
+
+7. Make a commit `git commit -m "Add raw Frontend Mentor starter code, assets, and styles."`
+
+## Design: Align the Styles with Tailwind
+
+Download the Figma files from the Frontend Mentor project
+Import them into Figma
+
+## Development: Bring the Layout to Life
+
+Now that we have the design in Figma we can begin inspecting the layer, look at the different layouts and states of the design and see what this UI is really made of.
+
+Considerations at this step:
+- Your UI as a tree https://react.dev/learn/understanding-your-ui-as-a-tree
+- What will the props be? https://react.dev/learn/passing-props-to-a-component
+- How can you keep it pure? https://react.dev/learn/keeping-components-pure
+
+Our goal in the UI analysis is to ultimate break the design into components. Of course we don't have to jump right into defining components. I like to start be outline the UI with comments and what I think my ultimately be components.
+
+## Polish: Refine Spacing, Fonts, and Colors
+## Publish: Count It ✅
