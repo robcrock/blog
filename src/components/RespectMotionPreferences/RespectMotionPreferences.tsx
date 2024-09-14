@@ -3,7 +3,7 @@
 import React from "react"
 import { MotionConfig } from "framer-motion"
 
-function RespectMotionPreferences({ children }) {
+function RespectMotionPreferences({ children }: { children: React.ReactNode }) {
   return <MotionConfig reducedMotion="user">{children}</MotionConfig>
 }
 

@@ -6,7 +6,7 @@ import Card from "../Card"
 
 import styles from "./BlogSummaryCard.module.css"
 
-function BlogSummaryCard({ slug, title, publishedOn, abstract }) {
+function BlogSummaryCard({ slug, title, publishedOn, abstract }: { slug: string, title: string, publishedOn: string, abstract: string }) {
   const href = `/${slug}`
   const humanizedDate = format(new Date(publishedOn), "MMMM do, yyyy")
 

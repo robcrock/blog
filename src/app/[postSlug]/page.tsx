@@ -8,7 +8,7 @@ import { loadBlogPost } from "../../helpers/file-helpers"
 import { BLOG_TITLE } from "../../constants"
 import { COMPONENT_MAP } from "../../helpers/mdx-components"
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params }: { params: { postSlug: string } }) {
   const { frontmatter } = await loadBlogPost(params.postSlug)
   return {
     title: `${frontmatter.title} • ${BLOG_TITLE}`,
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }) {
   }
 }
 
-async function BlogPost({ params }) {
+async function BlogPost({ params }: { params: { postSlug: string } }) {
   const { frontmatter, content } = await loadBlogPost(params.postSlug)
 
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './Equation.module.css';
 
-function Equation({ dividend, divisor, remainder }) {
+function Equation({ dividend, divisor, remainder }: { dividend: number; divisor: number; remainder?: number }) {
   return (
     <p className={styles.wrapper}>
       {dividend} ÷ {divisor} ={' '}

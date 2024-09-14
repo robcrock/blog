@@ -2,6 +2,7 @@ import React from "react"
 import { Work_Sans, Spline_Sans_Mono } from "next/font/google"
 import clsx from "clsx"
 import { cookies } from "next/headers"
+import { ReactNode } from "react"
 
 import {
   LIGHT_TOKENS,
@@ -33,7 +34,7 @@ export const metadata = {
   description: "A place for me to share what I'm learning.",
 }
 
-function RootLayout({ children }) {
+function RootLayout({ children }: { children: ReactNode }) {
   const savedTheme = cookies().get(COLOR_THEME_COOKIE_NAME)
   const theme = savedTheme?.value || "light"
 
@@ -43,10 +44,10 @@ function RootLayout({ children }) {
         lang="en"
         className={clsx(mainFont.variable, monoFont.variable)}
         data-color-theme={theme}
-        style={theme === "light" ? LIGHT_TOKENS : DARK_TOKENS}
+        style={theme === "light" ? LIGHT_TOKENS as React.CSSProperties : DARK_TOKENS as React.CSSProperties}
       >
         <body>
-          <Header initialTheme={theme} />
+          <Header initialTheme={theme as "light" | "dark"} />
           <main>{children}</main>
           <Footer />
         </body>

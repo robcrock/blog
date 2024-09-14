@@ -8,6 +8,11 @@ function VisuallyHidden({
   className,
   children,
   ...delegated
+}: {
+  as?: React.ElementType;
+  className?: string;
+  children: React.ReactNode;
+  [key: string]: any;
 }) {
   return (
     <Element

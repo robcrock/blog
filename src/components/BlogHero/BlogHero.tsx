@@ -9,6 +9,11 @@ function BlogHero({
   publishedOn,
   className,
   ...delegated
+}: {
+  title: string;
+  publishedOn: string;
+  className?: string;
+  [key: string]: any;
 }) {
   const humanizedDate = format(
     new Date(publishedOn),

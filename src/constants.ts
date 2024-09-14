@@ -1,7 +1,9 @@
+type ColorSet = { [key: string]: string };
+
 export const BLOG_TITLE = "Robert's Site"
 export const COLOR_THEME_COOKIE_NAME = "color-theme"
 
-export const LIGHT_COLORS = {
+export const LIGHT_COLORS: { [key: string]: string } = {
   "--color-text": "hsl(0deg 0% 5%)",
   "--color-primary-100": "hsl(240deg 100% 90%)",
   "--color-primary-300": "hsl(242deg 100% 70%)",
@@ -28,7 +30,7 @@ export const LIGHT_COLORS = {
   "--color-gray-1000": "black",
 }
 
-export const DARK_COLORS = {
+export const DARK_COLORS: ColorSet = {
   "--color-text": "hsl(0deg 0% 100%)",
   "--color-primary-100": "hsl(50deg 100% 90%)",
   "--color-primary-300": "hsl(50deg 100% 70%)",
@@ -36,6 +38,7 @@ export const DARK_COLORS = {
   "--color-primary-700": "hsl(50deg 100% 35%)",
   "--color-primary-900": "hsl(50deg 100% 25%)",
   "--color-primary-contrast": "black",
+  "--color-secondary": "hsl(328deg 100% 50%)",
   "--color-secondary-500": "hsl(328deg 100% 50%)",
   "--color-decorative-100": "hsl(256deg 20% 4%)",
   "--color-decorative-200": "hsl(256deg 30% 10%)",
