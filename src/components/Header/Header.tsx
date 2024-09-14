@@ -15,7 +15,7 @@ import {
   LIGHT_TOKENS,
 } from "../../constants"
 
-function Header({ initialTheme, className, ...delegated }) {
+function Header({ initialTheme, className, ...delegated }: { initialTheme: 'light' | 'dark', className?: string, [key: string]: any }) {
   const [theme, setTheme] = React.useState(initialTheme)
 
   const handleToggleTheme = () => {

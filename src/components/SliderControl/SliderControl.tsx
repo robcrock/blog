@@ -1,9 +1,10 @@
 import React from "react"
 
-import Slider from "../Slider"
-import styles from "./SliderControl.module.css"
 
-function SliderControl({ label, value, ...delegated }) {
+import styles from "./SliderControl.module.css"
+import Slider from "../Slider"
+
+function SliderControl({ label, value, ...delegated }: { label: string, value: number, [key: string]: any }) {
   const id = React.useId()
 
   return (

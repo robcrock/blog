@@ -14,6 +14,10 @@ function DivisionGroupsDemo({
   numOfItems = 12,
   initialNumOfGroups = 1,
   includeRemainderArea,
+}: {
+  numOfItems: number;
+  initialNumOfGroups: number;
+  includeRemainderArea: boolean;
 }) {
   const id = React.useId()
   const [numOfGroups, setNumOfGroups] = React.useState(initialNumOfGroups)
@@ -47,7 +51,7 @@ function DivisionGroupsDemo({
             min={1}
             max={4}
             value={numOfGroups}
-            onChange={(ev) => setNumOfGroups(Number(ev.target.value))}
+            onChange={(ev: React.ChangeEvent<HTMLInputElement>) => setNumOfGroups(Number(ev.target.value))}
           />
         </header>
 
@@ -94,7 +98,7 @@ function DivisionGroupsDemo({
         <Equation
           dividend={numOfItems}
           divisor={numOfGroups}
-          remainder={remainder}
+          remainder={remainder as number | undefined}
         />
       </Card>
     </LayoutGroup>

@@ -48,9 +48,21 @@ importers:
         specifier: 2.0.10
         version: 2.0.10(react@18.2.0)
     devDependencies:
+      '@types/js-cookie':
+        specifier: ^3.0.6
+        version: 3.0.6
       '@types/node':
         specifier: 20.5.1
         version: 20.5.1
+      '@types/react':
+        specifier: ^18.3.5
+        version: 18.3.5
+      '@types/react-dom':
+        specifier: ^18.3.0
+        version: 18.3.0
+      typescript:
+        specifier: ^5.6.2
+        version: 5.6.2
 
 packages:
 
@@ -206,6 +218,9 @@ packages:
   '@types/hast@2.3.10':
     resolution: {integrity: sha512-McWspRw8xx8J9HurkVBfYj0xKoE25tOFlHGdx4MJ5xORQrMGZNqJhVQWaIbm6Oyla5kYOXtDiopzKRJzEOkwJw==}
 
+  '@types/js-cookie@3.0.6':
+    resolution: {integrity: sha512-wkw9yd1kEXOPnvEeEV1Go1MmxtBJL0RR79aOTAApecWFVu7w0NNXNqhcWgvw2YgZDYadliXkl14pa3WXw5jlCQ==}
+
   '@types/js-yaml@4.0.9':
     resolution: {integrity: sha512-k4MGaQl5TGo/iipqb2UDG2UwjXziSWkh0uysQelTlJpX1qGlpUZYm8PnO4DxG1qBomtJUdYJ6qR6xdIah10JLg==}
 
@@ -226,6 +241,9 @@ packages:
 
   '@types/prop-types@15.7.12':
     resolution: {integrity: sha512-5zvhXYtRNRluoE/jAp4GVsSduVUzNWKkOZrCDBWYtE7biZywwdC2AcEzg+cSMLFRfVgeAFqpfNabiPjxFddV1Q==}
+
+  '@types/react-dom@18.3.0':
+    resolution: {integrity: sha512-EhwApuTmMBmXuFOikhQLIBUn6uFg81SwLMOAUgodJF14SOBOCMdU04gDoYi0WOJJHD144TL32z4yDqCW3dnkQg==}
 
   '@types/react@18.3.5':
     resolution: {integrity: sha512-WeqMfGJLGuLCqHGYRGHxnKrXcTitc6L/nBUWfWPcTarG3t9PsquqUMuVeXZeca+mglY4Vo5GZjCi0A3Or2lnxA==}
@@ -1861,6 +1879,8 @@ snapshots:
     dependencies:
       '@types/unist': 2.0.11
 
+  '@types/js-cookie@3.0.6': {}
+
   '@types/js-yaml@4.0.9': {}
 
   '@types/json5@0.0.29': {}
@@ -1876,6 +1896,10 @@ snapshots:
   '@types/node@20.5.1': {}
 
   '@types/prop-types@15.7.12': {}
+
+  '@types/react-dom@18.3.0':
+    dependencies:
+      '@types/react': 18.3.5
 
   '@types/react@18.3.5':
     dependencies:

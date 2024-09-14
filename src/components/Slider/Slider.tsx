@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 import styles from './Slider.module.css';
 
-function Slider({ className, ...delegated }) {
+export function Slider({ className, ...delegated }: { className?: string, [key: string]: any }) {
   return (
     <input
       type="range"
