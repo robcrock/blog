@@ -1,51 +1,57 @@
-import React from "react"
-import { Work_Sans, Spline_Sans_Mono } from "next/font/google"
-import clsx from "clsx"
-import { cookies } from "next/headers"
-import { ReactNode } from "react"
+import React, { ReactNode } from "react";
 
+import { cn } from "@/lib/utils";
+import { Spline_Sans_Mono, Work_Sans } from "next/font/google";
+import { cookies } from "next/headers";
+
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 import {
-  LIGHT_TOKENS,
-  DARK_TOKENS,
   BLOG_TITLE,
   COLOR_THEME_COOKIE_NAME,
-} from "../constants"
+  DARK_TOKENS,
+  LIGHT_TOKENS,
+} from "../constants";
 
-import Header from "../components/Header"
-import Footer from "../components/Footer"
-import "./styles.css"
-import RespectMotionPreferences from "../components/RespectMotionPreferences/RespectMotionPreferences"
-import { ThemeProvider } from "@/components/theme-provider"
+import "./styles.css";
+
+import { ThemeProvider } from "@/components/theme-provider";
+
+import RespectMotionPreferences from "../components/RespectMotionPreferences/RespectMotionPreferences";
 
 const mainFont = Work_Sans({
   subsets: ["latin"],
   display: "fallback",
   weight: "variable",
   variable: "--font-family",
-})
+});
 const monoFont = Spline_Sans_Mono({
   subsets: ["latin"],
   display: "fallback",
   weight: "variable",
   variable: "--font-family-mono",
-})
+});
 
 export const metadata = {
   title: BLOG_TITLE,
   description: "A place for me to share what I'm learning.",
-}
+};
 
 function RootLayout({ children }: { children: ReactNode }) {
-  const savedTheme = cookies().get(COLOR_THEME_COOKIE_NAME)
-  const theme = savedTheme?.value || "light"
+  const savedTheme = cookies().get(COLOR_THEME_COOKIE_NAME);
+  const theme = savedTheme?.value || "light";
 
   return (
     <RespectMotionPreferences>
       <html
         lang="en"
-        className={clsx(mainFont.variable, monoFont.variable)}
+        className={cn(mainFont.variable, monoFont.variable)}
         data-color-theme={theme}
-        style={theme === "light" ? LIGHT_TOKENS as React.CSSProperties : DARK_TOKENS as React.CSSProperties}
+        style={
+          theme === "light"
+            ? (LIGHT_TOKENS as React.CSSProperties)
+            : (DARK_TOKENS as React.CSSProperties)
+        }
       >
         <body>
           <ThemeProvider
@@ -54,14 +60,14 @@ function RootLayout({ children }: { children: ReactNode }) {
             enableSystem
             disableTransitionOnChange
           >
-          <Header />
-          <main>{children}</main>
-          <Footer />
+            <Header />
+            <main>{children}</main>
+            <Footer />
           </ThemeProvider>
         </body>
       </html>
     </RespectMotionPreferences>
-  )
+  );
 }
 
-export default RootLayout
+export default RootLayout;

@@ -1,50 +1,50 @@
-"use client"
+"use client";
 
-import React, { useState } from "react"
-import clsx from "clsx"
-import { Play, Pause, RotateCcw } from "react-feather"
-import { motion } from "framer-motion"
+import React, { useState } from "react";
 
-import Card from "../Card"
-import VisuallyHidden from "../VisuallyHidden"
+import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
+import { Pause, Play, RotateCcw } from "react-feather";
 
-import styles from "./CircularColorsDemo.module.css"
+import Card from "../Card";
+import VisuallyHidden from "../VisuallyHidden";
+import styles from "./CircularColorsDemo.module.css";
 
 const COLORS = [
   { label: "red", value: "hsl(348deg 100% 60%)" },
   { label: "yellow", value: "hsl(50deg 100% 55%)" },
   { label: "blue", value: "hsl(235deg 100% 65%)" },
-]
+];
 
 function CircularColorsDemo() {
-  const id = React.useId()
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [timeElapsed, setTimeElapsed] = useState(0)
+  const id = React.useId();
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [timeElapsed, setTimeElapsed] = useState(0);
 
   React.useEffect(() => {
-    if (isPlaying === false) return
+    if (isPlaying === false) return;
     const intervalId = window.setInterval(() => {
-      setTimeElapsed((currentTimeElapsed) => currentTimeElapsed + 1)
-    }, 1000)
+      setTimeElapsed((currentTimeElapsed) => currentTimeElapsed + 1);
+    }, 1000);
 
     return () => {
-      window.clearInterval(intervalId)
-    }
-  }, [isPlaying])
+      window.clearInterval(intervalId);
+    };
+  }, [isPlaying]);
 
   const handleReset = () => {
-    setIsPlaying(false)
-    setTimeElapsed(0)
-  }
+    setIsPlaying(false);
+    setTimeElapsed(0);
+  };
 
   // Cycle through colors every 3 seconds
-  const selectedColor = COLORS[timeElapsed % COLORS.length]
+  const selectedColor = COLORS[timeElapsed % COLORS.length];
 
   return (
     <Card as="section" className={styles.wrapper}>
       <ul className={styles.colorsWrapper}>
         {COLORS.map((color, index) => {
-          const isSelected = color.value === selectedColor.value
+          const isSelected = color.value === selectedColor.value;
 
           return (
             <li className={styles.color} key={index}>
@@ -55,7 +55,7 @@ function CircularColorsDemo() {
                 />
               )}
               <div
-                className={clsx(
+                className={cn(
                   styles.colorBox,
                   isSelected && styles.selectedColorBox
                 )}
@@ -66,7 +66,7 @@ function CircularColorsDemo() {
                 <VisuallyHidden>{color.label}</VisuallyHidden>
               </div>
             </li>
-          )
+          );
         })}
       </ul>
 
@@ -87,7 +87,7 @@ function CircularColorsDemo() {
         </div>
       </div>
     </Card>
-  )
+  );
 }
 
-export default CircularColorsDemo
+export default CircularColorsDemo;

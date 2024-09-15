@@ -1,14 +1,15 @@
-"use client"
-import React from "react"
-import clsx from "clsx"
-import { LayoutGroup, motion } from "framer-motion"
+"use client";
 
-import { range } from "../../utils"
-import Card from "../Card"
-import SliderControl from "../SliderControl"
+import React from "react";
 
-import Equation from "./Equation"
-import styles from "./DivisionGroupsDemo.module.css"
+import { cn } from "@/lib/utils";
+import { LayoutGroup, motion } from "framer-motion";
+
+import { range } from "../../utils";
+import Card from "../Card";
+import SliderControl from "../SliderControl";
+import styles from "./DivisionGroupsDemo.module.css";
+import Equation from "./Equation";
 
 function DivisionGroupsDemo({
   numOfItems = 12,
@@ -19,14 +20,14 @@ function DivisionGroupsDemo({
   initialNumOfGroups: number;
   includeRemainderArea: boolean;
 }) {
-  const id = React.useId()
-  const [numOfGroups, setNumOfGroups] = React.useState(initialNumOfGroups)
+  const id = React.useId();
+  const [numOfGroups, setNumOfGroups] = React.useState(initialNumOfGroups);
 
-  const numOfItemsPerGroup = Math.floor(numOfItems / numOfGroups)
+  const numOfItemsPerGroup = Math.floor(numOfItems / numOfGroups);
 
-  const totalNumInGroups = numOfGroups * numOfItemsPerGroup
+  const totalNumInGroups = numOfGroups * numOfItemsPerGroup;
 
-  const remainder = includeRemainderArea ? numOfItems % numOfGroups : null
+  const remainder = includeRemainderArea ? numOfItems % numOfGroups : null;
 
   // When we're splitting into 1-3 groups, display side-by-side
   // columns. When we get to 4, it should switch to a 2x2 grid.
@@ -38,7 +39,7 @@ function DivisionGroupsDemo({
       : {
           gridTemplateColumns: "1fr 1fr",
           gridTemplateRows: "1fr 1fr",
-        }
+        };
 
   return (
     <LayoutGroup>
@@ -51,17 +52,19 @@ function DivisionGroupsDemo({
             min={1}
             max={4}
             value={numOfGroups}
-            onChange={(ev: React.ChangeEvent<HTMLInputElement>) => setNumOfGroups(Number(ev.target.value))}
+            onChange={(ev: React.ChangeEvent<HTMLInputElement>) =>
+              setNumOfGroups(Number(ev.target.value))
+            }
           />
         </header>
 
         <div className={styles.demoWrapper}>
-          <div className={clsx(styles.demoArea)} style={gridStructure}>
+          <div className={cn(styles.demoArea)} style={gridStructure}>
             {range(numOfGroups).map((groupIndex) => (
               <div key={groupIndex} className={styles.group}>
                 {range(numOfItemsPerGroup).map((index) => {
-                  const totalInPreviousGroups = groupIndex * numOfItemsPerGroup
-                  const layoutId = `${id}-${totalInPreviousGroups + index}`
+                  const totalInPreviousGroups = groupIndex * numOfItemsPerGroup;
+                  const layoutId = `${id}-${totalInPreviousGroups + index}`;
                   return (
                     <motion.div
                       key={layoutId}
@@ -69,7 +72,7 @@ function DivisionGroupsDemo({
                       layout={true}
                       className={styles.item}
                     />
-                  )
+                  );
                 })}
               </div>
             ))}
@@ -83,14 +86,14 @@ function DivisionGroupsDemo({
             {range(totalNumInGroups, numOfItems)
               .reverse()
               .map((index) => {
-                const layoutId = `${id}-${index}`
+                const layoutId = `${id}-${index}`;
                 return (
                   <motion.div
                     layoutId={layoutId}
                     key={layoutId}
                     className={styles.item}
                   />
-                )
+                );
               })}
           </div>
         )}
@@ -102,7 +105,7 @@ function DivisionGroupsDemo({
         />
       </Card>
     </LayoutGroup>
-  )
+  );
 }
 
-export default DivisionGroupsDemo
+export default DivisionGroupsDemo;

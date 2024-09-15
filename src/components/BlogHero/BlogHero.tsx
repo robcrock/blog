@@ -1,8 +1,9 @@
-import React from 'react';
-import { format } from 'date-fns';
-import clsx from 'clsx';
+import React from "react";
 
-import styles from './BlogHero.module.css';
+import { cn } from "@/lib/utils";
+import { format } from "date-fns";
+
+import styles from "./BlogHero.module.css";
 
 function BlogHero({
   title,
@@ -15,23 +16,14 @@ function BlogHero({
   className?: string;
   [key: string]: any;
 }) {
-  const humanizedDate = format(
-    new Date(publishedOn),
-    'MMMM do, yyyy'
-  );
+  const humanizedDate = format(new Date(publishedOn), "MMMM do, yyyy");
 
   return (
-    <header
-      className={clsx(styles.wrapper, className)}
-      {...delegated}
-    >
+    <header className={cn(styles.wrapper, className)} {...delegated}>
       <div className={styles.content}>
         <h1>{title}</h1>
         <p>
-          Published on{' '}
-          <time dateTime={publishedOn}>
-            {humanizedDate}
-          </time>
+          Published on <time dateTime={publishedOn}>{humanizedDate}</time>
         </p>
       </div>
     </header>

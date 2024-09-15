@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 
 import Logo from "../Logo";
 import styles from "./Header.module.css";
@@ -15,7 +15,7 @@ function Header({
   [key: string]: any;
 }) {
   return (
-    <header className={clsx(styles.wrapper, className)} {...delegated}>
+    <header className={cn(styles.wrapper, className)} {...delegated}>
       <Logo />
     </header>
   );

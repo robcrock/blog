@@ -1,13 +1,20 @@
-import React from 'react';
-import clsx from 'clsx';
+import React from "react";
 
-import styles from './Slider.module.css';
+import { cn } from "@/lib/utils";
 
-export function Slider({ className, ...delegated }: { className?: string, [key: string]: any }) {
+import styles from "./Slider.module.css";
+
+export function Slider({
+  className,
+  ...delegated
+}: {
+  className?: string;
+  [key: string]: any;
+}) {
   return (
     <input
       type="range"
-      className={clsx(styles.slider, className)}
+      className={cn(styles.slider, className)}
       {...delegated}
     />
   );

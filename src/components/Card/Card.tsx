@@ -1,11 +1,20 @@
-import React from 'react';
-import clsx from 'clsx';
+import React from "react";
 
-import styles from './Card.module.css';
+import { cn } from "@/lib/utils";
 
-function Card({ children, className, ...delegated }: { children: React.ReactNode, className?: string, [key: string]: any }) {
+import styles from "./Card.module.css";
+
+function Card({
+  children,
+  className,
+  ...delegated
+}: {
+  children: React.ReactNode;
+  className?: string;
+  [key: string]: any;
+}) {
   return (
-    <div className={clsx(styles.wrapper, className)} {...delegated}>
+    <div className={cn(styles.wrapper, className)} {...delegated}>
       {children}
     </div>
   );
