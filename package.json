@@ -7,10 +7,14 @@
     "build": "pnpm next build",
     "start": "pnpm next start",
     "lint": "pnpm next lint",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "postinstall": "pnpm dlx @types/node@latest"
   },
   "dependencies": {
+    "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-slot": "^1.1.0",
     "bright": "0.8.4",
+    "class-variance-authority": "^0.7.0",
     "clsx": "1.2.1",
     "date-fns": "2.30.0",
     "eslint": "8.43.0",
@@ -18,17 +22,28 @@
     "framer-motion": "10.14",
     "gray-matter": "^4.0.3",
     "js-cookie": "^3.0.5",
+    "lucide-react": "^0.441.0",
     "next": "13.4.12",
     "next-mdx-remote": "^4.4.1",
+    "next-themes": "^0.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-feather": "2.0.10"
+    "react-feather": "2.0.10",
+    "tailwind-merge": "^2.5.2",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "20.5.1",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.20",
+    "eslint-config-prettier": "^9.1.0",
+    "postcss": "^8.4.47",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.6",
+    "tailwindcss": "^3.4.11",
     "typescript": "^5.6.2"
   }
 }

@@ -15,6 +15,7 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 import "./styles.css"
 import RespectMotionPreferences from "../components/RespectMotionPreferences/RespectMotionPreferences"
+import { ThemeProvider } from "@/components/theme-provider"
 
 const mainFont = Work_Sans({
   subsets: ["latin"],
@@ -47,9 +48,16 @@ function RootLayout({ children }: { children: ReactNode }) {
         style={theme === "light" ? LIGHT_TOKENS as React.CSSProperties : DARK_TOKENS as React.CSSProperties}
       >
         <body>
-          <Header initialTheme={theme as "light" | "dark"} />
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+          <Header />
           <main>{children}</main>
           <Footer />
+          </ThemeProvider>
         </body>
       </html>
     </RespectMotionPreferences>
