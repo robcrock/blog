@@ -1,23 +1,9 @@
 import React, { ReactNode } from "react";
 
-import { cn } from "@/lib/utils";
+import { ThemeProvider } from "@/components/theme-provider";
 import { Spline_Sans_Mono, Work_Sans } from "next/font/google";
-import { cookies } from "next/headers";
-
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import {
-  BLOG_TITLE,
-  COLOR_THEME_COOKIE_NAME,
-  DARK_TOKENS,
-  LIGHT_TOKENS,
-} from "../constants";
 
 import "./styles.css";
-
-import { ThemeProvider } from "@/components/theme-provider";
-
-import RespectMotionPreferences from "../components/RespectMotionPreferences/RespectMotionPreferences";
 
 const mainFont = Work_Sans({
   subsets: ["latin"],
@@ -25,6 +11,7 @@ const mainFont = Work_Sans({
   weight: "variable",
   variable: "--font-family",
 });
+
 const monoFont = Spline_Sans_Mono({
   subsets: ["latin"],
   display: "fallback",
@@ -33,41 +20,20 @@ const monoFont = Spline_Sans_Mono({
 });
 
 export const metadata = {
-  title: BLOG_TITLE,
-  description: "A place for me to share what I'm learning.",
+  title: "John Doe - Developer, writer, and creator of useful things",
+  description: "Personal website of John Doe",
 };
 
-function RootLayout({ children }: { children: ReactNode }) {
-  const savedTheme = cookies().get(COLOR_THEME_COOKIE_NAME);
-  const theme = savedTheme?.value || "light";
-
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <RespectMotionPreferences>
-      <html
-        lang="en"
-        className={cn(mainFont.variable, monoFont.variable)}
-        data-color-theme={theme}
-        style={
-          theme === "light"
-            ? (LIGHT_TOKENS as React.CSSProperties)
-            : (DARK_TOKENS as React.CSSProperties)
-        }
-      >
-        <body>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Header />
-            <main>{children}</main>
-            <Footer />
-          </ThemeProvider>
-        </body>
-      </html>
-    </RespectMotionPreferences>
+    <html lang="en" className={`${mainFont.variable} ${monoFont.variable}`}>
+      <body className="bg-background text-foreground">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <div className="flex flex-col min-h-screen">
+            <main className="flex-grow">{children}</main>
+          </div>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }
-
-export default RootLayout;

@@ -2,236 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-  CSS RESET
-  https://www.joshwcomeau.com/css/custom-css-reset/
-*/
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-* {
-  margin: 0;
-}
-html {
-  scrollbar-gutter: stable;
-}
-body {
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-}
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
-}
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  overflow-wrap: break-word;
-}
-
-/* THEME VARIABLES */
-html {
-  --content-width: 55rem;
-  --outer-content-width: 80rem;
-  --viewport-padding: 16px;
-  --header-height: 5rem;
-  --trimmed-content-width: calc(
-    var(--content-width) - var(--viewport-padding) * 2
-  );
-}
-
-@media (min-width: 35rem) {
-  html {
-    --viewport-padding: 24px;
-  }
-}
-
-/* GLOBAL STYLES */
-::selection {
-  background-color: var(
-    --color-selection-background
-  ) !important;
-  color: var(--color-selection-text) !important;
-  background-image: none !important;
-  -webkit-text-fill-color: var(
-    --color-selection-text
-  ) !important;
-  -moz-text-fill-color: var(
-    --color-selection-text
-  ) !important;
-  background-image: none !important;
-  background-clip: revert !important;
-  -webkit-background-clip: revert !important;
-  text-shadow: none !important;
-}
-
-html {
-  color: var(--color-text);
-  font-family: var(--font-family), sans-serif;
-  letter-spacing: -0.03125em;
-  background: var(--color-backdrop-highlight);
-}
-
-body {
-  min-height: 100vh;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  background: var(--color-backdrop);
-  border-bottom: 3px solid var(--color-decorative-600);
-}
-
-body::before {
-  content: '';
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 50vh;
-  background: linear-gradient(
-    to top,
-    var(--color-backdrop),
-    var(--color-backdrop-highlight)
-  );
-}
-
-body > main {
-  flex: 1;
-  position: relative;
-}
-
-em {
-  font-style: italic;
-}
-code {
-  font-family: var(--font-family-mono);
-}
-h1 {
-  font-size: 1.75rem;
-  font-weight: 650;
-}
-h2 {
-  font-size: 1.5rem;
-  margin-top: 2em;
-  margin-bottom: 0.5em;
-  font-weight: 600;
-}
-h3 {
-  font-size: 1.25rem;
-  margin-top: 2em;
-  margin-bottom: 0.5em;
-  font-weight: 500;
-}
-p {
-  font-size: 1.25rem;
-  margin-bottom: 1.5em;
-}
-p code {
-  display: inline-block;
-  font-size: 0.9em;
-  background: var(--color-inline-code-bg);
-  padding: 3px 6px;
-  margin: -0.25em -1px;
-  border-radius: 3px;
-}
-a {
-  color: currentColor;
-  text-decoration-color: var(--color-primary);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.125em;
-  font-weight: 500;
-  transition: all 200ms;
-}
-a:hover {
-  text-underline-offset: 0.175em;
-}
-button {
-  padding: 0;
-}
-
-@media (min-width: 35rem) {
-  h1 {
-    font-size: 2.25rem;
-  }
-
-  h2 {
-    font-size: 1.75rem;
-  }
-  h3 {
-    font-size: 1.5rem;
-  }
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
     --radius: 0.5rem;
   }
+
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
   }
 }
 
