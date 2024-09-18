@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 
+import FeaturedProjectSection from "@/components/FeaturedProjectSection";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,7 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ExternalLink, Linkedin, Moon, Sun, X } from "lucide-react";
+import { ExternalLink, Linkedin, Moon, Sun, Twitter } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -24,7 +25,6 @@ interface Article {
 interface Project {
   title: string;
   description: string;
-  image: string;
   link: string;
 }
 
@@ -49,26 +49,26 @@ const articles: Article[] = [
 const projects: Project[] = [
   {
     title: "Project 1",
-    description: "A sleek web application for managing personal finances.",
-    image: "/placeholder.svg?height=200&width=300",
+    description:
+      "Brief description of the project and its main features or purpose.",
     link: "#",
   },
   {
     title: "Project 2",
-    description: "An AI-powered tool for optimizing workout routines.",
-    image: "/placeholder.svg?height=200&width=300",
+    description:
+      "Brief description of the project and its main features or purpose.",
     link: "#",
   },
   {
     title: "Project 3",
-    description: "A mobile app for tracking and reducing carbon footprint.",
-    image: "/placeholder.svg?height=200&width=300",
+    description:
+      "Brief description of the project and its main features or purpose.",
     link: "#",
   },
   {
     title: "Project 4",
-    description: "An e-commerce platform for sustainable products.",
-    image: "/placeholder.svg?height=200&width=300",
+    description:
+      "Brief description of the project and its main features or purpose.",
     link: "#",
   },
 ];
@@ -90,7 +90,7 @@ export default function Home() {
 
   return (
     <div className="max-w-4xl px-4 py-8 mx-auto">
-      <header className="flex items-center justify-between mb-12">
+      <header className="flex items-center justify-between mb-16">
         <nav>
           <ul className="flex space-x-6">
             <li>
@@ -115,7 +115,12 @@ export default function Home() {
             </li>
           </ul>
         </nav>
-        <Button variant="ghost" size="icon" onClick={toggleDarkMode}>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={toggleDarkMode}
+          className="rounded-full"
+        >
           {darkMode ? (
             <Sun className="h-[1.2rem] w-[1.2rem]" />
           ) : (
@@ -125,31 +130,29 @@ export default function Home() {
         </Button>
       </header>
 
-      <section className="flex justify-start gap-6 mb-16 text-center">
+      <section className="mb-16 text-center">
         <Image
           src={avatar}
-          alt="Robert Crocker"
+          alt="John Doe"
           width={120}
           height={120}
-          className="rounded-full"
+          className="mx-auto mb-4 rounded-full"
         />
-        <div className="flex flex-col items-start justify-center">
-          <h1 className="text-3xl font-bold">Robert Crocker</h1>
-          <p className="text-xl text-muted-foreground">
-            Developer, aspiring designer, life-long lifter and learner.
-          </p>
-          <div>
-            <Button variant="ghost" size="icon" asChild>
-              <Link href="https://twitter.com">
-                <X size={20} />
-              </Link>
-            </Button>
-            <Button variant="ghost" size="icon" asChild>
-              <Link href="https://linkedin.com">
-                <Linkedin size={20} />
-              </Link>
-            </Button>
-          </div>
+        <h1 className="mb-2 text-3xl font-bold">John Doe</h1>
+        <p className="mb-4 text-xl text-muted-foreground">
+          Developer, writer, and creator of useful things.
+        </p>
+        <div className="flex justify-center space-x-4">
+          <Button variant="ghost" size="icon" asChild>
+            <Link href="https://twitter.com">
+              <Twitter size={20} />
+            </Link>
+          </Button>
+          <Button variant="ghost" size="icon" asChild>
+            <Link href="https://linkedin.com">
+              <Linkedin size={20} />
+            </Link>
+          </Button>
         </div>
       </section>
 
@@ -169,36 +172,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section>
-        <h2 className="mb-6 text-2xl font-semibold">Featured Projects</h2>
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className="overflow-hidden transition-all duration-300 bg-white rounded-lg shadow-lg dark:bg-gray-800 hover:shadow-xl hover:scale-105"
-            >
-              <img
-                src={project.image}
-                alt={project.title}
-                className="object-cover w-full h-48"
-              />
-              <div className="p-6">
-                <h3 className="mb-2 text-xl font-semibold">{project.title}</h3>
-                <p className="mb-4 text-gray-600 dark:text-gray-300">
-                  {project.description}
-                </p>
-                <Link
-                  href={project.link}
-                  className="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
-                >
-                  View Project
-                  <ExternalLink className="w-4 h-4 ml-2" />
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <FeaturedProjectSection />
     </div>
   );
 }
