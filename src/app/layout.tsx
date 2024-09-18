@@ -27,11 +27,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${mainFont.variable} ${monoFont.variable}`}>
-      <body className="bg-background text-foreground">
+      <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="flex flex-col min-h-screen">
-            <main className="flex-grow">{children}</main>
-          </div>
+          {children}
         </ThemeProvider>
       </body>
     </html>

@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -6,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Linkedin, X } from "lucide-react";
+import { ExternalLink, Linkedin, Moon, Sun, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -20,6 +24,8 @@ interface Article {
 interface Project {
   title: string;
   description: string;
+  image: string;
+  link: string;
 }
 
 const articles: Article[] = [
@@ -43,27 +49,45 @@ const articles: Article[] = [
 const projects: Project[] = [
   {
     title: "Project 1",
-    description:
-      "Brief description of the project and its main features or purpose.",
+    description: "A sleek web application for managing personal finances.",
+    image: "/placeholder.svg?height=200&width=300",
+    link: "#",
   },
   {
     title: "Project 2",
-    description:
-      "Brief description of the project and its main features or purpose.",
+    description: "An AI-powered tool for optimizing workout routines.",
+    image: "/placeholder.svg?height=200&width=300",
+    link: "#",
   },
   {
     title: "Project 3",
-    description:
-      "Brief description of the project and its main features or purpose.",
+    description: "A mobile app for tracking and reducing carbon footprint.",
+    image: "/placeholder.svg?height=200&width=300",
+    link: "#",
   },
   {
     title: "Project 4",
-    description:
-      "Brief description of the project and its main features or purpose.",
+    description: "An e-commerce platform for sustainable products.",
+    image: "/placeholder.svg?height=200&width=300",
+    link: "#",
   },
 ];
 
 export default function Home() {
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
     <div className="max-w-4xl px-4 py-8 mx-auto">
       <header className="flex items-center justify-between mb-12">
@@ -91,22 +115,13 @@ export default function Home() {
             </li>
           </ul>
         </nav>
-        <Button variant="ghost" size="icon" className="rounded-full">
-          <span className="sr-only">Toggle theme</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle cx="12" cy="12" r="5" />
-            <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
-          </svg>
+        <Button variant="ghost" size="icon" onClick={toggleDarkMode}>
+          {darkMode ? (
+            <Sun className="h-[1.2rem] w-[1.2rem]" />
+          ) : (
+            <Moon className="h-[1.2rem] w-[1.2rem]" />
+          )}
+          <span className="sr-only">Toggle dark mode</span>
         </Button>
       </header>
 
@@ -155,38 +170,32 @@ export default function Home() {
       </section>
 
       <section>
-        <h2 className="mb-6 text-2xl font-bold">Featured Projects</h2>
-        <div className="grid gap-6 md:grid-cols-2">
+        <h2 className="mb-6 text-2xl font-semibold">Featured Projects</h2>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {projects.map((project, index) => (
-            <Card key={index}>
-              <CardHeader>
-                <CardTitle>{project.title}</CardTitle>
-                <CardDescription>{project.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
+            <div
+              key={index}
+              className="overflow-hidden transition-all duration-300 bg-white rounded-lg shadow-lg dark:bg-gray-800 hover:shadow-xl hover:scale-105"
+            >
+              <img
+                src={project.image}
+                alt={project.title}
+                className="object-cover w-full h-48"
+              />
+              <div className="p-6">
+                <h3 className="mb-2 text-xl font-semibold">{project.title}</h3>
+                <p className="mb-4 text-gray-600 dark:text-gray-300">
+                  {project.description}
+                </p>
                 <Link
-                  href="#"
-                  className="inline-flex items-center text-primary hover:underline"
+                  href={project.link}
+                  className="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
                 >
-                  Learn more
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="ml-1"
-                  >
-                    <path d="M5 12h14" />
-                    <path d="m12 5 7 7-7 7" />
-                  </svg>
+                  View Project
+                  <ExternalLink className="w-4 h-4 ml-2" />
                 </Link>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
         </div>
       </section>
