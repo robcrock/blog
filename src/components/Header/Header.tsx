@@ -1,22 +1,60 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { Moon, Sun } from "react-feather";
 
-import Logo from "../Logo";
-import styles from "./Header.module.css";
+import { Button } from "../ui/button";
 
-function Header({
-  className,
-  ...delegated
-}: {
-  className?: string;
-  [key: string]: any;
-}) {
+function Header() {
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
+  const navItems = [
+    { href: "#", label: "About" },
+    // { href: "#", label: "Articles" },
+    { href: "#", label: "Projects" },
+    // { href: "#", label: "Uses" },
+  ];
+
   return (
-    <header className={cn(styles.wrapper, className)} {...delegated}>
-      <Logo />
+    <header className="flex items-center justify-between py-6">
+      <nav>
+        <ul className="flex space-x-6">
+          {navItems.map((item) => (
+            <li key={item.label}>
+              <Link href={item.href} className="hover:text-primary">
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={toggleDarkMode}
+        className="rounded-full"
+      >
+        {darkMode ? (
+          <Sun className="h-[1.2rem] w-[1.2rem]" />
+        ) : (
+          <Moon className="h-[1.2rem] w-[1.2rem]" />
+        )}
+        <span className="sr-only">Toggle dark mode</span>
+      </Button>
     </header>
   );
 }

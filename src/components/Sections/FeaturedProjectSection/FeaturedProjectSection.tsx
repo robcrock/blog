@@ -38,6 +38,10 @@ const projects: Project[] = [
 ];
 
 export default function FeaturedProjects() {
+  if (projects.length === 0) {
+    return null;
+  }
+
   return (
     <section>
       <h2 className="mb-6 text-2xl font-bold">Featured Projects</h2>
