@@ -7,7 +7,7 @@ import avatar from "../../../../public/images/avatar.png";
 
 export default function ProfileSection() {
   return (
-    <section className="flex gap-10 my-20">
+    <section className="flex gap-10 mt-10 mb-20">
       <Image
         src={avatar}
         alt="Robert Crocker"
