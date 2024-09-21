@@ -19,7 +19,7 @@ export default function ProfileSection() {
         <div className="flex flex-col items-start justify-center">
           <h1 className="text-3xl font-bold">Robert Crocker</h1>
           <p className="text-xl text-muted-foreground">
-            Developer, writer, and creator of useful things.
+            Developer, community builder, and creator of useful things.
           </p>
         </div>
         <div className="flex justify-center">

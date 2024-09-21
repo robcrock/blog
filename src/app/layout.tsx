@@ -20,8 +20,9 @@ const monoFont = Spline_Sans_Mono({
 });
 
 export const metadata = {
-  title: "John Doe - Developer, writer, and creator of useful things",
-  description: "Personal website of John Doe",
+  title:
+    "Robert Crocker - Developer, community builder, and creator of useful things",
+  description: "Personal website of Robert Crocker",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
