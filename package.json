@@ -3,12 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "pnpm next dev",
-    "build": "pnpm next build",
-    "start": "pnpm next start",
-    "lint": "pnpm next lint",
-    "type-check": "tsc --noEmit",
-    "postinstall": "pnpm dlx @types/node@latest"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@radix-ui/react-icons": "^1.3.0",
