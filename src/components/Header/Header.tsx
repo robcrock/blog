@@ -22,25 +22,27 @@ function Header() {
     setDarkMode(!darkMode);
   };
 
-  const navItems = [
-    { href: "#", label: "About" },
+  const navItems: { href: string; label: string }[] = [
+    // { href: "#", label: "About" },
     // { href: "#", label: "Articles" },
-    { href: "#", label: "Projects" },
+    // { href: "#", label: "Projects" },
     // { href: "#", label: "Uses" },
   ];
 
   return (
     <header className="flex items-center justify-between py-6">
       <nav>
-        <ul className="flex space-x-6">
-          {navItems.map((item) => (
-            <li key={item.label}>
-              <Link href={item.href} className="hover:text-primary">
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {navItems && (
+          <ul className="flex space-x-6">
+            {navItems.map((item) => (
+              <li key={item.label}>
+                <Link href={item.href} className="hover:text-primary">
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
       </nav>
       <Button
         variant="ghost"

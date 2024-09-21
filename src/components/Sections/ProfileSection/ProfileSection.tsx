@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Linkedin, X } from "lucide-react";
+import { Github, Linkedin, Link as LinkIcon, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -24,13 +24,23 @@ export default function ProfileSection() {
         </div>
         <div className="flex justify-center">
           <Button variant="ghost" size="icon" asChild>
-            <Link href="https://twitter.com">
+            <Link href="https://github.com/robcrock">
+              <Github size={20} />
+            </Link>
+          </Button>
+          <Button variant="ghost" size="icon" asChild>
+            <Link href="https://x.com/robcrock">
               <X size={20} />
             </Link>
           </Button>
           <Button variant="ghost" size="icon" asChild>
-            <Link href="https://linkedin.com">
+            <Link href="https://www.linkedin.com/in/robertcrocker/">
               <Linkedin size={20} />
+            </Link>
+          </Button>
+          <Button variant="ghost" size="icon" asChild>
+            <Link href="https://www.frontendmentor.io/profile/robcrock">
+              <LinkIcon size={20} />
             </Link>
           </Button>
         </div>
