@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 
 import { ThemeProvider } from "@/components/theme-provider";
+import { Analytics } from "@vercel/analytics/react";
 import { Spline_Sans_Mono, Work_Sans } from "next/font/google";
 
 import "./styles.css";
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
