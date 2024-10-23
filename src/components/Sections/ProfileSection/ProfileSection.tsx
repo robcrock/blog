@@ -1,3 +1,4 @@
+import MentorCruiseIcon from "@/assets/icons/icon-mentor-cruise";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Link as LinkIcon, X } from "lucide-react";
@@ -36,6 +37,11 @@ export default function ProfileSection() {
           <Button variant="ghost" size="icon" asChild>
             <Link href="https://www.frontendmentor.io/profile/robcrock">
               <LinkIcon size={20} />
+            </Link>
+          </Button>
+          <Button variant="ghost" size="icon" asChild>
+            <Link href="https://mentorcruise.com/mentor/robertcrocker/">
+              <MentorCruiseIcon />
             </Link>
           </Button>
         </div>
