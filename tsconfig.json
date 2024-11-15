@@ -1,15 +1,9 @@
 {
   "compilerOptions": {
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    }, 
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+      "@/*": ["./src/*"]
+    },
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -32,9 +26,9 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/components/Slider/index.tsx"  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "**/*.tsx",
+    "src/components/Slider/index.tsx",
+    "src/posts/space-invaders.mdx"
+  ],
+  "exclude": ["node_modules"]
 }

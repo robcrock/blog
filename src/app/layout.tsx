@@ -28,7 +28,11 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${mainFont.variable} ${monoFont.variable}`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${mainFont.variable} ${monoFont.variable}`}
+    >
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
