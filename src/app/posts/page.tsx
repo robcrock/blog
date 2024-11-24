@@ -44,18 +44,14 @@ export default async function Posts() {
     <Section spacing="compact">
       <Container>
         <h1 className="mb-6 text-4xl font-bold sm:text-5xl md:text-6xl sm:mb-10 md:mb-16">
-          Posts to Start Building
+          Posts
         </h1>
-
         <Article withSidebar={false}>
           <h2 className="sr-only">Project Ideas</h2>
           <ul>
-            {posts.map(({ title, slug }) => {
-              return (
-                <li key={title}>
-                  <Link href={`/posts/${slug}`}>{title}</Link>
-                </li>
-              );
+            {posts.map((post) => {
+              if (post.title === "Blog") return;
+              return <PostCard key={post.title} post={post} />;
             })}
           </ul>
         </Article>
@@ -63,3 +59,21 @@ export default async function Posts() {
     </Section>
   );
 }
+
+const PostCard = ({ post }) => {
+  const { title, slug, topic, date } = post;
+  return (
+    <li>
+      <Link
+        href={`/posts/${slug}`}
+        className="flex flex-col px-8 py-6 space-y-4 transition duration-100 border rounded-lg hover:bg-zinc-50/30 hover:shadow"
+      >
+        <div className="flex justify-between font-light text-gray-400">
+          <span className="uppercase">{topic}</span>
+          <span>{date}</span>
+        </div>
+        <div className="text-xl font-bold ">{title}</div>
+      </Link>
+    </li>
+  );
+};

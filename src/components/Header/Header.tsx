@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Moon, Sun } from "react-feather";
 
+import Logo from "../../components/icons/logo";
 import { Button } from "../ui/button";
 
 function Header() {
@@ -31,6 +32,9 @@ function Header() {
 
   return (
     <header className="flex items-center justify-between py-6">
+      <Link href={"/"}>
+        <Logo className="w-10 h-10" />
+      </Link>
       <nav>
         {navItems && (
           <ul className="flex space-x-6">

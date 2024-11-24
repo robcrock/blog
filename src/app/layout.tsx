@@ -6,6 +6,8 @@ import { Spline_Sans_Mono, Work_Sans } from "next/font/google";
 
 import "./styles.css";
 
+import Header from "@/components/Header";
+
 const mainFont = Work_Sans({
   subsets: ["latin"],
   display: "fallback",
@@ -33,8 +35,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       suppressHydrationWarning
       className={`${mainFont.variable} ${monoFont.variable}`}
     >
-      <body>
+      <body className="container max-w-6xl px-4 mx-auto sm:px-6 lg:px-8">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Header />
           {children}
           <Analytics />
         </ThemeProvider>
