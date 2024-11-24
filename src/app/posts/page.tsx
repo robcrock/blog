@@ -69,7 +69,7 @@ const PostCard = ({ post }) => {
         className="flex flex-col px-8 py-6 space-y-4 transition duration-100 border rounded-lg hover:bg-zinc-50/30 hover:shadow"
       >
         <div className="flex justify-between font-light text-gray-400">
-          <span className="uppercase">{topic}</span>
+          <span className="text-sm uppercase">{topic}</span>
           <span>{date}</span>
         </div>
         <div className="text-xl font-bold ">{title}</div>

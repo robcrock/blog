@@ -24,7 +24,7 @@ function Header() {
   };
 
   const navItems: { href: string; label: string }[] = [
-    // { href: "#", label: "About" },
+    { href: "/posts", label: "Posts" },
     // { href: "#", label: "Articles" },
     // { href: "#", label: "Projects" },
     // { href: "#", label: "Uses" },
@@ -35,7 +35,7 @@ function Header() {
       <Link href={"/"}>
         <Logo className="w-10 h-10" />
       </Link>
-      <nav>
+      <nav className="ml-6 mr-auto">
         {navItems && (
           <ul className="flex space-x-6">
             {navItems.map((item) => (

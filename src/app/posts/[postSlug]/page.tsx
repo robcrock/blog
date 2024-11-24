@@ -8,6 +8,7 @@ import PostContent from "@/components/PostContent";
 import PostHeader from "@/components/PostHeader";
 import PostSidebar from "@/components/PostSidebar";
 import { compileMDX } from "next-mdx-remote/rsc";
+import Link from "next/link";
 
 export default async function PostPage({
   params,
@@ -39,6 +40,9 @@ export default async function PostPage({
 
   return (
     <Container className="mt-10">
+      <Link href={"/posts"}>
+        <div className="mb-4 text-sm">← Back to posts</div>
+      </Link>
       <h1>{data.frontmatter.title}</h1>
       {data.content}
     </Container>
