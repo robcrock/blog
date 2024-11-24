@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+pre {
+  overflow-x: auto;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+code {
+  font-family: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+}
+
+/* Optional: Style inline code differently from code blocks */
+:not(pre) > code {
+  background: rgb(var(--foreground-rgb), 0.1);
+  padding: 0.2em 0.4em;
+  border-radius: 0.3em;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

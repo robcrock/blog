@@ -4,7 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/react";
 import { Spline_Sans_Mono, Work_Sans } from "next/font/google";
 
-import "./styles.css";
+import "./globals.css";
 
 import Header from "@/components/Header";
 

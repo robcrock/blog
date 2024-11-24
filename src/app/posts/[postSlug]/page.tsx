@@ -9,6 +9,15 @@ import PostHeader from "@/components/PostHeader";
 import PostSidebar from "@/components/PostSidebar";
 import { compileMDX } from "next-mdx-remote/rsc";
 import Link from "next/link";
+import rehypePrettyCode from "rehype-pretty-code";
+
+interface Frontmatter {
+  title: string;
+  layout: string;
+  topic: string;
+  description: string;
+  date: string;
+}
 
 export default async function PostPage({
   params,
@@ -20,14 +29,21 @@ export default async function PostPage({
     "utf-8"
   );
 
-  interface Frontmatter {
-    title: string;
-  }
-
-  const data = await compileMDX<Frontmatter>({
+  const { content: mdxContent, frontmatter } = await compileMDX<Frontmatter>({
     source: content,
     options: {
       parseFrontmatter: true,
+      mdxOptions: {
+        rehypePlugins: [
+          [
+            rehypePrettyCode,
+            {
+              theme: "github-dark", // or any other theme you prefer
+              keepBackground: true,
+            },
+          ],
+        ],
+      },
     },
     components: {
       PostHeader,
@@ -35,6 +51,21 @@ export default async function PostPage({
       PostSidebar,
       Checklist,
       LoginRequired,
+      // Add HTML element overrides
+      h2: ({ children }) => (
+        <h2 className="mt-12 mb-6 text-3xl font-bold">{children}</h2>
+      ),
+      h3: ({ children }) => (
+        <h3 className="mt-10 mb-4 text-2xl font-semibold">{children}</h3>
+      ),
+      h4: ({ children }) => (
+        <h4 className="mt-8 mb-4 text-xl font-semibold">{children}</h4>
+      ),
+      blockquote: ({ children }) => (
+        <blockquote className="py-4 pl-6 my-8 italic text-gray-700 border-l-4 border-blue-500 rounded-r-lg bg-blue-50">
+          {children}
+        </blockquote>
+      ),
     },
   });
 
@@ -43,8 +74,7 @@ export default async function PostPage({
       <Link href={"/posts"}>
         <div className="mb-4 text-sm">← Back to posts</div>
       </Link>
-      <h1>{data.frontmatter.title}</h1>
-      {data.content}
+      {mdxContent}
     </Container>
   );
 }
