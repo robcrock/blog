@@ -15,6 +15,27 @@ import Image from "next/image";
 </PostHeader>
 
 <PostContent>
+
+## TL;DR
+
+Add this utility class to your `globals.cc` file.
+
+```css copy
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hidden {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+}
+```
+
+## Context
+
 I recently wrapped up Build UI's [Tailwind Mastery](https://buildui.com/courses/tailwind-mastery) course. Throughout the course we recreate Discords interface using pure Tailwind. In case you're curious, you can see the finish build [here](https://tailwind-discord-jade.vercel.app/?vercelToolbarCode=Yd4pQC0TbY29SPS). While working through the course I encountered a common, but tricky styling challenge - scrollbars.
 
 Discords UI requires scrollable sections for Servers, Channels, and Messages components. Given the narrow width of the Server and Channel sections, default scrollbars not only disrupt the clean design but actively detract from the user experience.
