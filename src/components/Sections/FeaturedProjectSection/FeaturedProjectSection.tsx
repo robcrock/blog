@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ExternalLink } from "lucide-react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 
 interface Project {
@@ -156,7 +156,7 @@ export default function FeaturedProjects() {
   }
 
   return (
-    <section>
+    (<section>
       <h2 className="mb-6 text-2xl font-bold">Featured Projects</h2>
       <div className="grid gap-6 md:grid-cols-2">
         {projects.map((project, index) => (
@@ -165,10 +165,12 @@ export default function FeaturedProjects() {
               <Image
                 src={project.image}
                 alt={project.title}
-                layout="fill"
-                objectFit="cover"
                 className="transition-all duration-300 hover:scale-105"
-              />
+                fill
+                sizes="100vw"
+                style={{
+                  objectFit: "cover"
+                }} />
             </div>
             <CardHeader>
               <CardTitle>{project.title}</CardTitle>
@@ -188,6 +190,6 @@ export default function FeaturedProjects() {
           </Card>
         ))}
       </div>
-    </section>
+    </section>)
   );
 }

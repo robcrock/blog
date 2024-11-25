@@ -6,6 +6,7 @@ import Container from "@/components/Container";
 import LoginRequired from "@/components/LoginRequired";
 import PostContent from "@/components/PostContent";
 import PostHeader from "@/components/PostHeader";
+import PostImage from "@/components/PostImage";
 import PostSidebar from "@/components/PostSidebar";
 import { compileMDX } from "next-mdx-remote/rsc";
 import Link from "next/link";
@@ -29,7 +30,7 @@ export default async function PostPage({
     "utf-8"
   );
 
-  const { content: mdxContent, frontmatter } = await compileMDX<Frontmatter>({
+  const { content: mdxContent } = await compileMDX<Frontmatter>({
     source: content,
     options: {
       parseFrontmatter: true,
@@ -51,6 +52,7 @@ export default async function PostPage({
       PostSidebar,
       Checklist,
       LoginRequired,
+      PostImage,
       // Add HTML element overrides
       h2: ({ children }) => (
         <h2 className="mt-12 mb-6 text-3xl font-bold">{children}</h2>
@@ -61,10 +63,33 @@ export default async function PostPage({
       h4: ({ children }) => (
         <h4 className="mt-8 mb-4 text-xl font-semibold">{children}</h4>
       ),
+      a: ({ children, href }) => (
+        <a
+          href={href}
+          className="text-blue-500 transition-all duration-200 hover:text-purple-500"
+        >
+          {children}
+        </a>
+      ),
       blockquote: ({ children }) => (
         <blockquote className="py-4 pl-6 my-8 italic text-gray-700 border-l-4 border-blue-500 rounded-r-lg bg-blue-50">
           {children}
         </blockquote>
+      ),
+      // Add these new overrides
+      ul: ({ children }) => (
+        <ul className="pl-6 my-6 -mt-2 space-y-1 list-disc list-outside marker:text-gray-400">
+          {children}
+        </ul>
+      ),
+      ol: ({ children }) => (
+        <ol className="pl-6 my-6 -mt-2 space-y-1 list-decimal list-outside marker:text-gray-400">
+          {children}
+        </ol>
+      ),
+      // Style list items as well for consistent spacing
+      li: ({ children }) => (
+        <li className="pl-2 leading-relaxed text-gray-700">{children}</li>
       ),
     },
   });

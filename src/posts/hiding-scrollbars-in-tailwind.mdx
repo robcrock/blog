@@ -8,34 +8,34 @@ date: "11/24/2024"
 
 import PostContent from "@/components/PostContent";
 import PostHeader from "@/components/PostHeader";
+import Image from "next/image";
 
 <PostHeader>
   # Hiding Scrollbars in Tailwind: A Better Solution Without Dependencies
 </PostHeader>
 
 <PostContent>
+I recently wrapped up Build UI's [Tailwind Mastery](https://buildui.com/courses/tailwind-mastery) course. Throughout the course we recreate Discords interface using pure Tailwind. In case you're curious, you can see the finish build [here](https://tailwind-discord-jade.vercel.app/?vercelToolbarCode=Yd4pQC0TbY29SPS). While working through the course I encountered a common, but tricky styling challenge - scrollbars.
 
-## Context
+Discords UI requires scrollable sections for Servers, Channels, and Messages components. Given the narrow width of the Server and Channel sections, default scrollbars not only disrupt the clean design but actively detract from the user experience.
 
-While working through Build UI's [Tailwind Mastery](https://buildui.com/courses/tailwind-mastery) course, where we recreate Discord's interface using pure Tailwind, I encountered a common but tricky styling challenge. The course requires scrollable sections for Servers, Channels, and Messages components. Given the narrow width of the Server and Channel sections, default scrollbars not only disrupt the clean design but actively detract from the user experience.
+The instructor, [Sam Selikoff](https://samselikoff.com/), demonstrates how to accomplish this aesthetic using `overflow-y-scroll`, but the default browser scrollbars clash hard with Discord's sleek design aesthetic.
 
-The instructor, Sam Selikoff, demonstrates using `overflow-y-scroll` for these scrollable areas, but the default browser scrollbars clash significantly with Discord's sleek design aesthetic.
-
-// SHARE EXAMPLE OF THE PROBLEM
+<PostImage src="/images/posts/hiding-scrollbars-in-tailwind/image_00.jpg" />
 
 While `overflow-y-scroll` provides the functionality, it falls short on the design requirements.
 
 ## The Quick Fix vs The Right Solution
 
-Like many developers under time pressure, I initially reached for the quickest solution: the [tailwind-scrollbar-hide](https://github.com/reslear/tailwind-scrollbar-hide) plugin. A simple `npm install`, add it to your Tailwind plugins, and you get access to `scrollbar-none`. Problem solved, right?
+Like many developers under time pressure, I initially reached for the quickest solution: the [tailwind-scrollbar-hide](https://github.com/reslear/tailwind-scrollbar-hide) plugin. A simple `npm install`, add it to your Tailwind plugins, and you get access to `scrollbar-hide`. Problem solved, right?
 
-// SHARE EXAMPLE OF THE SOLUTION
+<PostImage src="/images/posts/hiding-scrollbars-in-tailwind/image_01.jpg" />
 
 However, this approach introduces an unnecessary dependency for what turns out to be a straightforward CSS solution. While the plugin works, it violates one of the core principles of maintainable code: avoiding dependencies for problems that can be solved with a few lines of CSS.
 
 ## A Better Approach
 
-The real solution isn't about finding the right plugin—it's about understanding that Tailwind allows us to extend its utility classes with custom CSS. Thanks to the comprehensive analysis in [Hide your scrollbars but still scroll with Tailwind](https://www.subframe.com/blog/hide-your-scrollbars-but-still-scroll-with-tailwind-css) by Subframe, I discovered a more elegant solution.
+The real solution isn't about finding the right plugin—it's about adding our own custom style to Tailwind. While researching this, I found a great article by [Subframe](https://www.subframe.com/blog/hide-your-scrollbars-but-still-scroll-with-tailwind-css) called Hide your scrollbars but still scroll with Tailwind. They showed how we can solve this with just a few lines of CSS, no extra packages required.
 
 ## The Solution: Custom Utility Class
 
@@ -57,7 +57,7 @@ In your `globals.css` file (using Tailwind v3.4.13), add this custom utility:
 }
 ```
 
-This CSS uses two separate blocks because of browser-specific implementations: the WebKit pseudo-selector for Chrome/Safari/Opera, and standard properties for Firefox and IE/Edge. This cross-browser compatibility ensures consistent behavior across all major browsers.
+Don't worry if this looks complicated! It's doing something simple: creating a new class called scrollbar-hidden that you can use just like any other Tailwind class. The code looks complex because different web browsers need different instructions to hide scrollbars. Once you add this code, you can simply add scrollbar-hidden to any element where you want to hide the scrollbar while keeping the scrolling functionality.
 
 ### Why This Matters
 
@@ -72,8 +72,7 @@ If you include this utility in your base Tailwind setup, it's available when nee
 
 ### Conclusion
 
-This case exemplifies a broader principle in web development: sometimes the best solution isn't reaching for a plugin but taking a moment to understand the underlying problem. While plugins like `tailwind-scrollbar-hide` serve a purpose, creating a custom utility class provides a more maintainable, lightweight solution that better aligns with Tailwind's utility-first philosophy.
-
-For those interested in exploring alternative approaches, including inline solutions, check out the complete [Subframe article](https://www.subframe.com/blog/hide-your-scrollbars-but-still-scroll-with-tailwind-css).
+This is a great example of a common situation in web development: sometimes installing a package seems like the quickest fix, but taking a moment to understand the problem often leads to a simpler solution. While plugins like tailwind-scrollbar-hide definitely have their place, creating our own simple utility class gives us a solution that's easier to maintain and helps us better understand how our code works.
+If you're curious about other ways to handle scrollbars in Tailwind, check out the complete Subframe article that inspired this solution.
 
 </PostContent>
