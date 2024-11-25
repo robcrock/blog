@@ -10,6 +10,8 @@ import { Button } from "../ui/button";
 
 function Header() {
   const [darkMode, setDarkMode] = useState(false);
+  const location = window.location.pathname;
+  const isHome = location === "/";
 
   useEffect(() => {
     if (darkMode) {
@@ -35,19 +37,21 @@ function Header() {
       <Link href={"/"}>
         <Logo className="w-10 h-10" />
       </Link>
-      <nav className="ml-6 mr-auto">
-        {navItems && (
-          <ul className="flex space-x-6">
-            {navItems.map((item) => (
-              <li key={item.label}>
-                <Link href={item.href} className="hover:text-primary">
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </nav>
+      {isHome && (
+        <nav className="ml-6 mr-auto">
+          {navItems && (
+            <ul className="flex space-x-6">
+              {navItems.map((item) => (
+                <li key={item.label}>
+                  <Link href={item.href} className="hover:text-primary">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </nav>
+      )}
       <Button
         variant="ghost"
         size="icon"
