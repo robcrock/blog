@@ -1,16 +1,18 @@
-export function Logo(props) {
-  // Check if we're in dark mode by looking for the 'dark' class on html element
-  const isDark =
-    typeof document !== "undefined"
-      ? document.documentElement.classList.contains("dark")
-      : false;
+"use client";
 
-  // Show light logo (white) in dark mode, dark logo (black) in light mode
-  return isDark ? <LightLogo {...props} /> : <DarkLogo {...props} />;
+import { useTheme } from "next-themes";
+
+export function Logo(props) {
+  const { resolvedTheme } = useTheme();
+  return resolvedTheme === "dark" ? (
+    <DarkLogo {...props} />
+  ) : (
+    <LightLogo {...props} />
+  );
 }
-export default Logo;
 
 const LightLogo = (props) => {
+  // LightLogo SVG component remains unchanged
   return (
     <svg
       width={49}
@@ -71,6 +73,7 @@ const LightLogo = (props) => {
 };
 
 const DarkLogo = (props) => {
+  // DarkLogo SVG component remains unchanged
   return (
     <svg
       width={48}
@@ -129,3 +132,5 @@ const DarkLogo = (props) => {
     </svg>
   );
 };
+
+export default Logo;

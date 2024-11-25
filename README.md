@@ -1,6 +1,7 @@
 TODO
 [x] create header elements
 [x] create code blocks
+[x] create bulleted lists
 [] create images with captions
 [] create quote/info sections
-[] create bulleted lists
+[] use same icon strategy as Build UI
