@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Moon, Sun } from "react-feather";
 
 import Logo from "../../components/icons/logo";
@@ -10,8 +11,9 @@ import { Button } from "../ui/button";
 
 function Header() {
   const [darkMode, setDarkMode] = useState(false);
-  const location = window.location.pathname;
-  const isHome = location === "/";
+  const pathname = usePathname();
+  console.log("pathname", pathname);
+  const isHome = pathname === "/";
 
   useEffect(() => {
     if (darkMode) {
