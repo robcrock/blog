@@ -8,6 +8,7 @@ import PostContent from "@/components/PostContent";
 import PostHeader from "@/components/PostHeader";
 import PostImage from "@/components/PostImage";
 import PostSidebar from "@/components/PostSidebar";
+import TransformerCopyButton from "@/components/TransformerCopyButton";
 import { compileMDX } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import rehypePrettyCode from "rehype-pretty-code";
@@ -39,8 +40,16 @@ export default async function PostPage({
           [
             rehypePrettyCode,
             {
-              theme: "github-dark", // or any other theme you prefer
+              theme: "github-dark",
               keepBackground: true,
+              onVisitLine(node: any) {
+                if (node.children.length === 0) {
+                  node.children = [{ type: "text", value: " " }];
+                }
+              },
+              onVisitHighlightedLine(node: any) {
+                node.properties.className.push("highlighted");
+              },
             },
           ],
         ],
@@ -91,6 +100,14 @@ export default async function PostPage({
       li: ({ children }) => (
         <li className="pl-2 leading-relaxed =">{children}</li>
       ),
+      pre: ({ children, ...props }) => {
+        return (
+          <div className="relative">
+            <pre {...props}>{children}</pre>
+            <TransformerCopyButton>{children}</TransformerCopyButton>
+          </div>
+        );
+      },
     },
   });
 

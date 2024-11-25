@@ -12,7 +12,7 @@ import { Button } from "../ui/button";
 function Header() {
   const [darkMode, setDarkMode] = useState(false);
   const pathname = usePathname();
-  console.log("pathname", pathname);
+
   const isHome = pathname === "/";
 
   useEffect(() => {
