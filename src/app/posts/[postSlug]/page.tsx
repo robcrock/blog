@@ -75,7 +75,7 @@ export default async function PostPage({
       a: ({ children, href }) => (
         <a
           href={href}
-          className="text-blue-500 transition-all duration-200 hover:text-purple-500"
+          className="text-blue-500 transition-all duration-100 border-b border-blue-500 border-opacity-0 hover:border-opacity-100"
         >
           {children}
         </a>
