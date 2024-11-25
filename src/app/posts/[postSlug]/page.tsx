@@ -72,24 +72,24 @@ export default async function PostPage({
         </a>
       ),
       blockquote: ({ children }) => (
-        <blockquote className="py-4 pl-6 my-8 italic text-gray-700 border-l-4 border-blue-500 rounded-r-lg bg-blue-50">
+        <blockquote className="py-4 pl-6 my-8 italic =border-l-4 border-blue-500 rounded-r-lg bg-blue-50">
           {children}
         </blockquote>
       ),
       // Add these new overrides
       ul: ({ children }) => (
-        <ul className="pl-6 my-6 -mt-2 space-y-1 list-disc list-outside marker:text-gray-400">
+        <ul className="pl-6 my-6 -mt-2 space-y-1 list-disc list-outside ">
           {children}
         </ul>
       ),
       ol: ({ children }) => (
-        <ol className="pl-6 my-6 -mt-2 space-y-1 list-decimal list-outside marker:text-gray-400">
+        <ol className="pl-6 my-6 -mt-2 space-y-1 list-decimal list-outside ">
           {children}
         </ol>
       ),
       // Style list items as well for consistent spacing
       li: ({ children }) => (
-        <li className="pl-2 leading-relaxed text-gray-700">{children}</li>
+        <li className="pl-2 leading-relaxed =">{children}</li>
       ),
     },
   });
