@@ -1,12 +1,12 @@
 import React, { ReactNode } from "react";
 
-import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/react";
 import { Spline_Sans_Mono, Work_Sans } from "next/font/google";
 
 import "./globals.css";
 
 import Header from "@/components/Header";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 
 const mainFont = Work_Sans({
   subsets: ["latin"],
@@ -36,7 +36,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       className={`${mainFont.variable} ${monoFont.variable}`}
     >
       <body className="container max-w-6xl px-4 mx-auto sm:px-6 lg:px-8">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider>
           <Header />
           {children}
           <Analytics />
