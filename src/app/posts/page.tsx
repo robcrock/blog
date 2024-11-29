@@ -1,10 +1,9 @@
-import { promises as fs } from "fs";
-import path from "path";
+import { Suspense } from "react";
 
 import Article from "@/components/Article";
 import Container from "@/components/Container";
 import Section from "@/components/Section";
-import { compileMDX } from "next-mdx-remote/rsc";
+import { getPosts, Post } from "@/features/posts/queries/queries";
 import Link from "next/link";
 
 export const metadata = {
@@ -13,33 +12,37 @@ export const metadata = {
     "Use these 50 real-world project ideas to learn by doing including building an ecommerce store and a budget manager.",
 };
 
-export default async function Posts() {
-  const filenames = await fs.readdir(path.join(process.cwd(), "src/posts"));
-
-  interface Frontmatter {
-    title: string;
-  }
-
-  const posts = await Promise.all(
-    filenames.map(async (filename) => {
-      const content = await fs.readFile(
-        path.join(process.cwd(), "src/posts", filename),
-        "utf-8"
-      );
-      const { frontmatter } = await compileMDX<Frontmatter>({
-        source: content,
-        options: {
-          parseFrontmatter: true,
-        },
-      });
-      return {
-        filename,
-        slug: filename.replace(".mdx", ""),
-        ...frontmatter,
-      };
-    })
+function PostsLoading() {
+  return (
+    <ul className="space-y-4">
+      {[...Array(5)].map((_, i) => (
+        <li key={i} className="animate-pulse">
+          <div className="px-8 py-6 border rounded-lg">
+            <div className="flex justify-between">
+              <div className="w-20 h-4 bg-gray-200 rounded" />
+              <div className="w-24 h-4 bg-gray-200 rounded" />
+            </div>
+            <div className="w-2/3 h-6 mt-4 bg-gray-200 rounded" />
+          </div>
+        </li>
+      ))}
+    </ul>
   );
+}
 
+async function PostsList() {
+  const posts = await getPosts();
+
+  return (
+    <ul>
+      {posts.map((post) => (
+        <PostCard key={post.slug} post={post} />
+      ))}
+    </ul>
+  );
+}
+
+export default function Posts() {
   return (
     <Section spacing="compact">
       <Container>
@@ -48,31 +51,29 @@ export default async function Posts() {
         </h1>
         <Article withSidebar={false}>
           <h2 className="sr-only">Project Ideas</h2>
-          <ul>
-            {posts.map((post) => {
-              if (post.title === "Blog") return;
-              return <PostCard key={post.title} post={post} />;
-            })}
-          </ul>
+          <Suspense fallback={<PostsLoading />}>
+            <PostsList />
+          </Suspense>
         </Article>
       </Container>
     </Section>
   );
 }
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post }: { post: Post }) => {
   const { title, slug, topic, date } = post;
   return (
     <li>
       <Link
         href={`/posts/${slug}`}
         className="flex flex-col px-8 py-6 space-y-4 transition duration-100 border rounded-lg hover:bg-zinc-50/30 hover:shadow"
+        prefetch={true}
       >
         <div className="flex justify-between font-light text-gray-400">
           <span className="text-sm uppercase">{topic}</span>
           <span>{date}</span>
         </div>
-        <div className="text-xl font-bold ">{title}</div>
+        <div className="text-xl font-bold">{title}</div>
       </Link>
     </li>
   );
