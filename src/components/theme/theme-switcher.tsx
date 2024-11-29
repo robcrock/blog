@@ -8,8 +8,6 @@ import { Button } from "../ui/button";
 const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme();
 
-  console.log("theme", theme);
-
   return (
     <Button
       size="icon"
