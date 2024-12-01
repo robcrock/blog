@@ -3,21 +3,23 @@
 import { useTheme } from "next-themes";
 
 export function Logo(props) {
-  const { resolvedTheme } = useTheme();
-  return resolvedTheme === "dark" ? (
-    <DarkLogo {...props} />
-  ) : (
-    <LightLogo {...props} />
-  );
+  const { theme, resolvedTheme } = useTheme();
+
+  // Don't render anything until mounted
+  if (!resolvedTheme) {
+    return <div className="w-10 h-10 rounded-full bg-gray-500/50" />; // or return a skeleton/placeholder
+  }
+
+  return theme === "dark" ? <DarkLogo {...props} /> : <LightLogo {...props} />;
 }
 
 const LightLogo = (props) => {
   // LightLogo SVG component remains unchanged
   return (
     <svg
-      width={49}
+      width={48}
       height={48}
-      viewBox="0 0 49 48"
+      viewBox="0 0 48 48"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
@@ -42,7 +44,7 @@ const LightLogo = (props) => {
           id="filter0_d_185_3550"
           x={0}
           y={0.965637}
-          width={49}
+          width={48}
           height={47.0001}
           filterUnits="userSpaceOnUse"
           colorInterpolationFilters="sRGB"
