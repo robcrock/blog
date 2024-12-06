@@ -1,6 +1,3 @@
-import { promises as fs } from "fs";
-import path from "path";
-
 import Checklist from "@/components/checklist";
 import LoginRequired from "@/components/login-required";
 import PostContent from "@/components/post-content";
