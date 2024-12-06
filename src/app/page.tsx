@@ -2,7 +2,7 @@ import {
   ArticleSection,
   FeaturedProjectSection,
   ProfileSection,
-} from "@/components/Sections";
+} from "@/components/sections";
 
 export default function Home() {
   return (

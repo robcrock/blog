@@ -1,16 +1,26 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import { useTheme } from "next-themes";
 
 export function Logo(props) {
-  const { theme, resolvedTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  // Don't render anything until mounted
-  if (!resolvedTheme) {
-    return <div className="w-10 h-10 rounded-full bg-gray-500/50" />; // or return a skeleton/placeholder
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <div className="w-10 h-10 rounded-full bg-gray-500/50" />;
   }
 
-  return theme === "dark" ? <DarkLogo {...props} /> : <LightLogo {...props} />;
+  return resolvedTheme === "dark" ? (
+    <DarkLogo {...props} />
+  ) : (
+    <LightLogo {...props} />
+  );
 }
 
 const LightLogo = (props) => {

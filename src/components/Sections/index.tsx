@@ -1,5 +1,5 @@
-import ArticleSection from "./ArticleSection";
-import FeaturedProjectSection from "./FeaturedProjectSection";
-import ProfileSection from "./ProfileSection";
+import ArticleSection from "./article-section";
+import FeaturedProjectSection from "./featured-project-section";
+import ProfileSection from "./profile-section";
 
 export { ArticleSection, FeaturedProjectSection, ProfileSection };

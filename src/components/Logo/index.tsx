@@ -1,2 +1,2 @@
-export * from './Logo';
-export { default } from './Logo';
+export * from "./logo";
+export { default } from "./logo";

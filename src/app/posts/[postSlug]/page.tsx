@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 
-import Container from "@/components/Container";
+import Container from "@/components/container";
 import { MdxContent } from "@/features/posts/components/mdx-content";
 import { getPost, getPosts } from "@/features/posts/queries/queries";
 import Link from "next/link";

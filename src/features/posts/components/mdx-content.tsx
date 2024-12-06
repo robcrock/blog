@@ -1,13 +1,13 @@
 import { promises as fs } from "fs";
 import path from "path";
 
-import Checklist from "@/components/Checklist";
-import LoginRequired from "@/components/LoginRequired";
-import PostContent from "@/components/PostContent";
-import PostHeader from "@/components/PostHeader";
-import PostImage from "@/components/PostImage";
-import PostSidebar from "@/components/PostSidebar";
-import TransformerCopyButton from "@/components/TransformerCopyButton";
+import Checklist from "@/components/checklist";
+import LoginRequired from "@/components/login-required";
+import PostContent from "@/components/post-content";
+import PostHeader from "@/components/post-header";
+import PostImage from "@/components/post-image";
+import PostSidebar from "@/components/post-sidebar";
+import TransformerCopyButton from "@/components/transformer-copy-button";
 import { compileMDX } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
 

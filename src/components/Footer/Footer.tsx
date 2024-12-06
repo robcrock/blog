@@ -1,10 +1,10 @@
-import React from "react"
-import Link from "next/link"
+import React from "react";
 
-import Logo from "../Logo"
+import Link from "next/link";
 
-import DecorativeSwoops from "./DecorativeSwoops"
-import styles from "./Footer.module.css"
+import Logo from "../logo";
+import DecorativeSwoops from "./decorative-swoops";
+import styles from "./Footer.module.css";
 
 function Footer() {
   return (
@@ -45,7 +45,7 @@ function Footer() {
         </nav>
       </div>
     </div>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

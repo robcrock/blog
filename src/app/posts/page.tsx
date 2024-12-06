@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 
-import Article from "@/components/Article";
-import Container from "@/components/Container";
-import Section from "@/components/Section";
+import Article from "@/components/article";
+import Container from "@/components/container";
+import Section from "@/components/section";
 import { getPosts, Post } from "@/features/posts/queries/queries";
 import Link from "next/link";
 

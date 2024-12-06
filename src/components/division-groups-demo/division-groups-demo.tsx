@@ -7,9 +7,9 @@ import { LayoutGroup, motion } from "framer-motion";
 
 import { range } from "../../utils";
 import Card from "../Card";
-import SliderControl from "../SliderControl";
+import SliderControl from "../slider-control";
 import styles from "./DivisionGroupsDemo.module.css";
-import Equation from "./Equation";
+import Equation from "./equation";
 
 function DivisionGroupsDemo({
   numOfItems = 12,
