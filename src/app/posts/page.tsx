@@ -29,6 +29,13 @@ function PostsLoading() {
   );
 }
 
+type Post = {
+  slug: string;
+  title: string;
+  topic: string;
+  date: string;
+};
+
 async function PostsList() {
   const posts = [
     {

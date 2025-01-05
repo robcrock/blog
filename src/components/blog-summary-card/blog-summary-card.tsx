@@ -1,14 +1,24 @@
-import React from "react"
-import Link from "next/link"
-import { format } from "date-fns"
+import React from "react";
 
-import Card from "../Card"
+import { format } from "date-fns";
+import Link from "next/link";
 
-import styles from "./BlogSummaryCard.module.css"
+import Card from "../card";
+import styles from "./BlogSummaryCard.module.css";
 
-function BlogSummaryCard({ slug, title, publishedOn, abstract }: { slug: string, title: string, publishedOn: string, abstract: string }) {
-  const href = `/${slug}`
-  const humanizedDate = format(new Date(publishedOn), "MMMM do, yyyy")
+function BlogSummaryCard({
+  slug,
+  title,
+  publishedOn,
+  abstract,
+}: {
+  slug: string;
+  title: string;
+  publishedOn: string;
+  abstract: string;
+}) {
+  const href = `/${slug}`;
+  const humanizedDate = format(new Date(publishedOn), "MMMM do, yyyy");
 
   return (
     <Card className={styles.wrapper}>
@@ -23,7 +33,7 @@ function BlogSummaryCard({ slug, title, publishedOn, abstract }: { slug: string,
         </Link>
       </p>
     </Card>
-  )
+  );
 }
 
-export default BlogSummaryCard
+export default BlogSummaryCard;
