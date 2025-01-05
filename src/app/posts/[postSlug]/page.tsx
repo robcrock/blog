@@ -31,7 +31,8 @@ async function PostContent({ postSlug }: { postSlug: string }) {
   return <MdxContent postContent={content} />;
 }
 
-export default function PostPage({ params }: { params: { postSlug: string } }) {
+export default async function PostPage(props: { params: Promise<{ postSlug: string }> }) {
+  const params = await props.params;
   return (
     <Container className="mt-10">
       <Link href={"/posts"}>
