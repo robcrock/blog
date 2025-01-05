@@ -2,10 +2,9 @@
 
 import React from "react";
 
-import { cn } from "@/lib/utils";
+import { cn, range } from "@/lib/utils";
 import { LayoutGroup, motion } from "framer-motion";
 
-import { range } from "../../utils";
 import Card from "../Card";
 import SliderControl from "../slider-control";
 import styles from "./DivisionGroupsDemo.module.css";

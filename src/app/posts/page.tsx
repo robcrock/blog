@@ -3,7 +3,6 @@ import { Suspense } from "react";
 import Article from "@/components/article";
 import Container from "@/components/container";
 import Section from "@/components/section";
-import { getPosts, Post } from "@/features/posts/queries/queries";
 import Link from "next/link";
 
 export const metadata = {
@@ -31,7 +30,14 @@ function PostsLoading() {
 }
 
 async function PostsList() {
-  const posts = await getPosts();
+  const posts = [
+    {
+      slug: "hiding-scrollbars-in-tailwind",
+      title: "Hiding Scrollbars in Tailwind",
+      topic: "Tailwind CSS",
+      date: "2021-09-01",
+    },
+  ];
 
   return (
     <ul>

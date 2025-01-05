@@ -1,8 +1,14 @@
-import MentorCruiseIcon from "@/assets/icons/icon-mentor-cruise";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Github, Linkedin, Link as LinkIcon, X } from "lucide-react";
+import {
+  LucideGithub,
+  LucideLink,
+  LucideLinkedin,
+  LucideX,
+} from "lucide-react";
 import Link from "next/link";
+
+import MentorCruiseIcon from "../../../../public/icons/icon-mentor-cruise";
 
 export default function ProfileSection() {
   return (
@@ -21,22 +27,22 @@ export default function ProfileSection() {
         <div className="flex justify-center">
           <Button variant="ghost" size="icon" asChild>
             <Link href="https://github.com/robcrock">
-              <Github size={20} />
+              <LucideGithub size={20} />
             </Link>
           </Button>
           <Button variant="ghost" size="icon" asChild>
             <Link href="https://x.com/robcrock">
-              <X size={20} />
+              <LucideX size={20} />
             </Link>
           </Button>
           <Button variant="ghost" size="icon" asChild>
             <Link href="https://www.linkedin.com/in/robertcrocker/">
-              <Linkedin size={20} />
+              <LucideLinkedin size={20} />
             </Link>
           </Button>
           <Button variant="ghost" size="icon" asChild>
             <Link href="https://www.frontendmentor.io/profile/robcrock">
-              <LinkIcon size={20} />
+              <LucideLink size={20} />
             </Link>
           </Button>
           <Button variant="ghost" size="icon" asChild>

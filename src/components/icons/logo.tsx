@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import { useTheme } from "next-themes";
 
-export function Logo(props) {
+export function Logo(props: any) {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -23,7 +23,7 @@ export function Logo(props) {
   );
 }
 
-const LightLogo = (props) => {
+const LightLogo = (props: any) => {
   // LightLogo SVG component remains unchanged
   return (
     <svg
@@ -84,7 +84,7 @@ const LightLogo = (props) => {
   );
 };
 
-const DarkLogo = (props) => {
+const DarkLogo = (props: any) => {
   // DarkLogo SVG component remains unchanged
   return (
     <svg
