@@ -1,11 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import {
-  LucideGithub,
-  LucideLink,
-  LucideLinkedin,
-  LucideX,
-} from "lucide-react";
+import { SiGithub } from "@icons-pack/react-simple-icons";
+import { LucideLink, LucideLinkedin, LucideX } from "lucide-react";
 import Link from "next/link";
 
 import MentorCruiseIcon from "../../../../public/icons/icon-mentor-cruise";
@@ -27,7 +23,7 @@ export default function ProfileSection() {
         <div className="flex justify-center">
           <Button variant="ghost" size="icon" asChild>
             <Link href="https://github.com/robcrock">
-              <LucideGithub size={20} />
+              <SiGithub size={20} />
             </Link>
           </Button>
           <Button variant="ghost" size="icon" asChild>
