@@ -1,10 +1,27 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { SiGithub } from "@icons-pack/react-simple-icons";
-import { LucideLink, LucideLinkedin, LucideX } from "lucide-react";
+import { SiGithub, SiMentorcruise, SiX } from "@icons-pack/react-simple-icons";
+import { LucideLinkedin } from "lucide-react";
 import Link from "next/link";
 
-import MentorCruiseIcon from "../../../../public/icons/icon-mentor-cruise";
+const links = [
+  {
+    href: "https://www.linkedin.com/in/robertcrocker/",
+    icon: <LucideLinkedin size={20} />,
+  },
+  {
+    href: "https://github.com/robcrock",
+    icon: <SiGithub size={20} />,
+  },
+  {
+    href: "https://x.com/robcrock",
+    icon: <SiX size={20} />,
+  },
+  {
+    href: "https://mentorcruise.com/mentor/robertcrocker/",
+    icon: <SiMentorcruise />,
+  },
+];
 
 export default function ProfileSection() {
   return (
@@ -21,31 +38,13 @@ export default function ProfileSection() {
           </p>
         </div>
         <div className="flex justify-center">
-          <Button variant="ghost" size="icon" asChild>
-            <Link href="https://github.com/robcrock">
-              <SiGithub size={20} />
-            </Link>
-          </Button>
-          <Button variant="ghost" size="icon" asChild>
-            <Link href="https://x.com/robcrock">
-              <LucideX size={20} />
-            </Link>
-          </Button>
-          <Button variant="ghost" size="icon" asChild>
-            <Link href="https://www.linkedin.com/in/robertcrocker/">
-              <LucideLinkedin size={20} />
-            </Link>
-          </Button>
-          <Button variant="ghost" size="icon" asChild>
-            <Link href="https://www.frontendmentor.io/profile/robcrock">
-              <LucideLink size={20} />
-            </Link>
-          </Button>
-          <Button variant="ghost" size="icon" asChild>
-            <Link href="https://mentorcruise.com/mentor/robertcrocker/">
-              <MentorCruiseIcon />
-            </Link>
-          </Button>
+          {links.map(({ href, icon }) => {
+            return (
+              <Button key={href} variant="ghost" size="icon" asChild>
+                <Link href={href}>{icon}</Link>
+              </Button>
+            );
+          })}
         </div>
       </div>
     </section>
