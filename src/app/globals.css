@@ -75,3 +75,11 @@ code {
     @apply bg-background text-foreground;
   }
 }
+
+.post-content {
+  @apply mx-auto mb-12 max-w-2xl;
+}
+
+.post-header {
+  @apply mx-auto mb-12 max-w-4xl;
+}

@@ -76,7 +76,7 @@ const PostCard = ({ post }: { post: Post }) => {
       >
         <div className="flex justify-between font-light text-gray-400">
           <span className="text-sm uppercase">{topic}</span>
-          <span>{format(new Date(date), "MMMM, do y")}</span>
+          <span>{format(new Date(date), "MMM d, y")}</span>
         </div>
         <div className="text-xl font-bold">{title}</div>
       </Link>

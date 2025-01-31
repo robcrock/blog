@@ -1,10 +1,6 @@
 import Image from "next/image";
 
-import PostContent from "../components/post-content";
-
 # Hiding Scrollbars in Tailwind: A Better Solution Without Dependencies
-
-<PostContent>
 
 ## TL;DR
 
@@ -32,6 +28,7 @@ Discords UI requires scrollable sections for Servers, Channels, and Messages com
 
 The instructor, [Sam Selikoff](https://samselikoff.com/), demonstrates how to accomplish this aesthetic using `overflow-y-scroll`, but the default browser scrollbars clash hard with Discord's sleek design aesthetic.
 
+{" "}
 <PostImage src="/images/posts/hiding-scrollbars-in-tailwind/image_00.jpg" />
 
 While `overflow-y-scroll` provides the functionality, it falls short on the
@@ -41,6 +38,7 @@ design requirements.
 
 Like many developers under time pressure, I initially reached for the quickest solution: the [tailwind-scrollbar-hide](https://github.com/reslear/tailwind-scrollbar-hide) plugin. A simple `npm install`, add it to your Tailwind plugins, and you get access to `scrollbar-hide`. Problem solved, right?
 
+{" "}
 <PostImage src="/images/posts/hiding-scrollbars-in-tailwind/image_01.jpg" />
 
 However, this approach introduces an unnecessary dependency for what turns out to be a straightforward CSS solution. While the plugin works, it violates one of the core principles of maintainable code: avoiding dependencies for problems that can be solved with a few lines of CSS.
@@ -82,9 +80,7 @@ This solution offers several advantages:
 
 If you include this utility in your base Tailwind setup, it's available when needed but adds negligible overhead if unused. This makes it an ideal candidate for inclusion in your starter templates or design system.
 
-### Conclusion
+## Conclusion
 
 This is a great example of a common situation in web development: sometimes installing a package seems like the quickest fix, but taking a moment to understand the problem often leads to a simpler solution. While plugins like tailwind-scrollbar-hide definitely have their place, creating our own simple utility class gives us a solution that's easier to maintain and helps us better understand how our code works.
 If you're curious about other ways to handle scrollbars in Tailwind, check out the complete Subframe article that inspired this solution.
-
-</PostContent>

@@ -1,15 +1,16 @@
 import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  pageExtensions: ["mdx", "ts", "tsx"],
-  // Note: Using the Rust compiler means we cannot use
-  // rehype or remark plugins. For my app, this is fine.
-  experimental: {
-    mdxRs: true,
-  },
-};
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // Configure `pageExtensions` to include markdown and MDX files
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+  // Optionally, add any other Next.js config below
+}
 
-const withMDX = createMDX({});
+const withMDX = createMDX({
+  // Add markdown plugins here, as desired
+});
 
-export default withMDX(nextConfig);
+// Merge MDX config with Next.js config
+export default withMDX(nextConfig)
