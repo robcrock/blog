@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import Logo from "./logo";
-import { ThemeSwitcher } from "./theme/theme-switcher";
+import Logo from "../brand/logo";
+import { ThemeSwitcher } from "../theme/theme-switcher";
 
 export default function Header() {
   const pathname = usePathname();

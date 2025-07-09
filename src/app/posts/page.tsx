@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 
-import Container from "@/components/container";
-import Section from "@/components/section";
+import Container from "@/components/layout/container";
+import Section from "@/components/layout/section";
 import { Skeleton } from "@/components/ui/skeleton";
 import { format } from "date-fns";
 import Link from "next/link";

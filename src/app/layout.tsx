@@ -5,7 +5,7 @@ import { Spline_Sans_Mono, Work_Sans } from "next/font/google";
 
 import "./globals.css";
 
-import Header from "@/components/header";
+import Header from "@/components/layout/header";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 
 const mainFont = Work_Sans({

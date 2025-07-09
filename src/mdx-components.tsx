@@ -1,8 +1,8 @@
 import { ComponentPropsWithoutRef } from "react";
 
-import PostContent from "@/app/posts/components/post-content";
-import PostImage from "@/app/posts/components/post-image";
-import TransformerCopyButton from "@/components/transformer-copy-button";
+import PostContent from "@/components/content/post-content";
+import PostImage from "@/components/content/post-image";
+import TransformerCopyButton from "@/components/content/transformer-copy-button";
 
 type HeadingProps = ComponentPropsWithoutRef<"h1">;
 type ParagraphProps = ComponentPropsWithoutRef<"p">;
