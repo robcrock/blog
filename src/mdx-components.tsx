@@ -12,8 +12,17 @@ type AnchorProps = ComponentPropsWithoutRef<"a">;
 type BlockquoteProps = ComponentPropsWithoutRef<"blockquote">;
 
 const components = {
-  wrapper: (props: { children: React.ReactNode }) => (
-    <article className="mx-auto w-full max-w-[680px] px-4 md:px-6" {...props} />
+  // The MDX wrapper previously forwarded *all* incoming props to the underlying
+  // <article> element. With Next.js App Router, MDX pages may receive special
+  // props such as `searchParams` and `params` that are **not** valid HTML
+  // attributes. Passing them through triggers React warnings like:
+  //   "React does not recognize the `searchParams` prop on a DOM element."
+  // To avoid this we only forward recognised DOM props and children. For now
+  // keeping it simple by extracting `children` and discarding the rest.
+  wrapper: ({ children }: { children: React.ReactNode }) => (
+    <article className="mx-auto w-full max-w-[680px] px-4 md:px-6">
+      {children}
+    </article>
   ),
   PostContent,
   PostImage,
@@ -27,24 +36,24 @@ const components = {
     />
   ),
   h2: (props: HeadingProps) => (
-    <h2 
+    <h2
       className="mt-12 mb-4 text-3xl font-bold tracking-tight 
-        text-gray-900 dark:text-gray-100" 
-      {...props} 
+        text-gray-900 dark:text-gray-100"
+      {...props}
     />
   ),
   h3: (props: HeadingProps) => (
-    <h3 
+    <h3
       className="mt-8 mb-4 text-2xl font-bold tracking-tight 
-        text-gray-900 dark:text-gray-100" 
-      {...props} 
+        text-gray-900 dark:text-gray-100"
+      {...props}
     />
   ),
   h4: (props: HeadingProps) => (
-    <h4 
+    <h4
       className="mt-6 mb-4 text-xl font-semibold tracking-tight 
-        text-gray-900 dark:text-gray-100" 
-      {...props} 
+        text-gray-900 dark:text-gray-100"
+      {...props}
     />
   ),
   p: (props: ParagraphProps) => (
@@ -94,18 +103,23 @@ const components = {
     />
   ),
   li: (props: ListItemProps) => (
-    <li 
+    <li
       className="pl-2 text-lg leading-[1.75] marker:text-gray-500 
-        dark:marker:text-gray-400" 
-      {...props} 
+        dark:marker:text-gray-400"
+      {...props}
     />
   ),
   pre: ({ children, ...props }: ComponentPropsWithoutRef<"code">) => {
     return (
-      <div className="relative my-8 rounded-lg overflow-hidden
-        bg-gray-100 dark:bg-gray-900">
-        <pre className="p-4 overflow-x-auto text-sm md:text-base
-          text-gray-800 dark:text-gray-200" {...props}>
+      <div
+        className="relative my-8 rounded-lg overflow-hidden
+        bg-gray-100 dark:bg-gray-900"
+      >
+        <pre
+          className="p-4 overflow-x-auto text-sm md:text-base
+          text-gray-800 dark:text-gray-200"
+          {...props}
+        >
           {children}
         </pre>
         <TransformerCopyButton>{children}</TransformerCopyButton>
