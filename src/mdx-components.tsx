@@ -37,22 +37,19 @@ const components = {
   ),
   h2: (props: HeadingProps) => (
     <h2
-      className="mt-12 mb-4 text-3xl font-bold tracking-tight 
-        text-gray-900 dark:text-gray-100"
+      className="mt-12 mb-4 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100"
       {...props}
     />
   ),
   h3: (props: HeadingProps) => (
     <h3
-      className="mt-8 mb-4 text-2xl font-bold tracking-tight 
-        text-gray-900 dark:text-gray-100"
+      className="mt-8 mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100"
       {...props}
     />
   ),
   h4: (props: HeadingProps) => (
     <h4
-      className="mt-6 mb-4 text-xl font-semibold tracking-tight 
-        text-gray-900 dark:text-gray-100"
+      className="mt-6 mb-4 text-xl font-semibold tracking-tight text-gray-900 dark:text-gray-100"
       {...props}
     />
   ),
@@ -69,10 +66,7 @@ const components = {
   a: ({ href, children, ...props }: AnchorProps) => (
     <a
       href={href}
-      className="text-purple-600 dark:text-purple-400 
-        decoration-purple-600/30 dark:decoration-purple-400/30
-        underline underline-offset-2 hover:decoration-2
-        transition-all duration-100"
+      className="text-purple-600 underline transition-all duration-100 dark:text-purple-400 decoration-purple-600/30 dark:decoration-purple-400/30 underline-offset-2 hover:decoration-2"
       {...props}
     >
       {children}
@@ -90,15 +84,13 @@ const components = {
   ),
   ul: (props: ListProps) => (
     <ul
-      className="pl-6 my-6 space-y-3 list-disc list-outside
-        text-gray-800 dark:text-gray-200"
+      className="pl-6 my-6 space-y-3 list-disc list-outside text-gray-800 dark:text-gray-200"
       {...props}
     />
   ),
   ol: (props: ListProps) => (
     <ol
-      className="pl-6 my-6 space-y-3 list-decimal list-outside
-        text-gray-800 dark:text-gray-200"
+      className="pl-6 my-6 space-y-3 list-decimal list-outside text-gray-800 dark:text-gray-200"
       {...props}
     />
   ),
@@ -111,13 +103,9 @@ const components = {
   ),
   pre: ({ children, ...props }: ComponentPropsWithoutRef<"code">) => {
     return (
-      <div
-        className="relative my-8 rounded-lg overflow-hidden
-        bg-gray-100 dark:bg-gray-900"
-      >
+      <div className="overflow-hidden relative my-8 bg-gray-100 rounded-lg dark:bg-gray-900">
         <pre
-          className="p-4 overflow-x-auto text-sm md:text-base
-          text-gray-800 dark:text-gray-200"
+          className="overflow-x-auto p-4 text-sm text-gray-800 md:text-base dark:text-gray-200"
           {...props}
         >
           {children}
@@ -128,10 +116,6 @@ const components = {
   },
 };
 
-declare global {
-  type MDXProvidedComponents = typeof components;
-}
-
-export function useMDXComponents(): MDXProvidedComponents {
+export function useMDXComponents(): typeof components {
   return components;
 }
