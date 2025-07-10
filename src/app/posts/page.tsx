@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import Container from "@/components/layout/container";
 import Section from "@/components/layout/section";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getAllPosts, type Post } from "@/lib/posts";
 import { format } from "date-fns";
 import Link from "next/link";
 
@@ -30,23 +31,8 @@ const PostsLoading = () => {
   );
 };
 
-type Post = {
-  slug: string;
-  title: string;
-  topic: string;
-  date: string;
-};
-
-const posts = [
-  {
-    slug: "hiding-scrollbars-in-tailwind",
-    title: "Hiding Scrollbars in Tailwind",
-    topic: "Tailwind CSS",
-    date: "2024-09-01",
-  },
-];
-
-export default function Posts() {
+export default async function Posts() {
+  const posts = await getAllPosts();
   return (
     <Section spacing="compact">
       <Container>
