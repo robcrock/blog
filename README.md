@@ -65,6 +65,7 @@ Static assets must be in the `public/` directory due to Next.js requirements:
 - **Deployment**: Static assets are deployed to CDN/edge locations
 
 **Organization Strategy:**
+
 - `public/images/featured-projects/` - Project showcase images
 - `public/images/posts/[slug]/` - Post-specific images
 - `public/images/` - Global assets (avatar, icons, etc.)
@@ -83,12 +84,14 @@ This file provides global component mapping for all MDX files in the application
 ## Development
 
 ### Scripts
+
 - `pnpm dev` - Start development server with Turbopack
 - `pnpm build` - Build production bundle
 - `pnpm lint` - Run ESLint
 - `pnpm start` - Start production server
 
 ### Technologies
+
 - **Framework**: Next.js 15 with App Router
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
@@ -100,6 +103,7 @@ This file provides global component mapping for all MDX files in the application
 ## Configuration
 
 Configuration files are organized in the `config/` directory:
+
 - `config/components.json` - shadcn/ui configuration
 
 ## Content Creation
@@ -107,27 +111,31 @@ Configuration files are organized in the `config/` directory:
 ### Adding a New Blog Post
 
 1. **Create Post Directory Structure:**
+
    ```bash
    mkdir -p src/app/posts/[post-slug]
    mkdir -p public/images/posts/[post-slug]
    ```
 
 2. **Create the MDX File:**
+
    ```bash
    touch src/app/posts/[post-slug]/page.mdx
    ```
 
 3. **Add Post Content:**
+
    ```mdx
    # Your Post Title
-   
+
    Your post content here...
-   
+
    <PostImage src="/images/posts/[post-slug]/image.jpg" />
    ```
 
 4. **Add Post to Listing:**
    Update `src/app/posts/page.tsx` to include your new post in the `posts` array:
+
    ```typescript
    {
      slug: "your-post-slug",
@@ -178,3 +186,4 @@ Configuration files are organized in the `config/` directory:
 [] create images with captions
 [] create quote/info sections
 [] use same icon strategy as Build UI
+[] post: Ergonomic Interactions example for input with icon https://devouringdetails.com/principles/ergonomic-interactions
