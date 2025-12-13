@@ -150,14 +150,14 @@ const projects: Project[] = [
   },
 ];
 
-export default function FeaturedProjects() {
+export default function ProjectSection() {
   if (projects.length === 0) {
     return null;
   }
 
   return (
     <section>
-      <h2 className="mb-6 text-2xl font-bold">Featured Projects</h2>
+      <h2 className="mb-6 text-2xl font-bold">Projects</h2>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project, index) => (
           <Card key={index} className="overflow-hidden">
@@ -185,7 +185,7 @@ export default function FeaturedProjects() {
                 className="inline-flex items-center text-primary hover:underline"
               >
                 View Project
-                <ExternalLink className="w-4 h-4 ml-1" />
+                <ExternalLink className="ml-1 w-4 h-4" />
               </Link>
             </CardContent>
           </Card>

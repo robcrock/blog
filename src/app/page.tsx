@@ -1,7 +1,7 @@
 import {
   ArticleSection,
-  FeaturedProjectSection,
   ProfileSection,
+  ProjectSection,
 } from "@/components/sections";
 
 export default function Home() {
@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <ProfileSection />
       <ArticleSection />
-      <FeaturedProjectSection />
+      <ProjectSection />
     </>
   );
 }
