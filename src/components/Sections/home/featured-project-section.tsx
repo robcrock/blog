@@ -156,9 +156,9 @@ export default function FeaturedProjects() {
   }
 
   return (
-    (<section>
+    <section>
       <h2 className="mb-6 text-2xl font-bold">Featured Projects</h2>
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project, index) => (
           <Card key={index} className="overflow-hidden">
             <div className="relative w-full h-48">
@@ -169,8 +169,9 @@ export default function FeaturedProjects() {
                 fill
                 sizes="100vw"
                 style={{
-                  objectFit: "cover"
-                }} />
+                  objectFit: "cover",
+                }}
+              />
             </div>
             <CardHeader>
               <CardTitle>{project.title}</CardTitle>
@@ -190,6 +191,6 @@ export default function FeaturedProjects() {
           </Card>
         ))}
       </div>
-    </section>)
+    </section>
   );
 }
