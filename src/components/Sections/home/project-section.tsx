@@ -156,8 +156,8 @@ export default function ProjectSection() {
   }
 
   return (
-    <section id="projects" className="scroll-mt-6">
-      <div className="mb-6 flex items-center gap-4">
+    <section id="projects" className="scroll-mt-[72px]">
+      <div className="flex gap-4 items-center mb-6">
         <h2 className="text-base font-bold whitespace-nowrap">Projects</h2>
         <div className="flex-1 h-px bg-border" />
       </div>

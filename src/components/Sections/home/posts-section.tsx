@@ -10,7 +10,7 @@ export default async function PostsSection() {
   }
 
   return (
-    <section id="posts" className="scroll-mt-6">
+    <section id="posts" className="scroll-mt-[72px]">
       <div className="mb-6 flex items-center gap-4">
         <h2 className="text-base font-bold whitespace-nowrap">Posts</h2>
         <div className="flex-1 h-px bg-border" />
