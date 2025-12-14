@@ -25,13 +25,13 @@ const links = [
 
 export default function ProfileSection() {
   return (
-    <section className="flex gap-10 mt-10 mb-20">
+    <section className="flex gap-10 mt-10 mb-14">
       <Avatar className="w-[120px] h-[120px] border-2">
         <AvatarImage src="/images/avatar.png" alt="Robert Crocker" />
         <AvatarFallback>RC</AvatarFallback>
       </Avatar>
-      <div className="flex flex-col items-start justify-center gap-2">
-        <div className="flex flex-col items-start justify-center">
+      <div className="flex flex-col gap-2 justify-center items-start">
+        <div className="flex flex-col justify-center items-start">
           <h1 className="text-3xl font-bold">Robert Crocker</h1>
           <p className="text-xl text-muted-foreground">
             Developer, community builder, and creator of useful things.

@@ -156,8 +156,11 @@ export default function ProjectSection() {
   }
 
   return (
-    <section>
-      <h2 className="mb-6 text-2xl font-bold">Projects</h2>
+    <section id="projects" className="scroll-mt-6">
+      <div className="mb-6 flex items-center gap-4">
+        <h2 className="text-base font-bold whitespace-nowrap">Projects</h2>
+        <div className="flex-1 h-px bg-border" />
+      </div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project, index) => (
           <Card key={index} className="overflow-hidden">

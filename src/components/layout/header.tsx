@@ -22,110 +22,34 @@ export default function Header() {
   const ticking = useRef(false);
   const scrollDelta = useRef(0);
   const isResettingNavigation = useRef(false);
+  const isUpdatingHashFromScroll = useRef(false);
+  const updateActiveSectionFromHashRef = useRef<(() => void) | null>(null);
 
+  // Sync activeSection with URL hash - hash is the source of truth
   useEffect(() => {
     if (!isHome) return;
 
-    const observerOptions = {
-      root: null,
-      rootMargin: "-10% 0px -10% 0px",
-      threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
+    const updateActiveSectionFromHash = () => {
+      const hash = window.location.hash.slice(1); // Remove #
+      const sectionId = navItems.find((item) => item.id === hash)?.id || null;
+      setActiveSection(sectionId);
     };
 
-    const sectionStates = new Map<string, IntersectionObserverEntry>();
+    // Store the function in a ref so scroll handler can call it
+    updateActiveSectionFromHashRef.current = updateActiveSectionFromHash;
 
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          sectionStates.set(entry.target.id, entry);
-        } else {
-          sectionStates.delete(entry.target.id);
-        }
-      });
+    // Initial sync
+    updateActiveSectionFromHash();
 
-      // Don't update active section if we're resetting navigation or at the very top
-      if (isResettingNavigation.current || window.scrollY < 50) {
-        // Always clear active section when resetting or at the top
-        setActiveSection(null);
-        return;
-      }
-
-      // Check if we're above the first nav section (projects)
-      // We're above it if the section hasn't entered the viewport yet
-      const firstNavSection = document.getElementById(navItems[0].id);
-      if (firstNavSection) {
-        const rect = firstNavSection.getBoundingClientRect();
-        // If the section's top is below the viewport top, we're above it
-        if (rect.top > 0) {
-          setActiveSection(null);
-          return;
-        }
-      }
-
-      // Find the section with the highest intersection ratio
-      let maxRatio = 0;
-      let activeId: string | null = null;
-
-      sectionStates.forEach((entry, id) => {
-        if (entry.intersectionRatio > maxRatio) {
-          maxRatio = entry.intersectionRatio;
-          activeId = id;
-        }
-      });
-
-      // Only set active section if intersection ratio is meaningful (at least 10%)
-      if (activeId && maxRatio >= 0.1) {
-        setActiveSection(activeId);
-      }
+    const handleHashChange = () => {
+      updateActiveSectionFromHash();
     };
 
-    const observer = new IntersectionObserver(
-      observerCallback,
-      observerOptions
-    );
-
-    // Function to observe sections
-    const observeSections = () => {
-      navItems.forEach((item) => {
-        const element = document.getElementById(item.id);
-        if (element) {
-          observer.observe(element);
-        }
-      });
-    };
-
-    // Ensure activeSection is null on initial mount if at the top
-    if (window.scrollY < 50) {
-      setActiveSection(null);
-    }
-
-    // Try immediately, then retry after a delay for async components
-    observeSections();
-    const timeoutId = setTimeout(observeSections, 500);
-
-    // Also observe on scroll to catch sections that load later
-    const checkSections = () => {
-      navItems.forEach((item) => {
-        const element = document.getElementById(item.id);
-        if (element && !sectionStates.has(item.id)) {
-          observer.observe(element);
-        }
-      });
-    };
-
-    const scrollCheckInterval = setInterval(checkSections, 1000);
-
-    return () => {
-      clearTimeout(timeoutId);
-      clearInterval(scrollCheckInterval);
-      navItems.forEach((item) => {
-        const element = document.getElementById(item.id);
-        if (element) {
-          observer.unobserve(element);
-        }
-      });
-    };
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
   }, [isHome]);
+
+  // Removed IntersectionObserver - it was causing conflicts with scroll handler
 
   useEffect(() => {
     if (!isHome) return;
@@ -142,8 +66,23 @@ export default function Header() {
           if (currentScrollY < scrollThreshold) {
             setIsVisible(true);
             scrollDelta.current = 0;
-            // At the top, always clear active section
-            setActiveSection(null);
+            // At the top, clear hash to reset to home
+            if (
+              !isResettingNavigation.current &&
+              !isUpdatingHashFromScroll.current
+            ) {
+              if (window.location.hash) {
+                isUpdatingHashFromScroll.current = true;
+                window.history.replaceState(null, "", window.location.pathname);
+                // Manually trigger hash sync since replaceState doesn't fire hashchange
+                if (updateActiveSectionFromHashRef.current) {
+                  updateActiveSectionFromHashRef.current();
+                }
+                setTimeout(() => {
+                  isUpdatingHashFromScroll.current = false;
+                }, 0);
+              }
+            }
             // If we're at the top and were resetting, clear the flag since we've reached the top
             if (isResettingNavigation.current) {
               isResettingNavigation.current = false;
@@ -164,26 +103,51 @@ export default function Header() {
               scrollDelta.current = 0;
               setIsVisible(true);
             }
+
+            // If user manually scrolls away from top, clear the reset flag
+            // This allows navigation to work normally if user intervenes during logo scroll
+            if (
+              isResettingNavigation.current &&
+              scrollDeltaY !== 0 &&
+              currentScrollY >= scrollThreshold
+            ) {
+              isResettingNavigation.current = false;
+            }
           }
 
-          // Don't update active section if we're resetting navigation - check this BEFORE any section detection
-          if (isResettingNavigation.current) {
-            // Keep activeSection null during reset
-            setActiveSection(null);
+          // Don't update hash if we're resetting navigation or if hash update is in progress
+          if (
+            isResettingNavigation.current ||
+            isUpdatingHashFromScroll.current
+          ) {
             lastScrollY.current = currentScrollY;
             ticking.current = false;
             return;
           }
 
           // Check if we're above the first nav section (projects) AND near the top of the page
-          // Only reset when we're truly at the top, not when scrolling between sections
           if (currentScrollY < 100) {
             const firstNavSection = document.getElementById(navItems[0].id);
             if (firstNavSection) {
               const rect = firstNavSection.getBoundingClientRect();
               // If the section's top is below the viewport top, we're above it
               if (rect.top > 0) {
-                setActiveSection(null);
+                // Clear hash if we're above all sections
+                if (window.location.hash) {
+                  isUpdatingHashFromScroll.current = true;
+                  window.history.replaceState(
+                    null,
+                    "",
+                    window.location.pathname
+                  );
+                  // Manually trigger hash sync since replaceState doesn't fire hashchange
+                  if (updateActiveSectionFromHashRef.current) {
+                    updateActiveSectionFromHashRef.current();
+                  }
+                  setTimeout(() => {
+                    isUpdatingHashFromScroll.current = false;
+                  }, 0);
+                }
                 lastScrollY.current = currentScrollY;
                 ticking.current = false;
                 return;
@@ -191,59 +155,56 @@ export default function Header() {
             }
           }
 
-          // Fallback: Check which section is in view when IntersectionObserver might miss it
+          // Detect which section is in view and update hash accordingly
           const viewportHeight = window.innerHeight;
-          const viewportTop = currentScrollY;
-          const viewportBottom = currentScrollY + viewportHeight;
-          const viewportCenter = currentScrollY + viewportHeight / 2;
+          const viewportTop = 0; // Viewport top is always 0 in getBoundingClientRect
+          const viewportBottom = viewportHeight;
+          const viewportCenter = viewportHeight / 2;
 
-          // Check if we're near the bottom of the page
-          const documentHeight = document.documentElement.scrollHeight;
-          const isNearBottom = viewportBottom >= documentHeight - 100;
+          // Find the section closest to viewport center
+          let closestSection: { id: string; distance: number } | null = null;
 
-          if (isNearBottom) {
-            // If near bottom, check if Posts section is visible
-            const postsElement = document.getElementById("posts");
-            if (postsElement) {
-              const postsRect = postsElement.getBoundingClientRect();
-              const postsTop = currentScrollY + postsRect.top;
-              if (postsTop <= viewportBottom) {
-                setActiveSection("posts");
-              }
-            }
-          } else {
-            // Find the section closest to viewport center
-            let closestSection: { id: string; distance: number } | null = null;
+          for (const item of navItems) {
+            const element = document.getElementById(item.id);
+            if (element) {
+              const rect = element.getBoundingClientRect();
+              // rect.top and rect.bottom are already relative to viewport
+              const elementTop = rect.top;
+              const elementBottom = rect.bottom;
+              const elementCenter = rect.top + rect.height / 2;
 
-            for (const item of navItems) {
-              const element = document.getElementById(item.id);
-              if (element) {
-                const rect = element.getBoundingClientRect();
-                const elementTop = currentScrollY + rect.top;
-                const elementBottom = elementTop + rect.height;
-                const elementCenter = elementTop + rect.height / 2;
+              // Check if section is meaningfully in viewport (at least 20% visible)
+              const visibleHeight =
+                Math.min(elementBottom, viewportBottom) -
+                Math.max(elementTop, viewportTop);
+              const visibilityRatio = visibleHeight / rect.height;
+              const distance = Math.abs(viewportCenter - elementCenter);
 
-                // Check if section is meaningfully in viewport (at least 20% visible)
-                const visibleHeight =
-                  Math.min(elementBottom, viewportBottom) -
-                  Math.max(elementTop, viewportTop);
-                const visibilityRatio = visibleHeight / rect.height;
-
-                if (
-                  elementTop <= viewportBottom &&
-                  elementBottom >= viewportTop &&
-                  visibilityRatio >= 0.2
-                ) {
-                  const distance = Math.abs(viewportCenter - elementCenter);
-                  if (!closestSection || distance < closestSection.distance) {
-                    closestSection = { id: item.id, distance };
-                  }
+              if (
+                elementTop <= viewportBottom &&
+                elementBottom >= viewportTop &&
+                visibilityRatio >= 0.2
+              ) {
+                if (!closestSection || distance < closestSection.distance) {
+                  closestSection = { id: item.id, distance };
                 }
               }
             }
+          }
 
-            if (closestSection) {
-              setActiveSection(closestSection.id);
+          // Update hash if we found a section and it's different from current hash
+          if (closestSection) {
+            const currentHash = window.location.hash.slice(1);
+            if (currentHash !== closestSection.id) {
+              isUpdatingHashFromScroll.current = true;
+              window.history.replaceState(null, "", `#${closestSection.id}`);
+              // Manually trigger hash sync since replaceState doesn't fire hashchange
+              if (updateActiveSectionFromHashRef.current) {
+                updateActiveSectionFromHashRef.current();
+              }
+              setTimeout(() => {
+                isUpdatingHashFromScroll.current = false;
+              }, 0);
             }
           }
 
@@ -264,9 +225,7 @@ export default function Header() {
 
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     // Reset navigation state and prevent updates during scroll
-    // Set flag first, before any state updates or scrolls
     isResettingNavigation.current = true;
-    setActiveSection(null);
 
     // Clear any hash from the URL
     if (window.location.hash) {
