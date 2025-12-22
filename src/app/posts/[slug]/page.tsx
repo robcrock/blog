@@ -1,10 +1,9 @@
 // import { Callout } from "@/components/content/callout"; // Add this when you create it
 
-import { useMDXComponents } from "@/mdx-components";
+import { MDXContent } from "@/components/mdx-content";
 import { allPosts } from "contentlayer/generated";
 import { format } from "date-fns";
 import type { Metadata } from "next";
-import { useMDXComponent } from "next-contentlayer2/hooks";
 import { notFound } from "next/navigation";
 
 interface PostPageProps {
@@ -48,9 +47,9 @@ export default async function PostPage({ params }: PostPageProps) {
   }
 
   return (
-    <article className="mx-auto w-full max-w-[680px] px-4 py-16 md:px-6">
+    <article className="grid grid-cols-[1fr_min(700px,100%)_1fr] w-full max-w-5xl mx-auto px-4 pt-16 lg:px-12">
       {/* Post Header */}
-      <header className="mb-12">
+      <header className="col-start-2 mb-12">
         <div className="flex gap-4 items-center mb-4 text-sm text-muted-foreground">
           <span className="uppercase">{post.topic}</span>
           <span>•</span>
@@ -68,16 +67,5 @@ export default async function PostPage({ params }: PostPageProps) {
       {/* Post Content */}
       <MDXContent code={post.body.code} />
     </article>
-  );
-}
-
-// Client component for MDX rendering
-function MDXContent({ code }: { code: string }) {
-  const Component = useMDXComponent(code);
-  const components = useMDXComponents();
-  return (
-    <div className="max-w-none prose prose-lg dark:prose-invert">
-      <Component components={components} />
-    </div>
   );
 }

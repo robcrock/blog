@@ -11,24 +11,26 @@ type ListItemProps = ComponentPropsWithoutRef<"li">;
 type AnchorProps = ComponentPropsWithoutRef<"a">;
 type BlockquoteProps = ComponentPropsWithoutRef<"blockquote">;
 
+// Wrapper component for SandpackEditor to apply grid spanning
+const SandpackEditorWrapper = (props: any) => (
+  <div className="col-span-3 col-start-1 my-8">
+    <SandpackEditor {...props} />
+  </div>
+);
+
 const mdxComponents = {
-  // The MDX wrapper previously forwarded *all* incoming props to the underlying
-  // <article> element. With Next.js App Router, MDX pages may receive special
-  // props such as `searchParams` and `params` that are **not** valid HTML
-  // attributes. Passing them through triggers React warnings like:
-  //   "React does not recognize the `searchParams` prop on a DOM element."
-  // To avoid this we only forward recognised DOM props and children. For now
-  // keeping it simple by extracting `children` and discarding the rest.
-  wrapper: ({ children }: { children: React.ReactNode }) => (
-    <article className="mx-auto w-full max-w-[680px] px-4 md:px-6">
-      {children}
-    </article>
-  ),
   PostImage,
-  SandpackEditor,
+  SandpackEditor: SandpackEditorWrapper,
+  // Figure element wraps code blocks with copy directive - needs grid column styling
+  figure: (props: ComponentPropsWithoutRef<"figure">) => (
+    <figure
+      className="col-span-3 col-start-1 my-8"
+      {...props}
+    />
+  ),
   h1: (props: HeadingProps) => (
     <h1
-      className="w-full mb-8 md:mb-12
+      className="col-start-2 mb-8 md:mb-12
         text-4xl md:text-5xl font-bold tracking-tight
         text-gray-900 dark:text-gray-100
         [&_p]:text-2xl [&_p]:md:text-3xl [&_p]:leading-tight"
@@ -37,25 +39,25 @@ const mdxComponents = {
   ),
   h2: (props: HeadingProps) => (
     <h2
-      className="mt-12 mb-4 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100"
+      className="col-start-2 mt-12 mb-4 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100"
       {...props}
     />
   ),
   h3: (props: HeadingProps) => (
     <h3
-      className="mt-8 mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100"
+      className="col-start-2 mt-8 mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100"
       {...props}
     />
   ),
   h4: (props: HeadingProps) => (
     <h4
-      className="mt-6 mb-4 text-xl font-semibold tracking-tight text-gray-900 dark:text-gray-100"
+      className="col-start-2 mt-6 mb-4 text-xl font-semibold tracking-tight text-gray-900 dark:text-gray-100"
       {...props}
     />
   ),
   p: (props: ParagraphProps) => (
     <p
-      className="mb-6 text-lg md:text-xl leading-[1.75] md:leading-[1.8]
+      className="col-start-2 mb-6 text-lg md:text-xl leading-[1.75] md:leading-[1.8]
         text-gray-800 dark:text-gray-200 
         [&:first-of-type]:text-xl [&:first-of-type]:md:text-2xl 
         [&:first-of-type]:leading-[1.6] [&:first-of-type]:text-gray-700 
@@ -74,7 +76,7 @@ const mdxComponents = {
   ),
   blockquote: (props: BlockquoteProps) => (
     <blockquote
-      className="py-4 pl-6 my-8 
+      className="col-start-2 py-4 pl-6 my-8 
         border-l-4 border-gray-300 dark:border-gray-700
         bg-gray-50 dark:bg-gray-800/50 rounded-r-lg
         [&>p]:text-gray-700 [&>p]:dark:text-gray-300
@@ -84,13 +86,13 @@ const mdxComponents = {
   ),
   ul: (props: ListProps) => (
     <ul
-      className="pl-6 my-6 space-y-3 list-disc list-outside text-gray-800 dark:text-gray-200"
+      className="col-start-2 pl-6 my-6 space-y-3 list-disc list-outside text-gray-800 dark:text-gray-200"
       {...props}
     />
   ),
   ol: (props: ListProps) => (
     <ol
-      className="pl-6 my-6 space-y-3 list-decimal list-outside text-gray-800 dark:text-gray-200"
+      className="col-start-2 pl-6 my-6 space-y-3 list-decimal list-outside text-gray-800 dark:text-gray-200"
       {...props}
     />
   ),
@@ -111,7 +113,7 @@ const mdxComponents = {
     }
 
     return (
-      <div className="overflow-hidden relative my-8 bg-gray-100 rounded-lg dark:bg-gray-900">
+      <div className="overflow-hidden relative col-span-3 col-start-1 my-8 w-full bg-gray-100 rounded-lg dark:bg-gray-900">
         <pre
           className="overflow-x-auto p-4 text-sm text-gray-800 md:text-base dark:text-gray-200"
           data-raw-code={typeof rawCode === "string" ? rawCode : ""}

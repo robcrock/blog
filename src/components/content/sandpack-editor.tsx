@@ -103,7 +103,7 @@ export function SandpackEditor({
   };
 
   return (
-    <div className="overflow-hidden my-8 rounded-lg border border-gray-200 shadow-lg dark:border-gray-700">
+    <div className="overflow-hidden col-span-3 col-start-1 mx-auto my-8 w-full max-w-7xl rounded-lg border border-gray-200 shadow-lg dark:border-gray-700">
       <Sandpack
         theme={theme}
         template={template}
