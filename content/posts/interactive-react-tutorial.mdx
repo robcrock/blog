@@ -1,0 +1,137 @@
+---
+title: "Interactive React Tutorial"
+topic: "React"
+date: 2024-09-01
+description: "Learn React hooks with live, editable code examples"
+published: true
+---
+
+# Interactive React Tutorial
+
+Welcome to an interactive guide where you can edit and run code directly in your browser!
+
+## useState Hook
+
+The `useState` hook is React's way of adding state to functional components. Try editing this counter:
+
+<SandpackEditor preset="react-counter" />
+
+**Challenge**: Can you add a "Reset" button that sets the count back to 0?
+
+## Building a Form
+
+Forms are common in React applications. Here's an interactive example:
+
+<SandpackEditor preset="react-form" />
+
+**Try this**:
+
+- Add an email input field
+- Add validation
+- Style the form with inline styles
+
+## Custom Interactive Example
+
+Let's build something from scratch:
+
+<SandpackEditor
+  files={{
+    '/App.js': `import { useState } from 'react';
+
+export default function ColorChanger() {
+  const [color, setColor] = useState('#3b82f6');
+
+return (
+
+<div style={{ padding: "20px", textAlign: "center" }}>
+  <div
+    style={{
+      width: "200px",
+      height: "200px",
+      backgroundColor: color,
+      margin: "20px auto",
+      borderRadius: "8px",
+      transition: "background-color 0.3s",
+    }}
+  />
+  <input
+    type="color"
+    value={color}
+    onChange={(e) => setColor(e.target.value)}
+  />
+  <p>Current color: {color}</p>
+</div>
+); }` }} height={450}
+showConsole={false}
+/>
+
+Play around with this color picker! Can you:
+
+- Add multiple color boxes?
+- Save a color palette?
+- Add preset color buttons?
+
+## Vanilla JavaScript Example
+
+Not everything needs React! Here's a vanilla JS example:
+
+<SandpackEditor
+  template="vanilla"
+  files={{
+    '/index.js': `const button = document.getElementById('btn');
+const output = document.getElementById('output');
+const colors = ['#3b82f6', '#ef4444', '#10b981', '#f59e0b', '#8b5cf6'];
+let count = 0;
+
+button.addEventListener('click', () => {
+count++;
+const randomColor = colors[Math.floor(Math.random() * colors.length)];
+output.textContent = \`Clicked \${count} times\`;
+output.style.color = randomColor;
+});`,
+    '/index.html': `<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Color Clicker</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      padding: 20px;
+      text-align: center;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    #output {
+      margin-top: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Color Clicker</h1>
+  <button id="btn">Click me!</button>
+  <p id="output">Clicked 0 times</p>
+  <script src="index.js"></script>
+</body>
+</html>`,
+  }}
+  height={400}
+/>
+
+## What You've Learned
+
+- How to use interactive code editors in blog posts
+- useState hook basics
+- Building forms in React
+- Vanilla JavaScript DOM manipulation
+
+Try creating your own examples and share what you build! 🚀

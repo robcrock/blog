@@ -1,6 +1,7 @@
 import { ComponentPropsWithoutRef } from "react";
 
 import PostImage from "@/components/content/post-image";
+import { SandpackEditor } from "@/components/content/sandpack-editor";
 import TransformerCopyButton from "@/components/content/transformer-copy-button";
 
 type HeadingProps = ComponentPropsWithoutRef<"h1">;
@@ -24,6 +25,7 @@ const mdxComponents = {
     </article>
   ),
   PostImage,
+  SandpackEditor,
   h1: (props: HeadingProps) => (
     <h1
       className="w-full mb-8 md:mb-12

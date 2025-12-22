@@ -10,6 +10,7 @@
     "contentlayer": "contentlayer2 build"
   },
   "dependencies": {
+    "@codesandbox/sandpack-react": "^2.20.0",
     "@icons-pack/react-simple-icons": "^11.2.0",
     "@radix-ui/react-aspect-ratio": "^1.1.1",
     "@radix-ui/react-avatar": "^1.1.2",
