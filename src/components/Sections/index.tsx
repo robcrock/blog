@@ -1,6 +1,4 @@
-import ArticleSection from "./home/article-section";
-import PostsSection from "./home/posts-section";
-import ProfileSection from "./home/profile-section";
-import ProjectSection from "./home/project-section";
-
-export { ArticleSection, PostsSection, ProjectSection, ProfileSection };
+export { default as ArticleSection } from "./home/article-section";
+export { default as PostsSection } from "./home/posts-section";
+export { default as ProfileSection } from "./home/profile-section";
+export { default as ProjectSection } from "./home/project-section";
