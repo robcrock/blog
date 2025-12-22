@@ -99,16 +99,25 @@ const mdxComponents = {
       {...props}
     />
   ),
-  pre: ({ children, ...props }: ComponentPropsWithoutRef<"code">) => {
+  pre: ({ children, ...props }: ComponentPropsWithoutRef<"pre">) => {
+    // Extract raw text from code element for reliable copying
+    let rawCode = "";
+    if (children && typeof children === "object" && "props" in children) {
+      const codeProps = (children as any).props;
+      // Try to get raw code from the code element's children
+      rawCode = codeProps?.children || "";
+    }
+
     return (
       <div className="overflow-hidden relative my-8 bg-gray-100 rounded-lg dark:bg-gray-900">
         <pre
           className="overflow-x-auto p-4 text-sm text-gray-800 md:text-base dark:text-gray-200"
+          data-raw-code={typeof rawCode === "string" ? rawCode : ""}
           {...props}
         >
           {children}
         </pre>
-        <TransformerCopyButton>{children}</TransformerCopyButton>
+        <TransformerCopyButton />
       </div>
     );
   },

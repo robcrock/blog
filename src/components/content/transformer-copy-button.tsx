@@ -1,23 +1,40 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { Check, Copy } from "lucide-react";
 
-const TransformerCopyButton = ({ children }: { children: any }) => {
+const TransformerCopyButton = () => {
   const [copied, setCopied] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const copy = async () => {
-    const text = children?.props?.children
-      .map((line: any) => {
-        if (typeof line === "string") return line;
-        const content = line?.props?.children;
-        if (Array.isArray(content)) {
-          return content.map((span: any) => span?.props?.children).join("");
-        }
-        return content?.props?.children || "";
-      })
-      .join("");
+    if (!buttonRef.current) return;
+
+    // Find the parent div and then the pre element
+    const parentDiv = buttonRef.current.parentElement;
+    const preElement = parentDiv?.querySelector("pre");
+
+    if (!preElement) return;
+
+    let text = "";
+
+    // Method 1: Try to get raw code from data attribute (most reliable)
+    const rawCode = preElement.getAttribute("data-raw-code");
+    if (rawCode) {
+      text = rawCode;
+    } else {
+      // Method 2: Fall back to extracting text from DOM (works with any syntax highlighter)
+      // This uses textContent which is browser-native and doesn't depend on React structure
+      const codeElement = preElement.querySelector("code");
+      if (codeElement) {
+        text = codeElement.textContent || "";
+      } else {
+        text = preElement.textContent || "";
+      }
+    }
+
+    if (!text) return;
 
     await navigator.clipboard.writeText(text);
     setCopied(true);
@@ -26,8 +43,10 @@ const TransformerCopyButton = ({ children }: { children: any }) => {
 
   return (
     <button
+      ref={buttonRef}
       onClick={copy}
       className="absolute p-2 transition-colors rounded right-4 top-4 hover:bg-gray-800"
+      aria-label={copied ? "Copied!" : "Copy code"}
     >
       {copied ? (
         <Check className="w-4 h-4 text-green-400" />

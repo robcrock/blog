@@ -77,6 +77,9 @@ export default makeSource({
           onVisitHighlightedLine(node: any) {
             node.properties.className.push("highlighted-line");
           },
+          onVisitHighlightedChars(node: any) {
+            node.properties.className = ["highlighted-chars"];
+          },
         },
       ],
     ],
