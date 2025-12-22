@@ -1,11 +1,10 @@
-import Image from "next/image";
-
-export const metadata = {
-  title: "Hiding Scrollbars in Tailwind",
-  topic: "Tailwind CSS", 
-  date: "2024-09-01",
-  slug: "hiding-scrollbars-in-tailwind"
-};
+---
+title: "Hiding Scrollbars in Tailwind"
+topic: "Tailwind CSS"
+date: 2024-09-01
+description: "A better solution for hiding scrollbars without dependencies"
+published: true
+---
 
 # Hiding Scrollbars in Tailwind: A Better Solution Without Dependencies
 
@@ -36,6 +35,7 @@ Discords UI requires scrollable sections for Servers, Channels, and Messages com
 The instructor, [Sam Selikoff](https://samselikoff.com/), demonstrates how to accomplish this aesthetic using `overflow-y-scroll`, but the default browser scrollbars clash hard with Discord's sleek design aesthetic.
 
 {" "}
+
 <PostImage src="/images/posts/hiding-scrollbars-in-tailwind/image_00.jpg" />
 
 While `overflow-y-scroll` provides the functionality, it falls short on the
@@ -46,6 +46,7 @@ design requirements.
 Like many developers under time pressure, I initially reached for the quickest solution: the [tailwind-scrollbar-hide](https://github.com/reslear/tailwind-scrollbar-hide) plugin. A simple `npm install`, add it to your Tailwind plugins, and you get access to `scrollbar-hide`. Problem solved, right?
 
 {" "}
+
 <PostImage src="/images/posts/hiding-scrollbars-in-tailwind/image_01.jpg" />
 
 However, this approach introduces an unnecessary dependency for what turns out to be a straightforward CSS solution. While the plugin works, it violates one of the core principles of maintainable code: avoiding dependencies for problems that can be solved with a few lines of CSS.

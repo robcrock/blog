@@ -1,3 +1,7 @@
+---
+alwaysApply: true
+---
+
 # Animation Best Practices
 
 ## 1. Easing

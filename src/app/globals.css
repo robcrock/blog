@@ -86,3 +86,44 @@ code {
 .post-header {
   @apply mx-auto mb-12 max-w-4xl;
 }
+
+/* Code block styling for rehype-pretty-code */
+[data-rehype-pretty-code-figure] {
+  margin: 2rem 0;
+}
+
+[data-rehype-pretty-code-figure] pre {
+  overflow-x: auto;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+[data-rehype-pretty-code-figure] code {
+  display: grid;
+  font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+[data-highlighted-line] {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-left: 3px solid #60a5fa;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  padding-left: calc(1rem - 3px);
+  padding-right: 1rem;
+}
+
+[data-line-numbers] {
+  counter-reset: line;
+}
+
+[data-line-numbers] > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1rem;
+  margin-right: 1.5rem;
+  text-align: right;
+  color: #6b7280;
+}

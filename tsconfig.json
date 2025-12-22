@@ -1,8 +1,12 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "contentlayer/generated": [
+        "./.contentlayer/generated"
       ]
     },
     "lib": [
@@ -31,14 +35,11 @@
   },
   "include": [
     "next-env.d.ts",
-    ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/components/Slider/index.tsx",
-    "src/posts/space-invaders.mdx",
-    "src/app/posts/blog-template/page.jsx",
-    ".next/dev/types/**/*.ts",
-    ".next/dev/dev/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".contentlayer/generated",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

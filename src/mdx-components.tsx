@@ -1,6 +1,5 @@
 import { ComponentPropsWithoutRef } from "react";
 
-import PostContent from "@/components/content/post-content";
 import PostImage from "@/components/content/post-image";
 import TransformerCopyButton from "@/components/content/transformer-copy-button";
 
@@ -11,7 +10,7 @@ type ListItemProps = ComponentPropsWithoutRef<"li">;
 type AnchorProps = ComponentPropsWithoutRef<"a">;
 type BlockquoteProps = ComponentPropsWithoutRef<"blockquote">;
 
-const components = {
+const mdxComponents = {
   // The MDX wrapper previously forwarded *all* incoming props to the underlying
   // <article> element. With Next.js App Router, MDX pages may receive special
   // props such as `searchParams` and `params` that are **not** valid HTML
@@ -24,7 +23,6 @@ const components = {
       {children}
     </article>
   ),
-  PostContent,
   PostImage,
   h1: (props: HeadingProps) => (
     <h1
@@ -114,8 +112,22 @@ const components = {
       </div>
     );
   },
+  code: (props: ComponentPropsWithoutRef<"code">) => {
+    // Check if code is inside a pre tag (code block) or standalone (inline code)
+    const isInline = !props.className?.includes("language-");
+    if (isInline) {
+      return (
+        <code
+          className="font-mono text-sm bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded"
+          {...props}
+        />
+      );
+    }
+    // For code blocks, return as-is (handled by pre component)
+    return <code {...props} />;
+  },
 };
 
-export function useMDXComponents(): typeof components {
-  return components;
+export function useMDXComponents(): typeof mdxComponents {
+  return mdxComponents;
 }
