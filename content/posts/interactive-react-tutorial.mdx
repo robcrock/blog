@@ -1,16 +1,80 @@
 ---
-title: "Interactive React Tutorial"
-topic: "React"
-date: 2024-09-01
-description: "Learn React hooks with live, editable code examples"
+title: "My Notes on Transforms"
+topic: "Animations"
+date: 2025-12-24
+description: "Collecting my thoughts on a post about the powerful animation property"
 published: true
 ---
 
-Welcome to an interactive guide where you can edit and run code directly in your browser!
+CSS Transforms are one of the most power properties we have a our disposal when creating animations on the web. With transforms we can performantly move elements horizontally, vertically, rotate them, and make them apear closer or further away.
 
-## Custom Interactive Example
+That's a lot of power in a small package.
 
-Let's build something from scratch:
+## The Syntax
+
+### Translate
+
+`translate(x, y)`, `translateX(x)`, `translateY(y)`
+
+> Unlike margin and padding, when you pass a percentage to the translate functions you're percentage is relative to your own size. That means `translateY(100%)` will move the element down the screen by the same number of pixels it takes up. This can be handy if you have an element off screen, you don't know its height, but you want it to fully appear when triggered. For this effect `translateY(-100%)` is your friend.
+
+# TODO: Sandpack example with range sliders
+
+### Scale
+
+`scale(x, y)`, `scaleX(x)`, `scaleY(Y)`
+
+Scale gives us the power to grow and shrink elements.
+
+> Scales take unitless values as their arguments.
+
+In the Animations of the Web course there's a frequenty mention of the magic effect of subtle scaling down buttons when they're active.
+
+```css
+button {
+  transition: transform 150ms ease;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+```
+
+# TODO: Sandpack example of the button scaling
+
+One more key tip from the course is to **never** scale from 0. Honestly, that is probably the first thing you would do when applying this style. Of course, you want to scale the element from not existing (0) to existing (100). Turns our that doesn't look great. Scale from 0.5 instead to save the user from watch whatever is being scaled do so from complete non-existance to full.
+
+### Rotate
+
+`rotate()`
+
+By default the element will rotate around the center, but you can control how the rotation occurs with `transform-origin`.
+
+> To make vanilla rotations look better apply a custom ease-in-out type easing curve to them.
+
+### 3D Transforms
+
+`rotateX()`, `rotateY()`, `rotateZ()`, `rotate3d()`
+
+In order to get these rotations working you need to also set `transform-style: preserve-3d` to rotate an element around a specific axis.
+
+When wrapping your head around these properties think about the X and Y as the axis of rotation. Y is a vertical axis. If we take that vertical axis and spin it like a top our element would twirl like a balerina. If we were to grab the X axis and rotate it we would see an element rolling like a cylinder on its side.
+
+### Transform origin
+
+Whenever we transform an element we do so around an _anchor_ point. As we said earlier, the default is center. That's a reasonable default, but when would you want a different anchor point?
+
+Element transforming from a popover button ideal transfrom from the popover since that's their origin. In Discord there are tiny blob-like elements on the left-hand side of the screen that have custom `transform-origin` position to make their entrance and removal feel more natural.
+
+> The way I'm thinking about these is unless the element is originating from nowhere in particular its `transform-origin` default setting is subject for debate. i.e. I probably want to change it.
+
+### Order of Transforms
+
+Often you want to apply many transforms at the same time. That's when the order of your transforms becomes very important!
+
+Let's say you want to create a shooting start effect where the stars shoot out of your wand an rotate while they do. In order to achieve this effect you need to rotate and transform at the same time. If you get the order of this wrong you may end up with a wand that appears defective 😂
+
+### Wand Animation
 
 <SandpackEditor
   template="react-ts"
@@ -90,74 +154,3 @@ Let's build something from scratch:
 }}
 height={450}
 />
-
-Play around with this color picker! Can you:
-
-- Add multiple color boxes?
-- Save a color palette?
-- Add preset color buttons?
-
-## Vanilla JavaScript Example
-
-Not everything needs React! Here's a vanilla JS example:
-
-<SandpackEditor
-  template="vanilla"
-  files={{
-    '/index.js': `const button = document.getElementById('btn');
-const output = document.getElementById('output');
-const colors = ['#3b82f6', '#ef4444', '#10b981', '#f59e0b', '#8b5cf6'];
-let count = 0;
-
-button.addEventListener('click', () => {
-count++;
-const randomColor = colors[Math.floor(Math.random() * colors.length)];
-output.textContent = \`Clicked \${count} times\`;
-output.style.color = randomColor;
-});`,
-    '/index.html': `<!DOCTYPE html>
-
-<html>
-<head>
-  <title>Color Clicker</title>
-  <style>
-    body {
-      font-family: system-ui, sans-serif;
-      padding: 20px;
-      text-align: center;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      background: #3b82f6;
-      color: white;
-      border: none;
-      border-radius: 4px;
-    }
-    #output {
-      margin-top: 20px;
-      font-size: 24px;
-      font-weight: bold;
-    }
-  </style>
-</head>
-<body>
-  <h1>Color Clicker</h1>
-  <button id="btn">Click me!</button>
-  <p id="output">Clicked 0 times</p>
-  <script src="index.js"></script>
-</body>
-</html>`,
-  }}
-  height={400}
-/>
-
-## What You've Learned
-
-- How to use interactive code editors in blog posts
-- useState hook basics
-- Building forms in React
-- Vanilla JavaScript DOM manipulation
-
-Try creating your own examples and share what you build! 🚀
