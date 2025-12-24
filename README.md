@@ -70,6 +70,16 @@ Static assets must be in the `public/` directory due to Next.js requirements:
 - `public/images/posts/[slug]/` - Post-specific images
 - `public/images/` - Global assets (avatar, icons, etc.)
 
+### Content Management with Contentlayer
+
+This project uses Contentlayer2 for type-safe MDX content management:
+
+- **Content Directory**: All MDX posts are stored in `content/posts/`
+- **Type Safety**: Contentlayer generates TypeScript types from your content
+- **Build Process**: Run `pnpm contentlayer` to build content or it runs automatically during `pnpm build`
+- **Frontmatter**: Posts require `title`, `topic`, `date` fields; optional `description` and `published` fields
+- **Computed Fields**: Automatically generates `slug`, `url`, and `readingTime` for each post
+
 ### Important: MDX Components File Location
 
 The `src/mdx-components.tsx` file **must** remain at the `src/` level due to Next.js conventions:
@@ -89,16 +99,20 @@ This file provides global component mapping for all MDX files in the application
 - `pnpm build` - Build production bundle
 - `pnpm lint` - Run ESLint
 - `pnpm start` - Start production server
+- `pnpm storybook` - Start Storybook development server on port 6006
+- `pnpm build-storybook` - Build static Storybook for deployment
 
 ### Technologies
 
-- **Framework**: Next.js 15 with App Router
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Content**: MDX with next-mdx-remote
-- **UI Components**: Radix UI primitives
-- **Code Highlighting**: Bright (0.8.4) with Shiki
-- **Package Manager**: pnpm
+- **Framework**: Next.js 16 (16.0.10) with App Router
+- **React**: React 19 (19.2.3)
+- **Language**: TypeScript 5.7.2
+- **Styling**: Tailwind CSS 3.4.17
+- **Content**: Contentlayer2 (0.5.8) with MDX
+- **UI Components**: Radix UI primitives + Base UI
+- **Code Highlighting**: rehype-pretty-code with Shiki 1.26.1
+- **Component Development**: Storybook 10.1.10 with Vite 7
+- **Package Manager**: pnpm 9.13.2
 
 ## Configuration
 
@@ -106,47 +120,103 @@ Configuration files are organized in the `config/` directory:
 
 - `config/components.json` - shadcn/ui configuration
 
+## Storybook
+
+This project uses Storybook 10.1.10 for component development and documentation.
+
+### Running Storybook
+
+```bash
+pnpm storybook
+```
+
+This will start the Storybook development server at `http://localhost:6006`.
+
+### Building Storybook
+
+To build a static version of Storybook:
+
+```bash
+pnpm build-storybook
+```
+
+The static files will be generated in the `storybook-static/` directory.
+
+### Creating Stories
+
+Stories are located alongside their components in `src/components/ui/`. To create a new story:
+
+1. Create a file named `[component].stories.tsx` next to your component
+2. Use the CSF (Component Story Format) 3.0 syntax
+3. Export a default meta object and individual story objects
+
+Example:
+
+```typescript
+import type { Meta, StoryObj } from "@storybook/react";
+
+import { YourComponent } from "./your-component";
+
+const meta = {
+  title: "UI/YourComponent",
+  component: YourComponent,
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
+} satisfies Meta<typeof YourComponent>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    // your component props
+  },
+};
+```
+
+### Configuration
+
+- `.storybook/main.ts` - Main Storybook configuration with Vite builder
+- `.storybook/preview.tsx` - Global decorators, parameters, and theme setup
+
+**Note**: This project uses `@storybook/react-vite` with Vite 7 for faster builds and hot module replacement.
+
 ## Content Creation
 
 ### Adding a New Blog Post
 
-1. **Create Post Directory Structure:**
+1. **Create the MDX File:**
 
    ```bash
-   mkdir -p src/app/posts/[post-slug]
    mkdir -p public/images/posts/[post-slug]
+   touch content/posts/[post-slug].mdx
    ```
 
-2. **Create the MDX File:**
-
-   ```bash
-   touch src/app/posts/[post-slug]/page.mdx
-   ```
-
-3. **Add Post Content:**
+2. **Add Frontmatter and Content:**
 
    ```mdx
-   # Your Post Title
+   ---
+   title: "Your Post Title"
+   topic: "Your Topic"
+   date: "2024-01-01"
+   description: "Optional description for SEO"
+   published: true
+   ---
 
    Your post content here...
 
    <PostImage src="/images/posts/[post-slug]/image.jpg" />
    ```
 
-4. **Add Post to Listing:**
-   Update `src/app/posts/page.tsx` to include your new post in the `posts` array:
+3. **Build Content:**
+   Run `pnpm contentlayer` to generate types and build the content, or it will run automatically during `pnpm build`
 
-   ```typescript
-   {
-     slug: "your-post-slug",
-     title: "Your Post Title",
-     topic: "Your Topic",
-     date: "2024-01-01",
-   }
-   ```
-
-5. **Add Images:**
+4. **Add Images:**
    Place any images in `public/images/posts/[post-slug]/` and reference them using `/images/posts/[post-slug]/filename.jpg`
+
+**Note**: Posts are automatically discovered by Contentlayer from the `content/posts/` directory. No manual listing required!
 
 ### Adding a New Featured Project
 
