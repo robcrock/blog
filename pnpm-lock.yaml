@@ -118,6 +118,9 @@ importers:
       '@storybook/nextjs-vite':
         specifier: 10.1.10
         version: 10.1.10(@babel/core@7.28.5)(esbuild@0.27.2)(next@16.0.10(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(rollup@4.54.0)(storybook@10.1.10(@testing-library/dom@10.4.0)(prettier@3.4.2)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(typescript@5.7.2)(vite@7.3.0(@types/node@20.5.1)(jiti@2.6.1)(terser@5.44.1)(yaml@2.7.0))(webpack@5.104.1(esbuild@0.27.2))
+      '@storybook/react':
+        specifier: ^10.1.10
+        version: 10.1.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(storybook@10.1.10(@testing-library/dom@10.4.0)(prettier@3.4.2)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(typescript@5.7.2)
       '@storybook/react-vite':
         specifier: ^10.1.10
         version: 10.1.10(esbuild@0.27.2)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(rollup@4.54.0)(storybook@10.1.10(@testing-library/dom@10.4.0)(prettier@3.4.2)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(typescript@5.7.2)(vite@7.3.0(@types/node@20.5.1)(jiti@2.6.1)(terser@5.44.1)(yaml@2.7.0))(webpack@5.104.1(esbuild@0.27.2))
