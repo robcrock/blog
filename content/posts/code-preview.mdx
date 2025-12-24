@@ -1,0 +1,88 @@
+---
+title: "Code Preview"
+topic: "Sandpack"
+date: 2024-09-01
+description: "experimenting"
+published: true
+---
+
+# My Tutorial
+
+## Interactive Example - Full Editor
+
+Try editing this code:
+
+<CodeExample
+  mode="interactive"
+  title="Button Component"
+  files={{
+    "/App.tsx": `export default function App() {
+  // 👇 Try changing this color
+  const color = 'red';
+  
+  return (
+    <button style={{ backgroundColor: color }}>
+      Click me!
+    </button>
+  );
+}`,
+  }}
+/>
+
+## Preview Mode - Code Hidden by Default
+
+Click "View Code" if you want to see the implementation:
+
+<CodeExample
+  mode="preview"
+  title="Dashboard Preview"
+  files={{
+    "/App.tsx": `export default function App() {
+  return (
+    <div className="p-8">
+      <h1 className="text-3xl font-bold">Dashboard</h1>
+      <p>This is the final result!</p>
+    </div>
+  );
+}`,
+  }}
+/>
+
+## Read-Only Reference
+
+<CodeExample
+  mode="readonly"
+  title="Implementation Reference"
+  files={{
+    "/App.tsx": `// You can view this but not edit it
+export default function App() {
+  return <div>Read-only example</div>;
+}`,
+  }}
+/>
+
+## Compact Preview
+
+<CodeExample
+  mode="compact"
+  files={{
+    "/App.tsx": `export default () => <div className="p-4">Compact!</div>`,
+  }}
+/>
+
+## Custom Override
+
+You can still override options per example:
+
+<CodeExample
+  mode="interactive"
+  title="With Console Enabled"
+  showConsole={true}
+  height={500}
+  files={{
+    "/App.tsx": `export default function App() {
+  console.log('Check the console!');
+  return <div>See the console below</div>;
+}`,
+  }}
+/>

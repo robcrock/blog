@@ -13,68 +13,71 @@ import {
   SandpackProvider,
 } from "@codesandbox/sandpack-react";
 
+import { PRESETS } from "./presets";
+
 // Preset configurations for common use cases
-const PRESETS = {
-  "react-counter": {
-    "/App.js": `import { useState } from 'react';
+// const PRESETS = {
+//   // Interactive - code panel open, encourage editing
+//   interactive: {
+//     options: {
+//       showLineNumbers: true,
+//       showInlineErrors: true,
+//       editorHeight: 400,
+//       showTabs: true,
+//       closableTabs: true,
+//       showNavigator: false,
+//       initMode: "user-visible",
+//     },
+//     showConsole: false,
+//   },
 
-export default function Counter() {
-  const [count, setCount] = useState(0);
+//   // Preview-first - code hidden but accessible
+//   preview: {
+//     options: {
+//       showLineNumbers: false,
+//       showInlineErrors: false,
+//       editorHeight: 350,
+//       showTabs: false,
+//       closableTabs: false,
+//       showNavigator: false,
+//       initMode: "user-visible",
+//       // Hide the editor by default
+//       activeFile: undefined,
+//     },
+//     customSetup: {
+//       dependencies: {},
+//     },
+//   },
 
-  return (
-    <div style={{ padding: '20px' }}>
-      <h1>Counter: {count}</h1>
-      <button onClick={() => setCount(count + 1)}>+</button>
-      <button onClick={() => setCount(count - 1)}>-</button>
-    </div>
-  );
-}`,
-  },
-  "react-form": {
-    "/App.js": `import { useState } from 'react';
+//   // Read-only - can see code but not edit
+//   readonly: {
+//     options: {
+//       showLineNumbers: true,
+//       showInlineErrors: false,
+//       editorHeight: 350,
+//       showTabs: true,
+//       closableTabs: false,
+//       readOnly: true,
+//       showNavigator: false,
+//       initMode: "user-visible",
+//     },
+//   },
 
-export default function Form() {
-  const [name, setName] = useState('');
-  const [submitted, setSubmitted] = useState(false);
+//   // Compact - smaller, preview-focused
+//   compact: {
+//     options: {
+//       showLineNumbers: false,
+//       editorHeight: 250,
+//       showTabs: false,
+//       closableTabs: false,
+//       showNavigator: false,
+//       initMode: "user-visible",
+//       activeFile: undefined,
+//     },
+//   },
+// };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
-
-  return (
-    <div style={{ padding: '20px' }}>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Enter your name"
-        />
-        <button type="submit">Submit</button>
-      </form>
-      {submitted && <p>Hello, {name}!</p>}
-    </div>
-  );
-}`,
-  },
-  "vanilla-hello": {
-    "/index.js": `document.getElementById('app').innerHTML = \`
-  <h1>Hello Vanilla!</h1>
-  <p>Edit the code to see changes</p>
-\`;`,
-    "/index.html": `<!DOCTYPE html>
-<html>
-<head><title>App</title></head>
-<body>
-  <div id="app"></div>
-  <script src="index.js"></script>
-</body>
-</html>`,
-  },
-};
-
-interface SandpackEditorProps {
+export interface SandpackEditorProps {
   files?: SandpackFiles;
   template?: SandpackProps["template"];
   preset?: keyof typeof PRESETS;
@@ -238,16 +241,19 @@ export function SandpackEditor({
   showTabs = true,
   closableTabs = false,
 }: SandpackEditorProps) {
-  // Use preset files if provided, otherwise use custom files
-  const initialFiles = useMemo(
-    () => (preset ? PRESETS[preset] : files) ?? {},
-    [preset, files]
-  );
+  // Initial Sandpack files (presets only adjust options, not file contents)
+  const initialFiles = useMemo<SandpackFiles>(() => files ?? {}, [files]);
   const [sandpackFiles, setSandpackFiles] =
     useState<SandpackFiles>(initialFiles);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isConsoleOpen, setIsConsoleOpen] = useState(showConsole);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Extract editor-specific props from options (these should be passed to SandpackCodeEditor)
+  const showLineNumbers = options.showLineNumbers ?? true;
+  const showInlineErrors = options.showInlineErrors ?? false;
+  const wrapContent = options.wrapContent ?? false;
+  const readOnly = options.readOnly ?? false;
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -272,14 +278,18 @@ export function SandpackEditor({
     setSandpackFiles({ ...initialFiles });
   };
 
+  // If custom files are provided, set visibleFiles to only show those
+  const visibleFiles = files
+    ? Object.keys(files).filter((f) => typeof files[f] === "string")
+    : undefined;
+
   const defaultOptions: SandpackProps["options"] = {
+    ...options,
     showNavigator,
-    showTabs,
-    showLineNumbers: true,
     showConsole: isConsoleOpen,
     editorHeight: isFullscreen ? "100%" : height,
-    closableTabs,
-    ...options,
+    // Only show the files the user explicitly provided
+    ...(visibleFiles && { visibleFiles }),
     // Add custom classes so we can style fullscreen without !important
     classes: {
       ...(options.classes ?? {}),
@@ -297,7 +307,8 @@ export function SandpackEditor({
       <div
         ref={containerRef}
         className={`overflow-hidden col-span-3 col-start-1 mx-auto my-8 w-full max-w-7xl rounded-lg border border-gray-200 shadow-lg sandpack-container dark:border-gray-700 ${
-          isFullscreen ? "sandpack-fullscreen" : ""}`}
+          isFullscreen ? "sandpack-fullscreen" : ""
+        }`}
         style={
           isFullscreen
             ? {
@@ -330,7 +341,10 @@ export function SandpackEditor({
             <SandpackCodeEditor
               showTabs={showTabs}
               closableTabs={closableTabs}
-              showLineNumbers={true}
+              showLineNumbers={showLineNumbers}
+              showInlineErrors={showInlineErrors}
+              wrapContent={wrapContent}
+              readOnly={readOnly}
               style={
                 isFullscreen ? { height: "100%", minHeight: 0 } : undefined
               }

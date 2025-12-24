@@ -1,7 +1,8 @@
 import { ComponentPropsWithoutRef } from "react";
 
+import { CodeExample } from "@/components/content/code-example";
+import { SandpackEditor } from "@/components/content/code-example/sandpack-editor";
 import PostImage from "@/components/content/post-image";
-import { SandpackEditor } from "@/components/content/sandpack-editor";
 import TransformerCopyButton from "@/components/content/transformer-copy-button";
 
 type HeadingProps = ComponentPropsWithoutRef<"h1">;
@@ -18,15 +19,20 @@ const SandpackEditorWrapper = (props: any) => (
   </div>
 );
 
+// Wrapper for CodeExample to ensure consistent grid positioning in posts
+const CodeExampleWrapper = (props: any) => (
+  <div className="col-span-3 col-start-1 my-8">
+    <CodeExample {...props} />
+  </div>
+);
+
 const mdxComponents = {
   PostImage,
   SandpackEditor: SandpackEditorWrapper,
+  CodeExample: CodeExampleWrapper,
   // Figure element wraps code blocks with copy directive - needs grid column styling
   figure: (props: ComponentPropsWithoutRef<"figure">) => (
-    <figure
-      className="col-span-3 col-start-1 my-8"
-      {...props}
-    />
+    <figure className="col-span-3 col-start-1 my-8" {...props} />
   ),
   h1: (props: HeadingProps) => (
     <h1

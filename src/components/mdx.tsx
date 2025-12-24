@@ -1,10 +1,12 @@
 import { useMDXComponent } from "next-contentlayer2/hooks";
 import Image from "next/image";
 
-import { SandpackEditor } from "./content/sandpack-editor";
+import { CodeExample } from "./content/code-example";
+import { SandpackEditor } from "./content/code-example/sandpack-editor";
 
 const components = {
   Image,
+  CodeExample,
   SandpackEditor,
 };
 
