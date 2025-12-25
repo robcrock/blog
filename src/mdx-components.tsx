@@ -3,6 +3,11 @@ import { ComponentPropsWithoutRef } from "react";
 import PostImage from "@/components/content/post-image";
 import { SandpackEditor } from "@/components/content/sandpack-editor";
 import TransformerCopyButton from "@/components/content/transformer-copy-button";
+import {
+  PopoverPlayground,
+  ToastPlayground,
+  TransformPlayground,
+} from "@/components/playgrounds";
 
 type HeadingProps = ComponentPropsWithoutRef<"h1">;
 type ParagraphProps = ComponentPropsWithoutRef<"p">;
@@ -21,12 +26,13 @@ const SandpackEditorWrapper = (props: any) => (
 const mdxComponents = {
   PostImage,
   SandpackEditor: SandpackEditorWrapper,
+  // NEW - Add playground components
+  TransformPlayground,
+  ToastPlayground,
+  PopoverPlayground,
   // Figure element wraps code blocks with copy directive - needs grid column styling
   figure: (props: ComponentPropsWithoutRef<"figure">) => (
-    <figure
-      className="col-span-3 col-start-1 my-8"
-      {...props}
-    />
+    <figure className="col-span-3 col-start-1 my-8" {...props} />
   ),
   h1: (props: HeadingProps) => (
     <h1

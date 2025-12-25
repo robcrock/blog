@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 import { Analytics } from "@vercel/analytics/react";
 import { Spline_Sans_Mono, Work_Sans } from "next/font/google";
@@ -7,6 +7,7 @@ import "./globals.css";
 
 import Header from "@/components/layout/header";
 import { ThemeProvider } from "@/components/theme/theme-provider";
+import { Toaster } from "sonner";
 
 const mainFont = Work_Sans({
   subsets: ["latin"],
@@ -35,10 +36,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       suppressHydrationWarning
       className={`${mainFont.variable} ${monoFont.variable}`}
     >
-      <body className="container max-w-6xl px-4 mx-auto sm:px-6 lg:px-8">
+      <body className="container px-4 mx-auto max-w-6xl sm:px-6 lg:px-8">
         <ThemeProvider>
           <Header />
           {children}
+          <Toaster />
           <Analytics />
         </ThemeProvider>
       </body>
