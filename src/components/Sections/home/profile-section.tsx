@@ -40,8 +40,8 @@ export default function ProfileSection() {
         <div className="flex justify-center">
           {links.map(({ href, icon }) => {
             return (
-              <Button key={href} variant="ghost" size="icon" asChild>
-                <Link href={href}>{icon}</Link>
+              <Button key={href} variant="ghost" size="icon" render={<Link href={href} />}>
+                {icon}
               </Button>
             );
           })}
