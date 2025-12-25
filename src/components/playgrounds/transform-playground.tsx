@@ -16,6 +16,8 @@ import { motion } from "framer-motion";
 
 type TransformOrigin = "center" | "left" | "right" | "top" | "bottom";
 
+const MotionDiv = motion("div");
+
 export function TransformPlayground() {
   const [translateX, setTranslateX] = useState(0);
   const [translateY, setTranslateY] = useState(0);
@@ -34,7 +36,8 @@ transform-origin: ${transformOrigin};`;
       description="Hover on the element to see smooth transitions using custom easing functions."
     >
       <PlaygroundCanvas backgroundPattern="dots">
-        <motion.div
+        <MotionDiv
+          // @ts-expect-error - Framer Motion 11 + React 19 type compatibility issue
           className={cn(
             "w-[120px] h-[120px]",
             "bg-primary",

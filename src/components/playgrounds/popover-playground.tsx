@@ -23,6 +23,8 @@ type TransformOrigin =
   | "bottom center"
   | "bottom right";
 
+const MotionDiv = motion("div");
+
 export function PopoverPlayground() {
   const [isOpen, setIsOpen] = useState(false);
   const [transformOrigin, setTransformOrigin] =
@@ -65,7 +67,8 @@ export function PopoverPlayground() {
 
           <AnimatePresence>
             {isOpen && (
-              <motion.div
+              <MotionDiv
+                // @ts-expect-error - Framer Motion 11 + React 19 type compatibility issue
                 className={cn(
                   "absolute top-full left-1/2 -translate-x-1/2 mt-2 z-50",
                   "w-64 p-4 rounded-lg shadow-lg",
@@ -90,7 +93,7 @@ export function PopoverPlayground() {
                   transform origin. The popover appears to "grow" from the
                   anchor point.
                 </p>
-              </motion.div>
+              </MotionDiv>
             )}
           </AnimatePresence>
         </div>
