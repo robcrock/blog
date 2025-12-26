@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 
 import { Analytics } from "@vercel/analytics/react";
-import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
 
 import "./globals.css";
 
@@ -15,12 +15,8 @@ export const metadata = {
     "Robert Crocker - Developer, community builder, and creator of useful things",
   description: "Personal website of Robert Crocker",
   icons: {
-    icon: [
-      { url: "/icon.svg", type: "image/svg+xml" },
-    ],
-    apple: [
-      { url: "/apple-icon.svg", type: "image/svg+xml" },
-    ],
+    icon: "/icons/icon.svg",
+    apple: "/icons/apple-icon.png",
   },
 };
 
