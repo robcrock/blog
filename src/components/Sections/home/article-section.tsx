@@ -14,7 +14,7 @@ export default function ArticleSection() {
   }
 
   return (
-    <section className="mb-16">
+    <section className="mb-20">
       <h2 className="mb-6 text-2xl font-bold">Recent Articles</h2>
       <div className="space-y-6">
         {articles.map((article, index) => (

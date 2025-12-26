@@ -1,5 +1,9 @@
+"use client";
+
+import { useState } from "react";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ExternalLink } from "lucide-react";
+import { ChevronDown, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -127,7 +131,7 @@ const projects: Project[] = [
   {
     title: "Result Summary Component",
     description:
-      "This challenge has something for everyone. It’s a HTML and CSS only project, but we’ve also provided a JSON file of the test results for anyone wanting to practice JS.",
+      "This challenge has something for everyone. It's a HTML and CSS only project, but we've also provided a JSON file of the test results for anyone wanting to practice JS.",
     tags: ["Next.js", "Tailwind", "Shadcn"],
     image: "/images/featured-projects/results_summary_component.png",
     link: "https://www.frontendmentor.io/solutions/result-summary-component-SUXothL8Ci",
@@ -150,50 +154,93 @@ const projects: Project[] = [
   },
 ];
 
+const INITIAL_DISPLAY_COUNT = 6;
+
 export default function ProjectSection() {
+  const [showAll, setShowAll] = useState(false);
+
   if (projects.length === 0) {
     return null;
   }
 
+  const displayedProjects = showAll
+    ? projects
+    : projects.slice(0, INITIAL_DISPLAY_COUNT);
+  const remainingCount = projects.length - INITIAL_DISPLAY_COUNT;
+
+  const handleLoadMore = () => setShowAll(true);
+
   return (
-    <section id="projects" className="scroll-mt-[72px]">
+    <section id="projects" className="scroll-mt-[72px] mb-20">
       <div className="flex gap-4 items-center mb-6">
         <h2 className="text-base font-bold whitespace-nowrap">Projects</h2>
         <div className="flex-1 h-px bg-border" />
       </div>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project, index) => (
-          <Card key={index} className="overflow-hidden">
-            <div className="relative w-full h-48">
-              <Image
-                src={project.image}
-                alt={project.title}
-                className="transition-all duration-300 hover:scale-105"
-                fill
-                sizes="100vw"
-                style={{
-                  objectFit: "cover",
-                }}
-              />
-            </div>
-            <CardHeader>
-              <CardTitle>{project.title}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="mb-4 text-muted-foreground">
-                {project.description}
-              </p>
-              <Link
-                href={project.link}
-                className="inline-flex items-center text-primary hover:underline"
-              >
-                View Project
-                <ExternalLink className="ml-1 w-4 h-4" />
-              </Link>
-            </CardContent>
-          </Card>
-        ))}
+
+      <div className="grid gap-6 mb-6 sm:grid-cols-2 lg:grid-cols-3">
+        {displayedProjects.map((project, index) => {
+          const isNewlyRevealed = showAll && index >= INITIAL_DISPLAY_COUNT;
+          const animationDelay = isNewlyRevealed
+            ? `${(index - INITIAL_DISPLAY_COUNT) * 100}ms`
+            : "0ms";
+
+          return (
+            <Card
+              key={index}
+              id={`project-${index}`}
+              className={`overflow-hidden ${
+                isNewlyRevealed ? "animate-fade-in-up" : ""}`}
+              style={{
+                animationDelay: isNewlyRevealed ? animationDelay : undefined,
+              }}
+            >
+              <div className="relative w-full h-48">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  className="transition-all duration-300 hover:scale-105"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  style={{
+                    objectFit: "cover",
+                  }}
+                />
+              </div>
+              <CardHeader>
+                <CardTitle>{project.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="mb-4 text-muted-foreground">
+                  {project.description}
+                </p>
+                <Link
+                  href={project.link}
+                  className="inline-flex items-center text-primary hover:underline"
+                >
+                  View Project
+                  <ExternalLink className="ml-1 w-4 h-4" />
+                </Link>
+              </CardContent>
+            </Card>
+          );
+        })}
       </div>
+
+      {!showAll && remainingCount > 0 && (
+        <div className="flex justify-center">
+          <button
+            onClick={handleLoadMore}
+            className="group relative inline-flex items-center justify-center gap-2 px-8 py-3 text-sm font-medium transition-all duration-200 ease-in-out border rounded bg-transparent hover:bg-foreground hover:text-background focus:outline-none focus:ring-2 focus:ring-foreground focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed min-h-[44px] min-w-[180px]"
+            aria-label={`Load ${remainingCount} more portfolio projects`}
+            aria-live="polite"
+          >
+            <>
+              <span>Show {remainingCount} More Projects</span>
+              <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5" />
+            </>
+          </button>
+        </div>
+      )}
     </section>
   );
 }

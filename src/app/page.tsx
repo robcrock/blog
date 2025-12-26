@@ -9,11 +9,9 @@ export default function Home() {
   return (
     <>
       <ProfileSection />
-      <div className="flex flex-col gap-20">
-        <ArticleSection />
-        <ProjectSection />
-        <PostsSection />
-      </div>
+      <ArticleSection />
+      <ProjectSection />
+      <PostsSection />
     </>
   );
 }
