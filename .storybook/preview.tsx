@@ -1,7 +1,10 @@
 import type { Preview } from "@storybook/react";
-import { ThemeProvider } from "../src/components/theme/theme-provider";
-import "./fonts.css"; // Define font CSS variables for Storybook
+
 import "../src/app/globals.css";
+
+import { ThemeProvider } from "../src/components/theme/theme-provider";
+
+import "./fonts.css"; // Define font CSS variables for Storybook
 
 const preview: Preview = {
   parameters: {
@@ -22,8 +25,8 @@ const preview: Preview = {
         dark: {
           name: "dark",
           value: "#0f172a",
-        }
-      }
+        },
+      },
     },
   },
 
@@ -39,9 +42,9 @@ const preview: Preview = {
 
   initialGlobals: {
     backgrounds: {
-      value: "light"
-    }
-  }
+      value: "light",
+    },
+  },
 };
 
 export default preview;
