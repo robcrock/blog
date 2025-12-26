@@ -23,7 +23,7 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 flex justify-between items-center py-4 bg-background/95 backdrop-blur-sm">
+    <header className="flex sticky top-0 z-50 justify-between items-center py-4 backdrop-blur-sm bg-background/95">
       <Link href="/" onClick={handleLogoClick}>
         <Logo className="w-10 h-10" />
       </Link>
@@ -34,10 +34,7 @@ export default function Header() {
             <ul className="flex space-x-6">
               {navItems.map((item) => (
                 <li key={item.label}>
-                  <a
-                    href={item.href}
-                    className="opacity-50 hover:opacity-100 transition-opacity"
-                  >
+                  <a href={item.href} className="font-light hover:text-primary">
                     {item.label}
                   </a>
                 </li>

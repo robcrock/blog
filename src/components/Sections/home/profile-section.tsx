@@ -24,11 +24,15 @@ const links = [
 
 export default function ProfileSection() {
   return (
-    <section className="flex gap-10 mt-10 mb-20">
-      <div className="flex flex-col gap-2 justify-center items-start">
+    <section className="flex gap-10 mt-10 mb-14">
+      <div className="flex flex-col gap-4 justify-center items-start">
         <div className="flex flex-col justify-center items-start">
-          <h1 className="text-6xl font-bold">Robert Crocker</h1>
-          <p className="text-xl text-muted-foreground">
+          <h1 className="text-6xl font-bold text-primary">
+            {/* <span className="text-primary">Rob</span>ert{" "}
+            <span className="text-primary">Crock</span>er */}
+            Robert Crocker
+          </h1>
+          <p className="text-lg text-base-foreground">
             Developer, community builder, and creator of useful things.
           </p>
         </div>
@@ -39,6 +43,7 @@ export default function ProfileSection() {
                 key={href}
                 variant="ghost"
                 size="icon"
+                className="text-base"
                 render={<Link href={href} />}
               >
                 {icon}

@@ -45,13 +45,13 @@ const TransformerCopyButton = () => {
     <button
       ref={buttonRef}
       onClick={copy}
-      className="absolute p-2 transition-colors rounded right-4 top-4 hover:bg-gray-800"
+      className="absolute top-4 right-4 p-2 rounded transition-colors hover:bg-gray-800"
       aria-label={copied ? "Copied!" : "Copy code"}
     >
       {copied ? (
         <Check className="w-4 h-4 text-green-400" />
       ) : (
-        <Copy className="w-4 h-4 text-gray-400" />
+        <Copy className="w-4 h-4 text-primary" />
       )}
     </button>
   );

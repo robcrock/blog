@@ -74,7 +74,8 @@ const mdxComponents = {
   a: ({ href, children, ...props }: AnchorProps) => (
     <a
       href={href}
-      className="text-purple-600 underline transition-all duration-100 dark:text-purple-400 decoration-purple-600/30 dark:decoration-purple-400/30 underline-offset-2 hover:decoration-2"
+      className="relative inline-block text-primary dark:text-primary transition-all duration-200 after:absolute after:bottom-1 after:left-0 after:h-[1px] after:w-full after:origin-bottom-left after:scale-x-100 after:bg-primary/40 after:transition-all after:duration-300 after:ease-[cubic-bezier(0.165,0.84,0.44,1)] after:content-[''] hover:after:h-[2px] hover:after:bg-primary"
+      style={{ textDecoration: "none" }}
       {...props}
     >
       {children}

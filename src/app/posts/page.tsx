@@ -26,7 +26,7 @@ export default function PostsPage() {
             <li key={post.slug}>
               <Link
                 href={post.url}
-                className="flex flex-col px-8 py-6 space-y-4 rounded-lg border transition duration-100 hover:bg-zinc-50 dark:hover:bg-zinc-800/30 hover:shadow"
+                className="flex flex-col px-8 py-6 space-y-4 rounded-lg border transition duration-100 hover:bg-zinc-50 dark:hover:bg-zinc-800/30 hover:shadow hover:border-primary"
                 prefetch={true}
               >
                 <div className="flex justify-between font-light text-gray-400">

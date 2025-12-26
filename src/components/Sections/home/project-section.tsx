@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ChevronDown, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -173,7 +174,7 @@ export default function ProjectSection() {
   return (
     <section id="projects" className="scroll-mt-[72px] mb-20">
       <div className="flex gap-4 items-center mb-6">
-        <h2 className="text-base font-bold whitespace-nowrap">Projects</h2>
+        <h2 className="text-base whitespace-nowrap">Projects</h2>
         <div className="flex-1 h-px bg-border" />
       </div>
 
@@ -228,17 +229,13 @@ export default function ProjectSection() {
 
       {!showAll && remainingCount > 0 && (
         <div className="flex justify-center">
-          <button
+          <Button
             onClick={handleLoadMore}
-            className="group relative inline-flex items-center justify-center gap-2 px-8 py-3 text-sm font-medium transition-all duration-200 ease-in-out border rounded bg-transparent hover:bg-foreground hover:text-background focus:outline-none focus:ring-2 focus:ring-foreground focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed min-h-[44px] min-w-[180px]"
-            aria-label={`Load ${remainingCount} more portfolio projects`}
+            aria-label={`Reveal ${remainingCount} more portfolio projects`}
             aria-live="polite"
           >
-            <>
-              <span>Show {remainingCount} More Projects</span>
-              <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5" />
-            </>
-          </button>
+            Show {remainingCount} More Projects
+          </Button>
         </div>
       )}
     </section>
