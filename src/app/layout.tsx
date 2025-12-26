@@ -14,6 +14,14 @@ export const metadata = {
   title:
     "Robert Crocker - Developer, community builder, and creator of useful things",
   description: "Personal website of Robert Crocker",
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/apple-icon.svg", type: "image/svg+xml" },
+    ],
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
