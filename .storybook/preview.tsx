@@ -1,5 +1,6 @@
 import type { Preview } from "@storybook/react";
 import { ThemeProvider } from "../src/components/theme/theme-provider";
+import "./fonts.css"; // Define font CSS variables for Storybook
 import "../src/app/globals.css";
 
 const preview: Preview = {
@@ -29,7 +30,9 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <ThemeProvider>
-        <Story />
+        <div className="font-sans">
+          <Story />
+        </div>
       </ThemeProvider>
     ),
   ],

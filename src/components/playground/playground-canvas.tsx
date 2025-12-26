@@ -15,7 +15,7 @@ export function PlaygroundCanvas({
     <div
       className={cn(
         "relative min-h-[300px] flex items-center justify-center",
-        "rounded-lg overflow-hidden",
+        "rounded overflow-hidden",
         backgroundPattern === "dots" &&
           "bg-[radial-gradient(hsl(var(--muted-foreground)/0.1)_1px,transparent_1px)] [background-size:20px_20px]",
         backgroundPattern === "grid" &&

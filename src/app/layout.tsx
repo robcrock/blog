@@ -1,27 +1,14 @@
 import { ReactNode } from "react";
 
 import { Analytics } from "@vercel/analytics/react";
-import { Spline_Sans_Mono, Work_Sans } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 
 import "./globals.css";
 
 import Header from "@/components/layout/header";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Toaster } from "sonner";
-
-const mainFont = Work_Sans({
-  subsets: ["latin"],
-  display: "fallback",
-  weight: "variable",
-  variable: "--font-family",
-});
-
-const monoFont = Spline_Sans_Mono({
-  subsets: ["latin"],
-  display: "fallback",
-  weight: "variable",
-  variable: "--font-family-mono",
-});
 
 export const metadata = {
   title:
@@ -34,7 +21,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${mainFont.variable} ${monoFont.variable}`}
+      className={`${GeistSans.variable} ${GeistMono.variable}`}
     >
       <body className="container px-4 mx-auto max-w-6xl sm:px-6 lg:px-8">
         <ThemeProvider>

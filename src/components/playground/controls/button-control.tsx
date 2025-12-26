@@ -14,7 +14,7 @@ export function ButtonControl({
     <button
       onClick={onClick}
       className={cn(
-        "px-4 py-2 rounded-md font-medium text-sm",
+        "px-4 py-2 rounded font-medium text-sm",
         "transition-all duration-200",
         "focus:outline-none focus:ring-2 focus:ring-offset-2",
         variant === "primary" && [

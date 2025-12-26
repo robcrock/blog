@@ -17,7 +17,7 @@ export default function PostImage({ src, alt }: PostImageProps) {
           height={450}
           src={src}
           alt={alt}
-          className="object-cover rounded-md"
+          className="object-cover rounded"
         />
       </AspectRatio>
     </div>

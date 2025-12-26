@@ -56,7 +56,7 @@ export function PopoverPlayground() {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className={cn(
-              "px-4 py-2 rounded-md font-medium text-sm",
+              "px-4 py-2 rounded font-medium text-sm",
               "bg-primary text-primary-foreground",
               "hover:bg-primary/90 transition-colors duration-200",
               "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
@@ -71,7 +71,7 @@ export function PopoverPlayground() {
                 // @ts-expect-error - Framer Motion 11 + React 19 type compatibility issue
                 className={cn(
                   "absolute top-full left-1/2 -translate-x-1/2 mt-2 z-50",
-                  "w-64 p-4 rounded-lg shadow-lg",
+                  "w-64 p-4 rounded shadow-lg",
                   "bg-popover border border-border",
                   "text-popover-foreground"
                 )}

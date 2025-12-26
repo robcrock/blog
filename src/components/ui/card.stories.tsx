@@ -1,6 +1,6 @@
 import React from "react";
 
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import {
   Card,
@@ -34,10 +34,10 @@ export const Default: Story = {
         </p>
       </CardContent>
       <CardFooter className="gap-2">
-        <button className="px-4 py-2 text-sm font-medium rounded-md bg-primary text-primary-foreground hover:bg-primary/90">
+        <button className="px-4 py-2 text-sm font-medium rounded bg-primary text-primary-foreground hover:bg-primary/90">
           Mark all as read
         </button>
-        <button className="px-4 py-2 text-sm font-medium rounded-md border border-input hover:bg-accent">
+        <button className="px-4 py-2 text-sm font-medium rounded border border-input hover:bg-accent">
           Settings
         </button>
       </CardFooter>

@@ -5,65 +5,101 @@
 pre {
   overflow-x: auto;
   padding: 1rem;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
 }
 
 code {
-  font-family: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
+  font-family: var(--font-geist-mono), "SF Mono", Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
 }
 
 /* Optional: Style inline code differently from code blocks */
 :not(pre) > code {
   background: rgb(var(--foreground-rgb), 0.1);
   padding: 0.2em 0.4em;
-  border-radius: 0.3em;
+  border-radius: 0.25rem;
 }
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Backgrounds - Clean, minimal neutrals */
+    --background: 0 0% 98%;
+    --foreground: 0 0% 10%;
+
+    /* Cards & Popovers - Pure white for contrast */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 10%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
-    --radius: 0.5rem;
+    --popover-foreground: 0 0% 10%;
+
+    /* Primary - The signature red #D34A3A */
+    --primary: 6 57% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Subtle gray for less prominent actions */
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
+
+    /* Muted - For disabled states and subtle backgrounds */
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    /* Accent - Using the primary red for emphasis */
+    --accent: 6 57% 53%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Destructive - Slightly different red for warnings */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders & Inputs - Light, minimal */
+    --border: 0 0% 92%;
+    --input: 0 0% 92%;
+
+    /* Ring - Matches primary for focus states */
+    --ring: 6 57% 53%;
+
+    /* Radius - Minimal, functional */
+    --radius: 0.25rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    /* Backgrounds - Deep, sophisticated darks */
+    --background: 0 0% 8%;
+    --foreground: 0 0% 95%;
+
+    /* Cards & Popovers - Slightly elevated from background */
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 95%;
+
+    /* Primary - Slightly brighter red for dark mode #E85545 */
+    --primary: 6 80% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Darker gray for subtle actions */
+    --secondary: 0 0% 18%;
+    --secondary-foreground: 0 0% 95%;
+
+    /* Muted - For disabled states */
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 60%;
+
+    /* Accent - Matching primary red */
+    --accent: 6 80% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Destructive - Adjusted for dark mode */
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders & Inputs - Subtle in dark mode */
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+
+    /* Ring - Matches primary */
+    --ring: 6 80% 60%;
   }
 }
 
@@ -95,23 +131,29 @@ code {
 [data-rehype-pretty-code-figure] pre {
   overflow-x: auto;
   padding: 1rem;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
 }
 
 [data-rehype-pretty-code-figure] code {
   display: grid;
-  font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+  font-family: var(--font-geist-mono), "SF Mono", Menlo, Monaco, Consolas,
+    monospace;
   font-size: 0.875rem;
   line-height: 1.7;
 }
 
 [data-highlighted-line] {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-left: 3px solid #60a5fa;
+  background-color: rgba(211, 74, 58, 0.1);
+  border-left: 3px solid #d34a3a;
   margin-left: -1rem;
   margin-right: -1rem;
   padding-left: calc(1rem - 3px);
   padding-right: 1rem;
+}
+
+.dark [data-highlighted-line] {
+  background-color: rgba(232, 85, 69, 0.15);
+  border-left: 3px solid #e85545;
 }
 
 [data-line-numbers] {
@@ -126,4 +168,8 @@ code {
   margin-right: 1.5rem;
   text-align: right;
   color: #6b7280;
+}
+
+.dark [data-line-numbers] > [data-line]::before {
+  color: #9ca3af;
 }

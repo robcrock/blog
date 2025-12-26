@@ -34,7 +34,7 @@ export function RangeControl({
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
         className={cn(
-          "w-full h-2 rounded-lg appearance-none cursor-pointer",
+          "w-full h-2 rounded appearance-none cursor-pointer",
           "bg-muted",
           "[&::-webkit-slider-thumb]:appearance-none",
           "[&::-webkit-slider-thumb]:w-4",

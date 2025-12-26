@@ -13,7 +13,7 @@ export function PlaygroundCode({
   return (
     <div
       className={cn(
-        "overflow-hidden mt-4 rounded-lg",
+        "overflow-hidden mt-4 rounded",
         "bg-gray-100 dark:bg-gray-900",
         "border border-border",
         className

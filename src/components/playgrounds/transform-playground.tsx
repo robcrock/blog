@@ -42,7 +42,7 @@ transform-origin: ${transformOrigin};`;
             "w-[120px] h-[120px]",
             "bg-primary",
             transformOrigin === "center" && "rounded-full",
-            transformOrigin !== "center" && "rounded-xl"
+            transformOrigin !== "center" && "rounded"
           )}
           style={{
             transformOrigin,
