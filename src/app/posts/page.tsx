@@ -18,7 +18,7 @@ export default function PostsPage() {
   return (
     <Section spacing="compact">
       <Container>
-        <h1 className="mb-6 text-4xl font-bold sm:text-5xl md:text-6xl sm:mb-10 md:mb-16">
+        <h1 className="mb-6 text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter sm:mb-10 md:mb-16">
           Posts
         </h1>
         <ul className="space-y-4">
@@ -26,19 +26,21 @@ export default function PostsPage() {
             <li key={post.slug}>
               <Link
                 href={post.url}
-                className="flex flex-col px-8 py-6 space-y-4 rounded-lg border transition duration-100 hover:bg-zinc-50 dark:hover:bg-zinc-800/30 hover:shadow hover:border-primary"
+                className="flex flex-col px-8 py-6 space-y-4 rounded-lg border transition duration-200 hover:bg-zinc-50 dark:hover:bg-zinc-800/30 hover:shadow hover:border-primary"
                 prefetch={true}
               >
-                <div className="flex justify-between font-light text-gray-400">
-                  <span className="text-sm uppercase">{post.topic}</span>
+                <div className="flex justify-between text-sm font-medium text-muted-foreground">
+                  <span className="uppercase tracking-wide">{post.topic}</span>
                   <div className="flex gap-3 items-center">
                     <span>{post.readingTime} min</span>
                     <span>{format(new Date(post.date), "MMM d, y")}</span>
                   </div>
                 </div>
-                <div className="text-xl font-bold">{post.title}</div>
+                <div className="text-2xl font-semibold">{post.title}</div>
                 {post.description && (
-                  <p className="text-muted-foreground">{post.description}</p>
+                  <p className="text-base text-muted-foreground">
+                    {post.description}
+                  </p>
                 )}
               </Link>
             </li>

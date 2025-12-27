@@ -27,12 +27,10 @@ export default function ProfileSection() {
     <section className="flex gap-10 mt-10 mb-14">
       <div className="flex flex-col gap-4 justify-center items-start">
         <div className="flex flex-col justify-center items-start">
-          <h1 className="text-6xl font-bold text-primary">
-            {/* <span className="text-primary">Rob</span>ert{" "}
-            <span className="text-primary">Crock</span>er */}
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-primary">
             Robert Crocker
           </h1>
-          <p className="text-lg text-base-foreground">
+          <p className="text-lg md:text-xl text-foreground">
             Developer, community builder, and creator of useful things.
           </p>
         </div>
@@ -43,7 +41,6 @@ export default function ProfileSection() {
                 key={href}
                 variant="ghost"
                 size="icon"
-                className="text-base"
                 render={<Link href={href} />}
               >
                 {icon}

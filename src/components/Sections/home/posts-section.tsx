@@ -16,7 +16,7 @@ export default function PostsSection() {
   return (
     <section id="posts" className="scroll-mt-[72px]">
       <div className="flex gap-4 items-center mb-6">
-        <h2 className="text-base whitespace-nowrap">Posts</h2>
+        <h2 className="text-xl font-semibold whitespace-nowrap">Posts</h2>
         <div className="flex-1 h-px bg-border" />
       </div>
       <ul className="space-y-0">
@@ -28,19 +28,19 @@ export default function PostsSection() {
             >
               <div className="flex gap-6 justify-between items-start">
                 <div className="flex flex-1 gap-4 items-start min-w-0">
-                  <span className="text-sm font-light whitespace-nowrap text-muted-foreground">
+                  <span className="text-sm font-medium whitespace-nowrap text-muted-foreground">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <div className="flex-1 min-w-0">
-                    <h3 className="mb-1 text-base font-bold transition-colors group-hover:text-primary">
+                    <h3 className="mb-1 text-lg font-semibold transition-colors group-hover:text-primary">
                       {post.title}
                     </h3>
-                    <p className="text-sm font-light text-muted-foreground">
+                    <p className="text-sm font-medium text-muted-foreground">
                       {post.topic}
                     </p>
                   </div>
                 </div>
-                <div className="flex flex-col gap-1 items-end text-sm font-light whitespace-nowrap text-muted-foreground">
+                <div className="flex flex-col gap-1 items-end text-sm font-medium whitespace-nowrap text-muted-foreground">
                   <span>{format(new Date(post.date), "yyyy")}</span>
                   <span className="text-xs">{post.readingTime} min read</span>
                 </div>

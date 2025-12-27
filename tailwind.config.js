@@ -8,6 +8,10 @@ module.exports = {
         sans: ["var(--font-geist-sans)", "sans-serif"],
         mono: ["var(--font-geist-mono)", "monospace"],
       },
+      letterSpacing: {
+        tightest: "-0.025em",
+        tighter: "-0.02em",
+      },
       colors: {
         border: "hsl(var(--border))",
         background: "hsl(var(--background))",

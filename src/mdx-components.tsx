@@ -36,37 +36,34 @@ const mdxComponents = {
   ),
   h1: (props: HeadingProps) => (
     <h1
-      className="col-start-2 mb-8 md:mb-12
-        text-4xl md:text-5xl font-bold tracking-tight
-        text-gray-900 dark:text-gray-100
-        [&_p]:text-2xl [&_p]:md:text-3xl [&_p]:leading-tight"
+      className="col-start-2 mb-8 text-3xl font-bold tracking-tight text-gray-900 md:mb-12 md:text-4xl lg:text-5xl dark:text-gray-100"
       {...props}
     />
   ),
   h2: (props: HeadingProps) => (
     <h2
-      className="col-start-2 mt-12 mb-4 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100"
+      className="col-start-2 mt-12 mb-4 text-2xl font-bold tracking-tight text-gray-900 md:text-3xl dark:text-gray-100"
       {...props}
     />
   ),
   h3: (props: HeadingProps) => (
     <h3
-      className="col-start-2 mt-8 mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100"
+      className="col-start-2 mt-8 mb-4 text-xl font-bold tracking-tight text-gray-900 md:text-2xl dark:text-gray-100"
       {...props}
     />
   ),
   h4: (props: HeadingProps) => (
     <h4
-      className="col-start-2 mt-6 mb-4 text-xl font-semibold tracking-tight text-gray-900 dark:text-gray-100"
+      className="col-start-2 mt-6 mb-4 text-lg font-semibold tracking-tight text-gray-900 md:text-xl dark:text-gray-100"
       {...props}
     />
   ),
   p: (props: ParagraphProps) => (
     <p
-      className="col-start-2 mb-6 text-lg md:text-xl leading-[1.75] md:leading-[1.8]
+      className="col-start-2 mb-6 text-base md:text-lg leading-relaxed
         text-gray-800 dark:text-gray-200 
-        [&:first-of-type]:text-xl [&:first-of-type]:md:text-2xl 
-        [&:first-of-type]:leading-[1.6] [&:first-of-type]:text-gray-700 
+        [&:first-of-type]:text-lg [&:first-of-type]:md:text-xl
+        [&:first-of-type]:text-gray-700 
         [&:first-of-type]:dark:text-gray-300"
       {...props}
     />
@@ -105,8 +102,7 @@ const mdxComponents = {
   ),
   li: (props: ListItemProps) => (
     <li
-      className="pl-2 text-lg leading-[1.75] marker:text-gray-500 
-        dark:marker:text-gray-400"
+      className="pl-2 text-base leading-relaxed md:text-lg marker:text-gray-500 dark:marker:text-gray-400"
       {...props}
     />
   ),

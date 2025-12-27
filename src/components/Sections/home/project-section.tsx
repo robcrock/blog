@@ -174,7 +174,7 @@ export default function ProjectSection() {
   return (
     <section id="projects" className="scroll-mt-[72px] mb-20">
       <div className="flex gap-4 items-center mb-6">
-        <h2 className="text-base whitespace-nowrap">Projects</h2>
+        <h2 className="text-xl font-semibold whitespace-nowrap">Projects</h2>
         <div className="flex-1 h-px bg-border" />
       </div>
 
@@ -190,7 +190,8 @@ export default function ProjectSection() {
               key={index}
               id={`project-${index}`}
               className={`overflow-hidden ${
-                isNewlyRevealed ? "animate-fade-in-up" : ""}`}
+                isNewlyRevealed ? "animate-fade-in-up" : ""
+              }`}
               style={{
                 animationDelay: isNewlyRevealed ? animationDelay : undefined,
               }}
@@ -211,12 +212,12 @@ export default function ProjectSection() {
                 <CardTitle>{project.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="mb-4 text-muted-foreground">
+                <p className="mb-4 text-sm text-muted-foreground">
                   {project.description}
                 </p>
                 <Link
                   href={project.link}
-                  className="inline-flex items-center text-primary hover:underline"
+                  className="inline-flex items-center text-sm font-medium text-primary hover:underline"
                 >
                   View Project
                   <ExternalLink className="ml-1 w-4 h-4" />
