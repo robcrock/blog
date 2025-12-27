@@ -2,10 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { useTheme } from "next-themes";
-
 export function Logo(props: any) {
-  const { theme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isDark, setIsDark] = useState(false);
 

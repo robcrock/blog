@@ -2,6 +2,7 @@
 import { allPosts } from "contentlayer/generated";
 import { compareDesc, format } from "date-fns";
 import Link from "next/link";
+import { NAVIGATION_ITEMS } from "@/constants";
 
 export default function PostsSection() {
   const posts = allPosts
@@ -13,10 +14,12 @@ export default function PostsSection() {
     return null;
   }
 
+  const postsNavItem = NAVIGATION_ITEMS.find((item) => item.id === "posts")!;
+
   return (
-    <section id="posts" className="scroll-mt-[72px] mb-20">
+    <section id={postsNavItem.id} className="scroll-mt-[72px] mb-20">
       <div className="flex gap-4 items-center mb-6">
-        <h2 className="text-lg whitespace-nowrap">POSTS</h2>
+        <h2 className="text-lg whitespace-nowrap">{postsNavItem.label}</h2>
         <div className="flex-1 h-px bg-border" />
       </div>
       <ul className="space-y-0">

@@ -1,14 +1,10 @@
 "use client";
 
+import { NAVIGATION_ITEMS } from "@/constants";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import Logo from "../brand/logo";
-
-const navItems = [
-  { href: "#projects", label: "PROJECTS", id: "projects" },
-  { href: "#posts", label: "POSTS", id: "posts" },
-];
 
 export default function Header() {
   const pathname = usePathname();
@@ -31,7 +27,7 @@ export default function Header() {
         {isHome && (
           <nav className="mr-6 ml-auto">
             <ul className="flex space-x-6">
-              {navItems.map((item) => (
+              {NAVIGATION_ITEMS.map((item) => (
                 <li key={item.label}>
                   <a
                     href={item.href}

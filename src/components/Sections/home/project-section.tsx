@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { NAVIGATION_ITEMS } from "@/constants";
 
 interface Project {
   title: string;
@@ -171,10 +172,12 @@ export default function ProjectSection() {
 
   const handleLoadMore = () => setShowAll(true);
 
+  const projectsNavItem = NAVIGATION_ITEMS.find((item) => item.id === "projects")!;
+
   return (
-    <section id="projects" className="scroll-mt-[72px] mb-20">
+    <section id={projectsNavItem.id} className="scroll-mt-[72px] mb-20">
       <div className="flex gap-4 items-center mb-6">
-        <h2 className="text-lg whitespace-nowrap">PROJECTS</h2>
+        <h2 className="text-lg whitespace-nowrap">{projectsNavItem.label}</h2>
         <div className="flex-1 h-px bg-border" />
       </div>
 
