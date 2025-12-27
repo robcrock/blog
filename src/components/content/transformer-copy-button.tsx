@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 
+import { Button } from "@/components/ui/button";
 import { Check, Copy } from "lucide-react";
 
 const TransformerCopyButton = () => {
@@ -42,18 +43,20 @@ const TransformerCopyButton = () => {
   };
 
   return (
-    <button
+    <Button
+      variant="ghost"
+      size="icon"
       ref={buttonRef}
       onClick={copy}
-      className="absolute top-4 right-4 p-2 rounded transition-colors hover:bg-gray-800"
+      className="absolute top-3 right-4 p-2 group"
       aria-label={copied ? "Copied!" : "Copy code"}
     >
       {copied ? (
         <Check className="w-4 h-4 text-green-400" />
       ) : (
-        <Copy className="w-4 h-4 text-primary" />
+        <Copy className="w-4 h-4 transition-colors text-primary group-hover:text-white" />
       )}
-    </button>
+    </Button>
   );
 };
 

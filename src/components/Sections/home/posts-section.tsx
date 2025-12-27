@@ -14,9 +14,9 @@ export default function PostsSection() {
   }
 
   return (
-    <section id="posts" className="scroll-mt-[72px]">
+    <section id="posts" className="scroll-mt-[72px] mb-20">
       <div className="flex gap-4 items-center mb-6">
-        <h2 className="text-xl font-semibold whitespace-nowrap">Posts</h2>
+        <h2 className="text-lg whitespace-nowrap">POSTS</h2>
         <div className="flex-1 h-px bg-border" />
       </div>
       <ul className="space-y-0">

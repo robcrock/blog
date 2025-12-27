@@ -116,9 +116,9 @@ const mdxComponents = {
     }
 
     return (
-      <div className="overflow-hidden relative col-span-3 col-start-1 my-8 w-full bg-gray-100 rounded-lg dark:bg-gray-900">
+      <div className="overflow-hidden relative col-span-3 col-start-1 my-8 w-full rounded-lg">
         <pre
-          className="overflow-x-auto p-4 text-sm text-gray-800 md:text-base dark:text-gray-200"
+          className="overflow-x-auto p-4 text-sm md:text-base"
           data-raw-code={typeof rawCode === "string" ? rawCode : ""}
           {...props}
         >

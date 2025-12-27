@@ -3,12 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import Logo from "../brand/logo";
-import { ThemeSwitcher } from "../theme/theme-switcher";
-
 const navItems = [
-  { href: "#projects", label: "Projects", id: "projects" },
-  { href: "#posts", label: "Posts", id: "posts" },
+  { href: "#projects", label: "PROJECTS", id: "projects" },
+  { href: "#posts", label: "POSTS", id: "posts" },
 ];
 
 export default function Header() {
@@ -25,7 +22,8 @@ export default function Header() {
   return (
     <header className="flex sticky top-0 z-50 justify-between items-center py-4 backdrop-blur-sm bg-background/95">
       <Link href="/" onClick={handleLogoClick}>
-        <Logo className="w-10 h-10" />
+        <span className="font-medium uppercase">Robert Crocker</span>
+        {/* <Logo className="w-10 h-10" /> */}
       </Link>
 
       <div className="flex items-center">
@@ -36,7 +34,7 @@ export default function Header() {
                 <li key={item.label}>
                   <a
                     href={item.href}
-                    className="text-base font-medium hover:text-primary transition-colors duration-200"
+                    className="transition-colors duration-200 hover:text-primary"
                   >
                     {item.label}
                   </a>
@@ -45,7 +43,7 @@ export default function Header() {
             </ul>
           </nav>
         )}
-        <ThemeSwitcher />
+        {/* <ThemeSwitcher /> */}
       </div>
     </header>
   );

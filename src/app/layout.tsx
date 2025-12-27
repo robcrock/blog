@@ -6,6 +6,7 @@ import { GeistSans } from "geist/font/sans";
 
 import "./globals.css";
 
+import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Toaster } from "sonner";
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <ThemeProvider>
           <Header />
           {children}
+          <Footer />
           <Toaster />
           <Analytics />
         </ThemeProvider>

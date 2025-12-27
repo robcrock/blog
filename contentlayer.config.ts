@@ -66,7 +66,10 @@ export default makeSource({
       [
         rehypePrettyCode,
         {
-          theme: "github-dark",
+          theme: {
+            light: "github-light",
+            dark: "github-dark",
+          },
           keepBackground: true,
           onVisitLine(node: any) {
             // Prevent lines from collapsing in display

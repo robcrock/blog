@@ -47,11 +47,11 @@ export default async function PostPage({ params }: PostPageProps) {
   }
 
   return (
-    <article className="grid grid-cols-[1fr_min(700px,100%)_1fr] w-full max-w-5xl mx-auto px-4 pt-16 lg:px-12">
+    <article className="grid grid-cols-[1fr_min(700px,100%)_1fr] w-full max-w-5xl mx-auto px-4 pt-16 lg:px-12 mb-10">
       {/* Post Header */}
       <header className="col-start-2 mb-12">
         <div className="flex gap-4 items-center mb-4 text-sm font-medium text-muted-foreground">
-          <span className="uppercase tracking-wide">{post.topic}</span>
+          <span className="tracking-wide uppercase">{post.topic}</span>
           <span>•</span>
           <time dateTime={post.date}>
             {format(new Date(post.date), "MMMM d, yyyy")}
@@ -59,7 +59,7 @@ export default async function PostPage({ params }: PostPageProps) {
           <span>•</span>
           <span>{post.readingTime} min read</span>
         </div>
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
+        <h1 className="text-4xl font-bold tracking-tighter md:text-5xl lg:text-6xl">
           {post.title}
         </h1>
       </header>
