@@ -5,34 +5,50 @@ import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
 export function Logo(props: any) {
-  const { resolvedTheme } = useTheme();
+  const { theme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    // Check the actual DOM to see what theme class is applied
+    // This is more reliable than useTheme when forcedTheme is used
+    const checkTheme = () => {
+      const htmlElement = document.documentElement;
+      const hasDarkClass = htmlElement.classList.contains("dark");
+      setIsDark(hasDarkClass);
+    };
+
+    checkTheme();
+    // Also listen for theme changes
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   if (!mounted) {
     return <div className="w-10 h-10 rounded-full bg-gray-500/50" />;
   }
 
-  return resolvedTheme === "dark" ? (
-    <DarkLogo {...props} />
-  ) : (
-    <LightLogo {...props} />
-  );
+  return isDark ? <DarkLogo {...props} /> : <LightLogo {...props} />;
 }
 
 const LightLogo = (props: any) => {
-  // LightLogo SVG component remains unchanged
+  const { className, ...restProps } = props;
   return (
     <svg
-      width={48}
-      height={48}
       viewBox="0 0 48 48"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
+      width="40"
+      height="40"
+      className={className}
+      style={{ display: "block", flexShrink: 0 }}
+      {...restProps}
     >
       <path
         d="M8 7.034L38.615 43.39a1 1 0 01-.764 1.644H8v-38z"
@@ -85,15 +101,17 @@ const LightLogo = (props: any) => {
 };
 
 const DarkLogo = (props: any) => {
-  // DarkLogo SVG component remains unchanged
+  const { className, ...restProps } = props;
   return (
     <svg
-      width={48}
-      height={46}
       viewBox="0 0 48 46"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
+      width="40"
+      height="40"
+      className={className}
+      style={{ display: "block", flexShrink: 0 }}
+      {...restProps}
     >
       <path
         d="M8 5.069l30.615 36.355a1 1 0 01-.764 1.645H8v-38z"

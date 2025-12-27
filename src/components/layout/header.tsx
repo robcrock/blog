@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import Logo from "../brand/logo";
+
 const navItems = [
   { href: "#projects", label: "PROJECTS", id: "projects" },
   { href: "#posts", label: "POSTS", id: "posts" },
@@ -22,8 +24,7 @@ export default function Header() {
   return (
     <header className="flex sticky top-0 z-50 justify-between items-center py-4 backdrop-blur-sm bg-background/95">
       <Link href="/" onClick={handleLogoClick}>
-        <span className="font-medium uppercase">Robert Crocker</span>
-        {/* <Logo className="w-10 h-10" /> */}
+        <Logo className="w-10 h-10" />
       </Link>
 
       <div className="flex items-center">
