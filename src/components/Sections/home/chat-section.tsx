@@ -13,8 +13,7 @@ export default function ChatSection() {
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         <p className="col-span-1 text-foreground">
-          Have an exciting projecct you need help with? Feel free to contact me
-          if you want to chat.
+          Have an exciting projecct you need help with? Get in touch.
         </p>
         <p>
           <Link
