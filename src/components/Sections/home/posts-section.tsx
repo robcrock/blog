@@ -27,7 +27,7 @@ export default function PostsSection() {
           <li key={post.slug}>
             <Link
               href={post.url}
-              className="block py-4 transition-colors hover:text-primary group"
+              className="block py-4 transition-colors hover:text-primary group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ring-offset-1 rounded"
             >
               <div className="flex gap-6 justify-between items-start">
                 <div className="flex flex-1 gap-4 items-start min-w-0">

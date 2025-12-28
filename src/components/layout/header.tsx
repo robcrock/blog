@@ -19,7 +19,11 @@ export default function Header() {
 
   return (
     <header className="flex sticky top-0 z-50 justify-between items-center py-4 backdrop-blur-sm bg-background/95">
-      <Link href="/" onClick={handleLogoClick}>
+      <Link
+        href="/"
+        onClick={handleLogoClick}
+        className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ring-offset-1 rounded"
+      >
         <Logo className="w-10 h-10" />
       </Link>
 
@@ -31,7 +35,7 @@ export default function Header() {
                 <li key={item.label}>
                   <a
                     href={item.href}
-                    className="transition-colors duration-200 hover:text-primary"
+                    className="transition-colors duration-200 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ring-offset-1 rounded"
                   >
                     {item.label}
                   </a>
