@@ -1,5 +1,6 @@
 import {
   ArticleSection,
+  ChatSection,
   PostsSection,
   ProfileSection,
   ProjectSection,
@@ -12,6 +13,7 @@ export default function Home() {
       <ArticleSection />
       <ProjectSection />
       <PostsSection />
+      <ChatSection />
     </>
   );
 }

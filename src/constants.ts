@@ -4,6 +4,7 @@ export const COLOR_THEME_COOKIE_NAME = "color-theme";
 export const NAVIGATION_ITEMS = [
   { id: "projects", label: "PROJECTS", href: "#projects" },
   { id: "posts", label: "POSTS", href: "#posts" },
+  { id: "chat", label: "CHAT", href: "#chat" },
 ] as const;
 
 export const SOCIAL_LINKS = [
