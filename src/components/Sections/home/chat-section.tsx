@@ -15,7 +15,7 @@ export default function ChatSection() {
         <p className="col-span-1 text-foreground">
           Have an exciting projecct you need help with? Get in touch.
         </p>
-        <p>
+        <p className="flex col-start-3 justify-end items-end">
           <Link
             href="mailto:robert@robcrock.com"
             className="font-medium rounded ring-offset-1 transition-colors duration-200 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
