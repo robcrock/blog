@@ -1,11 +1,11 @@
 // src/components/Sections/home/mentorship-section.tsx
 import { Card } from "@/components/ui/card";
-import { MENTORSHIP_OFFERINGS, NAVIGATION_ITEMS } from "@/constants";
+import { CONNECT_OFFERINGS, NAVIGATION_ITEMS } from "@/constants";
 import { ArrowUpRight, Check, UserCircle, Users } from "lucide-react";
 
 export default function MentorshipSection() {
   const mentorshipNavItem = NAVIGATION_ITEMS.find(
-    (item) => item.id === "mentorship"
+    (item) => item.id === "connect"
   )!;
 
   return (
@@ -26,7 +26,7 @@ export default function MentorshipSection() {
 
       {/* Mentorship Cards */}
       <div className="grid gap-6 sm:grid-cols-2">
-        {MENTORSHIP_OFFERINGS.map((offering, index) => (
+        {CONNECT_OFFERINGS.map((offering, index) => (
           <a
             key={index}
             href={offering.link}

@@ -1,13 +1,10 @@
-import { NAVIGATION_ITEMS } from "@/constants";
 import Link from "next/link";
 
 export default function ChatSection() {
-  const chatNavItem = NAVIGATION_ITEMS.find((item) => item.id === "chat")!;
-
   return (
-    <section id={chatNavItem.id} className="scroll-mt-[72px] mb-20">
+    <section id="chat" className="scroll-mt-[72px] mb-20">
       <div className="flex gap-4 items-center mb-6">
-        <h2 className="text-lg whitespace-nowrap">{chatNavItem.label}</h2>
+        <h2 className="text-lg whitespace-nowrap">CHAT</h2>
         <div className="flex-1 h-px bg-border" />
       </div>
 
