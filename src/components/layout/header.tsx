@@ -1,6 +1,5 @@
 "use client";
 
-import { NAVIGATION_ITEMS } from "@/constants";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -22,30 +21,10 @@ export default function Header() {
       <Link
         href="/"
         onClick={handleLogoClick}
-        className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ring-offset-1 rounded"
+        className="rounded ring-offset-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
       >
         <Logo className="w-10 h-10" />
       </Link>
-
-      <div className="flex items-center">
-        {isHome && (
-          <nav className="mr-6 ml-auto">
-            <ul className="flex space-x-6">
-              {NAVIGATION_ITEMS.map((item) => (
-                <li key={item.label}>
-                  <a
-                    href={item.href}
-                    className="transition-colors duration-200 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ring-offset-1 rounded"
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        )}
-        {/* <ThemeSwitcher /> */}
-      </div>
     </header>
   );
 }

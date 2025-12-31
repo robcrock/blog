@@ -5,36 +5,28 @@ import { NAVIGATION_ITEMS, PROJECTS } from "@/constants";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
-const DISPLAY_COUNT = 6;
+import { usePathname } from "next/navigation";
 
 export default function ProjectsSection() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
   if (PROJECTS.length === 0) {
     return null;
   }
 
-  const displayedProjects = PROJECTS.slice(0, DISPLAY_COUNT);
+  // const displayedProjects = PROJECTS.slice(0, DISPLAY_COUNT);
   const projectsNavItem = NAVIGATION_ITEMS.find(
     (item) => item.id === "projects"
   )!;
 
   return (
-    <section id={projectsNavItem.id} className="scroll-mt-[72px] mb-20">
-      {/* Section Header */}
-      <div className="flex gap-4 items-center mb-2">
-        <h2 className="text-lg whitespace-nowrap pointer-events-none">
-          {projectsNavItem.label}
-        </h2>
-        <div className="flex-1 h-px bg-border" />
-        {projectsNavItem.page && (
-          <Link
-            href={projectsNavItem.page}
-            className="text-sm font-medium whitespace-nowrap transition-colors text-muted-foreground hover:text-primary"
-          >
-            See all
-          </Link>
-        )}
-      </div>
+    <div>
+      {/* Page Header */}
+      <h2 className="text-lg whitespace-nowrap mv-2">
+        {projectsNavItem.label}
+      </h2>
+      <div className="flex-1 mb-4 h-px bg-border" />
 
       {/* Section Description */}
       <p className="mb-6 text-sm text-muted-foreground">
@@ -43,7 +35,7 @@ export default function ProjectsSection() {
 
       {/* Projects Grid */}
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {displayedProjects.map((project, index) => (
+        {PROJECTS.map((project, index) => (
           <Card
             key={index}
             id={`project-${index}`}
@@ -75,6 +67,6 @@ export default function ProjectsSection() {
           </Card>
         ))}
       </div>
-    </section>
+    </div>
   );
 }
