@@ -4,8 +4,7 @@ export const COLOR_THEME_COOKIE_NAME = "color-theme";
 export const NAVIGATION_ITEMS = [
   { id: "projects", label: "PROJECTS", href: "#projects", page: "/projects" },
   { id: "posts", label: "POSTS", href: "#posts", page: "/posts" },
-  { id: "mentorship", label: "MENTORSHIP", href: "#mentorship", page: null },
-  { id: "chat", label: "CHAT", href: "#chat", page: null },
+  { id: "connect", label: "CONNECT", href: "#connect", page: null },
 ] as const;
 
 export const SOCIAL_LINKS = [
@@ -95,74 +94,17 @@ export const PROJECTS: Project[] = [
     image: "/images/featured-projects/time_tracking_dashboard.png",
     link: "https://www.frontendmentor.io/solutions/time-tracking-dashboard-solution-q42DUSOvk5",
   },
-  {
-    title: "Newsletter Sign Up Form",
-    description:
-      "This will test your skills with basic form structure, validation, and submission. The success state will also be an excellent opportunity to work with DOM manipulation.",
-    tags: ["Next.js", "Tailwind", "Shadcn"],
-    image: "/images/featured-projects/newsletter_sign-up_form.png",
-    link: "https://www.frontendmentor.io/solutions/newsletter-sign-up-form-with-success-message-YH6-r-KIII",
-  },
-  {
-    title: "Article Preview Component",
-    description:
-      "Practice your layout skills with this article preview component. There's lots of fun to be had playing around with animations for the sharing icons as well.",
-    tags: ["Next.js", "Tailwind", "Shadcn"],
-    image: "/images/featured-projects/article_preview_component.png",
-    link: "https://www.frontendmentor.io/solutions/article-preview-component-gAlNsowTxx",
-  },
-  {
-    title: "Social Links Profile",
-    description:
-      "In this small project, you'll build out your social link-sharing profile. You can even personalize it and use it to share all your social profiles!",
-    tags: ["Next.js", "Tailwind", "Shadcn"],
-    image: "/images/featured-projects/social_links_profile.png",
-    link: "https://www.frontendmentor.io/solutions/social-links-profile-solution-Sc52h024l9",
-  },
-  {
-    title: "QR Code Component",
-    description:
-      "A perfect first challenge if you're new to HTML and CSS. The card layout doesn't shift, so it's ideal if you haven't learned about building responsive layouts yet.",
-    tags: ["Next.js", "Tailwind", "Shadcn"],
-    image: "/images/featured-projects/qr_code_component.png",
-    link: "https://www.frontendmentor.io/solutions/qr-code-component-CROS2yI7sD",
-  },
-  {
-    title: "Result Summary Component",
-    description:
-      "This challenge has something for everyone. It's a HTML and CSS only project, but we've also provided a JSON file of the test results for anyone wanting to practice JS.",
-    tags: ["Next.js", "Tailwind", "Shadcn"],
-    image: "/images/featured-projects/results_summary_component.png",
-    link: "https://www.frontendmentor.io/solutions/result-summary-component-SUXothL8Ci",
-  },
-  {
-    title: "FAQ Accordion",
-    description:
-      "In this challenge, you'll build an FAQ accordion. This is an extremely common front-end pattern, so it's an excellent opportunity to get some practice in!",
-    tags: ["Next.js", "Tailwind", "Shadcn"],
-    image: "/images/featured-projects/faq_accordion_card.png",
-    link: "https://www.frontendmentor.io/solutions/faq-accordion-wyYdUl1Oko",
-  },
-  {
-    title: "Blog Preview Component",
-    description:
-      "This HTML & CSS-only challenge is a perfect project for beginners getting up to speed with HTML and CSS fundamentals, like HTML structure and the box model.",
-    tags: ["Next.js", "Tailwind", "Shadcn"],
-    image: "/images/featured-projects/blog_preview_card.png",
-    link: "https://www.frontendmentor.io/solutions/blog-preview-card-jazYTe285N",
-  },
-] as const;
+];
 
-// Mentorship offerings for the mentorship section
-export interface MentorshipOffering {
+export interface ConnectOffering {
   title: string;
   description: string;
-  platform: "MentorCruise" | "Skool";
+  platform: "MentorCruise" | "Skool" | "Email";
   link: string;
   features: string[];
 }
 
-export const MENTORSHIP_OFFERINGS: MentorshipOffering[] = [
+export const CONNECT_OFFERINGS: ConnectOffering[] = [
   {
     title: "1-on-1 Mentorship",
     description:
@@ -187,6 +129,19 @@ export const MENTORSHIP_OFFERINGS: MentorshipOffering[] = [
       "Shared resources",
       "Group challenges",
       "Peer networking",
+    ],
+  },
+  {
+    title: "Quick Chat",
+    description:
+      "Have a project idea, a quick question, or just want to connect? Drop me an email and let's start a conversation.",
+    platform: "Email",
+    link: "mailto:robert@robcrock.com",
+    features: [
+      "Project inquiries",
+      "Quick questions",
+      "Collaboration opportunities",
+      "General networking",
     ],
   },
 ] as const;
