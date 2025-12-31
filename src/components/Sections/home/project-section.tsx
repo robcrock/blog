@@ -53,7 +53,7 @@ export default function ProjectsSection() {
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="block overflow-hidden relative w-full h-48 rounded focus-visible:outline-none"
+              className="block overflow-hidden relative z-0 w-full h-48 rounded focus-visible:outline-none"
               aria-label={`View ${project.title} on Frontend Mentor (opens in new tab)`}
               title={project.title}
             >

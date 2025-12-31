@@ -6,8 +6,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="py-10 border-t border-border">
-      <div className="flex justify-between items-center">
-        <p className="font-medium uppercase">ROBERT CROCKER</p>
+      <div className="flex justify-end items-center">
         <div className="flex items-center">
           {SOCIAL_LINKS.map(({ href, icon }) => (
             <Button

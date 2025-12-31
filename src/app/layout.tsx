@@ -31,7 +31,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className="container px-4 mx-auto max-w-6xl sm:px-6 lg:px-8">
         <ThemeProvider>
           <Header />
-          {children}
+          <main className="relative z-10">{children}</main>
           <Footer />
           <Toaster />
           <Analytics />

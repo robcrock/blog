@@ -52,8 +52,8 @@ export default function Header() {
 
   const { scrollYBoundedProgress } = useBoundedScroll(200);
 
-  // Transform values for animations
-  const headerHeight = useTransform(scrollYBoundedProgress, [0, 1], [120, 48]);
+  // Transform values for animations - increased base height to accommodate mobile stacked layout
+  const headerHeight = useTransform(scrollYBoundedProgress, [0, 1], [160, 64]);
 
   const logoScale = useTransform(scrollYBoundedProgress, [0, 1], [1, 0.4]);
   const logoWidth = useTransform(scrollYBoundedProgress, [0, 1], [68, 27.2]); // 68 * 0.4
@@ -79,16 +79,19 @@ export default function Header() {
     <motion.header
       style={{ height: headerHeight }}
       // @ts-expect-error - Framer Motion 11 + React 19 type compatibility issue
-      className="flex sticky top-0 z-50 items-center backdrop-blur-sm bg-background/95"
+      className="flex overflow-visible sticky top-0 z-[100] flex-col items-center py-2 backdrop-blur-sm md:flex-row bg-background/95"
     >
+      {/* Logo and name container - appears first on mobile */}
       <motion.div
-        style={{ height: headerHeight }}
         // @ts-expect-error - Framer Motion 11 + React 19 type compatibility issue
-        className="flex gap-4 items-center w-full"
+        className="flex gap-1 items-center -ml-3 w-full md:gap-4 md:w-auto"
       >
         {/* Logo - scales down on scroll */}
         <motion.div
-          style={{ scale: logoScale, width: logoWidth }}
+          style={{
+            scale: logoScale,
+            width: logoWidth,
+          }}
           // @ts-expect-error - Framer Motion 11 + React 19 type compatibility issue
           className="origin-left shrink-0"
         >
@@ -97,14 +100,13 @@ export default function Header() {
             onClick={handleLogoClick}
             className="block rounded ring-offset-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
-            <Logo className="w-[68px] h-[68px] mb-2" />
+            <Logo className="w-[54px] h-[54px] md:w-[68px] md:h-[68px] mb-2" />
           </Link>
         </motion.div>
 
         {/* Name and subtext container */}
         <motion.div
           layout
-          style={{ height: headerHeight }}
           transition={{ duration: 0.2, ease: [0.455, 0.03, 0.515, 0.955] }}
           // @ts-expect-error - Framer Motion 11 + React 19 type compatibility issue
           className="flex flex-col justify-center items-start min-w-0 shrink-0"
@@ -135,12 +137,18 @@ export default function Header() {
             )}
           </AnimatePresence>
         </motion.div>
+      </motion.div>
 
+      {/* Social icons - appears below on mobile, to the right on desktop */}
+      <motion.div
+        // @ts-expect-error - Framer Motion 11 + React 19 type compatibility issue
+        className="relative z-[101] flex gap-4 items-center w-full md:w-auto md:ml-auto"
+      >
         {/* Social icons - fade out on scroll */}
         <motion.div
           // style={{ opacity: socialOpacity }}
           // @ts-expect-error - Framer Motion 11 + React 19 type compatibility issue
-          className="flex items-center ml-auto"
+          className="hidden items-center md:flex md:ml-auto"
         >
           {SOCIAL_LINKS.map(({ href, icon }) => (
             <Button
