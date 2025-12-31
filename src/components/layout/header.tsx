@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { SOCIAL_LINKS } from "@/constants";
 import { renderSocialIcon } from "@/lib/social-icons";
@@ -20,6 +20,26 @@ import { Button } from "../ui/button";
 
 const clamp = (number: number, min: number, max: number) =>
   Math.min(Math.max(number, min), max);
+
+function useMediaQuery(query: string): boolean {
+  const [matches, setMatches] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.matchMedia(query).matches;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    setMatches(media.matches);
+
+    const listener = () => setMatches(media.matches);
+    media.addEventListener("change", listener);
+    return () => media.removeEventListener("change", listener);
+  }, [query]);
+
+  return matches;
+}
 
 function useBoundedScroll(bounds: number) {
   const { scrollY } = useScroll();
@@ -49,11 +69,20 @@ function useBoundedScroll(bounds: number) {
 export default function Header() {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const isMobile = useMediaQuery("(max-width: 767px)");
 
   const { scrollYBoundedProgress } = useBoundedScroll(200);
 
-  // Transform values for animations - increased base height to accommodate mobile stacked layout
-  const headerHeight = useTransform(scrollYBoundedProgress, [0, 1], [160, 64]);
+  // Transform values for animations - 120px on mobile, 160px on desktop
+  const headerHeightOutput = useMemo(
+    () => (isMobile ? [100, 64] : [160, 64]),
+    [isMobile]
+  );
+  const headerHeight = useTransform(
+    scrollYBoundedProgress,
+    [0, 1],
+    headerHeightOutput
+  );
 
   const logoScale = useTransform(scrollYBoundedProgress, [0, 1], [1, 0.4]);
   const logoWidth = useTransform(scrollYBoundedProgress, [0, 1], [68, 27.2]); // 68 * 0.4

@@ -29,7 +29,7 @@ export default function ConnectSection() {
   )!;
 
   return (
-    <section id={connectNavItem.id} className="scroll-mt-[72px] mb-20">
+    <section id={connectNavItem.id} className="scroll-mt-[72px]">
       {/* Section Header */}
       <div className="flex gap-4 items-center mb-2">
         <h2 className="text-lg whitespace-nowrap pointer-events-none">

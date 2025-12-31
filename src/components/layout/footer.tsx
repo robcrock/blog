@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="py-10 border-t border-border">
+    <footer className="py-4 md:py-10 border-border">
       <div className="flex justify-end items-center">
         <div className="flex items-center">
           {SOCIAL_LINKS.map(({ href, icon }) => (
