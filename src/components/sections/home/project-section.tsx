@@ -38,7 +38,7 @@ export default function ProjectsSection() {
 
       {/* Section Description */}
       <p className="mb-6 text-sm text-muted-foreground">
-        Frontend Mentor challenges—click any project to view the solution.
+        Pixel perfect execution of Frontend Mentor challenges.
       </p>
 
       {/* Projects Grid */}

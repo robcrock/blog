@@ -1,5 +1,4 @@
 // src/components/Sections/home/posts-section.tsx
-import { NAVIGATION_ITEMS } from "@/constants";
 import { allPosts } from "contentlayer/generated";
 import { compareDesc, format } from "date-fns";
 import Link from "next/link";
@@ -14,24 +13,20 @@ export default function PostsSection() {
     return null;
   }
 
-  const postsNavItem = NAVIGATION_ITEMS.find((item) => item.id === "posts")!;
-
   return (
-    <section id={postsNavItem.id} className="scroll-mt-[72px] mb-20">
+    <section id="posts" className="scroll-mt-[72px] mb-20">
       {/* Section Header */}
       <div className="flex gap-4 items-center mb-2">
         <h2 className="text-lg whitespace-nowrap pointer-events-none">
-          {postsNavItem.label}
+          POSTS
         </h2>
         <div className="flex-1 h-px bg-border" />
-        {postsNavItem.page && (
-          <Link
-            href={postsNavItem.page}
-            className="text-sm font-medium whitespace-nowrap transition-colors text-muted-foreground hover:text-primary"
-          >
-            See all
-          </Link>
-        )}
+        <Link
+          href="/posts"
+          className="text-sm font-medium whitespace-nowrap transition-colors text-muted-foreground hover:text-primary"
+        >
+          See all
+        </Link>
       </div>
 
       {/* Section Description */}

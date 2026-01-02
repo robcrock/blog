@@ -41,7 +41,6 @@ export default function ConnectSection() {
       {/* Section Description */}
       <p className="mb-6 text-sm text-muted-foreground">
         Level up your frontend skills through mentorship or get in touch.
-        Clicking any card takes you to an external platform.
       </p>
 
       {/* Connect Cards - responsive grid: 1 col on mobile, 2 cols on sm, 3 cols on lg */}
