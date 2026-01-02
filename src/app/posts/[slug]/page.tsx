@@ -56,9 +56,9 @@ export default async function PostPage({ params }: PostPageProps) {
       >
         ← All posts
       </Link>
-      <article className="grid grid-cols-[1fr_min(700px,100%)_1fr] w-full max-w-5xl mx-auto px-6 md:px-12 mb-10">
+      <article className="grid grid-cols-[1fr_min(700px,100%)_1fr] w-full max-w-5xl mx-auto mb-10">
         {/* Post Header */}
-        <header className="col-start-2 mb-12">
+        <header className="col-span-3 md:col-start-2 md:col-span-1 mb-12">
           <div className="flex gap-4 items-center mb-4 text-sm font-medium text-muted-foreground">
             <span className="tracking-wide uppercase">{post.topic}</span>
             <span>•</span>
@@ -77,7 +77,7 @@ export default async function PostPage({ params }: PostPageProps) {
         <MDXContent code={post.body.code} />
 
         {/* Post Footer */}
-        <footer className="col-start-2 pt-8 mt-16 border-t border-border">
+        <footer className="col-span-3 md:col-start-2 md:col-span-1 pt-8 mt-16 border-t border-border">
           <Link
             href="/posts"
             className="inline-flex gap-2 items-center text-sm font-medium transition-colors text-muted-foreground hover:text-primary"

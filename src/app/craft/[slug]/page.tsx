@@ -69,9 +69,9 @@ export default async function CraftDetailPage({ params }: CraftPageProps) {
         ← All craft
       </Link>
 
-      <article className="grid grid-cols-[1fr_min(700px,100%)_1fr] w-full max-w-5xl mx-auto px-6 md:px-12 mb-10">
+      <article className="grid grid-cols-[1fr_min(700px,100%)_1fr] w-full max-w-5xl mx-auto mb-10">
         {/* Craft Header */}
-        <header className="col-start-2 mb-8">
+        <header className="col-span-3 mb-8 md:col-start-2 md:col-span-1">
           <div className="flex flex-wrap gap-4 items-center mb-4 text-sm font-medium text-muted-foreground">
             <time dateTime={craft.date}>
               {format(new Date(craft.date), "MMMM d, yyyy")}
@@ -106,7 +106,7 @@ export default async function CraftDetailPage({ params }: CraftPageProps) {
         <MDXContent code={craft.body.code} />
 
         {/* Craft Footer - Prev/Next Navigation */}
-        <footer className="col-start-2 pt-8 mt-16 border-t border-border">
+        <footer className="col-span-3 pt-8 mt-16 border-t md:col-start-2 md:col-span-1 border-border">
           <nav className="flex gap-4 justify-between items-start">
             {/* Previous */}
             <div className="flex-1">

@@ -36,31 +36,31 @@ const mdxComponents = {
   ),
   h1: (props: HeadingProps) => (
     <h1
-      className="col-start-2 mb-8 text-3xl font-bold tracking-tight text-gray-900 md:mb-12 md:text-4xl lg:text-5xl dark:text-gray-100"
+      className="col-span-3 md:col-start-2 md:col-span-1 mb-8 text-3xl font-bold tracking-tight text-gray-900 md:mb-12 md:text-4xl lg:text-5xl dark:text-gray-100"
       {...props}
     />
   ),
   h2: (props: HeadingProps) => (
     <h2
-      className="col-start-2 mt-12 mb-4 text-2xl font-bold tracking-tight text-gray-900 md:text-3xl dark:text-gray-100"
+      className="col-span-3 md:col-start-2 md:col-span-1 mt-12 mb-4 text-2xl font-bold tracking-tight text-gray-900 md:text-3xl dark:text-gray-100"
       {...props}
     />
   ),
   h3: (props: HeadingProps) => (
     <h3
-      className="col-start-2 mt-8 mb-4 text-xl font-bold tracking-tight text-gray-900 md:text-2xl dark:text-gray-100"
+      className="col-span-3 md:col-start-2 md:col-span-1 mt-8 mb-4 text-xl font-bold tracking-tight text-gray-900 md:text-2xl dark:text-gray-100"
       {...props}
     />
   ),
   h4: (props: HeadingProps) => (
     <h4
-      className="col-start-2 mt-6 mb-4 text-lg font-semibold tracking-tight text-gray-900 md:text-xl dark:text-gray-100"
+      className="col-span-3 md:col-start-2 md:col-span-1 mt-6 mb-4 text-lg font-semibold tracking-tight text-gray-900 md:text-xl dark:text-gray-100"
       {...props}
     />
   ),
   p: (props: ParagraphProps) => (
     <p
-      className="col-start-2 mb-6 text-base md:text-lg leading-relaxed
+      className="col-span-3 md:col-start-2 md:col-span-1 mb-6 text-base md:text-lg leading-relaxed
         text-gray-800 dark:text-gray-200 
         [&:first-of-type]:text-lg [&:first-of-type]:md:text-xl
         [&:first-of-type]:text-gray-700 
@@ -80,7 +80,7 @@ const mdxComponents = {
   ),
   blockquote: (props: BlockquoteProps) => (
     <blockquote
-      className="col-start-2 py-4 pl-6 my-8 
+      className="col-span-3 md:col-start-2 md:col-span-1 py-4 pl-6 my-8 
         border-l-4 border-gray-300 dark:border-gray-700
         bg-gray-50 dark:bg-gray-800/50 rounded-r-lg
         [&>p]:text-gray-700 [&>p]:dark:text-gray-300
@@ -90,13 +90,13 @@ const mdxComponents = {
   ),
   ul: (props: ListProps) => (
     <ul
-      className="col-start-2 pl-6 my-6 space-y-3 list-disc list-outside text-gray-800 dark:text-gray-200"
+      className="col-span-3 md:col-start-2 md:col-span-1 pl-6 my-6 space-y-3 list-disc list-outside text-gray-800 dark:text-gray-200"
       {...props}
     />
   ),
   ol: (props: ListProps) => (
     <ol
-      className="col-start-2 pl-6 my-6 space-y-3 list-decimal list-outside text-gray-800 dark:text-gray-200"
+      className="col-span-3 md:col-start-2 md:col-span-1 pl-6 my-6 space-y-3 list-decimal list-outside text-gray-800 dark:text-gray-200"
       {...props}
     />
   ),

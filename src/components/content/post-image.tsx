@@ -10,7 +10,7 @@ interface PostImageProps {
 
 export default function PostImage({ src, alt }: PostImageProps) {
   return (
-    <div className="col-start-2 w-full max-w-[450px] sm:max-w-[600px] lg:max-w-[800px] my-10 mx-auto">
+    <div className="col-span-3 md:col-start-2 md:col-span-1 w-full max-w-[450px] sm:max-w-[600px] lg:max-w-[800px] my-10 mx-auto">
       <AspectRatio ratio={16 / 9}>
         <Image
           width={800}
