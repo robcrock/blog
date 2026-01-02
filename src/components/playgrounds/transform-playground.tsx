@@ -38,12 +38,7 @@ transform-origin: ${transformOrigin};`;
       <PlaygroundCanvas backgroundPattern="dots">
         <MotionDiv
           // @ts-expect-error - Framer Motion 11 + React 19 type compatibility issue
-          className={cn(
-            "w-[120px] h-[120px]",
-            "bg-primary",
-            transformOrigin === "center" && "rounded-full",
-            transformOrigin !== "center" && "rounded"
-          )}
+          className={cn("w-[120px] h-[120px]", "rounded bg-primary")}
           style={{
             transformOrigin,
           }}

@@ -3,7 +3,7 @@ title: "Origin-Aware Popovers"
 date: 2025-01-02
 description: "How transform-origin creates the illusion of UI elements emerging from their triggers."
 tags: ["Transform Origin", "Popover", "Framer Motion"]
-published: true
+published: false
 ---
 
 <PopoverPlayground />
@@ -58,15 +58,17 @@ The key insight: `transformOrigin` must be set _before_ the animation runs. It's
 
 ## Choosing the Right Origin
 
-A simple heuristic:
+The trick is to set the `transform-origin` to the side of the popover that's _closest to the trigger button_.
 
-| Trigger Position | Transform Origin |
-| ---------------- | ---------------- |
-| Above popover    | `bottom center`  |
-| Below popover    | `top center`     |
-| Left of popover  | `right center`   |
-| Right of popover | `left center`    |
-| Top-left corner  | `bottom right`   |
+Here's the rule: if the trigger button is **above** the popover, set the origin to `bottom center` so the popover grows downward from its bottom edge (toward the button). If the trigger is **below**, use `top center` so it grows upward.
+
+The pattern:
+
+- **Trigger above popover** → `bottom center` (popover grows from bottom toward trigger)
+- **Trigger below popover** → `top center` (popover grows from top toward trigger)
+- **Trigger left of popover** → `right center` (popover grows from right toward trigger)
+- **Trigger right of popover** → `left center` (popover grows from left toward trigger)
+- **Trigger at top-left corner** → `bottom right` (popover grows from bottom-right toward trigger)
 
 In practice, you can calculate this dynamically by comparing the trigger's bounding rect to the popover's position.
 
