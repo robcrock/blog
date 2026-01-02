@@ -1,9 +1,10 @@
+// src/constants.ts
 export const BLOG_TITLE = "Robert's Site";
 export const COLOR_THEME_COOKIE_NAME = "color-theme";
 
 export const NAVIGATION_ITEMS = [
-  { id: "projects", label: "PROJECTS", href: "#projects", page: "/projects" },
-  { id: "posts", label: "POSTS", href: "#posts", page: "/posts" },
+  { id: "projects", label: "WORK", href: "#projects", page: "/projects" },
+  { id: "craft", label: "CRAFT", href: "#craft", page: "/craft" },
   { id: "connect", label: "CONNECT", href: "#connect", page: null },
 ] as const;
 

@@ -1,0 +1,81 @@
+---
+title: "Origin-Aware Popovers"
+date: 2025-01-02
+description: "How transform-origin creates the illusion of UI elements emerging from their triggers."
+tags: ["Transform Origin", "Popover", "Framer Motion"]
+published: true
+---
+
+<PopoverPlayground />
+
+## The Problem with Generic Animations
+
+Most popover libraries animate with a fixed transform-origin of `center`. The element scales up from its midpoint, regardless of where it was triggered from.
+
+This works. But it doesn't _feel_ right.
+
+When you click a button in the top-left corner and a dropdown appears scaling from its center, there's a subtle cognitive disconnect. The UI element seems to materialize from nowhere—as if it teleported into existence.
+
+## The Fix: Origin-Aware Animation
+
+The solution is embarrassingly simple: match the `transform-origin` to the trigger's position relative to the popover.
+
+```css
+/* Popover triggered from top-left */
+transform-origin: top left;
+
+/* Popover triggered from bottom-right */
+transform-origin: bottom right;
+```
+
+Now when the popover scales in, it appears to _grow_ from the button. The element has a source. It belongs.
+
+## The Implementation
+
+Toggle through the origin options in the playground above. Notice how each one changes where the popover "blooms" from.
+
+Here's the pattern:
+
+```tsx
+<motion.div
+  style={{
+    transformOrigin: origin, // "top left", "center", etc.
+  }}
+  initial={{ opacity: 0, scale: 0.95 }}
+  animate={{ opacity: 1, scale: 1 }}
+  exit={{ opacity: 0, scale: 0.95 }}
+  transition={{
+    type: "spring",
+    stiffness: 400,
+    damping: 30,
+  }}
+>
+  {content}
+</motion.div>
+```
+
+The key insight: `transformOrigin` must be set _before_ the animation runs. It's not animated itself—it's the anchor point for the scale transformation.
+
+## Choosing the Right Origin
+
+A simple heuristic:
+
+| Trigger Position | Transform Origin |
+| ---------------- | ---------------- |
+| Above popover    | `bottom center`  |
+| Below popover    | `top center`     |
+| Left of popover  | `right center`   |
+| Right of popover | `left center`    |
+| Top-left corner  | `bottom right`   |
+
+In practice, you can calculate this dynamically by comparing the trigger's bounding rect to the popover's position.
+
+## Why This Matters
+
+This is exactly the kind of detail that's invisible when done right—and jarring when done wrong. Users won't consciously notice your origin-aware animations. But they'll _feel_ that your UI is more polished, more intentional, more "Apple-like."
+
+The best interface details are the ones nobody talks about.
+
+---
+
+_Try clicking the button with different origins selected. Pay attention to where your eye is drawn during the animation. That's the origin point at work._

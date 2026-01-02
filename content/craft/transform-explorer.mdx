@@ -1,0 +1,67 @@
+---
+title: "Transform Explorer"
+date: 2025-01-02
+description: "An interactive CSS transform visualizer with real-time controls for translation, rotation, scale, and transform-origin."
+tags: ["CSS Transforms", "Framer Motion", "Interactive"]
+published: true
+---
+
+<TransformPlayground />
+
+## The Invisible Physics of Transform
+
+CSS transforms are deceptively simple. Four properties—`translate`, `rotate`, `scale`, and `transform-origin`—yet mastering them unlocks the foundation of every meaningful UI animation.
+
+The playground above lets you _feel_ how these properties interact. But there's nuance worth understanding.
+
+## Transform Order Matters
+
+Transforms are applied right-to-left. This means:
+
+```css
+transform: translate(100px, 0) rotate(45deg) scale(1.5);
+```
+
+...is fundamentally different from:
+
+```css
+transform: scale(1.5) rotate(45deg) translate(100px, 0);
+```
+
+In the first, the element scales, then rotates, then moves. In the second, it moves first (by 100px), then rotates around its new position, then scales from there.
+
+Play with the controls above and watch how the element behaves differently depending on which property you adjust first.
+
+## Transform Origin: The Pivot Point
+
+This is where things get interesting. The `transform-origin` property defines the point around which transformations occur. By default, it's `center`—but watch what happens when you change it to `top left`:
+
+- **Rotation** now pivots from the corner, not the center
+- **Scale** grows outward from that corner
+- The element feels _anchored_ differently
+
+This is why origin-aware animations feel more natural. When a dropdown appears, it should scale from its trigger—not from some abstract center point.
+
+## The Spring Animation
+
+Notice how the element doesn't just _snap_ to its new position? That's Framer Motion's spring physics at work:
+
+```tsx
+transition={{
+  type: "spring",
+  stiffness: 300,
+  damping: 30,
+}}
+```
+
+Springs create the feeling of physical mass. The element has _weight_. It overshoots slightly, then settles. This is what separates mechanical UI from interfaces that feel alive.
+
+## Performance Note
+
+All transforms here are GPU-accelerated. We're only animating `transform` and `opacity`—the two properties browsers can composite without triggering layout recalculations.
+
+Never animate `top`, `left`, `width`, or `height` if you can avoid it. Transform can achieve the same visual result with a fraction of the performance cost.
+
+---
+
+_Try hovering over the element. The subtle scale bump on hover uses the same spring physics, creating a cohesive tactile response throughout the interaction._

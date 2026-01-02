@@ -1,4 +1,4 @@
-// src/components/Sections/home/posts-section.tsx
+// src/components/sections/home/posts-section.tsx
 import { allPosts } from "contentlayer/generated";
 import { compareDesc, format } from "date-fns";
 import Link from "next/link";

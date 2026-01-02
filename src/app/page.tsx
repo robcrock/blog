@@ -1,16 +1,14 @@
 import {
-  ArticleSection,
   ConnectSection,
-  PostsSection,
+  CraftSection,
   ProjectSection,
 } from "@/components/sections";
 
 export default function Home() {
   return (
     <>
-      <ArticleSection />
       <ProjectSection />
-      <PostsSection />
+      <CraftSection />
       <ConnectSection />
     </>
   );
