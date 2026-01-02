@@ -5,6 +5,7 @@ export interface PlaygroundProps {
   description?: string;
   className?: string;
   children: React.ReactNode;
+  allowOverflow?: boolean;
 }
 
 // Canvas should respect your grid layout system

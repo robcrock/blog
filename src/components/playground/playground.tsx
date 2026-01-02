@@ -10,13 +10,15 @@ export function Playground({
   description,
   className = "",
   children,
+  allowOverflow = false,
 }: PlaygroundProps) {
   return (
     // Spans full grid width for visual impact
     <div
       className={cn(
         "col-span-3 col-start-1 my-8",
-        "overflow-hidden rounded-lg border border-border",
+        allowOverflow ? "overflow-visible" : "overflow-hidden",
+        "rounded-lg border border-border",
         "bg-background",
         className
       )}

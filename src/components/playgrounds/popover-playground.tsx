@@ -12,7 +12,6 @@ import {
   SelectControl,
 } from "@/components/playground";
 import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "framer-motion";
 
 type TransformOrigin =
   | "top left"
@@ -23,68 +22,61 @@ type TransformOrigin =
   | "bottom center"
   | "bottom right";
 
-const MotionDiv = motion("div");
-
 export function PopoverPlayground() {
   const [isOpen, setIsOpen] = useState(false);
   const [transformOrigin, setTransformOrigin] =
     useState<TransformOrigin>("top left");
 
-  const code = `<motion.div
+  const code = `<div
+  className="animate-[popoverIn_200ms_cubic-bezier(0.165,0.84,0.44,1)]"
   style={{
     transformOrigin: "${transformOrigin}",
   }}
-  initial={{ scale: 0, opacity: 0 }}
-  animate={{ scale: 1, opacity: 1 }}
-  exit={{ scale: 0, opacity: 0 }}
-  transition={{ 
-    type: "spring",
-    stiffness: 500,
-    damping: 30 
-  }}
 >
   Popover content
-</motion.div>`;
+</div>
+
+@keyframes popoverIn {
+  from {
+    opacity: 0;
+    scale: 0.95;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}`;
 
   return (
     <Playground
       title="Popover Transform Origin Demo"
       description="Click the button and watch how the transform-origin affects the popover animation."
+      allowOverflow
     >
       <PlaygroundCanvas backgroundPattern="dots" className="!overflow-visible">
         <div className="relative flex items-center justify-center min-h-[400px] py-8">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className={cn(
-              "px-4 py-2 rounded font-medium text-sm",
-              "bg-primary text-primary-foreground",
-              "hover:bg-primary/90 transition-colors duration-200",
-              "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-            )}
-          >
-            {isOpen ? "Close" : "Open"} Popover
-          </button>
-
-          <AnimatePresence>
+          <div className="relative">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className={cn(
+                "px-4 py-2 text-sm font-medium rounded",
+                "bg-primary text-primary-foreground",
+                "transition-colors duration-200 hover:bg-primary/90",
+                "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+              )}
+            >
+              {isOpen ? "Close" : "Open"} Popover
+            </button>
             {isOpen && (
-              <MotionDiv
-                // @ts-expect-error - Framer Motion 11 + React 19 type compatibility issue
+              <div
                 className={cn(
-                  "absolute top-full left-1/2 -translate-x-1/2 mt-2 z-50",
-                  "w-64 p-4 rounded shadow-lg",
-                  "bg-popover border border-border",
-                  "text-popover-foreground"
+                  "absolute top-full left-1/2 z-50 mt-2 -translate-x-1/2",
+                  "p-4 w-64 rounded shadow-lg",
+                  "border bg-popover border-border text-popover-foreground",
+                  "animate-[popoverIn_200ms_cubic-bezier(0.165,0.84,0.44,1)]"
                 )}
                 style={{
                   transformOrigin,
-                }}
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0, opacity: 0 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 500,
-                  damping: 30,
                 }}
               >
                 <h4 className="mb-2 font-semibold">Popover Content</h4>
@@ -93,9 +85,9 @@ export function PopoverPlayground() {
                   transform origin. The popover appears to "grow" from the
                   anchor point.
                 </p>
-              </MotionDiv>
+              </div>
             )}
-          </AnimatePresence>
+          </div>
         </div>
       </PlaygroundCanvas>
 
