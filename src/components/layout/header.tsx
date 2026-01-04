@@ -161,7 +161,7 @@ export default function Header() {
                 // @ts-expect-error - Framer Motion 11 + React 19 type compatibility issue
                 className="overflow-hidden text-sm md:text-base text-foreground"
               >
-                Craft obsessed developer drawn to design.
+                Craft obsessed developer who designs.
               </motion.p>
             )}
           </AnimatePresence>

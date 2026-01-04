@@ -12,7 +12,7 @@ export default function ProfileSection() {
             Robert Crocker
           </h1>
           <p className="text-lg md:text-xl text-foreground">
-            Craft obsessed developer drawn to design.
+            Craft obsessed developer who designs.
           </p>
         </div>
         <div className="flex justify-center">

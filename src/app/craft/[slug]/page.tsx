@@ -33,9 +33,34 @@ export async function generateMetadata({
     };
   }
 
+  // Use craft image or fallback to default OG image
+  const ogImage = craft.image || "/og-image.png";
+  const url = `https://robcrock.com/craft/${slug}`;
+
   return {
-    title: `${craft.title} | Craft | Robert Crocker`,
+    title: craft.title,
     description: craft.description,
+    openGraph: {
+      type: "article",
+      url,
+      title: craft.title,
+      description: craft.description,
+      publishedTime: craft.date,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: craft.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: craft.title,
+      description: craft.description,
+      images: [ogImage],
+    },
   };
 }
 

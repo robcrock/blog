@@ -12,12 +12,56 @@ import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Toaster } from "sonner";
 
 export const metadata = {
-  title:
-    "Robert Crocker - Developer, community builder, and creator of useful things",
-  description: "Personal website of Robert Crocker",
+  metadataBase: new URL("https://robcrock.com"),
+  title: {
+    default: "Robert Crocker - Craft obsessed developer who designs.",
+    template: "%s | Robert Crocker",
+  },
+  description:
+    "Personal website of Robert Crocker. I build useful things, write about web development, and share interactive experiments.",
+  keywords: [
+    "web development",
+    "frontend",
+    "react",
+    "next.js",
+    "typescript",
+    "design",
+    "craft",
+    "portfolio",
+  ],
+  authors: [{ name: "Robert Crocker" }],
+  creator: "Robert Crocker",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://robcrock.com",
+    title: "Robert Crocker - Craft obsessed developer who designs.",
+    description:
+      "Personal website of Robert Crocker. I build useful things, write about web development, and share interactive experiments.",
+    siteName: "Robert Crocker",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Robert Crocker - Craft obsessed developer who designs",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Robert Crocker - Craft obsessed developer who designs.",
+    description:
+      "Personal website of Robert Crocker. I build useful things, write about web development, and share interactive experiments.",
+    images: ["/og-image.png"],
+  },
   icons: {
     icon: "/icons/icon.svg",
     apple: "/icons/apple-icon.png",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

@@ -33,9 +33,34 @@ export async function generateMetadata({
     };
   }
 
+  const url = `https://robcrock.com/posts/${slug}`;
+  const ogImage = "/og-image.png";
+
   return {
-    title: `${post.title} | Robert Crocker`,
+    title: post.title,
     description: post.description,
+    openGraph: {
+      type: "article",
+      url,
+      title: post.title,
+      description: post.description,
+      publishedTime: post.date,
+      authors: ["Robert Crocker"],
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+      images: [ogImage],
+    },
   };
 }
 
