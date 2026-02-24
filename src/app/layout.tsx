@@ -75,11 +75,17 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     >
       <head>
         {process.env.NODE_ENV === "development" && (
-          <Script
-            src="//unpkg.com/react-grab/dist/index.global.js"
-            crossOrigin="anonymous"
-            strategy="beforeInteractive"
-          />
+          <>
+            <Script
+              src="//unpkg.com/react-grab/dist/index.global.js"
+              crossOrigin="anonymous"
+              strategy="beforeInteractive"
+            />
+            <Script
+              src="https://mcp.figma.com/mcp/html-to-design/capture.js"
+              async
+            />
+          </>
         )}
       </head>
       <body className="container px-4 mx-auto max-w-6xl">

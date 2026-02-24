@@ -141,6 +141,7 @@ code {
 
 [data-rehype-pretty-code-figure] pre {
   overflow-x: auto;
+  border: 1px solid #e0e0e0;
   border-radius: 0.25rem;
   background-color: #f6f8fa;
   color: #24292f;

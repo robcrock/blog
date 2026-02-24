@@ -1,0 +1,121 @@
+---
+title: "Cursor Interactions"
+date: 2026-02-23
+description: "Interactive examples of cursor-driven effects—blur, scale, and ripple—built on measuring the distance between two points."
+tags: ["Cursor Interaction", "JavaScript", "React", "Performance"]
+published: false
+---
+
+<ProximityBlur />
+
+## Everything Is Distance
+
+Most cursor-driven effects boil down to a single question: _how far is the pointer from this element?_ Once you can measure that, you can map distance to any CSS property—blur, scale, opacity, hue. The interactions above are all driven by one utility function.
+
+## Measuring Relative Position
+
+Before we can calculate distance, we need to know where the cursor is _relative to an element_, not the viewport. That's where `getBoundingClientRect()` comes in.
+
+```ts
+const bb = wrapper.getBoundingClientRect();
+const centerPoint = {
+  x: bb.left + bb.width / 2,
+  y: bb.top + bb.height / 2,
+};
+```
+
+This gives us two coordinates: the cursor's position, and the element's center. Now we need the gap between them.
+
+## The Distance Between Two Points
+
+Pythagorean theorem—possibly the most useful thing you retained from high school:
+
+```ts
+function getDistanceBetweenPoints(p1, p2) {
+  const deltaX = p1.x - p2.x;
+  const deltaY = p1.y - p2.y;
+
+  return Math.sqrt(deltaX ** 2 + deltaY ** 2);
+}
+```
+
+With this single function, every example on this page becomes possible. The blur intensity, the scale factor, the ripple origin—all derived from distance.
+
+## Exercise: Proximity Blur & Scale
+
+{/* Walkthrough of mapping distance to blur + scale values, clamping/normalizing */}
+
+The trick is _normalizing_ the distance into a usable range. Raw pixel distance isn't meaningful on its own—you need to map it to a 0–1 scale relative to some maximum threshold.
+
+```ts
+export const clamp = (value, min = 0, max = 1) => {
+  if (min > max) {
+    [min, max] = [max, min];
+  }
+
+  return Math.max(min, Math.min(max, value));
+};
+
+export const normalize = (
+  number,
+  currentScaleMin,
+  currentScaleMax,
+  newScaleMin = 0,
+  newScaleMax = 1
+) => {
+  const standardNormalization =
+    (number - currentScaleMin) / (currentScaleMax - currentScaleMin);
+
+  return (newScaleMax - newScaleMin) * standardNormalization + newScaleMin;
+};
+
+export const clampedNormalize = (
+  value,
+  currentScaleMin,
+  currentScaleMax,
+  newScaleMin = 0,
+  newScaleMax = 1
+) => {
+  return clamp(
+    normalize(
+      value,
+      currentScaleMin,
+      currentScaleMax,
+      newScaleMin,
+      newScaleMax
+    ),
+    newScaleMin,
+    newScaleMax
+  );
+};
+```
+
+## The Ripple Button
+
+<RippleButtonDemo />
+
+This uses a technique from the particle effects section of the course: capture the click coordinates, spawn an element at that point, then expand and fade it out.
+
+{/* Code block: ripple effect logic—capturing click position, animating scale + opacity */}
+
+The click position matters. A ripple that always originates from center feels _wrong_—your brain expects the wave to emanate from where you actually pressed. Same principle as `transform-origin` from the previous post.
+
+## Performance: Throttling Measurements
+
+`getBoundingClientRect()` triggers a layout read. On every mouse move, that's a lot of recalculation. The fix is throttling—limiting how often we actually measure.
+
+{/* Code block: throttled measurement approach */}
+
+The goal is to find the threshold where the effect still feels responsive but the browser isn't doing unnecessary work. For most cursor effects, 16–32ms (roughly 30–60fps of measurement) is plenty.
+
+## The Hook: `useRelativeMousePosition`
+
+Everything above collapses into a single reusable hook:
+
+{/* Code block: useRelativeMousePosition hook */}
+
+This encapsulates the rect measurement, the throttling, and the relative coordinate math. Every cursor-proximity effect on this page uses it under the hood.
+
+---
+
+_Hover slowly toward the image above. Notice how the blur lifts gradually—not all at once. That's the distance mapping at work, turning a binary "hovering or not" into a continuous, spatial interaction._

@@ -1,4 +1,3 @@
-// src/components/sections/home/craft-section.tsx
 import { Card } from "@/components/ui/card";
 import { allCrafts } from "contentlayer/generated";
 import { compareDesc, format } from "date-fns";
@@ -21,7 +20,7 @@ export default function CraftSection() {
   const hasMore = allCrafts.filter((c) => c.published).length > DISPLAY_COUNT;
 
   return (
-    <section id="craft" className="scroll-mt-[72px] mb-20">
+    <section id="craft" className="mb-20 scroll-mt-[72px]">
       {/* Section Header */}
       <div className="flex gap-4 items-center mb-2">
         <h2 className="text-lg whitespace-nowrap pointer-events-none">CRAFT</h2>
@@ -51,7 +50,7 @@ export default function CraftSection() {
             href={craft.url}
             className="group focus-visible:outline-none"
           >
-            <Card className="overflow-hidden ring-2 ring-transparent ring-offset-1 transition-all duration-200 hover:ring-primary focus-within:ring-primary">
+            <Card className="overflow-hidden ring-2 ring-transparent ring-offset-1 transition-all duration-200 focus-within:ring-primary hover:ring-primary">
               {/* Preview Media */}
               <div className="relative w-full h-48 bg-muted">
                 {craft.video ? (
@@ -73,7 +72,7 @@ export default function CraftSection() {
                   />
                 ) : (
                   // Fallback: subtle dot pattern with initial
-                  <div className="flex items-center justify-center w-full h-full bg-[radial-gradient(hsl(var(--muted-foreground)/0.1)_1px,transparent_1px)] [background-size:20px_20px]">
+                  <div className="flex h-full w-full items-center justify-center bg-[radial-gradient(hsl(var(--muted-foreground)/0.1)_1px,transparent_1px)] [background-size:20px_20px]">
                     <span className="text-4xl font-bold text-muted-foreground/20">
                       {craft.title.charAt(0)}
                     </span>
@@ -95,7 +94,7 @@ export default function CraftSection() {
                   </time>
                 </div>
 
-                <p className="text-sm text-muted-foreground line-clamp-2">
+                <p className="text-sm line-clamp-2 text-muted-foreground">
                   {craft.description}
                 </p>
               </div>

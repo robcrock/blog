@@ -14,10 +14,10 @@ export function PlaygroundCanvas({
   return (
     <div
       className={cn(
-        "relative min-h-[300px] flex items-center justify-center",
-        "rounded overflow-hidden",
+        "relative flex min-h-[300px] items-center justify-center",
+        "overflow-hidden rounded",
         backgroundPattern === "dots" &&
-          "bg-[radial-gradient(hsl(var(--muted-foreground)/0.1)_1px,transparent_1px)] [background-size:20px_20px]",
+          "bg-[radial-gradient(hsl(var(--muted-foreground)/0.3)_1px,transparent_1px)] [background-size:20px_20px]",
         backgroundPattern === "grid" &&
           "bg-[linear-gradient(hsl(var(--border))_1px,transparent_1px),linear-gradient(90deg,hsl(var(--border))_1px,transparent_1px)] [background-size:20px_20px]",
         className
