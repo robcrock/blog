@@ -81,7 +81,7 @@ export default async function PostPage({ params }: PostPageProps) {
       >
         ← All posts
       </Link>
-      <article className="grid grid-cols-[1fr_min(700px,100%)_1fr] w-full max-w-5xl mx-auto mb-10">
+      <article className="grid grid-cols-[1fr_min(700px,100%)_1fr] w-full max-w-[860px] mx-auto mb-10">
         {/* Post Header */}
         <header className="col-span-3 md:col-start-2 md:col-span-1 mb-12">
           <div className="flex gap-4 items-center mb-4 text-sm font-medium text-muted-foreground">

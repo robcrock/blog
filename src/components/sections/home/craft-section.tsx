@@ -23,14 +23,14 @@ export default function CraftSection() {
     <section id="craft" className="mb-20 scroll-mt-[72px]">
       {/* Section Header */}
       <div className="flex gap-4 items-center mb-2">
-        <h2 className="text-lg whitespace-nowrap pointer-events-none">CRAFT</h2>
+        <h2 className="text-lg whitespace-nowrap">CRAFT</h2>
         <div className="flex-1 h-px bg-border" />
         {hasMore && (
           <Link
             href="/craft"
             className="flex gap-1 items-center text-sm font-medium transition-colors text-muted-foreground hover:text-primary"
           >
-            View all
+            See all
             <ArrowRight className="w-4 h-4" />
           </Link>
         )}

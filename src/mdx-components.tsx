@@ -27,7 +27,7 @@ const SandpackEditorWrapper = (props: any) => (
 
 // Wrapper so ProximityBlur appears below the header (full-width row)
 const ProximityBlurWrapper = () => (
-  <div className="col-span-3 col-start-1 my-8">
+  <div className="col-span-3 col-start-1 mb-8">
     <ProximityBlur />
   </div>
 );
@@ -43,7 +43,7 @@ const mdxComponents = {
   DistanceTrianglePlayground,
   // Figure element wraps code blocks with copy directive - needs grid column styling
   figure: (props: ComponentPropsWithoutRef<"figure">) => (
-    <figure className="col-span-3 col-start-1 my-8" {...props} />
+    <figure className="col-span-3 col-start-1 mb-3" {...props} />
   ),
   h1: (props: HeadingProps) => (
     <h1
@@ -53,26 +53,25 @@ const mdxComponents = {
   ),
   h2: (props: HeadingProps) => (
     <h2
-      className="col-span-3 mt-12 mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100 md:col-span-1 md:col-start-2 md:text-3xl"
+      className="col-span-3 mt-4 mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100 md:col-span-1 md:col-start-2 md:text-3xl"
       {...props}
     />
   ),
   h3: (props: HeadingProps) => (
     <h3
-      className="col-span-3 mt-8 mb-3 text-xl font-bold tracking-tight text-gray-900 dark:text-gray-100 md:col-span-1 md:col-start-2 md:text-2xl"
+      className="col-span-3 mt-3 mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-gray-100 md:col-span-1 md:col-start-2 md:text-2xl"
       {...props}
     />
   ),
   p: (props: ParagraphProps) => (
     <p
-      className="col-span-3 my-4 text-base leading-relaxed text-gray-800 dark:text-gray-200 md:col-span-1 md:col-start-2 md:text-lg"
+      className="col-span-3 mb-3 text-base leading-relaxed text-gray-800 dark:text-gray-200 md:col-span-1 md:col-start-2 md:text-lg"
       {...props}
     />
   ),
   a: ({ children, ...props }: AnchorProps) => (
     <a
       className="underline text-primary underline-offset-4 hover:text-primary/80"
-      style={{ textDecoration: "none" }}
       {...props}
     >
       {children}
@@ -80,19 +79,19 @@ const mdxComponents = {
   ),
   blockquote: (props: BlockquoteProps) => (
     <blockquote
-      className="col-span-3 my-8 rounded-r-lg border-l-4 border-gray-300 bg-gray-50 py-4 pl-6 dark:border-gray-700 dark:bg-gray-800/50 md:col-span-1 md:col-start-2 [&>p:first-of-type]:mt-0 [&>p:last-of-type]:mb-0 [&>p]:text-gray-700 [&>p]:dark:text-gray-300"
+      className="col-span-3 mb-8 rounded-r-lg border-l-4 border-gray-300 bg-gray-50 py-4 pl-6 dark:border-gray-700 dark:bg-gray-800/50 md:col-span-1 md:col-start-2 [&>p:first-of-type]:mt-0 [&>p:last-of-type]:mb-0 [&>p]:text-gray-700 [&>p]:dark:text-gray-300"
       {...props}
     />
   ),
   ul: (props: ListProps) => (
     <ul
-      className="col-span-3 pl-6 my-6 space-y-3 list-disc list-outside text-gray-800 dark:text-gray-200 md:col-span-1 md:col-start-2"
+      className="col-span-3 pl-6 mb-3 space-y-3 list-disc list-outside text-gray-800 dark:text-gray-200 md:col-span-1 md:col-start-2"
       {...props}
     />
   ),
   ol: (props: ListProps) => (
     <ol
-      className="col-span-3 pl-6 my-6 space-y-3 list-decimal list-outside text-gray-800 dark:text-gray-200 md:col-span-1 md:col-start-2"
+      className="col-span-3 pl-6 mb-3 space-y-3 list-decimal list-outside text-gray-800 dark:text-gray-200 md:col-span-1 md:col-start-2"
       {...props}
     />
   ),
@@ -112,7 +111,7 @@ const mdxComponents = {
     }
 
     return (
-      <div className="overflow-hidden relative col-span-3 col-start-1 my-8 w-full rounded-lg">
+      <div className="overflow-hidden relative w-full rounded-lg">
         <pre
           className="overflow-x-auto p-4 text-sm md:text-base"
           data-raw-code={typeof rawCode === "string" ? rawCode : ""}

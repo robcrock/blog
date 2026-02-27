@@ -89,8 +89,6 @@ export default function Header() {
 
   const nameScale = useTransform(scrollYBoundedProgress, [0, 1], [1, 0.75]);
 
-  // const socialOpacity = useTransform(scrollYBoundedProgress, [0, 0.5], [1, 0]);
-
   // Track when to show subtext based on scroll progress
   const [showSubtext, setShowSubtext] = useState(true);
   useMotionValueEvent(scrollYBoundedProgress, "change", (latest) => {
@@ -173,9 +171,8 @@ export default function Header() {
         // @ts-expect-error - Framer Motion 11 + React 19 type compatibility issue
         className="relative z-[101] flex gap-4 items-center w-full md:w-auto md:ml-auto"
       >
-        {/* Social icons - fade out on scroll */}
+        {/* Social icons */}
         <motion.div
-          // style={{ opacity: socialOpacity }}
           // @ts-expect-error - Framer Motion 11 + React 19 type compatibility issue
           className="hidden items-center md:flex md:ml-auto"
         >
