@@ -4,9 +4,9 @@ import PostImage from "@/components/content/post-image";
 import { SandpackEditor } from "@/components/content/sandpack-editor";
 import TransformerCopyButton from "@/components/content/transformer-copy-button";
 import {
+  DistanceTrianglePlayground,
   PopoverPlayground,
   ProximityBlur,
-  RippleButtonDemo,
   ToastPlayground,
   TransformPlayground,
 } from "@/components/playgrounds";
@@ -25,23 +25,22 @@ const SandpackEditorWrapper = (props: any) => (
   </div>
 );
 
+// Wrapper so ProximityBlur appears below the header (full-width row)
+const ProximityBlurWrapper = () => (
+  <div className="col-span-3 col-start-1 my-8">
+    <ProximityBlur />
+  </div>
+);
+
 const mdxComponents = {
   PostImage,
   SandpackEditor: SandpackEditorWrapper,
-  // NEW - Add playground components
+  // Playground components
   TransformPlayground,
   ToastPlayground,
   PopoverPlayground,
-  ProximityBlur: () => (
-    <div className="overflow-visible col-span-3 col-start-1 my-8">
-      <ProximityBlur />
-    </div>
-  ),
-  RippleButtonDemo: () => (
-    <div className="col-span-3 col-start-1 my-8">
-      <RippleButtonDemo />
-    </div>
-  ),
+  ProximityBlur: ProximityBlurWrapper,
+  DistanceTrianglePlayground,
   // Figure element wraps code blocks with copy directive - needs grid column styling
   figure: (props: ComponentPropsWithoutRef<"figure">) => (
     <figure className="col-span-3 col-start-1 my-8" {...props} />
@@ -60,26 +59,19 @@ const mdxComponents = {
   ),
   h3: (props: HeadingProps) => (
     <h3
-      className="col-span-3 mt-8 mb-4 text-xl font-bold tracking-tight text-gray-900 dark:text-gray-100 md:col-span-1 md:col-start-2 md:text-2xl"
-      {...props}
-    />
-  ),
-  h4: (props: HeadingProps) => (
-    <h4
-      className="col-span-3 mt-6 mb-4 text-lg font-semibold tracking-tight text-gray-900 dark:text-gray-100 md:col-span-1 md:col-start-2 md:text-xl"
+      className="col-span-3 mt-8 mb-3 text-xl font-bold tracking-tight text-gray-900 dark:text-gray-100 md:col-span-1 md:col-start-2 md:text-2xl"
       {...props}
     />
   ),
   p: (props: ParagraphProps) => (
     <p
-      className="col-span-3 mb-6 text-base leading-relaxed text-gray-800 dark:text-gray-200 md:col-span-1 md:col-start-2 md:text-lg [&:first-of-type]:text-lg [&:first-of-type]:text-gray-700 [&:first-of-type]:dark:text-gray-300 [&:first-of-type]:md:text-xl"
+      className="col-span-3 my-4 text-base leading-relaxed text-gray-800 dark:text-gray-200 md:col-span-1 md:col-start-2 md:text-lg"
       {...props}
     />
   ),
-  a: ({ href, children, ...props }: AnchorProps) => (
+  a: ({ children, ...props }: AnchorProps) => (
     <a
-      href={href}
-      className="relative inline-block text-primary transition-all duration-200 after:absolute after:bottom-1 after:left-0 after:h-[1px] after:w-full after:origin-bottom-left after:scale-x-100 after:bg-primary/40 after:transition-all after:duration-300 after:ease-[cubic-bezier(0.165,0.84,0.44,1)] after:content-[''] hover:after:h-[2px] hover:after:bg-primary dark:text-primary"
+      className="underline text-primary underline-offset-4 hover:text-primary/80"
       style={{ textDecoration: "none" }}
       {...props}
     >

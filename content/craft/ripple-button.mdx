@@ -1,0 +1,54 @@
+---
+title: "The Ripple Button"
+date: 2026-02-23
+description: "Build a ripple effect that emanates from where you actually click—capturing coordinates, spawning an element, and animating it outward."
+tags: ["Cursor Interaction", "JavaScript", "React", "Animation"]
+published: false
+---
+
+<RippleButtonDemo />
+
+## Why Click Position Matters
+
+A ripple that always originates from center feels _wrong_. Your brain expects the wave to emanate from where you actually pressed—the same principle as `transform-origin` from the [previous post](/craft/origin-aware-popovers). The origin of an animation should match the origin of the interaction.
+
+## The Technique
+
+This uses a pattern from particle effects: capture the click coordinates, spawn an element at that point, then expand and fade it out.
+
+{/* Code block: ripple effect logic—capturing click position, animating scale + opacity */}
+
+The click event gives us `clientX` and `clientY`. From there we offset by the button's bounding rect to get the position _within_ the element—the exact spot the ripple should start.
+
+## Measuring Distance (Again)
+
+Once you have the click origin, you need to know how far the ripple has to travel. The ripple must reach every corner of the button, so the radius is the distance from the click point to the _farthest_ corner.
+
+This is the same `getDistanceBetweenPoints` function from the [Proximity Reveal](/craft/proximity-reveal) post:
+
+```ts
+function getDistanceBetweenPoints(p1, p2) {
+  const deltaX = p1.x - p2.x;
+  const deltaY = p1.y - p2.y;
+
+  return Math.sqrt(deltaX ** 2 + deltaY ** 2);
+}
+```
+
+Calculate the distance to all four corners, take the max, and that's your ripple radius. The circle will always cover the full button regardless of where you click.
+
+## Animating the Ripple
+
+The ripple element starts at `scale(0)` and `opacity: 0.5`, then transitions to full scale and `opacity: 0`. The duration should be fast enough to feel responsive but slow enough to actually _see_ the wave.
+
+{/* Code block: ripple animation CSS/keyframes */}
+
+One subtlety: the ripple element needs `pointer-events: none` so it doesn't intercept subsequent clicks, and the button needs `overflow: hidden` so the expanding circle doesn't bleed outside the bounds.
+
+## Cleanup
+
+Each click spawns a new DOM element. If you don't clean up, rapid clicking creates a pile of invisible, fully-expanded ripple divs. Remove the element after the animation completes—either with an `animationend` listener or a timeout matching the duration.
+
+---
+
+_Click the button above in different spots. The ripple always starts exactly where your finger lands—connecting the animation to the gesture that triggered it._
