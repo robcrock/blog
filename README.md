@@ -80,6 +80,95 @@ This project uses Contentlayer2 for type-safe MDX content management:
 - **Frontmatter**: Posts require `title`, `topic`, `date` fields; optional `description` and `published` fields
 - **Computed Fields**: Automatically generates `slug`, `url`, and `readingTime` for each post
 
+### Adding Video Previews to Craft Cards
+
+Craft cards support autoplaying video previews with blur placeholders for instant loading. Here's how to add a video for a new craft piece.
+
+#### Prerequisites
+
+- [ffmpeg](https://formulae.brew.sh/formula/ffmpeg) installed (`brew install ffmpeg`)
+- [Screen Studio](https://screen.studio) or any screen recorder
+- Source video exported as MP4 (H.264), 1080p, 30fps
+
+#### Step 1: Record and export
+
+Record your interaction as a short loop (5–10 seconds). Export from Screen Studio as MP4, HD resolution, 30fps, high compression quality. The source file is just a starting point — ffmpeg handles the real optimization.
+
+#### Step 2: Process the video
+
+From the project root, replace `{slug}` with your craft piece's slug:
+
+```bash
+# Create output directory
+mkdir -p public/video/{slug}
+
+# Web-optimized MP4 (~500KB–1.5MB for a 5-10s clip)
+ffmpeg -i /path/to/source.mp4 \
+  -c:v libx264 -crf 28 -preset slow \
+  -vf "scale=1280:-2" \
+  -an -movflags +faststart -pix_fmt yuv420p \
+  public/video/{slug}/preview.mp4
+
+# WebM version (30-40% smaller, served to Chrome/Firefox/Edge)
+ffmpeg -i /path/to/source.mp4 \
+  -c:v libvpx-vp9 -crf 35 -b:v 0 \
+  -vf "scale=1280:-2" \
+  -an \
+  public/video/{slug}/preview.webm
+
+# Blur placeholder (base64 string copied to clipboard)
+ffmpeg -i /path/to/source.mp4 \
+  -vframes 1 -vf "scale=40:-1" -q:v 5 \
+  -update 1 \
+  /tmp/poster.jpg
+
+base64 -i /tmp/poster.jpg | tr -d '\n' | pbcopy
+```
+
+Verify sizes with `ls -lh public/video/{slug}/`. Target: MP4 under 1.5MB, WebM under 1MB. If larger, increase CRF (e.g., 30 for MP4, 38 for WebM).
+
+#### Step 3: Update frontmatter
+
+In `content/craft/{slug}/index.mdx`, add the `video` and `poster` fields:
+
+```yaml
+---
+title: "Your Craft Title"
+date: 2025-03-01
+description: "What this craft piece demonstrates"
+video: "/video/{slug}/preview.mp4"
+poster: "data:image/jpeg;base64,<paste from clipboard>"
+tags: ["React", "CSS"]
+published: true
+---
+```
+
+The card components automatically handle the rest: the blur placeholder shows instantly while the video loads, then the video plays over it. The browser picks WebM over MP4 when supported.
+
+#### What each ffmpeg flag does
+
+| Flag                   | Purpose                                                                                  |
+| ---------------------- | ---------------------------------------------------------------------------------------- |
+| `-crf 28`              | Quality level (lower = better quality, bigger file). 28 is ideal for small card previews |
+| `-preset slow`         | Better compression at the cost of longer encode time                                     |
+| `scale=1280:-2`        | Scales to 720p width. `-2` ensures even height (required by H.264)                       |
+| `-an`                  | Strips audio track (videos are muted anyway)                                             |
+| `-movflags +faststart` | Moves metadata to file start so browser can play before full download                    |
+| `-pix_fmt yuv420p`     | Ensures Safari and hardware decoder compatibility                                        |
+| `-b:v 0` (WebM)        | Lets VP9 use variable bitrate guided purely by CRF                                       |
+
+#### File structure
+
+```
+public/
+└── video/
+    └── {slug}/
+        ├── preview.mp4    # H.264 fallback (Safari, older browsers)
+        └── preview.webm   # VP9 primary (Chrome, Firefox, Edge)
+```
+
+Do not commit source recordings to `public/video/` — only the processed `preview.mp4` and `preview.webm` files.
+
 ### Important: MDX Components File Location
 
 The `src/mdx-components.tsx` file **must** remain at the `src/` level due to Next.js conventions:

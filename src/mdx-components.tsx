@@ -6,7 +6,7 @@ import TransformerCopyButton from "@/components/content/transformer-copy-button"
 import {
   DistanceTrianglePlayground,
   PopoverPlayground,
-  ProximityBlur,
+  ProximityReveal,
   ToastPlayground,
   TransformPlayground,
 } from "@/components/playgrounds";
@@ -25,10 +25,10 @@ const SandpackEditorWrapper = (props: any) => (
   </div>
 );
 
-// Wrapper so ProximityBlur appears below the header (full-width row)
-const ProximityBlurWrapper = () => (
+// Wrapper so ProximityReveal appears below the header (full-width row)
+const ProximityRevealWrapper = () => (
   <div className="col-span-3 col-start-1 mb-8">
-    <ProximityBlur />
+    <ProximityReveal />
   </div>
 );
 
@@ -39,7 +39,7 @@ const mdxComponents = {
   TransformPlayground,
   ToastPlayground,
   PopoverPlayground,
-  ProximityBlur: ProximityBlurWrapper,
+  ProximityReveal: ProximityRevealWrapper,
   DistanceTrianglePlayground,
   // Figure element wraps code blocks with copy directive - needs grid column styling
   figure: (props: ComponentPropsWithoutRef<"figure">) => (

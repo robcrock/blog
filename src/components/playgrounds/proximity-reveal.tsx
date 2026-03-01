@@ -1,18 +1,9 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 // --- Types ---
 interface Point {
   x: number;
   y: number;
-}
-
-interface LayerConfig {
-  count: number;
-  radius: number;
-  size: number;
-  hue: number;
-  lightness: number;
-  rotate: number;
 }
 
 interface DebugOverlayProps {
@@ -106,7 +97,7 @@ function DebugOverlay({ distance, blur, translateY }: DebugOverlayProps) {
 }
 
 // --- Main component ---
-export function ProximityBlur() {
+export function ProximityReveal() {
   const anchorRef = useRef<HTMLDivElement | null>(null);
   const [values, setValues] = useState<ProximityValues>({
     blur: 8,
@@ -114,7 +105,9 @@ export function ProximityBlur() {
     distance: 300,
   });
 
-  const handlePointerMove = useCallback((event: PointerEvent) => {
+  const defaultValues: ProximityValues = { blur: 8, translateY: 16, distance: 300 };
+
+  function handlePointerMove(event: React.PointerEvent) {
     const anchor = anchorRef.current;
     if (!anchor) return;
 
@@ -126,20 +119,20 @@ export function ProximityBlur() {
     };
 
     const distance = getDistanceBetweenPoints(cursorPoint, centerPoint);
-
     const blur = clampedNormalize(distance, 200, 60, 8, 0);
     const translateY = clampedNormalize(distance, 200, 40, 16, 0);
 
     setValues({ blur, translateY, distance });
-  }, []);
+  }
 
-  useEffect(() => {
-    window.addEventListener("pointermove", handlePointerMove);
-    return () => window.removeEventListener("pointermove", handlePointerMove);
-  }, [handlePointerMove]);
+  function handlePointerLeave() {
+    setValues(defaultValues);
+  }
 
   return (
     <div
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
       style={{
         display: "flex",
         flexDirection: "column",
