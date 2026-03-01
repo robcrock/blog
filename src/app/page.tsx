@@ -7,8 +7,8 @@ import {
 export default function Home() {
   return (
     <>
-      <ProjectSection />
       <CraftSection />
+      <ProjectSection />
       <ConnectSection />
     </>
   );
