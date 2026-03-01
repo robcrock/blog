@@ -31,7 +31,12 @@ export const Craft = defineDocumentType(() => ({
       type: "string",
       required: false,
       description:
-        "Path to preview video (e.g., /craft/graph-slider/preview.mp4)",
+        "Path to preview video (e.g., /video/proximity-reveal/preview.mp4)",
+    },
+    poster: {
+      type: "string",
+      required: false,
+      description: "Base64-encoded blur placeholder JPEG for video preview",
     },
     image: {
       type: "string",

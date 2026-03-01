@@ -52,16 +52,33 @@ export default function CraftSection() {
           >
             <Card className="overflow-hidden ring-2 ring-transparent ring-offset-1 transition-all duration-200 focus-within:ring-primary hover:ring-primary">
               {/* Preview Media */}
-              <div className="relative w-full h-48 bg-muted">
+              <div className="overflow-hidden relative w-full aspect-video bg-muted">
                 {craft.video ? (
-                  <video
-                    src={craft.video}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="object-cover w-full h-full"
-                  />
+                  <>
+                    {/* Blur placeholder — shows instantly while video loads */}
+                    {craft.poster && (
+                      <img
+                        src={craft.poster}
+                        alt=""
+                        aria-hidden="true"
+                        className="object-cover absolute inset-0 w-full h-full blur-xl scale-110"
+                      />
+                    )}
+                    {/* Actual video with dual-format sources */}
+                    <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="object-cover absolute inset-0 w-full h-full"
+                    >
+                      <source
+                        src={craft.video.replace(".mp4", ".webm")}
+                        type="video/webm"
+                      />
+                      <source src={craft.video} type="video/mp4" />
+                    </video>
+                  </>
                 ) : craft.image ? (
                   <Image
                     src={craft.image}
@@ -71,7 +88,6 @@ export default function CraftSection() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 ) : (
-                  // Fallback: subtle dot pattern with initial
                   <div className="flex h-full w-full items-center justify-center bg-[radial-gradient(hsl(var(--muted-foreground)/0.1)_1px,transparent_1px)] [background-size:20px_20px]">
                     <span className="text-4xl font-bold text-muted-foreground/20">
                       {craft.title.charAt(0)}

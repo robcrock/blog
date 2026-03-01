@@ -46,18 +46,33 @@ export default function CraftPage() {
             href={craft.url}
             className="group focus-visible:outline-none"
           >
-            <Card className="overflow-hidden ring-2 ring-transparent ring-offset-1 transition-all duration-200 hover:ring-primary focus-within:ring-primary">
+            <Card className="overflow-hidden ring-2 ring-transparent ring-offset-1 transition-all duration-200 focus-within:ring-primary hover:ring-primary">
               {/* Preview Media */}
-              <div className="relative w-full h-48 bg-muted">
+              <div className="overflow-hidden relative w-full aspect-video bg-muted">
                 {craft.video ? (
-                  <video
-                    src={craft.video}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="object-cover w-full h-full"
-                  />
+                  <>
+                    {craft.poster && (
+                      <img
+                        src={craft.poster}
+                        alt=""
+                        aria-hidden="true"
+                        className="object-cover absolute inset-0 w-full h-full blur-xl scale-110"
+                      />
+                    )}
+                    <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="object-cover absolute inset-0 w-full h-full"
+                    >
+                      <source
+                        src={craft.video.replace(".mp4", ".webm")}
+                        type="video/webm"
+                      />
+                      <source src={craft.video} type="video/mp4" />
+                    </video>
+                  </>
                 ) : craft.image ? (
                   <Image
                     src={craft.image}
@@ -67,8 +82,7 @@ export default function CraftPage() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 ) : (
-                  // Fallback: subtle pattern background
-                  <div className="flex items-center justify-center w-full h-full bg-[radial-gradient(hsl(var(--muted-foreground)/0.1)_1px,transparent_1px)] [background-size:20px_20px]">
+                  <div className="flex h-full w-full items-center justify-center bg-[radial-gradient(hsl(var(--muted-foreground)/0.1)_1px,transparent_1px)] [background-size:20px_20px]">
                     <span className="text-4xl font-bold text-muted-foreground/20">
                       {craft.title.charAt(0)}
                     </span>
@@ -76,7 +90,7 @@ export default function CraftPage() {
                 )}
 
                 {/* Hover indicator */}
-                <div className="absolute top-3 right-3 p-1.5 bg-primary text-primary-foreground backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity shadow">
+                <div className="absolute right-3 top-3 rounded-full bg-primary p-1.5 text-primary-foreground opacity-0 shadow backdrop-blur-sm transition-opacity group-hover:opacity-100">
                   <ArrowUpRight className="w-4 h-4" />
                 </div>
               </div>
@@ -95,17 +109,17 @@ export default function CraftPage() {
                   </time>
                 </div>
 
-                <p className="text-sm text-muted-foreground line-clamp-2">
+                <p className="text-sm line-clamp-2 text-muted-foreground">
                   {craft.description}
                 </p>
 
                 {/* Tags */}
                 {craft.tags && craft.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5 mt-3">
+                  <div className="mt-3 flex flex-wrap gap-1.5">
                     {craft.tags.slice(0, 3).map((tag) => (
                       <span
                         key={tag}
-                        className="px-2 py-0.5 text-xs rounded bg-secondary text-secondary-foreground"
+                        className="rounded bg-secondary px-2 py-0.5 text-xs text-secondary-foreground"
                       >
                         {tag}
                       </span>
