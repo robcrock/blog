@@ -14,7 +14,7 @@ Hover over the image above. Not quickly. Slowly. Notice how the blur doesn't sna
 
 This kind of spatial interaction shows up everywhere in polished interfaces: cards that tilt toward your cursor, backgrounds that shift in parallax, elements that glow as you approach. They all share the same DNA. Every one of them is answering a single question: _how far is the pointer from this thing?_
 
-Once you can answer that question, you can map the result to any CSS property: blur, scale, opacity, hue, rotation. The image above uses blur and scale.
+Once you can answer that question, you can map the result to any CSS property: blur, scale, opacity, hue, rotation. The image above uses blur and a vertical offset.
 
 Let's build it up from nothing.
 
@@ -184,3 +184,5 @@ The API surface is intentionally small. You get back a coordinate and a bounding
 ---
 
 _Scroll back up and hover over the image one more time. What felt like a simple blur effect is actually a small pipeline: a bounding rect, a right triangle, a square root, a normalization, and a CSS property. Five steps between your cursor and that gradual reveal._
+
+> The core ideas in this post — distance math, normalization, and throttling bounding rect reads — draw heavily from Josh Comeau's [Whimsical Animations](https://courses.joshwcomeau.com/wham) course. If this clicked for you, that course goes much deeper.

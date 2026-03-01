@@ -6,17 +6,19 @@ tags: ["Cursor Interaction", "JavaScript", "React", "Animation"]
 published: false
 ---
 
+Click the button below. Then click it again somewhere else. Notice that the wave always starts exactly where you pressed.
+
 <RippleButtonDemo />
 
 ## Why Click Position Matters
 
-A ripple that always originates from center feels _wrong_. Your brain expects the wave to emanate from where you actually pressed—the same principle as `transform-origin` from the [previous post](/craft/origin-aware-popovers). The origin of an animation should match the origin of the interaction.
+A ripple that always originates from center feels _wrong_. Your brain expects the wave to emanate from where you actually pressed. The origin of an animation should match the origin of the interaction.
 
 ## The Technique
 
 This uses a pattern from particle effects: capture the click coordinates, spawn an element at that point, then expand and fade it out.
 
-{/* Code block: ripple effect logic—capturing click position, animating scale + opacity */}
+{/* Code block: ripple effect logic, capturing click position, animating scale and opacity */}
 
 The click event gives us `clientX` and `clientY`. From there we offset by the button's bounding rect to get the position _within_ the element—the exact spot the ripple should start.
 
@@ -41,7 +43,7 @@ Calculate the distance to all four corners, take the max, and that's your ripple
 
 The ripple element starts at `scale(0)` and `opacity: 0.5`, then transitions to full scale and `opacity: 0`. The duration should be fast enough to feel responsive but slow enough to actually _see_ the wave.
 
-{/* Code block: ripple animation CSS/keyframes */}
+{/* Code block: ripple animation keyframes */}
 
 One subtlety: the ripple element needs `pointer-events: none` so it doesn't intercept subsequent clicks, and the button needs `overflow: hidden` so the expanding circle doesn't bleed outside the bounds.
 
