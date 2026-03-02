@@ -63,7 +63,7 @@ function useBoundedScroll(bounds: number) {
     return () => unsubscribe();
   }, [bounds, scrollY, scrollYBounded]);
 
-  return { scrollYBounded, scrollYBoundedProgress };
+  return { scrollY, scrollYBounded, scrollYBoundedProgress };
 }
 
 export default function Header() {
@@ -95,6 +95,23 @@ export default function Header() {
     setShowSubtext(latest < 0.5);
   });
 
+  // Show header only after hero section has scrolled off screen
+  const [heroInView, setHeroInView] = useState(true);
+
+  useEffect(() => {
+    if (!isHome) return;
+    const hero = document.getElementById("hero-section");
+    if (!hero) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setHeroInView(entry.isIntersecting),
+      { threshold: 0 }
+    );
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, [isHome]);
+
+  const headerVisible = !isHome || !heroInView;
+
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (isHome) {
       e.preventDefault();
@@ -104,7 +121,12 @@ export default function Header() {
 
   return (
     <motion.header
-      style={{ height: headerHeight }}
+      animate={{ opacity: headerVisible ? 1 : 0 }}
+      transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+      style={{
+        height: headerHeight,
+        pointerEvents: headerVisible ? "auto" : "none",
+      }}
       // @ts-expect-error - Framer Motion 11 + React 19 type compatibility issue
       className="flex overflow-visible sticky top-0 z-[100] flex-col items-center py-2 backdrop-blur-sm md:flex-row bg-background/95"
     >
