@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { SOCIAL_LINKS } from "@/constants";
 import { renderSocialIcon } from "@/lib/social-icons";
@@ -73,17 +73,6 @@ export default function Header() {
 
   const { scrollYBoundedProgress } = useBoundedScroll(200);
 
-  // Transform values for animations - 120px on mobile, 160px on desktop
-  const headerHeightOutput = useMemo(
-    () => (isMobile ? [100, 64] : [160, 64]),
-    [isMobile]
-  );
-  const headerHeight = useTransform(
-    scrollYBoundedProgress,
-    [0, 1],
-    headerHeightOutput
-  );
-
   const logoScale = useTransform(scrollYBoundedProgress, [0, 1], [1, 0.4]);
   const logoWidth = useTransform(scrollYBoundedProgress, [0, 1], [68, 27.2]); // 68 * 0.4
 
@@ -120,20 +109,25 @@ export default function Header() {
   };
 
   return (
-    <motion.header
-      animate={{ opacity: headerVisible ? 1 : 0 }}
-      transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-      style={{
-        height: headerHeight,
-        pointerEvents: headerVisible ? "auto" : "none",
-      }}
-      // @ts-expect-error - Framer Motion 11 + React 19 type compatibility issue
-      className="flex overflow-visible sticky top-0 z-[100] flex-col items-center py-2 backdrop-blur-sm md:flex-row bg-background/95"
-    >
+    <>
+      <motion.header
+        initial={false}
+        animate={{
+          opacity: headerVisible ? 1 : 0,
+          height: headerVisible ? (isMobile ? 100 : 160) : 0,
+        }}
+        transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+        style={{
+          pointerEvents: headerVisible ? "auto" : "none",
+        }}
+        // @ts-expect-error - Framer Motion 11 + React 19 type compatibility issue
+        className="fixed top-0 left-0 right-0 z-[100] overflow-hidden bg-background/95 backdrop-blur-sm"
+      >
+        <div className="container flex flex-col items-center px-4 py-2 mx-auto max-w-6xl md:flex-row">
       {/* Logo and name container - appears first on mobile */}
       <motion.div
         // @ts-expect-error - Framer Motion 11 + React 19 type compatibility issue
-        className="flex gap-1 items-center -ml-3 w-full md:gap-4 md:w-auto"
+        className="flex gap-1 items-center -ml-3 w-full md:w-auto md:gap-4"
       >
         {/* Logo - scales down on scroll */}
         <motion.div
@@ -149,7 +143,7 @@ export default function Header() {
             onClick={handleLogoClick}
             className="block rounded ring-offset-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
-            <Logo className="w-[54px] h-[54px] md:w-[68px] md:h-[68px] mb-2" />
+            <Logo className="mb-2 h-[54px] w-[54px] md:h-[68px] md:w-[68px]" />
           </Link>
         </motion.div>
 
@@ -179,7 +173,7 @@ export default function Header() {
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
                 // @ts-expect-error - Framer Motion 11 + React 19 type compatibility issue
-                className="overflow-hidden text-sm md:text-base text-foreground"
+                className="overflow-hidden text-sm text-foreground md:text-base"
               >
                 Craft obsessed developer who designs.
               </motion.p>
@@ -191,12 +185,12 @@ export default function Header() {
       {/* Social icons - appears below on mobile, to the right on desktop */}
       <motion.div
         // @ts-expect-error - Framer Motion 11 + React 19 type compatibility issue
-        className="relative z-[101] flex gap-4 items-center w-full md:w-auto md:ml-auto"
+        className="relative z-[101] flex w-full items-center gap-4 md:ml-auto md:w-auto"
       >
         {/* Social icons */}
         <motion.div
           // @ts-expect-error - Framer Motion 11 + React 19 type compatibility issue
-          className="hidden items-center md:flex md:ml-auto"
+          className="hidden items-center md:ml-auto md:flex"
         >
           {SOCIAL_LINKS.map(({ href, icon }) => (
             <Button
@@ -210,6 +204,12 @@ export default function Header() {
           ))}
         </motion.div>
       </motion.div>
-    </motion.header>
+        </div>
+      </motion.header>
+      {/* Spacer so content isn't hidden under the fixed header on non-home pages */}
+      {!isHome && (
+        <div className="h-[100px] md:h-[160px]" aria-hidden="true" />
+      )}
+    </>
   );
 }

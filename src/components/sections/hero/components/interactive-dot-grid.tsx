@@ -8,18 +8,19 @@ import {
   perlin2D,
 } from "@/lib/utils";
 
-const COLS = 10;
-const ROWS = 10;
-const VIEWBOX_W = 400;
-const VIEWBOX_H = 400;
-const PADDING_X = VIEWBOX_W / (COLS + 1);
-const PADDING_Y = VIEWBOX_H / (ROWS + 1);
-const BASE_R = 2.2;
-const MAX_R = 12;
+const COLS = 20;
+const ROWS = 40;
+const VIEWBOX_W = 450;
+const VIEWBOX_H = 600;
+const BASE_R = 2;
+const MAX_R = 10;
+// Step between dots — corner dots sit MAX_R inset from each edge so they never clip on hover
+const STEP_X = (VIEWBOX_W - 2 * MAX_R) / (COLS - 1);
+const STEP_Y = (VIEWBOX_H - 2 * MAX_R) / (ROWS - 1);
 const INFLUENCE = 100;
 const DOT_COLOR = "#c0c0c0";
 const NOISE_SCALE = 0.3;
-const ENTRANCE_MS = 2800;
+const ENTRANCE_MS = 2000;
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
@@ -37,8 +38,8 @@ export default function InteractiveDotGrid() {
     const arr = [];
     for (let r = 0; r < ROWS; r++) {
       for (let c = 0; c < COLS; c++) {
-        const cx = PADDING_X + c * PADDING_X;
-        const cy = PADDING_Y + r * PADDING_Y;
+        const cx = MAX_R + c * STEP_X;
+        const cy = MAX_R + r * STEP_Y;
         const noise = perlin2D(c * NOISE_SCALE, r * NOISE_SCALE);
         const norm = (noise + 1) / 2;
         const rowBias = 1 - r / ROWS;
@@ -166,7 +167,7 @@ export default function InteractiveDotGrid() {
       <svg
         ref={svgRef}
         viewBox={`0 0 ${VIEWBOX_W} ${VIEWBOX_H}`}
-        preserveAspectRatio="xMaxYMin meet"
+        preserveAspectRatio="xMidYMid slice"
         className="block w-full h-full"
         role="img"
         aria-label="Decorative interactive dot grid"

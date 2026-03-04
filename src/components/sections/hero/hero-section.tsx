@@ -1,45 +1,45 @@
-import Link from "next/link";
-
 import { Button } from "@/components/ui/button";
 import { SOCIAL_LINKS } from "@/constants";
 import { renderSocialIcon } from "@/lib/social-icons";
+import Link from "next/link";
 
 import InteractiveDotGrid from "./components/interactive-dot-grid";
 
 const HeroSection = () => {
   return (
-    <section id="hero-section" className="relative overflow-hidden -mt-[100px] md:-mt-[160px] py-6 md:py-10">
-      <div className="flex flex-col items-center gap-8 md:flex-row md:items-start md:gap-10 lg:gap-14">
-        {/* Left side: Dot Grid */}
-        <div className="shrink-0 w-64 h-64 md:w-[380px] md:h-[380px] lg:w-[440px] lg:h-[440px]">
-          <InteractiveDotGrid />
+    <section
+      id="hero-section"
+      className="grid overflow-hidden relative grid-cols-1 mb-16 md:mb-24 md:h-screen md:grid-cols-2"
+    >
+      {/* Left col: dot grid fills the full column */}
+      <div className="overflow-hidden aspect-square md:aspect-auto md:h-full">
+        <InteractiveDotGrid />
+      </div>
+
+      {/* Right col: name, tagline, socials — vertically centered */}
+      <div className="flex flex-col gap-6 px-8 py-10 md:px-10 md:pt-44 lg:px-14">
+        <div>
+          <h1 className="text-5xl font-bold leading-none tracking-tighter md:text-7xl lg:text-8xl xl:text-[84px]">
+            Robert
+            <br />
+            Crocker
+          </h1>
+          <p className="mt-4 text-lg text-muted-foreground md:text-xl">
+            Craft obsessed developer who designs.
+          </p>
         </div>
 
-        {/* Right side: Name & Socials — top-aligned, no logo */}
-        <div className="flex flex-col items-center text-center md:items-start md:text-left gap-6">
-          <div>
-            <h1 className="text-5xl font-bold tracking-tighter leading-none md:text-6xl lg:text-7xl xl:text-[84px]">
-              Robert
-              <br />
-              Crocker
-            </h1>
-            <p className="mt-4 text-lg text-muted-foreground md:text-xl">
-              Craft obsessed developer who designs.
-            </p>
-          </div>
-
-          <div className="flex items-center gap-2">
-            {SOCIAL_LINKS.map(({ href, icon }) => (
-              <Button
-                key={href}
-                variant="ghost"
-                size="icon"
-                render={<Link href={href} />}
-              >
-                {renderSocialIcon({ iconName: icon, size: 24 })}
-              </Button>
-            ))}
-          </div>
+        <div className="flex gap-2 items-center">
+          {SOCIAL_LINKS.map(({ href, icon }) => (
+            <Button
+              key={href}
+              variant="ghost"
+              size="icon"
+              render={<Link href={href} />}
+            >
+              {renderSocialIcon({ iconName: icon, size: 24 })}
+            </Button>
+          ))}
         </div>
       </div>
     </section>
