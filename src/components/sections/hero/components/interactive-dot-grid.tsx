@@ -13,14 +13,16 @@ const ROWS = 40;
 const VIEWBOX_W = 450;
 const VIEWBOX_H = 600;
 const BASE_R = 2;
-const MAX_R = 10;
+const MAX_R = 7;
 // Step between dots — corner dots sit MAX_R inset from each edge so they never clip on hover
 const STEP_X = (VIEWBOX_W - 2 * MAX_R) / (COLS - 1);
 const STEP_Y = (VIEWBOX_H - 2 * MAX_R) / (ROWS - 1);
 const INFLUENCE = 100;
 const DOT_COLOR = "#c0c0c0";
+const HOVER_COLOR = "#CB5142";
 const NOISE_SCALE = 0.3;
-const ENTRANCE_MS = 2000;
+
+const ENTRANCE_MS = 1400;
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
@@ -78,7 +80,7 @@ export default function InteractiveDotGrid() {
         const el = circlesRef.current[i];
         if (!el) return;
         if (elapsed >= d.delay) {
-          const p = Math.min(1, (elapsed - d.delay) / 600);
+          const p = Math.min(1, (elapsed - d.delay) / 900);
           const e = 1 - Math.pow(1 - p, 3); // ease-out cubic
           el.setAttribute("r", String(BASE_R * e));
           el.setAttribute("opacity", String(e));
@@ -147,6 +149,7 @@ export default function InteractiveDotGrid() {
           "r",
           String(clampedNormalize(d, 0, INFLUENCE, MAX_R, BASE_R))
         );
+        el.setAttribute("fill", d < INFLUENCE ? HOVER_COLOR : DOT_COLOR);
       }
       rafRef.current = requestAnimationFrame(tick);
     }

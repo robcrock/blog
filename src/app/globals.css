@@ -43,8 +43,8 @@ code {
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 10%;
 
-    /* Primary - The signature red #D34A3A */
-    --primary: 6 57% 53%;
+    /* Primary - The signature red #CB5142 */
+    --primary: 7 57% 53%;
     --primary-foreground: 0 0% 100%;
 
     /* Secondary - Subtle gray for less prominent actions */
@@ -56,7 +56,7 @@ code {
     --muted-foreground: 0 0% 45%;
 
     /* Accent - Using the primary red for emphasis */
-    --accent: 6 57% 53%;
+    --accent: 7 57% 53%;
     --accent-foreground: 0 0% 100%;
 
     /* Destructive - Slightly different red for warnings */
@@ -68,7 +68,7 @@ code {
     --input: 0 0% 92%;
 
     /* Ring - Matches primary for focus states */
-    --ring: 6 57% 53%;
+    --ring: 7 57% 53%;
 
     /* Radius - Minimal, functional */
     --radius: 0.25rem;
@@ -163,8 +163,8 @@ code {
 }
 
 [data-highlighted-line] {
-  background-color: rgba(211, 74, 58, 0.1);
-  border-left: 3px solid #d34a3a;
+  background-color: rgba(203, 81, 66, 0.1);
+  border-left: 3px solid #cb5142;
   padding-left: calc(0.5rem - 3px);
   padding-right: 0.5rem;
 }
