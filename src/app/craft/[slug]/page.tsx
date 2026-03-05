@@ -85,7 +85,7 @@ export default async function CraftDetailPage({ params }: CraftPageProps) {
   const nextCraft = craftIndex > 0 ? sortedCrafts[craftIndex - 1] : null;
 
   return (
-    <Container className="space-y-4 md:mb-8">
+    <Container className="pt-8 pb-20 space-y-4">
       {/* Back Navigation */}
       <Link
         href="/craft"

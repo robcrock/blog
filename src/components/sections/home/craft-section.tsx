@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { allCrafts } from "contentlayer/generated";
 import { compareDesc, format } from "date-fns";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -94,6 +94,11 @@ export default function CraftSection() {
                     </span>
                   </div>
                 )}
+
+                {/* Hover indicator */}
+                <div className="absolute right-3 top-3 rounded-full bg-primary p-1.5 text-primary-foreground opacity-0 shadow backdrop-blur-sm transition-opacity group-hover:opacity-100">
+                  <ArrowUpRight className="h-4 w-4" />
+                </div>
               </div>
 
               {/* Content */}

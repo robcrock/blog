@@ -1,3 +1,4 @@
+export { default as HeroSection } from "./hero/hero-section";
 export { default as ArticleSection } from "./home/article-section";
 export { default as ConnectSection } from "./home/connect-section";
 export { default as CraftSection } from "./home/craft-section";

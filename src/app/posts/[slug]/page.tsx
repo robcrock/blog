@@ -73,7 +73,7 @@ export default async function PostPage({ params }: PostPageProps) {
   }
 
   return (
-    <Container className="space-y-4 md:mb-8">
+    <Container className="pt-8 pb-20 space-y-4">
       {/* Back Navigation - matches Container from posts page */}
       <Link
         href="/posts"

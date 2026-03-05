@@ -1,45 +1,46 @@
-"use client";
-
+import Container from "@/components/layout/container";
 import { Card } from "@/components/ui/card";
-import { NAVIGATION_ITEMS, PROJECTS } from "@/constants";
+import { PROJECTS } from "@/constants";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
-export default function ProjectsSection() {
-  const pathname = usePathname();
-  const isHome = pathname === "/";
+export const metadata = {
+  title: "Work | Robert Crocker",
+  description:
+    "Pixel-perfect solutions to Frontend Mentor challenges, built with care.",
+};
 
+export default function ProjectsPage() {
   if (PROJECTS.length === 0) {
     return null;
   }
 
-  // const displayedProjects = PROJECTS.slice(0, DISPLAY_COUNT);
-  const projectsNavItem = NAVIGATION_ITEMS.find(
-    (item) => item.id === "projects"
-  )!;
-
   return (
-    <div>
+    <Container className="pt-8 pb-20">
       {/* Page Header */}
-      <h2 className="text-lg whitespace-nowrap mv-2">
-        {projectsNavItem.label}
-      </h2>
-      <div className="flex-1 mb-4 h-px bg-border" />
-
-      {/* Section Description */}
-      <p className="mb-6 text-sm text-muted-foreground">
-        Frontend Mentor challenges—click any project to view the solution.
-      </p>
+      <header className="mb-8">
+        <Link
+          href="/#projects"
+          className="inline-flex gap-2 items-center mb-6 text-sm font-medium transition-colors text-muted-foreground hover:text-primary"
+        >
+          ← Back to home
+        </Link>
+        <h1 className="mb-4 text-4xl font-bold tracking-tighter sm:text-5xl">
+          Work
+        </h1>
+        <p className="max-w-2xl text-lg text-muted-foreground">
+          Pixel-perfect solutions to Frontend Mentor challenges, built with care
+          and attention to detail.
+        </p>
+      </header>
 
       {/* Projects Grid */}
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {PROJECTS.map((project, index) => (
+        {PROJECTS.map((project) => (
           <Card
-            key={index}
-            id={`project-${index}`}
-            className="ring-2 ring-transparent ring-offset-1 transition-all duration-200 group hover:ring-primary focus-within:ring-primary"
+            key={project.link}
+            className="ring-2 ring-transparent ring-offset-1 transition-all duration-200 group focus-within:ring-primary hover:ring-primary"
           >
             <Link
               href={project.link}
@@ -60,13 +61,13 @@ export default function ProjectsSection() {
                 }}
               />
               {/* External link indicator */}
-              <div className="absolute top-3 text-primary-foreground right-3 p-1.5 bg-primary backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity shadow">
+              <div className="absolute right-3 top-3 rounded-full bg-primary p-1.5 text-primary-foreground opacity-0 shadow backdrop-blur-sm transition-opacity group-hover:opacity-100">
                 <ArrowUpRight className="w-4 h-4" />
               </div>
             </Link>
           </Card>
         ))}
       </div>
-    </div>
+    </Container>
   );
 }

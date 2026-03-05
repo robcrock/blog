@@ -16,7 +16,7 @@ export default function PostsPage() {
     .sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)));
 
   return (
-    <Container>
+    <Container className="pt-8 pb-20">
       {/* Page Header */}
       <header className="mb-4 md:mb-8">
         <Link
@@ -42,7 +42,7 @@ export default function PostsPage() {
           <li key={post.slug}>
             <Link
               href={post.url}
-              className="flex flex-col px-8 py-6 rounded-lg border hover:bg-zinc-50 dark:hover:bg-zinc-800/30 hover:shadow hover:border-primary"
+              className="flex flex-col px-8 py-6 rounded-lg border hover:bg-muted hover:shadow hover:border-primary"
               prefetch={true}
             >
               <div className="flex justify-between mb-6 text-sm font-medium text-muted-foreground">
