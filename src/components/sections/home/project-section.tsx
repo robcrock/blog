@@ -45,7 +45,7 @@ export default function ProjectsSection() {
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {displayedProjects.map((project, index) => (
           <Card
-            key={index}
+            key={project.link}
             id={`project-${index}`}
             className="ring-2 ring-transparent ring-offset-1 transition-all duration-200 group hover:ring-primary focus-within:ring-primary"
           >

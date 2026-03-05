@@ -19,7 +19,7 @@ export default function CraftPage() {
     .sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)));
 
   return (
-    <Container>
+    <Container className="pt-8 pb-20">
       {/* Page Header */}
       <header className="mb-8">
         <Link

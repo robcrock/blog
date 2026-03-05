@@ -26,7 +26,7 @@ code {
 
 /* Optional: Style inline code differently from code blocks */
 :not(pre) > code {
-  background: rgb(var(--foreground-rgb), 0.1);
+  background: hsl(var(--foreground) / 0.1);
   padding: 0.2em 0.4em;
   border-radius: 0.25rem;
 }
