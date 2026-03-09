@@ -17,7 +17,7 @@ export const SOCIAL_LINKS = [
     icon: "MentorCruise",
   },
   {
-    href: "https://www.skool.com/robert-crockers-skool-3349/about?ref=5d65b749cbe94b9e8f8ac2a2beb55f26",
+    href: "skool.com/design-engineer-school",
     icon: "Skool",
   },
 ] as const;
@@ -124,7 +124,7 @@ export const CONNECT_OFFERINGS: ConnectOffering[] = [
     description:
       "Join a community of like-minded developers learning together. Get access to resources, discussions, and group learning sessions.",
     platform: "Skool",
-    link: "https://www.skool.com/robert-crockers-skool-3349/about?ref=5d65b749cbe94b9e8f8ac2a2beb55f26",
+    link: "skool.com/design-engineer-school",
     features: [
       "Community discussions",
       "Shared resources",
