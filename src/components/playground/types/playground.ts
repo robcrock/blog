@@ -50,3 +50,16 @@ export interface ButtonControlProps {
   onClick: () => void;
   variant?: "primary" | "secondary";
 }
+
+export interface DualRangeControlProps {
+  label: string;
+  minValue: number;
+  maxValue: number;
+  onMinChange: (value: number) => void;
+  onMaxChange: (value: number) => void;
+  min?: number;
+  max?: number;
+  step?: number;
+  unit?: string;
+  formatValue?: (value: number) => string;
+}

@@ -4,7 +4,9 @@ import PostImage from "@/components/content/post-image";
 import { SandpackEditor } from "@/components/content/sandpack-editor";
 import TransformerCopyButton from "@/components/content/transformer-copy-button";
 import {
+  ClampedNormalizePlayground,
   DistanceTrianglePlayground,
+  InteractiveDotGridPlayground,
   PopoverPlayground,
   ProximityReveal,
   ToastPlayground,
@@ -36,10 +38,12 @@ const mdxComponents = {
   PostImage,
   SandpackEditor: SandpackEditorWrapper,
   // Playground components
+  ClampedNormalizePlayground,
   TransformPlayground,
   ToastPlayground,
   PopoverPlayground,
   ProximityReveal: ProximityRevealWrapper,
+  InteractiveDotGridPlayground,
   DistanceTrianglePlayground,
   // Figure element wraps code blocks with copy directive - needs grid column styling
   figure: (props: ComponentPropsWithoutRef<"figure">) => (

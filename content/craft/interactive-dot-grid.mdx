@@ -1,0 +1,172 @@
+---
+title: "Interactive Dot Grid"
+date: 2026-03-07
+description: "Build a grid of SVG circles that react organically to cursor proximity, creating a fluid, living effect from simple distance math."
+tags: ["Cursor Interaction", "SVG", "JavaScript", "React"]
+video: "/video/interactive-dot-grid/preview.mp4"
+published: true
+---
+
+<InteractiveDotGridPlayground />
+
+Move your cursor across the grid above. Watch how the dots swell as you approach, then shrink back as you pull away. There's no animation library here. No physics engine. Just distance math applied to every circle, on every mouse move.
+
+This effect appears throughout modern interfaces: hero sections, loading states, backgrounds that feel alive without being distracting. The technique scales from dozens of dots to thousands. The core logic stays the same.
+
+If you've read the [Proximity Reveal](/craft/proximity-reveal) post, you already know the foundation: measuring distance between two points and mapping it to a visual property. Here we're applying that same idea to a population of elements instead of a single one.
+
+## The Grid
+
+An SVG with a `viewBox` gives us a coordinate system that scales with the container. We can define our grid in abstract units and let the browser handle responsive sizing.
+
+```ts
+const COLS = 30;
+const ROWS = 15;
+const VIEWBOX_W = 600;
+const VIEWBOX_H = 300;
+const BASE_R = 2;
+const MAX_R = 7;
+
+// Spacing between dots, with padding so edge dots aren't clipped
+const STEP_X = (VIEWBOX_W - 2 * MAX_R) / (COLS - 1);
+const STEP_Y = (VIEWBOX_H - 2 * MAX_R) / (ROWS - 1);
+```
+
+With these constants, we can generate our dot positions once and reuse them:
+
+```ts
+const dots = [];
+for (let row = 0; row < ROWS; row++) {
+  for (let col = 0; col < COLS; col++) {
+    dots.push({
+      x: MAX_R + col * STEP_X,
+      y: MAX_R + row * STEP_Y,
+    });
+  }
+}
+```
+
+That's 450 dots. Each one is a `<circle>` element in the SVG, positioned at its computed `cx` and `cy` coordinates. At rest, they all share the same radius.
+
+## Cursor to SVG Coordinates
+
+Here's where things get interesting. The browser gives us cursor coordinates in screen pixels via `clientX` and `clientY`. But our dots live in SVG coordinate space, which might be scaled, translated, or aspect-ratio corrected. We need to convert.
+
+SVG provides a native solution: `getScreenCTM()` returns the current transformation matrix from SVG coordinates to screen coordinates. Invert it, and you get the reverse mapping.
+
+```ts
+const svg = svgRef.current;
+const pt = svg.createSVGPoint();
+pt.x = event.clientX;
+pt.y = event.clientY;
+
+const ctm = svg.getScreenCTM();
+const svgPoint = pt.matrixTransform(ctm.inverse());
+// svgPoint.x and svgPoint.y are now in viewBox coordinates
+```
+
+This handles every edge case: CSS transforms on parent elements, responsive scaling, padding, borders. The matrix captures it all.
+
+## Distance to Radius
+
+This is the same `getDistanceBetweenPoints` function from the [Proximity Reveal](/craft/proximity-reveal) post:
+
+```ts
+function getDistanceBetweenPoints(p1, p2) {
+  const deltaX = p1.x - p2.x;
+  const deltaY = p1.y - p2.y;
+  return Math.sqrt(deltaX ** 2 + deltaY ** 2);
+}
+```
+
+For each dot, we compute its distance from the cursor, then map that distance to a radius and a fill color. This logic lives in a single function called `getDotProps`:
+
+```ts
+const BASE_R = 2; // Radius when cursor is far
+const MAX_R = 7;  // Radius when cursor is close
+
+const getDotProps = (dot) => {
+  if (!cursor) return { r: BASE_R, fill: DOT_COLOR };
+
+  const distance = getDistanceBetweenPoints(cursor, dot);
+  const r = clampedNormalize(distance, 0, influence, MAX_R, BASE_R);
+  const fill = distance < influence ? HOVER_COLOR : DOT_COLOR;
+  return { r, fill };
+};
+```
+
+When `cursor` is null — the pointer has left the grid — every dot returns to its resting state. Otherwise, `clampedNormalize` maps the distance to a radius: 0 distance gives `MAX_R`, anything beyond `influence` gives `BASE_R`, and everything in between is linearly interpolated.
+
+<ClampedNormalizePlayground />
+
+## Tracking the Cursor
+
+Cursor position is stored in React state as a `Point | null`. When the pointer leaves the SVG, we reset it to `null` so all dots return to their resting size.
+
+```ts
+const [cursor, setCursor] = useState<Point | null>(null);
+
+const handleMouseMove = (e) => {
+  const svgPoint = screenToSVG(e.clientX, e.clientY);
+  setCursor(svgPoint);
+};
+
+const handleMouseLeave = () => {
+  setCursor(null);
+};
+```
+
+Each state update triggers a re-render, which recomputes `getDotProps` for all 450 circles. To smooth out the per-event jumps, each `<circle>` gets a short CSS transition:
+
+```tsx
+<circle
+  r={r}
+  fill={fill}
+  style={{ transition: "r 0.05s ease-out, fill 0.05s ease-out" }}
+/>
+```
+
+The transition handles interpolation between discrete values, so the dots feel fluid even though we're only computing new radii on mouse events.
+
+## Adding Color
+
+Radius isn't the only property we can map. Color creates a stronger visual signal for the influence zone. In `getDotProps`, we return a `fill` alongside the radius:
+
+```ts
+const DOT_COLOR = "hsl(210deg 15% 50%)";
+const HOVER_COLOR = "hsl(15deg 65% 55%)";
+
+const fill = distance < influence ? HOVER_COLOR : DOT_COLOR;
+```
+
+The binary switch creates a visible boundary at the edge of the influence radius — you can see it as the dashed circle in the playground. If you want a smoother gradient, you could interpolate between two colors based on the normalized distance. But the sharp edge often reads better, creating a clear "spotlight" effect.
+
+## Accessibility Considerations
+
+Motion like this can be problematic for users who prefer reduced motion. Check the preference before attaching any mouse handlers:
+
+```ts
+const prefersReducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;
+
+const handleMouseMove = prefersReducedMotion ? undefined : (e) => {
+  const svgPoint = screenToSVG(e.clientX, e.clientY);
+  setCursor(svgPoint);
+};
+```
+
+This respects the user's system setting. The grid still renders; it just doesn't react to the cursor.
+
+## Going Further
+
+Once you have the distance-to-property mapping working, the variations are endless:
+
+**Staggered reactions**: Add a time delay based on distance, so the effect ripples outward like a wave.
+
+
+**Color gradients**: Interpolate through a color palette based on distance, creating rainbow ripples.
+
+The playground at the top of this page is intentionally simple. It shows the core technique without the flourishes. The hero section on this site uses a more elaborate version with entrance animations and noise-based variance. But the math underneath is identical: measure distance, normalize it, apply it to a visual property.
+
+That's the DNA of every proximity-based interaction. Once you internalize it, you'll see it everywhere.
