@@ -11,7 +11,7 @@ import {
   PlaygroundControls,
   SelectControl,
 } from "@/components/playground";
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 type TransformOrigin =
   | "top left"

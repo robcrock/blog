@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/shared/components/button";
 import { Check, Copy } from "lucide-react";
 
 const TransformerCopyButton = () => {

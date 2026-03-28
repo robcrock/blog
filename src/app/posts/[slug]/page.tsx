@@ -1,5 +1,5 @@
 // src/app/posts/[slug]/page.tsx
-import Container from "@/components/layout/container";
+import Container from "@/shared/layout/container";
 import { MDXContent } from "@/components/mdx-content";
 import { allPosts } from "contentlayer/generated";
 import { format } from "date-fns";

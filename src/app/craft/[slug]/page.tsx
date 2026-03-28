@@ -1,5 +1,5 @@
 // src/app/craft/[slug]/page.tsx
-import Container from "@/components/layout/container";
+import Container from "@/shared/layout/container";
 import { MDXContent } from "@/components/mdx-content";
 import { allCrafts } from "contentlayer/generated";
 import { compareDesc, format } from "date-fns";

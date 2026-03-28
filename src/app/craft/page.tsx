@@ -1,6 +1,6 @@
 // src/app/craft/page.tsx
-import Container from "@/components/layout/container";
-import { Card } from "@/components/ui/card";
+import Container from "@/shared/layout/container";
+import { Card } from "@/shared/components/card";
 import { allCrafts } from "contentlayer/generated";
 import { compareDesc, format } from "date-fns";
 import { ArrowUpRight } from "lucide-react";

@@ -1,7 +1,7 @@
 // src/components/playground/Playground.tsx
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 import { PlaygroundProps } from "./types";
 

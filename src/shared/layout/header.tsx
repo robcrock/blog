@@ -3,13 +3,13 @@
 import { useEffect, useState } from "react";
 
 import { SOCIAL_LINKS } from "@/constants";
-import { renderSocialIcon } from "@/lib/social-icons";
+import { renderSocialIcon } from "@/shared/lib/social-icons";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import Logo from "../brand/logo";
-import { Button } from "../ui/button";
+import Logo from "@/shared/brand/logo";
+import { Button } from "@/shared/components/button";
 
 export default function Header() {
   const pathname = usePathname();

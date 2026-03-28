@@ -1,5 +1,5 @@
-import Container from "@/components/layout/container";
-import { Card } from "@/components/ui/card";
+import Container from "@/shared/layout/container";
+import { Card } from "@/shared/components/card";
 import { PROJECTS } from "@/constants";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
