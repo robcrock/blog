@@ -3,7 +3,7 @@ import { SOCIAL_LINKS } from "@/constants";
 import { renderSocialIcon } from "@/shared/lib/social-icons";
 import Link from "next/link";
 
-import InteractiveDotGrid from "./components/interactive-dot-grid";
+import InteractiveDotGrid from "../components/interactive-dot-grid";
 
 const HeroSection = () => {
   return (

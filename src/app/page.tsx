@@ -3,7 +3,7 @@ import {
   CraftSection,
   HeroSection,
   ProjectSection,
-} from "@/components/sections";
+} from "@/features/home";
 
 export default function Home() {
   return (
