@@ -17,7 +17,7 @@ export const SOCIAL_LINKS = [
     icon: "MentorCruise",
   },
   {
-    href: "skool.com/design-engineering",
+    href: "https://www.skool.com/design-engineering",
     icon: "Skool",
   },
 ] as const;
@@ -124,7 +124,7 @@ export const CONNECT_OFFERINGS: ConnectOffering[] = [
     description:
       "Join a community of like-minded developers learning together. Get access to resources, discussions, and group learning sessions.",
     platform: "Skool",
-    link: "skool.com/design-engineering",
+    link: "https://www.skool.com/design-engineering",
     features: [
       "Community discussions",
       "Shared resources",
