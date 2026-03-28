@@ -1,7 +1,7 @@
 // src/components/playground/controls/dual-range-control.tsx
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 import { DualRangeControlProps } from "../types";
 

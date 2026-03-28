@@ -1,6 +1,6 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
+import { Card } from "@/shared/components/card";
 import { NAVIGATION_ITEMS, PROJECTS } from "@/constants";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";

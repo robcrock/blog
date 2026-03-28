@@ -6,7 +6,7 @@ import {
   clampedNormalize,
   getDistanceBetweenPoints,
   perlin2D,
-} from "@/lib/utils";
+} from "@/shared/lib/utils";
 
 const COLS = 20;
 const ROWS = 40;

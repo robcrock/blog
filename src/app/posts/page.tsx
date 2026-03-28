@@ -1,5 +1,5 @@
 // src/app/posts/page.tsx
-import Container from "@/components/layout/container";
+import Container from "@/shared/layout/container";
 import { allPosts } from "contentlayer/generated";
 import { compareDesc, format } from "date-fns";
 import Link from "next/link";

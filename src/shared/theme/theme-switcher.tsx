@@ -3,7 +3,7 @@
 import { LucideMoon, LucideSun } from "lucide-react";
 import { useTheme } from "next-themes";
 
-import { Button } from "../ui/button";
+import { Button } from "@/shared/components/button";
 
 const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme();

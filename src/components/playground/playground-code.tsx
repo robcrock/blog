@@ -1,7 +1,7 @@
 // src/components/playground/PlaygroundCode.tsx
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 import { PlaygroundCodeProps } from "./types";
 

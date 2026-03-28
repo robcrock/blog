@@ -1,5 +1,5 @@
 // src/components/sections/home/mentorship-section.tsx
-import { Card } from "@/components/ui/card";
+import { Card } from "@/shared/components/card";
 import { CONNECT_OFFERINGS, NAVIGATION_ITEMS } from "@/constants";
 import { ArrowUpRight, Check, UserCircle, Users } from "lucide-react";
 

@@ -1,4 +1,4 @@
-import { Card } from "@/components/ui/card";
+import { Card } from "@/shared/components/card";
 import { allCrafts } from "contentlayer/generated";
 import { compareDesc, format } from "date-fns";
 import { ArrowRight, ArrowUpRight } from "lucide-react";

@@ -2,7 +2,7 @@ import type { Preview } from "@storybook/react";
 
 import "../src/app/globals.css";
 
-import { ThemeProvider } from "../src/components/theme/theme-provider";
+import { ThemeProvider } from "../src/shared/theme/theme-provider";
 
 import "./fonts.css"; // Define font CSS variables for Storybook
 

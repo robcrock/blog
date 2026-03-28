@@ -11,7 +11,7 @@ import {
   RangeControl,
   SelectControl,
 } from "@/components/playground";
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 import { motion } from "framer-motion";
 
 type TransformOrigin = "center" | "left" | "right" | "top" | "bottom";

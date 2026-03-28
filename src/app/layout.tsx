@@ -7,9 +7,9 @@ import { GeistSans } from "geist/font/sans";
 
 import "./globals.css";
 
-import Footer from "@/components/layout/footer";
-import Header from "@/components/layout/header";
-import { ThemeProvider } from "@/components/theme/theme-provider";
+import Footer from "@/shared/layout/footer";
+import Header from "@/shared/layout/header";
+import { ThemeProvider } from "@/shared/theme/theme-provider";
 import { Toaster } from "sonner";
 
 export const metadata = {
