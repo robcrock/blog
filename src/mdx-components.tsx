@@ -11,7 +11,7 @@ import {
   ProximityReveal,
   ToastPlayground,
   TransformPlayground,
-} from "@/components/playgrounds";
+} from "@/features/craft/playgrounds";
 
 type HeadingProps = ComponentPropsWithoutRef<"h1">;
 type ParagraphProps = ComponentPropsWithoutRef<"p">;

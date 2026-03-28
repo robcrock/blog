@@ -9,7 +9,7 @@ import {
   PlaygroundCode,
   PlaygroundControls,
   RangeControl,
-} from "@/components/playground";
+} from "../playground";
 
 // --- Utilities ---
 const clamp = (value: number, min: number, max: number): number => {

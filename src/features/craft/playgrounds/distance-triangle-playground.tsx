@@ -7,7 +7,7 @@ import {
   Playground,
   PlaygroundCanvas,
   PlaygroundCode,
-} from "@/components/playground";
+} from "../playground";
 
 interface Point {
   x: number;

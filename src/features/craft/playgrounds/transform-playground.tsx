@@ -10,7 +10,7 @@ import {
   PlaygroundControls,
   RangeControl,
   SelectControl,
-} from "@/components/playground";
+} from "../playground";
 import { cn } from "@/shared/lib/utils";
 import { motion } from "framer-motion";
 

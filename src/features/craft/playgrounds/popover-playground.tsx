@@ -10,7 +10,7 @@ import {
   PlaygroundCode,
   PlaygroundControls,
   SelectControl,
-} from "@/components/playground";
+} from "../playground";
 import { cn } from "@/shared/lib/utils";
 
 type TransformOrigin =
