@@ -1,3 +1,5 @@
+// This file must remain at src/mdx-components.tsx — Next.js and contentlayer2
+// require it at this exact path for MDX component resolution.
 import { ComponentPropsWithoutRef } from "react";
 
 import PostImage from "@/features/posts/post-image";

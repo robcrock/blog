@@ -2,7 +2,7 @@ import React from "react";
 import { SiGithub, SiMentorcruise, SiX } from "@icons-pack/react-simple-icons";
 import { LucideLinkedin } from "lucide-react";
 import SkoolIcon from "@/shared/icons/skool-icon";
-import { SOCIAL_LINKS } from "@/constants";
+import { SOCIAL_LINKS } from "@/shared/lib/constants";
 
 type IconName = (typeof SOCIAL_LINKS)[number]["icon"];
 
