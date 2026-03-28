@@ -9,7 +9,7 @@ import {
   PlaygroundCanvas,
   PlaygroundControls,
   SelectControl,
-} from "@/components/playground";
+} from "../playground";
 import { toast } from "sonner"; // You'll need to install this: pnpm add sonner
 
 type ToastType = "success" | "error" | "info";

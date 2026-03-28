@@ -176,7 +176,7 @@ export const AllPlaygrounds: Story = {
  *   PlaygroundCode,
  *   RangeControl,
  *   SelectControl,
- * } from "@/components/playground";
+ * } from "../playground";
  *
  * export function MyPlayground() {
  *   const [value, setValue] = useState(50);
