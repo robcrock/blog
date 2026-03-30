@@ -4,8 +4,13 @@ import { withContentlayer } from "next-contentlayer2";
 const nextConfig: NextConfig = {
   // You can remove pageExtensions since Contentlayer handles MDX
   reactStrictMode: true,
-  // Empty turbopack config to acknowledge Turbopack as default in Next.js 16
-  turbopack: {},
+  // Turbopack resolve aliases for packages with export maps it can't resolve
+  turbopack: {
+    resolveAlias: {
+      dialkit: "dialkit/dist/index.js",
+      "dialkit/styles.css": "dialkit/dist/styles.css",
+    },
+  },
 };
 
 export default withContentlayer(nextConfig);
