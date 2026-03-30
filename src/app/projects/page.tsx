@@ -1,6 +1,6 @@
 import Container from "@/shared/layout/container";
 import { Card } from "@/shared/components/card";
-import { PROJECTS } from "@/constants";
+import { PROJECTS } from "@/shared/lib/constants";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";

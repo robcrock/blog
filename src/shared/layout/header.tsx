@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { SOCIAL_LINKS } from "@/constants";
+import { SOCIAL_LINKS } from "@/shared/lib/constants";
 import { renderSocialIcon } from "@/shared/lib/social-icons";
 import { motion } from "framer-motion";
 import Link from "next/link";

@@ -1,9 +1,9 @@
 import { Button } from "@/shared/components/button";
-import { SOCIAL_LINKS } from "@/constants";
+import { SOCIAL_LINKS } from "@/shared/lib/constants";
 import { renderSocialIcon } from "@/shared/lib/social-icons";
 import Link from "next/link";
 
-import InteractiveDotGrid from "./components/interactive-dot-grid";
+import InteractiveDotGrid from "../components/interactive-dot-grid";
 
 const HeroSection = () => {
   return (

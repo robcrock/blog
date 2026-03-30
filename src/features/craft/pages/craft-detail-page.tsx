@@ -1,5 +1,5 @@
 import Container from "@/shared/layout/container";
-import { MDXContent } from "@/components/mdx-content";
+import { MDXContent } from "@/features/posts/mdx-content";
 import type { Craft } from "contentlayer/generated";
 import { format } from "date-fns";
 import Link from "next/link";

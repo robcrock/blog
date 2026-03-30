@@ -1,8 +1,10 @@
+// This file must remain at src/mdx-components.tsx — Next.js and contentlayer2
+// require it at this exact path for MDX component resolution.
 import { ComponentPropsWithoutRef } from "react";
 
-import PostImage from "@/components/content/post-image";
-import { SandpackEditor } from "@/components/content/sandpack-editor";
-import TransformerCopyButton from "@/components/content/transformer-copy-button";
+import PostImage from "@/features/posts/post-image";
+import { SandpackEditor } from "@/features/posts/sandpack-editor";
+import TransformerCopyButton from "@/features/posts/transformer-copy-button";
 import {
   ClampedNormalizePlayground,
   DistanceTrianglePlayground,
