@@ -1,15 +1,10 @@
-// src/components/playgrounds/interactive-dot-grid-playground.tsx
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 
-import {
-  Playground,
-  PlaygroundCanvas,
-  PlaygroundCode,
-  PlaygroundControls,
-  RangeControl,
-} from "../playground";
+import { DialRoot, DialStore, useDialKit } from "dialkit";
+
+import { Playground, PlaygroundCanvas } from "../playground";
 
 // --- Types ---
 interface Point {
@@ -55,162 +50,260 @@ const getDistanceBetweenPoints = (p1: Point, p2: Point): number => {
   return Math.sqrt(deltaX ** 2 + deltaY ** 2);
 };
 
-// --- Grid configuration ---
-const COLS = 30;
-const ROWS = 15;
+// --- Fixed coordinate system ---
 const VIEWBOX_W = 600;
 const VIEWBOX_H = 300;
-const BASE_R = 2;
-const MAX_R = 7;
-const STEP_X = (VIEWBOX_W - 2 * MAX_R) / (COLS - 1);
-const STEP_Y = (VIEWBOX_H - 2 * MAX_R) / (ROWS - 1);
-const DOT_COLOR = "hsl(210deg 15% 50%)";
-const HOVER_COLOR = "hsl(15deg 65% 55%)";
 
-// Pre-compute dot positions
-const dots: Point[] = [];
-for (let r = 0; r < ROWS; r++) {
-  for (let c = 0; c < COLS; c++) {
-    dots.push({
-      x: MAX_R + c * STEP_X,
-      y: MAX_R + r * STEP_Y,
-    });
+// --- Panel name ---
+const PANEL_NAME = "Dot Grid";
+
+// --- Mood presets ---
+const PRESETS = {
+  "Ember Field": {
+    influence: 120,
+    baseRadius: 1.5,
+    maxRadius: 10,
+    dotColor: "#4a4a52",
+    hoverColor: "#d4623a",
+    cols: 20,
+    rows: 10,
+  },
+  Graphite: {
+    influence: 50,
+    baseRadius: 1,
+    maxRadius: 5,
+    dotColor: "#8a8a8f",
+    hoverColor: "#b0b0b8",
+    cols: 45,
+    rows: 22,
+  },
+  "Deep Tide": {
+    influence: 160,
+    baseRadius: 1,
+    maxRadius: 12,
+    dotColor: "#3a5a6d",
+    hoverColor: "#5ec4b6",
+    cols: 25,
+    rows: 12,
+  },
+} as const;
+
+type PresetName = keyof typeof PRESETS;
+
+/** Resolve the internal panel ID by name (useDialKit appends React's useId) */
+function getPanelId(): string | undefined {
+  return DialStore.getPanels().find(
+    (panel: { name: string }) => panel.name === PANEL_NAME
+  )?.id;
+}
+
+function applyPreset(name: PresetName) {
+  const panelId = getPanelId();
+  if (!panelId) return;
+  const values = PRESETS[name];
+  for (const [key, value] of Object.entries(values)) {
+    DialStore.updateValue(panelId, key, value);
   }
 }
 
 export function InteractiveDotGridPlayground() {
   const svgRef = useRef<SVGSVGElement>(null);
-  const [cursor, setCursor] = useState<Point | null>(null);
-  const [influence, setInfluence] = useState(80);
+  const cursorRef = useRef<Point | null>(null);
+  const rafRef = useRef<number>(0);
+  const influenceCircleRef = useRef<SVGCircleElement>(null);
 
-  // Track cursor in SVG coordinates
-  const handleMouseMove = useCallback((e: React.MouseEvent<SVGSVGElement>) => {
+  // All tunable parameters via DialKit
+  const p = useDialKit(PANEL_NAME, {
+    influence: [80, 30, 200],
+    baseRadius: [2, 1, 5, 0.5],
+    maxRadius: [7, 3, 15],
+    dotColor: "#6d7d8c",
+    hoverColor: "#d4623a",
+    cols: [30, 10, 60],
+    rows: [15, 5, 30],
+  });
+
+  // Keep params in a ref so the rAF loop reads fresh values without re-binding
+  const paramsRef = useRef(p);
+  paramsRef.current = p;
+
+  // Derive dot positions reactively from params
+  const dots = useMemo(() => {
+    const stepX = (VIEWBOX_W - 2 * p.maxRadius) / (p.cols - 1);
+    const stepY = (VIEWBOX_H - 2 * p.maxRadius) / (p.rows - 1);
+    const result: Point[] = [];
+    for (let r = 0; r < p.rows; r++) {
+      for (let c = 0; c < p.cols; c++) {
+        result.push({
+          x: p.maxRadius + c * stepX,
+          y: p.maxRadius + r * stepY,
+        });
+      }
+    }
+    return result;
+  }, [p.cols, p.rows, p.maxRadius]);
+
+  // Store dots in a ref for the rAF loop
+  const dotsRef = useRef(dots);
+  dotsRef.current = dots;
+
+  // Direct DOM update — bypasses React render cycle entirely
+  const updateDots = useCallback(() => {
     const svg = svgRef.current;
     if (!svg) return;
 
-    // Use SVG's native coordinate transform
-    const pt = svg.createSVGPoint();
-    pt.x = e.clientX;
-    pt.y = e.clientY;
-    const ctm = svg.getScreenCTM();
-    if (!ctm) return;
-    const svgPt = pt.matrixTransform(ctm.inverse());
-    setCursor({ x: svgPt.x, y: svgPt.y });
+    const cursor = cursorRef.current;
+    const currentDots = dotsRef.current;
+    const pr = paramsRef.current;
+
+    // Get all dot circles (skip the influence indicator circle)
+    const circles = svg.querySelectorAll<SVGCircleElement>("circle[data-dot]");
+
+    for (let i = 0; i < circles.length; i++) {
+      const circle = circles[i];
+      const dot = currentDots[i];
+      if (!dot) continue;
+
+      if (!cursor) {
+        circle.setAttribute("r", String(pr.baseRadius));
+        circle.setAttribute("fill", pr.dotColor);
+      } else {
+        const distance = getDistanceBetweenPoints(cursor, dot);
+        const r = clampedNormalize(
+          distance,
+          0,
+          pr.influence,
+          pr.maxRadius,
+          pr.baseRadius
+        );
+        const fill = distance < pr.influence ? pr.hoverColor : pr.dotColor;
+        circle.setAttribute("r", String(r));
+        circle.setAttribute("fill", fill);
+      }
+    }
+
+    // Update influence radius indicator
+    const indicator = influenceCircleRef.current;
+    if (indicator) {
+      if (cursor) {
+        indicator.setAttribute("cx", String(cursor.x));
+        indicator.setAttribute("cy", String(cursor.y));
+        indicator.setAttribute("r", String(pr.influence));
+        indicator.style.display = "";
+      } else {
+        indicator.style.display = "none";
+      }
+    }
   }, []);
+
+  // On mousemove, store cursor and schedule a single rAF update
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<SVGSVGElement>) => {
+      const svg = svgRef.current;
+      if (!svg) return;
+
+      const pt = svg.createSVGPoint();
+      pt.x = e.clientX;
+      pt.y = e.clientY;
+      const ctm = svg.getScreenCTM();
+      if (!ctm) return;
+      const svgPt = pt.matrixTransform(ctm.inverse());
+      cursorRef.current = { x: svgPt.x, y: svgPt.y };
+
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = requestAnimationFrame(updateDots);
+    },
+    [updateDots]
+  );
 
   const handleMouseLeave = useCallback(() => {
-    setCursor(null);
-  }, []);
+    cursorRef.current = null;
+    cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(updateDots);
+  }, [updateDots]);
 
-  // Compute radius and color for each dot
-  const getDotProps = (dot: Point) => {
-    if (!cursor) {
-      return { r: BASE_R, fill: DOT_COLOR };
-    }
-    const distance = getDistanceBetweenPoints(cursor, dot);
-    const r = clampedNormalize(distance, 0, influence, MAX_R, BASE_R);
-    const fill = distance < influence ? HOVER_COLOR : DOT_COLOR;
-    return { r, fill };
-  };
-
-  // Find the closest dot for code display
-  const closestDot = cursor
-    ? dots.reduce(
-        (closest, dot, index) => {
-          const d = getDistanceBetweenPoints(cursor, dot);
-          return d < closest.distance ? { index, distance: d, dot } : closest;
-        },
-        { index: -1, distance: Infinity, dot: dots[0] }
-      )
-    : null;
-
-  const distanceDisplay = cursor
-    ? `${closestDot?.distance.toFixed(0)}px (closest dot)`
-    : "--";
-  const radiusDisplay = cursor
-    ? `${getDotProps(closestDot?.dot ?? dots[0]).r.toFixed(1)}px`
-    : "--";
-
-  const code = [
-    "// For each dot, compute distance from cursor",
-    "const distance = getDistanceBetweenPoints(cursor, dot);",
-    `// distance = ${distanceDisplay}`,
-    "",
-    "const radius = clampedNormalize(",
-    "  distance,",
-    "  0,         // min distance (on top of dot)",
-    `  ${influence},        // max distance (influence radius)`,
-    `  ${MAX_R},         // max radius (on top of dot)`,
-    `  ${BASE_R}          // min radius default state`,
-    ");",
-    `// radius = ${radiusDisplay}`,
-  ].join("\n");
+  // When DialKit params change, re-run the DOM update to reflect new values
+  useEffect(() => {
+    updateDots();
+  }, [p, updateDots]);
 
   return (
     <Playground
       title="Interactive Dot Grid"
-      description="Move your cursor over the grid. Each dot's radius responds to its distance from your cursor."
+      description="Hover to disturb. Tweak the knobs to make it yours."
     >
       <div className="flex flex-col gap-4">
-        {/* Full-width canvas */}
-        <PlaygroundCanvas
-          backgroundPattern="none"
-          className="min-h-[360px] rounded-lg bg-[hsl(210deg_15%_8%)]"
-        >
-          <svg
-            ref={svgRef}
-            viewBox={`0 0 ${VIEWBOX_W} ${VIEWBOX_H}`}
-            className="w-full h-full"
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            style={{ cursor: "crosshair" }}
+        {/* Mood presets */}
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-2">
+            {(Object.keys(PRESETS) as PresetName[]).map((name) => (
+              <button
+                key={name}
+                onClick={() => applyPreset(name)}
+                className="rounded-full border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors duration-200 hover:bg-muted hover:text-foreground"
+              >
+                {name}
+              </button>
+            ))}
+            <span className="text-xs text-muted-foreground/60">
+              ·{" "}
+              <a
+                href="https://github.com/joshpuckett/dialkit"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline transition-colors underline-offset-2 hover:text-muted-foreground"
+              >
+                DialKit
+              </a>
+            </span>
+          </div>
+        </div>
+
+        {/* Canvas + DialKit panel side by side */}
+        <div className="flex gap-4">
+          <PlaygroundCanvas
+            backgroundPattern="none"
+            className="min-h-[360px] flex-1 rounded-lg bg-[hsl(210deg_15%_8%)]"
           >
-            {dots.map((dot, i) => {
-              const { r, fill } = getDotProps(dot);
-              return (
+            <svg
+              ref={svgRef}
+              viewBox={`0 0 ${VIEWBOX_W} ${VIEWBOX_H}`}
+              className="w-full h-full"
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              style={{ cursor: "crosshair" }}
+            >
+              {dots.map((dot, i) => (
                 <circle
                   key={i}
+                  data-dot
                   cx={dot.x}
                   cy={dot.y}
-                  r={r}
-                  fill={fill}
+                  r={p.baseRadius}
+                  fill={p.dotColor}
                   style={{
                     transition: "r 0.05s ease-out, fill 0.05s ease-out",
                   }}
                 />
-              );
-            })}
+              ))}
 
-            {/* Influence radius indicator */}
-            {cursor && (
+              {/* Influence radius indicator — hidden by default, shown via DOM */}
               <circle
-                cx={cursor.x}
-                cy={cursor.y}
-                r={influence}
+                ref={influenceCircleRef}
+                r={p.influence}
                 fill="none"
                 stroke="hsl(210deg 15% 25%)"
                 strokeWidth={1}
                 strokeDasharray="4 4"
-                style={{ pointerEvents: "none" }}
+                style={{ pointerEvents: "none", display: "none" }}
               />
-            )}
-          </svg>
-        </PlaygroundCanvas>
+            </svg>
+          </PlaygroundCanvas>
 
-        {/* Controls */}
-        <PlaygroundControls>
-          <RangeControl
-            label="Influence Radius"
-            value={influence}
-            onChange={setInfluence}
-            min={30}
-            max={150}
-            step={5}
-          />
-        </PlaygroundControls>
-
-        {/* Code readout */}
-        <PlaygroundCode code={code} className="mt-0 min-h-[280px]" />
+          <div className="hidden w-[260px] shrink-0 md:block">
+            <DialRoot mode="inline" defaultOpen={true} />
+          </div>
+        </div>
       </div>
     </Playground>
   );

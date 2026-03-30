@@ -6,6 +6,7 @@ import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 
 import "./globals.css";
+import "dialkit/styles.css";
 
 import Footer from "@/shared/layout/footer";
 import Header from "@/shared/layout/header";
