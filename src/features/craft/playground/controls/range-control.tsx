@@ -42,7 +42,6 @@ export function RangeControl({
           "[&::-webkit-slider-thumb]:rounded-full",
           "[&::-webkit-slider-thumb]:bg-primary",
           "[&::-webkit-slider-thumb]:cursor-pointer",
-          "[&::-webkit-slider-thumb]:transition-transform",
           "[&::-webkit-slider-thumb]:hover:scale-110",
           "[&::-moz-range-thumb]:w-4",
           "[&::-moz-range-thumb]:h-4",

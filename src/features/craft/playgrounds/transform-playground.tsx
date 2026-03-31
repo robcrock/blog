@@ -12,7 +12,7 @@ import {
   SelectControl,
 } from "../playground";
 import { cn } from "@/shared/lib/utils";
-import { motion } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 
 type TransformOrigin = "center" | "left" | "right" | "top" | "bottom";
 
@@ -25,6 +25,17 @@ export function TransformPlayground() {
   const [scale, setScale] = useState(1);
   const [transformOrigin, setTransformOrigin] =
     useState<TransformOrigin>("center");
+
+  // Motion values for direct slider tracking (no spring interpolation)
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const mr = useMotionValue(0);
+  const ms = useMotionValue(1);
+
+  const handleTranslateX = (v: number) => { setTranslateX(v); mx.set(v); };
+  const handleTranslateY = (v: number) => { setTranslateY(v); my.set(v); };
+  const handleRotate = (v: number) => { setRotate(v); mr.set(v); };
+  const handleScale = (v: number) => { setScale(v); ms.set(v); };
 
   // Generate code display
   const code = `transform: translate(${translateX}px, ${translateY}px) rotate(${rotate}deg) scale(${scale});
@@ -41,20 +52,10 @@ transform-origin: ${transformOrigin};`;
           className={cn("w-[120px] h-[120px]", "rounded bg-primary")}
           style={{
             transformOrigin,
-          }}
-          animate={{
-            x: translateX,
-            y: translateY,
-            rotate,
-            scale,
-          }}
-          transition={{
-            type: "spring",
-            stiffness: 300,
-            damping: 30,
-          }}
-          whileHover={{
-            scale: scale * 1.1,
+            x: mx,
+            y: my,
+            rotate: mr,
+            scale: ms,
           }}
         />
       </PlaygroundCanvas>
@@ -66,7 +67,7 @@ transform-origin: ${transformOrigin};`;
           <RangeControl
             label="Translate X"
             value={translateX}
-            onChange={setTranslateX}
+            onChange={handleTranslateX}
             min={-200}
             max={200}
             unit="px"
@@ -75,7 +76,7 @@ transform-origin: ${transformOrigin};`;
           <RangeControl
             label="Translate Y"
             value={translateY}
-            onChange={setTranslateY}
+            onChange={handleTranslateY}
             min={-200}
             max={200}
             unit="px"
@@ -84,7 +85,7 @@ transform-origin: ${transformOrigin};`;
           <RangeControl
             label="Rotate"
             value={rotate}
-            onChange={setRotate}
+            onChange={handleRotate}
             min={0}
             max={360}
             unit="deg"
@@ -93,7 +94,7 @@ transform-origin: ${transformOrigin};`;
           <RangeControl
             label="Scale"
             value={scale}
-            onChange={setScale}
+            onChange={handleScale}
             min={0.5}
             max={2}
             step={0.1}
