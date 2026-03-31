@@ -4,6 +4,7 @@ date: 2026-03-07
 description: "Build a grid of SVG circles that react organically to cursor proximity, creating a fluid, living effect from simple distance math."
 tags: ["Cursor Interaction", "SVG", "JavaScript", "React"]
 video: "/video/interactive-dot-grid/preview.mp4"
+poster: "data:image/jpeg;base64,/9j//gAQTGF2YzYyLjExLjEwMAD/2wBDAAgKCgsKCw0NDQ0NDRAPEBAQEBAQEBAQEBASEhIVFRUSEhIQEBISFBQVFRcXFxUVFRUXFxkZGR4eHBwjIyQrKzP/xABiAAEBAQEBAQAAAAAAAAAAAAAAAQUCBwYBAQEBAQAAAAAAAAAAAAAAAAABAgMQAAICAgIDAQEAAAAAAAAAAAABAhEDMQUScWEEIdIRAQEBAQEAAAAAAAAAAAAAAAABAkER/8AAEQgAHgAoAwEiAAIRAAMRAP/aAAwDAQACEQMRAD8A8UAAAH0PzcVLPheS1+f2kYM49JNBzm86tk44KQBv0BAGWpi5DLih1XladO9q9OrV+zOlJyds4BUkkUEBVf/Z"
 published: true
 ---
 
@@ -83,7 +84,7 @@ For each dot, we compute its distance from the cursor, then map that distance to
 
 ```ts
 const BASE_R = 2; // Radius when cursor is far
-const MAX_R = 7;  // Radius when cursor is close
+const MAX_R = 7; // Radius when cursor is close
 
 const getDotProps = (dot) => {
   if (!cursor) return { r: BASE_R, fill: DOT_COLOR };
@@ -150,10 +151,12 @@ const prefersReducedMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)"
 ).matches;
 
-const handleMouseMove = prefersReducedMotion ? undefined : (e) => {
-  const svgPoint = screenToSVG(e.clientX, e.clientY);
-  setCursor(svgPoint);
-};
+const handleMouseMove = prefersReducedMotion
+  ? undefined
+  : (e) => {
+      const svgPoint = screenToSVG(e.clientX, e.clientY);
+      setCursor(svgPoint);
+    };
 ```
 
 This respects the user's system setting. The grid still renders; it just doesn't react to the cursor.
