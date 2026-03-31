@@ -80,72 +80,72 @@ This project uses Contentlayer2 for type-safe MDX content management:
 - **Frontmatter**: Posts require `title`, `topic`, `date` fields; optional `description` and `published` fields
 - **Computed Fields**: Automatically generates `slug`, `url`, and `readingTime` for each post
 
-### Adding Video Previews to Craft Cards
+### Craft Post Lifecycle
 
-Craft cards support autoplaying video previews with blur placeholders for instant loading. Here's how to add a video for a new craft piece.
+Every craft post follows three phases: **Development → Assets → Publishing**. This checklist ensures each post ships with the same level of polish.
 
-#### Prerequisites
+#### Phase 1: Development
+
+1. Build the interactive demo component in `src/features/craft/playgrounds/`
+2. Create the MDX file at `content/craft/{slug}.mdx` with frontmatter:
+   ```yaml
+   ---
+   title: "Your Craft Title"
+   date: 2025-03-01
+   description: "What this craft piece demonstrates"
+   tags: ["React", "CSS"]
+   published: false
+   ---
+   ```
+3. Write up the walkthrough content in the MDX body
+4. Verify on dev server (`pnpm dev`) — make sure the demo works and the page renders
+
+#### Phase 2: Assets
+
+Each craft card displays an autoplaying video preview with a blur placeholder that shows instantly while the video loads.
+
+**Prerequisites:**
 
 - [ffmpeg](https://formulae.brew.sh/formula/ffmpeg) installed (`brew install ffmpeg`)
 - [Screen Studio](https://screen.studio) or any screen recorder
-- Source video exported as MP4 (H.264), 1080p, 30fps
 
-#### Step 1: Record and export
+**Steps:**
 
-Record your interaction as a short loop (5–10 seconds). Export from Screen Studio as MP4, HD resolution, 30fps, high compression quality. The source file is just a starting point — ffmpeg handles the real optimization.
+1. **Record** a 5–10 second loop of the interaction. Export from Screen Studio as MP4 (H.264, 1080p, 30fps, high quality). The source file is just a starting point — the script handles optimization.
 
-#### Step 2: Process the video
+2. **Process** with the video script:
+   ```bash
+   ./scripts/process-craft-video.sh ~/path/to/recording.mp4 {slug}
+   ```
+   This single command generates:
+   - `public/video/{slug}/preview.mp4` — H.264 fallback (Safari, older browsers)
+   - `public/video/{slug}/preview.webm` — VP9 primary (Chrome, Firefox, Edge)
+   - Base64 blur poster — copied to clipboard and printed as a frontmatter snippet
 
-From the project root, replace `{slug}` with your craft piece's slug:
+3. **Update frontmatter** — paste the `video` and `poster` lines the script prints:
+   ```yaml
+   video: "/video/{slug}/preview.mp4"
+   poster: "data:image/jpeg;base64,<output from script>"
+   ```
 
-```bash
-# Create output directory
-mkdir -p public/video/{slug}
+4. **Verify sizes** — the script prints file sizes. Targets: MP4 under 1.5MB, WebM under 1MB. If larger, you can increase CRF values in the script (e.g., 30 for MP4, 38 for WebM).
 
-# Web-optimized MP4 (~500KB–1.5MB for a 5-10s clip)
-ffmpeg -i /path/to/source.mp4 \
-  -c:v libx264 -crf 28 -preset slow \
-  -vf "scale=1280:-2" \
-  -an -movflags +faststart -pix_fmt yuv420p \
-  public/video/{slug}/preview.mp4
+5. **Check rendering** — confirm the blur placeholder appears instantly on the craft card, then the video plays over it.
 
-# WebM version (30-40% smaller, served to Chrome/Firefox/Edge)
-ffmpeg -i /path/to/source.mp4 \
-  -c:v libvpx-vp9 -crf 35 -b:v 0 \
-  -vf "scale=1280:-2" \
-  -an \
-  public/video/{slug}/preview.webm
+> **Note:** Do not commit source recordings to `public/video/` — only the processed `preview.mp4` and `preview.webm` files.
 
-# Blur placeholder (base64 string copied to clipboard)
-ffmpeg -i /path/to/source.mp4 \
-  -vframes 1 -vf "scale=40:-1" -q:v 5 \
-  -update 1 \
-  /tmp/poster.jpg
+#### Phase 3: Publishing
 
-base64 -i /tmp/poster.jpg | tr -d '\n' | pbcopy
-```
+1. Set `published: true` in frontmatter
+2. Verify the craft card renders correctly on both the home page and `/craft` list
+3. Deploy
 
-Verify sizes with `ls -lh public/video/{slug}/`. Target: MP4 under 1.5MB, WebM under 1MB. If larger, increase CRF (e.g., 30 for MP4, 38 for WebM).
+#### How the video system works
 
-#### Step 3: Update frontmatter
+The card components use a 3-tier fallback: video + blur poster → static image → placeholder with first letter. The browser automatically picks WebM over MP4 when supported. The blur poster is a base64-encoded 40px-wide JPEG that renders instantly as a blurred background while the video buffers.
 
-In `content/craft/{slug}/index.mdx`, add the `video` and `poster` fields:
-
-```yaml
----
-title: "Your Craft Title"
-date: 2025-03-01
-description: "What this craft piece demonstrates"
-video: "/video/{slug}/preview.mp4"
-poster: "data:image/jpeg;base64,<paste from clipboard>"
-tags: ["React", "CSS"]
-published: true
----
-```
-
-The card components automatically handle the rest: the blur placeholder shows instantly while the video loads, then the video plays over it. The browser picks WebM over MP4 when supported.
-
-#### What each ffmpeg flag does
+<details>
+<summary>ffmpeg flag reference</summary>
 
 | Flag                   | Purpose                                                                                  |
 | ---------------------- | ---------------------------------------------------------------------------------------- |
@@ -157,17 +157,7 @@ The card components automatically handle the rest: the blur placeholder shows in
 | `-pix_fmt yuv420p`     | Ensures Safari and hardware decoder compatibility                                        |
 | `-b:v 0` (WebM)        | Lets VP9 use variable bitrate guided purely by CRF                                       |
 
-#### File structure
-
-```
-public/
-└── video/
-    └── {slug}/
-        ├── preview.mp4    # H.264 fallback (Safari, older browsers)
-        └── preview.webm   # VP9 primary (Chrome, Firefox, Edge)
-```
-
-Do not commit source recordings to `public/video/` — only the processed `preview.mp4` and `preview.webm` files.
+</details>
 
 ### Important: MDX Components File Location
 
