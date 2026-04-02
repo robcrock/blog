@@ -1,7 +1,7 @@
 ---
 title: "Interactive Dot Grid"
 date: 2026-03-07
-description: "Build a grid of SVG circles that react organically to cursor proximity, creating a fluid, living effect from simple distance math."
+description: "Play with a canvas of dots that grow and shrink as you move your cursor."
 tags: ["Cursor Interaction", "SVG", "JavaScript", "React"]
 video: "/video/interactive-dot-grid/preview.mp4"
 poster: "data:image/jpeg;base64,/9j//gAQTGF2YzYyLjExLjEwMAD/2wBDAAgKCgsKCw0NDQ0NDRAPEBAQEBAQEBAQEBASEhIVFRUSEhIQEBISFBQVFRcXFxUVFRUXFxkZGR4eHBwjIyQrKzP/xABiAAEBAQEBAQAAAAAAAAAAAAAAAQUCBwYBAQEBAQAAAAAAAAAAAAAAAAABAgMQAAICAgIDAQEAAAAAAAAAAAABAhEDMQUScWEEIdIRAQEBAQEAAAAAAAAAAAAAAAABAkER/8AAEQgAHgAoAwEiAAIRAAMRAP/aAAwDAQACEQMRAD8A8UAAAH0PzcVLPheS1+f2kYM49JNBzm86tk44KQBv0BAGWpi5DLih1XladO9q9OrV+zOlJyds4BUkkUEBVf/Z"
@@ -51,7 +51,7 @@ That's 450 dots. Each one is a `<circle>` element in the SVG, positioned at its 
 
 ## Cursor to SVG Coordinates
 
-Here's where things get interesting. The browser gives us cursor coordinates in screen pixels via `clientX` and `clientY`. But our dots live in SVG coordinate space, which might be scaled, translated, or aspect-ratio corrected. We need to convert.
+Now things get interesting. The browser tells us where the cursor is in screen pixels (clientX, clientY), but our dots live in the SVG — which could be scaled, shifted, or stretched. So we need to translate between the two. Luckily, SVG has a built-in trick: getScreenCTM() gives you the transformation matrix from SVG space to screen space. Flip it around (invert it), and now you can go from screen coordinates back to SVG coordinates.
 
 SVG provides a native solution: `getScreenCTM()` returns the current transformation matrix from SVG coordinates to screen coordinates. Invert it, and you get the reverse mapping.
 
