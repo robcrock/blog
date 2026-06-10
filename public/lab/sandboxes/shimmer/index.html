@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>shimmer</title>
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./styles.css" />
+      <link rel="stylesheet" href="./lab-embed.css" />
+  </head>
+  <body>
+<style>
+  @keyframes shimmer {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  .shimmer {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      to right,
+      transparent,
+      hsl(180deg 100% 90%),
+      transparent
+    );
+    opacity: 0.5;
+    animation: shimmer forwards;
+  }
+</style>
+
+<button class="buyButton">Buy Now</button>
+
+    <script type="module" src="./index.js"></script>
+  </body>
+</html>

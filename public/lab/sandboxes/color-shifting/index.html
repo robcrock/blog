@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeSandbox</title>
+      <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./styles.css" />
+      <link rel="stylesheet" href="./lab-embed.css" />
+  </head>
+  <body>
+    <style>
+      /* Our new superstar: */
+      @keyframes hueRotate {
+        to {
+          filter: hue-rotate(var(--hue-rotation));
+        }
+      }
+      
+      /* Other generic utility keyframes */
+      @keyframes fadeToTransparent {
+        to {
+          opacity: 0;
+        }
+      }
+      @keyframes fadeFromOpaque {
+        from {
+          opacity: 1;
+        }
+      }
+      @keyframes colorShift {
+        from {
+          background: var(--from-color);
+        }
+      }
+      @keyframes fromShrunken {
+        from {
+          transform: scale(0);
+        }
+      }
+      
+      /* Custom keyframes */
+      @keyframes disperse {
+        to {
+          transform: translate(
+            calc(cos(var(--angle)) * var(--distance)),
+            calc(sin(var(--angle)) * var(--distance))
+          );
+        }
+      }
+      /*
+        NOTE: twinkle is currently unused, so that we can focus
+        on the color-shifting stuff. Feel free to make use of
+        it below, to see the combined effect!
+      */
+      @keyframes twinkle {
+        from {
+          opacity: var(--twinkle-amount);
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      
+      .particle {
+        position: absolute;
+        inset: 0;
+        width: var(--size);
+        height: var(--size);
+        margin: auto;
+        border-radius: 50%;
+        pointer-events: none;
+        animation:
+          hueRotate 1000ms linear forwards,
+          fadeToTransparent var(--fade-duration) var(--fade-delay) forwards,
+          disperse var(--pop-duration) forwards var(--particle-curve);
+      }
+      
+      /* Accessories (popping circle, swelling heart) */
+      .popCircle {
+        --from-color: hsl(350deg 100% 60%);
+        position: absolute;
+        inset: 0;
+        background: hsl(270deg 100% 80%);
+        border-radius: 50%;
+        opacity: 0;
+      }
+      .particleButton.liked .popCircle {
+        animation:
+          fromShrunken var(--pop-circle-duration),
+          colorShift var(--pop-circle-duration) forwards,
+          fadeFromOpaque 300ms var(--pop-circle-duration) backwards;
+      }
+      .particleButton.liked svg {
+        animation:
+          fromShrunken 2000ms var(--pop-circle-duration) backwards linear(0, 0.04 1.1%, 0.156 2.3%, 1.015 8.5%, 1.157 10.4%, 1.217 12.4%, 1.217 13.6%, 1.193 15%, 0.992 21.7%, 0.964 23.5%, 0.952 25.3%, 0.957 27.9%, 1.002 34.7%, 1.01 38.2%, 0.998 51%, 1);
+      }
+        
+    </style>
+    
+    <button class="particleButton">
+      <span class="popCircle"></span>
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M3.68546 5.43796C8.61936 1.29159 11.8685 7.4309 12.0406 7.4309C12.2126 7.43091 15.4617 1.29159 20.3956 5.43796C26.8941 10.8991 13.5 21.8215 12.0406 21.8215C10.5811 21.8215 -2.81297 10.8991 3.68546 5.43796Z"
+          stroke="white"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+      <span class="visually-hidden">Like this post</span>
+    </button>
+    <script type="module" src="./index.js"></script>
+</body>
+</html>

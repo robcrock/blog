@@ -1,0 +1,25 @@
+button[aria-pressed="true"] .top {
+  stroke-dashoffset: -31.5;
+}
+
+button[aria-pressed="true"] .bottom {
+  stroke-dashoffset: -33;
+}
+
+.top,
+.bottom {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.5s ease-in-out;
+}
+
+button {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+}
+
+button:hover {
+  background: var(--gray3);
+}

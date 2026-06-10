@@ -1,0 +1,28 @@
+/*
+  These styles are purely cosmetic.
+  The relevant stuff is contained in the <style> tag in “index.html”.
+*/
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  height: 100vh;
+  background: hsl(210deg 15% 6%);
+}
+.ball {
+  background: hsl(50deg 100% 50%);
+  border-radius: 45%;
+  width: 64px;
+  height: 64px;
+}
+button {
+  padding: 16px;
+  margin-top: 24px;
+}

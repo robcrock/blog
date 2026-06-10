@@ -1,0 +1,16 @@
+html {
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  background: hsl(210deg 15% 6%);
+}
+svg {
+  width: 100%;
+  stroke: white;
+  stroke-width: 4px;
+  outline: 1px solid hsl(0deg 0% 100% / 0.2);
+}
+button {
+  display: block;
+  margin: 32px auto 0;
+}

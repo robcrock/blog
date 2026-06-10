@@ -1,0 +1,9 @@
+html {
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  background: hsl(210deg 15% 6%);
+}
+svg {
+  background: hsl(210deg 12% 12%);
+}

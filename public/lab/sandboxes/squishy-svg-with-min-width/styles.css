@@ -1,0 +1,15 @@
+html {
+  height: 100vh;
+  background: hsl(210deg 15% 6%);
+}
+body {
+  padding: 0;
+}
+
+svg {
+  outline: 1px solid var(--color-gray-300);
+  
+  path {
+    fill: hsl(210deg 14% 66%);
+  }
+}

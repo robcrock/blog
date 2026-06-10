@@ -1,0 +1,12 @@
+html {
+  --page-bg-color: hsl(210deg 15% 6%);
+
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  background: var(--page-bg-color);
+}
+h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}

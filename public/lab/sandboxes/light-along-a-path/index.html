@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>light-along-a-path</title>
+
+      <link rel="stylesheet" href="./lab-embed.css" />
+  </head>
+  <body>
+<head>
+  <link rel="stylesheet" href="./base.css" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <svg width="400" viewBox="-5 -5 110 110">
+    <g fill="var(--gray4)" stroke="var(--gray5)">
+      <rect x="50" width="50" height="25" rx="3" />
+      <rect y="75" width="50" height="25" rx="3" />
+    </g>
+    <path
+      d="M75 25 v21 a4 4 0 0 1 -4 4 H29 a4 4 0 0 0 -4 4 V75"
+      fill="none"
+      stroke="var(--gray4)"
+    />
+    <defs>
+      <radialGradient id="gradient" fx="0.9">
+        <stop offset="0%" stop-color="white" />
+        <stop offset="100%" stop-color="transparent" />
+      </radialGradient>
+      <mask id="mask">
+        <path
+          d="M75 25 v21 a4 4 0 0 1 -4 4 H29 a4 4 0 0 0 -4 4 V75"
+          fill="none"
+          stroke="currentColor"
+        />
+      </mask>
+    </defs>
+    <g mask="url(#mask)">
+      <circle class="circle" r="10" fill="url(#gradient)" />
+    </g>
+    <circle cx="25" cy="75" r="2" fill="currentColor" />
+    <circle cx="75" cy="25" r="2" fill="currentColor" />
+  </svg>
+  <button id="play">Play</button>
+  <script src="./index.js" type="module"></script>
+</body>
+
+  </body>
+</html>

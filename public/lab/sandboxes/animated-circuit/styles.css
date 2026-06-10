@@ -1,0 +1,65 @@
+body {
+  --gray-200: hsl(0deg 0% 20%);
+  --gray-400: hsl(0deg 0% 40%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: hsl(210deg 15% 6%);
+  color: white;
+}
+svg {
+  fill: none;
+  stroke-linejoin: round;
+  stroke-width: 0.5px;
+}
+.track {
+  stroke: var(--gray-200);
+}
+.line {
+  stroke: hsl(340deg 100% 60%);
+}
+
+.wrapper {
+  position: relative;
+  width: 500px;
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+  outline: 2px solid var(--gray-200);
+  border-radius: 12px;
+}
+.logos {
+  position: absolute;
+  inset: 0;
+}
+.box {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  height: 20%;
+  border: 2px solid white;
+  border-radius: 6px;
+  background: hsl(210deg 15% 6%);
+}
+.box img {
+  display: block;
+  width: 40%;
+  aspect-ratio: 1 / 1;
+  filter: invert(1);
+}
+
+.box.one {
+  top: 10%;
+  left: 10%;
+}
+.box.two {
+  top: 20%;
+  right: 10%;
+}
+.box.three {
+  left: 20%;
+  top: 60%;
+}

@@ -1,0 +1,29 @@
+.circle {
+  offset-path: path('M75 22 v24 a4 4 0 0 1 -4 4 H29 a4 4 0 0 0 -4 4 V90');
+  offset-anchor: 10px 0px;
+}
+
+.active {
+  animation: move 1.5s ease-in-out;
+}
+
+@keyframes move {
+  from {
+    offset-distance: 0%;
+  }
+  to {
+    offset-distance: 100%;
+  }
+}
+    
+body {
+  flex-direction: column;
+  gap: 32px;  
+}
+
+button {
+  background: var(--gray3);
+  border: 1px solid var(--gray6);
+  border-radius: 4px;
+  padding: 8px 12px;
+}

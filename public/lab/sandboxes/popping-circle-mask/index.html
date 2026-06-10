@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeSandbox</title>
+      <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./styles.css" />
+      <link rel="stylesheet" href="./lab-embed.css" />
+  </head>
+  <body>
+    <style>
+      @keyframes grow {
+        to {
+          r: 50;
+        }
+      }
+      @keyframes fadeToTransparent {
+        to {
+          opacity: 0;
+        }
+      }
+    
+      .pop-btn.popped {
+        .pop-circle {
+          animation:
+            grow 0ms forwards var(--easing-smooth),
+            fadeToTransparent 300ms 500ms forwards;
+        }
+      }
+      
+      @media (prefers-reduced-motion: no-preference) {
+        .pop-btn.popped {
+          --grow-duration: 600ms;
+          --mask-delay: 200ms;
+          --time-until-popped: calc(
+            var(--grow-duration) + var(--mask-delay)
+          );
+    
+          .pop-circle {
+            animation:
+              grow var(--grow-duration) var(--easing-smooth) forwards,
+              fadeToTransparent 300ms var(--time-until-popped) forwards;
+          }
+          .mask-circle {
+            animation:
+              grow var(--grow-duration) var(--mask-delay) var(--easing-smooth) forwards;
+          }
+        }
+      }
+    </style>
+    
+    <button class="pop-btn">
+      <svg viewBox="0 0 100 100" fill="none">
+        <defs>
+          <mask id="pop-mask">
+            <rect
+              x="0"
+              y="0"
+              width="100"
+              height="100"
+              fill="white"
+            />
+            <circle
+              class="mask-circle"
+              cx="50"
+              cy="50"
+              r="0"
+              fill="black"
+            />
+          </mask>
+        </defs>
+    
+        <circle
+          class="pop-circle"
+          mask="url(#pop-mask)"
+          cx="50"
+          cy="50"
+          r="0"
+          fill="hsl(270deg 100% 80%)"
+        />
+      </svg>
+      <span class="visually-hidden">
+        Pop!
+      </span>
+    </button>
+    
+    <!--
+      MASK CHEATSHEET
+    
+      Create the mask using a <mask> element.
+      It should be within the head of the SVG
+      (`defs`) and have a unique ID:
+      
+        <defs>
+          <mask id="rainbow">
+            // shapes here
+          </mask>
+        </defs>
+      
+      Anything white will be visible. Anything
+      black will be hidden.
+      
+      You can apply the mask to individual SVG
+      shapes using the `mask` property:
+      
+        <rect mask="url(#rainbow)" />
+    -->
+    <script type="module" src="./index.js"></script>
+</body>
+</html>

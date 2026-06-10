@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>morph-path-inbox</title>
+
+      <link rel="stylesheet" href="./lab-embed.css" />
+  </head>
+  <body>
+<head>
+  <link rel="stylesheet" href="./base.css" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <button id="button">
+    <svg width="100%" viewBox="-2 -2 28 28">
+      <g
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+      >
+        <path d="M12 14.5 V4 M12 14.5L8.5 11 M12 14.5 L15.5 11">
+          <animateTransform
+            id="down"
+            attributeName="transform"
+            type="translate"
+            to="0,5"
+            dur="0.2s"
+            fill="freeze"
+            begin="button.click"
+          />
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            to="0,0"
+            dur="0.2s"
+            fill="freeze"
+            begin="down.end"
+          />
+        </path>
+        <path d="M20 15 V20 C18 20 6 20 4 20 V15">
+          <animate
+            id="downC"
+            attributeName="d"
+            to="M20 15 V20 C18 25 6 25 4 20 V15"
+            dur="0.1s"
+            fill="freeze"
+            begin="down.end"
+          />
+          <animate
+            attributeName="d"
+            to="M20 15 V20 C18 20 6 20 4 20 V15"
+            dur="0.1s"
+            fill="freeze"
+            begin="downC.end"
+          />
+        </path>
+      </g>
+    </svg>
+  </button>
+</body>
+
+  </body>
+</html>

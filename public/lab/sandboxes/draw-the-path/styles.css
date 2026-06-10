@@ -1,0 +1,18 @@
+html {
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  background: hsl(210deg 15% 6%);
+  color: white;
+}
+button {
+  background: transparent;
+  border: none;
+  padding: 16px;
+  cursor: pointer;
+}
+svg {
+  display: block;
+  width: 100%;
+  overflow: visible;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeSandbox</title>
+      <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./styles.css" />
+      <link rel="stylesheet" href="./lab-embed.css" />
+  </head>
+  <body>
+    <style>
+      @keyframes oscillate {
+        from {
+          transform: translateX(calc(var(--amount) * -1));
+        }
+        to {
+          transform: translateX(var(--amount));
+        }
+      }
+    
+      .ball {
+        animation: oscillate 700ms ease-in-out alternate infinite;
+      }
+    </style>
+    
+    <!-- Edit these values to change the oscillation amount: -->
+    <div class="ball" style="--amount: 8px"></div>
+    <div class="ball" style="--amount: 16px"></div>
+    <div class="ball" style="--amount: 32px"></div>
+    
+    <button>Play/pause animation</button>
+    <script type="module" src="./index.js"></script>
+</body>
+</html>

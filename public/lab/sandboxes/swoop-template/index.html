@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeSandbox</title>
+      <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./styles.css" />
+      <link rel="stylesheet" href="./lab-embed.css" />
+  </head>
+  <body>
+    <style>
+      .foreground {
+        stroke-dasharray: 100, 1000;
+        stroke-dashoffset: 100px;
+      }
+      button:hover .foreground {
+        stroke-dashoffset: 0px;
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .foreground {
+          transition: stroke-dashoffset 1s;
+        }
+      }
+    </style>
+    
+    <button>
+      <svg viewBox="0 0 326 85" fill="none">
+        <defs>
+          <path
+            id='swoop-template'
+            pathLength="100"
+            d="
+              M 1,75
+              C 1,75 29,-2 67,2
+              C 95,4 94,41 122,49
+              C 152,56 168,21 199,28
+              C 231,35 229,84 263,85
+              C 292,85 326,41 326,41
+            "
+          />
+        </defs>
+        <use href='#swoop-template' class="background" />
+        <use href='#swoop-template' class="foreground" />
+      </svg>
+    </button>
+  </body>
+</html>

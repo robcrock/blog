@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeSandbox</title>
+      <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./styles.css" />
+      <link rel="stylesheet" href="./lab-embed.css" />
+  </head>
+  <body>
+    <style>
+      svg {
+        transform-origin: center;
+        transform: rotate(-90deg);
+      }
+      .progressIndicator {
+        stroke-dasharray: 100 1000;
+        stroke-dashoffset: 100;
+      }
+    </style>
+    
+    <div class="progressWrapper">
+      <svg viewBox="0 0 240 240" fill="none">
+        <circle
+          class="progressTrack"
+          r="100"
+          cx="120"
+          cy="120"
+        />
+        <circle
+          class="progressIndicator"
+          pathLength='100'
+          r="100"
+          cx="120"
+          cy="120"
+        />
+      </svg>
+      <div class="bigNumber">0%</div>
+    </div>
+    
+    <div class="controls">
+      <label for="progressSlider">
+        Progress:
+      </label>
+      <input
+        id="progressSlider"
+        type="range"
+        value="0"
+        min="0"
+        max="100"
+        step="1"
+      />
+    </div>
+    
+    
+    
+    <script type="module" src="./index.js"></script>
+</body>
+</html>

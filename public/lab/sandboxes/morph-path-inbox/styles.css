@@ -1,0 +1,10 @@
+button {
+  background: transparent;
+  border: none;
+  border-radius: 9999px;
+  padding: 32px;
+}
+
+button:hover {
+  background: var(--gray2);
+}

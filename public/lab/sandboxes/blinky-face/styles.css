@@ -1,0 +1,13 @@
+html {
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  background: hsl(210deg 15% 6%);
+}
+button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: 1px solid hsl(210deg 15% 30%);
+}

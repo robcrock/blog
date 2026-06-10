@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeSandbox</title>
+      <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./styles.css" />
+      <link rel="stylesheet" href="./lab-embed.css" />
+  </head>
+  <body>
+    <style>
+      svg {
+        fill: none;
+        stroke: hsl(272 90% 76%);
+        stroke-width: 3px;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        overflow: visible;
+      }
+      svg:hover polyline {
+        stroke-dashoffset: 0;
+        transition: stroke-dashoffset 1s ease-in-out;
+      }
+      polyline {
+        stroke-dasharray: 844;
+        stroke-dashoffset: 844;
+      }
+    </style>
+
+    <svg aria-hidden="true">
+      <polyline class="sparkLine" />
+    </svg>
+    <script type="module" src="./index.js"></script>
+</body>
+</html>

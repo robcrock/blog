@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>heart-particles-simple</title>
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./styles.css" />
+      <link rel="stylesheet" href="./lab-embed.css" />
+  </head>
+  <body>
+<style>
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  
+  .particle {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: white;
+    /*
+      The animation’s duration has been removed, since we’re
+      setting it as an inline style, so that it can be
+      synchronized with the cleanup timeout:
+    */
+    animation: fadeOut forwards;
+    /*
+      Some particles spill beyond the edge of the button.
+      If the user happens to hover over them, they shouldn't
+      trigger the button’s hover state. We’ll ignore pointer
+      events with this CSS property:
+    */
+    pointer-events: none;
+  }
+  
+</style>
+
+<button class="particleButton">
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    aria-hidden="true"
+  >
+    <path
+      d="M3.68546 5.43796C8.61936 1.29159 11.8685 7.4309 12.0406 7.4309C12.2126 7.43091 15.4617 1.29159 20.3956 5.43796C26.8941 10.8991 13.5 21.8215 12.0406 21.8215C10.5811 21.8215 -2.81297 10.8991 3.68546 5.43796Z"
+      stroke="white"
+      stroke-width="2"
+      stroke-linecap="round"
+    />
+  </svg>
+  <span class="visually-hidden">Like this post</span>
+</button>
+    <script type="module" src="./index.js"></script>
+  </body>
+</html>

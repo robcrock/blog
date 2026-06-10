@@ -1,0 +1,9 @@
+button {
+  display: block;
+  margin: 16px auto;
+}
+
+svg {
+  border: 1px solid var(--gray5);
+  background: url(./grid.svg);
+}

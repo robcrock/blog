@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeSandbox</title>
+      <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./styles.css" />
+      <link rel="stylesheet" href="./lab-embed.css" />
+  </head>
+  <body>
+    <style>
+      @keyframes bounce {
+        to {
+          transform: translateY(calc(var(--distance) * -1));
+        }
+      }
+      
+      .ball {
+        animation: bounce var(--duration) infinite alternate cubic-bezier(0.09, 0.50, 0.44, 1.00);
+      }
+    </style>
+    
+    <div class="wrapper">
+      <!-- Ball 1 should bounce 30px over 300ms -->
+      <div class="ball" style="--distance: 30px; --duration: 300ms"></div>
+      
+      <!-- Ball 2 should bounce 50px over 400ms -->
+      <div class="ball" style="--distance: 50px; --duration: 400ms"></div>
+      
+      <!-- Ball 3 should bounce 70px over 500ms -->
+      <div class="ball" style="--distance: 70px; --duration: 500ms"></div>
+    </div>
+  </body>
+</html>

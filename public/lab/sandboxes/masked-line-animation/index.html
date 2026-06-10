@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeSandbox</title>
+      <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./styles.css" />
+      <link rel="stylesheet" href="./lab-embed.css" />
+  </head>
+  <body>
+    <style>
+      .foreground {
+        transition: stroke-dashoffset 1500ms;
+        stroke-dashoffset: 100px;
+        stroke-dasharray: 100, 1000;
+      }
+      
+      .btn:hover .foreground {
+        stroke-dashoffset: 0px;
+      }
+    </style>
+    
+    <button class="btn">
+      <svg viewBox="0 0 200 200" aria-hidden="true">
+        <defs>
+          <mask id='swoop-mask'>
+            <path
+              stroke='white'
+              d="
+                M 20,180
+                Q 180,180
+                  180,20
+              "
+            />
+          </mask>
+        </defs>
+        <path
+          class="background"
+          d="
+            M 20,180
+            Q 180,180
+              180,20
+          "
+        />
+        <path
+          mask='url(#swoop-mask)'
+          class="foreground"
+          pathLength="100"
+          d="
+            M 10,180
+            L 20,180
+            Q 180,180
+              180,20
+          "
+        />
+      </svg>
+    </button>
+    
+    <!--
+      MASK CHEATSHEET
+    
+      Create the mask using a <mask> element.
+      It should be within the head of the SVG
+      (`defs`) and have a unique ID:
+      
+        <defs>
+          <mask id="rainbow">
+            // shapes here
+          </mask>
+        </defs>
+      
+      Anything white will be visible. Anything
+      black will be hidden.
+      
+      You can apply the mask to individual SVG
+      shapes using the `mask` property:
+      
+        <rect mask="url(#rainbow)" />
+    -->
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeSandbox</title>
+      <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./styles.css" />
+      <link rel="stylesheet" href="./lab-embed.css" />
+  </head>
+  <body>
+    <style>
+      @keyframes blink {
+        0% {
+          ry: 20;
+        }
+        5% {
+          ry: 2;
+        }
+        10% {
+          ry: 20
+        }
+      }
+    
+      @media (prefers-reduced-motion: no-preference) {
+        ellipse {
+          animation: blink 2s ease-out infinite;
+        }
+      }
+    
+    </style>
+    
+    <svg width="240" height="240">
+      <circle
+        r="120"
+        cx="120"
+        cy="120"
+        fill="hsl(45deg 100% 50%)"
+      />
+      <ellipse
+        class="eye"
+        cx="80"
+        cy="100"
+        rx="15"
+        ry="20"
+        fill="hsl(35deg 80% 20%)"
+      />
+      <ellipse
+        class="eye"
+        cx="160"
+        cy="100"
+        rx="15"
+        ry="20"
+        fill="hsl(35deg 80% 20%)"
+      />
+      <circle
+        r="80"
+        cx="120"
+        cy="90"
+        fill="none"
+        stroke="hsl(35deg 80% 20%)"
+        stroke-width="10"
+        stroke-linecap="round"
+        stroke-dasharray="90 2000"
+        stroke-dashoffset="-80"
+      />
+    </svg>
+  </body>
+</html>

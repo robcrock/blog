@@ -3,8 +3,9 @@ export const BLOG_TITLE = "Robert's Site";
 export const COLOR_THEME_COOKIE_NAME = "color-theme";
 
 export const NAVIGATION_ITEMS = [
-  { id: "projects", label: "WORK", href: "#projects", page: "/projects" },
+  { id: "lab", label: "LAB", href: "#lab", page: "/lab" },
   { id: "craft", label: "CRAFT", href: "#craft", page: "/craft" },
+  { id: "projects", label: "WORK", href: "#projects", page: "/projects" },
   { id: "connect", label: "CONNECT", href: "#connect", page: null },
 ] as const;
 

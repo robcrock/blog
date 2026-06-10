@@ -1,0 +1,20 @@
+body {
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  background: hsl(210deg 15% 6%);
+}
+.wrapper {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  padding-inline: 16px;
+  border-bottom: 5px solid white;
+  border-radius: 5px;
+}
+.ball {
+  width: 50px;
+  height: 50px;
+  border-radius: 45%;
+  background: hsl(272, 100%, 50%);
+}

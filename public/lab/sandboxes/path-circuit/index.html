@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeSandbox</title>
+      <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./styles.css" />
+      <link rel="stylesheet" href="./lab-embed.css" />
+  </head>
+  <body>
+    <svg
+      width="240"
+      height="240"
+      viewBox="0 0 24 24"
+    >
+      <!-- Parallelogram -->
+      <path
+        d="
+          M 2 4
+          l 6 0
+          l 2 4
+          l -6 0
+          z
+        "
+      />
+      
+      <!-- Triangle -->
+      <path
+        d="
+          M 6 15
+          l 3 6
+          l -6 0
+          z
+        "
+      />
+      
+      <!-- Pac-man -->
+      <path
+        d="
+          M 21 4
+          l -2 2
+          l 2 2
+          A 3 3 0 1 1 21 4
+        "
+      />
+      
+      <!-- Squiggle -->
+      <path
+        d="
+          M 14 18
+          c 4,6 4,-6 8,0
+        "
+      />
+    </svg>
+    
+    
+    
+    <!--
+      Paths Cheatsheet
+    
+      Move:
+        M x,y
+    
+      Line:
+        L x,y
+    
+      Bezier curves:
+        Q p1x,p1y x,y
+        C p1x,p1y p2x,p2y x,y
+    
+      Arc:
+        A rx,ry rotation large-arc-flag sweep-flag x,y
+    
+      Close path:
+        Z
+    
+      *Remember, paths are case-sensitive!* If you’re
+      seeing weird results, make sure you’re using
+      uppercase commands.
+    -->
+  </body>
+</html>

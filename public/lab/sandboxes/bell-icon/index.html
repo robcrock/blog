@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bell-icon</title>
+
+      <link rel="stylesheet" href="./lab-embed.css" />
+  </head>
+  <body>
+<head>
+  <link rel="stylesheet" href="./base.css" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <svg id="svg" aria-hidden="true" viewBox="0 0 24 24" width="420" fill="none">
+    <defs>
+      <mask id="mask">
+        <rect width="100%" height="100%" fill="white" />
+        <path
+          transform="translate(1.4 -1.4)"
+          d="M3 3L21 21"
+          stroke-dasharray="26"
+          stroke-dashoffset="26"
+          stroke="black"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <animate
+            attributeName="stroke-dashoffset"
+            to="0"
+            dur="0.5s"
+            fill="freeze"
+            begin="svg.click"
+          />
+        </path>
+      </mask>
+    </defs>
+    <path
+      mask="url(#mask)"
+      d="M12 2C8.06401 2 4.73599 4.91373 4.2158 8.8152L3.31069 15.6035C3.07089 17.402 4.47 19 6.28437 19H7.35364C8.25779 20.7479 9.96138 22 12 22C14.0386 22 15.7422 20.7479 16.6464 19H17.7156C19.53 19 20.9291 17.402 20.6893 15.6035L19.7842 8.8152C19.264 4.91374 15.936 2 12 2ZM14.2218 19H9.77824C10.3872 19.6373 11.1768 20 12 20C12.8232 20 13.6128 19.6373 14.2218 19Z"
+      fill="currentColor"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+    />
+    <path
+      d="M3 3L21 21"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-dasharray="26"
+      stroke-dashoffset="26"
+    >
+      <animate
+        attributeName="stroke-dashoffset"
+        to="0"
+        dur="0.5s"
+        fill="freeze"
+        begin="svg.click"
+      />
+    </path>
+  </svg>
+  <p>Click me!</p>
+</body>
+
+  </body>
+</html>

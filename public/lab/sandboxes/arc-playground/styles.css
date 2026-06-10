@@ -1,0 +1,21 @@
+html {
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  color: white;
+  background: hsl(210deg 15% 6%);
+}
+
+svg {
+  width: 128px;
+  height: 128px;
+  fill: none;
+  outline: 1px solid hsl(210deg 10% 30%);
+  
+  path {
+    stroke: white;
+    stroke-width: 1px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}

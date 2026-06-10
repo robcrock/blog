@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>viewbox-animation</title>
+
+      <link rel="stylesheet" href="./lab-embed.css" />
+  </head>
+  <body>
+<head>
+  <link rel="stylesheet" href="./base.css" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div>
+    <svg width="420" viewBox="30 0 80 80">
+      <g class="items" stroke="currentColor" stroke-width="2">
+        <circle r="20" fill="blue" cx="70" cy="40" />
+        <circle r="20" fill="none" cx="200" cy="70" />
+        <rect fill="red" x="100" y="60" width="40" height="40" />
+        <rect fill="green" x="-5" y="40" width="40" height="40" />
+        <rect fill="blue" x="220" y="-10" width="40" height="40" />
+        <polygon
+          points="0 40, 40 40, 40 0"
+          fill="yellow"
+          transform="translate(140 0)"
+        />
+      </g>
+    </svg>
+    <button>Click me!</button>
+  </div>
+  <script src="./index.js" type="module"></script>
+</body>
+
+  </body>
+</html>

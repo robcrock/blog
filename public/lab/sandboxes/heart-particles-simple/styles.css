@@ -1,0 +1,53 @@
+html {
+  --red: oklch(0.65 0.3 19.41);
+}
+body {
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  background: hsl(210deg 15% 6%);
+}
+.particleButton {
+  position: relative;
+  padding: 16px;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:hover {
+    background: hsl(0deg 0% 100% / 0.1);
+
+    path {
+      stroke: var(--red);
+    }
+  }
+
+  &.liked path {
+    fill: var(--red);
+    stroke: var(--red);
+  }
+}
+
+.particleButton svg {
+  position: relative;
+  display: block;
+  width: 3rem;
+  height: 3rem;
+}
+
+/*
+  This utility class will hide the element from the screen, but it will remain accessible for folks using screen readers. I’m using it here to provide alternative text for the heart icon, so that non-sighted users can still understand the button’s purpose.
+
+  For more information, see:
+  https://www.joshwcomeau.com/snippets/react-components/visually-hidden/
+*/
+.visually-hidden:not(:focus):not(:active) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeSandbox</title>
+      <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./styles.css" />
+      <link rel="stylesheet" href="./lab-embed.css" />
+  </head>
+  <body>
+    <style>
+      button:hover .scribble {
+        stroke-dashoffset: 0px;
+      }
+      .scribble {
+        stroke: white;
+        stroke-width: 10px;
+        stroke-linecap: round;
+        stroke-dasharray: 100, 1000;
+        stroke-dashoffset: 100px;
+        transition: stroke-dashoffset 1000ms;
+      }
+    </style>
+    
+    <button>
+      <svg viewBox="0 0 160 130" fill="none">
+        <path
+          class="scribble"
+          pathLength="100"
+          d="
+            M 5,25
+            C 5,25 19,135 62,123
+            C 81,117 79,69 85,68
+            C 91,67 100,100 117,109
+            C 159,132 154,6 154,6
+          "
+        />
+      </svg>
+    </button>
+  </body>
+</html>

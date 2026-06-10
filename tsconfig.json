@@ -37,6 +37,7 @@
     "node_modules",
     "**/*.stories.tsx",
     "**/*.stories.ts",
-    ".storybook"
+    ".storybook",
+    "codesandboxes"
   ]
 }

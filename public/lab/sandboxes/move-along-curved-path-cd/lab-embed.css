@@ -1,0 +1,10 @@
+/* injected for tile embedding on robcrock.com */
+html,
+body {
+  overflow: hidden !important;
+}
+svg {
+  max-width: 92vw;
+  max-height: 92vh;
+}
+body{padding-top:4px !important}.iphone{zoom:0.35}

@@ -1,0 +1,47 @@
+html {
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  background: hsl(210deg 15% 6%);
+  color: white;
+}
+svg {
+  width: 240px;
+  stroke: hsl(45deg 100% 50%);
+  stroke-width: 10px;
+  stroke-linecap: round;
+}
+.controls {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: hsl(0deg 0% 100% / 0.1);
+  padding: 16px;
+}
+#progressSlider {
+  display: block;
+  width: 300px;
+  max-width: 100%;
+}
+.progressWrapper {
+  position: relative;
+}
+.bigNumber {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: bold;
+  font-family: monospace;
+  text-align: center;
+}
+.progressTrack {
+  stroke: hsl(35deg 30% 20%);
+}

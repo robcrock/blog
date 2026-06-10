@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeSandbox</title>
+      <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./styles.css" />
+      <link rel="stylesheet" href="./lab-embed.css" />
+  </head>
+  <body>
+    <style>
+      @keyframes grow-shrink {
+        from {
+          stroke-dasharray: 5 1000;
+        }
+        to {
+          stroke-dasharray: 20 1000;
+        }
+      }
+      @keyframes circuit {
+        from {
+          stroke-dashoffset: 0;
+        }
+        to {
+          stroke-dashoffset: calc(var(--total-length) * -1);
+        }
+      }
+      
+      .line {
+        stroke-dasharray: 20 1000;
+        animation: circuit var(--curcuit-duration) linear infinite,
+          grow-shrink var(--grow-shrink-duration) alternate ease-in-out infinite;
+        animation-delay: var(--curcuit-delay);
+      }
+      
+    </style>
+    
+    <div class="wrapper">
+      <svg viewBox="0 0 100 100" fill="none">
+        <!--
+          Each of the three lines has two associated paths.
+          The “.track” paths are the static background lines,
+          while the “line” paths will become our sliding
+          red dashes.
+        -->
+        <path
+          class="track one"
+          d="
+            M 20,10
+            L 20,45
+            L 50,45
+            L 50,100
+          "
+        />
+        <path
+          class="line one"
+          d="
+            M 20,10
+            L 20,45
+            L 50,45
+            L 50,100
+          "
+        />
+    
+        <path
+          class="track two"
+          d="
+            M 80,20
+            L 80,60
+            L 52,60
+            L 52,100
+          "
+        />
+        <path
+          class="line two"
+          d="
+            M 80,20
+            L 80,60
+            L 52,60
+            L 52,100
+          "
+        />
+    
+        <path
+          class="track three"
+          d="
+            M 20,70
+            L 48,70
+            L 48,100
+          "
+        />
+        <path
+          class="line three"
+          d="
+            M 20,70
+            L 48,70
+            L 48,100
+          "
+        />
+      </svg>
+      <div class="logos">
+        <div class="box one">
+          <img alt="crown icon" src="https://sandpack-bundler.vercel.app/img/crown.svg" />
+        </div>
+        <div class="box two">
+          <img alt="cat icon" src="https://sandpack-bundler.vercel.app/img/cat.svg" />
+        </div>
+        <div class="box three">
+          <img alt="citrus icon" src="https://sandpack-bundler.vercel.app/img/citrus.svg" />
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./index.js"></script>
+</body>
+</html>

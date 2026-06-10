@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeSandbox</title>
+      <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./styles.css" />
+      <link rel="stylesheet" href="./lab-embed.css" />
+  </head>
+  <body>
+    <style>
+      @keyframes fadeToTransparent {
+        to {
+          opacity: 0;
+        }
+      }
+      @keyframes disperse {
+        to {
+          transform:
+            translate(var(--offsetX), var(--offsetY))
+            rotate(var(--rotation));
+        }
+      }
+      
+      .star {
+        position: absolute;
+        user-select: none;
+        pointer-events: none;
+        animation:
+          disperse 1000ms forwards cubic-bezier(0.26, 0.95, 0.00, 1.00),
+          fadeToTransparent var(--fade-duration) var(--fade-delay) forwards;
+      }
+    </style>
+    
+    
+    
+    <!--
+      This hidden image is added so that the browser will download
+      the image on page load. That way, it’s ready and waiting when
+      the user triggers the particle effect.
+    -->
+    <img
+      alt=""
+      src="https://sandpack-bundler.vercel.app/img/wand-sparkle.svg"
+      style="display: none"
+    />
+    <script type="module" src="./index.js"></script>
+</body>
+</html>

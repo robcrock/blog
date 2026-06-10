@@ -1,0 +1,25 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  align-items: center;
+  height: 100vh;
+  background: hsl(210deg 15% 6%);
+  color: white;
+}
+button {
+  display: block;
+  background: none;
+  padding: 0;
+  border: 1px solid hsl(210deg 15% 30%);
+  cursor: pointer;
+}
+svg {
+  display: block;
+  width: 128px;
+  height: 128px;
+  fill: none;
+  stroke: hsl(45deg 100% 50%);
+  stroke-linejoin: round;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeSandbox</title>
+      <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./styles.css" />
+      <link rel="stylesheet" href="./lab-embed.css" />
+  </head>
+  <body>
+    <style>
+      @keyframes selfDraw {
+        to {
+          stroke-dashoffset: 1px;
+        }
+      }
+    
+      path {
+        stroke-dasharray: 1px 1000px;
+        animation: selfDraw 1000ms ease-in-out infinite alternate;
+      }
+    </style>
+    
+    <svg viewBox="0 0 200 100">
+      <path
+        pathLength="1"
+        d="
+          M 0,20
+          L 50,20
+        "
+      />
+      <path
+        pathLength="1"
+        d="
+          M 0,40
+          L 100,40
+        "
+      />
+      <path
+        pathLength="1"
+        d="
+          M 0,60
+          L 150,60
+        "
+      />
+      <path
+        pathLength="1"
+        d="
+          M 0,80
+          L 200,80
+        "
+      />
+    </svg>
+    
+    <button>
+      Play/Pause
+    </button>
+    <script type="module" src="./index.js"></script>
+</body>
+</html>
