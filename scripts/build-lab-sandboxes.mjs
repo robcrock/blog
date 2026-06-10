@@ -8,12 +8,21 @@
  *  - CSS imports stripped from JS, replaced with <link> tags in the HTML
  *  - extensionless relative imports get a .js extension (browser ESM)
  *  - `/index.js` script srcs rewritten relative so subpath hosting works
+ *
+ * Also emits src/features/lab/generated/sandbox-sources.json with the
+ * ORIGINAL (pre-rewrite) sources, powering the "view code" detail pages.
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
 const SRC_ROOT = "codesandboxes/_extracted";
 const OUT_ROOT = "public/lab/sandboxes";
+const SOURCES_OUT = "src/features/lab/generated/sandbox-sources.json";
+
+// Files worth showing on the detail pages, in tab order. Boilerplate
+// (reset.css, base.css) and the generated lab-embed.css stay hidden.
+const SOURCE_FILES = ["index.html", "index.js", "utils.js", "styles.css"];
+const SOURCE_LANGUAGES = { html: "html", js: "js", css: "css" };
 
 const CDN = {
   lodash: "https://cdn.jsdelivr.net/npm/lodash-es@4.17.21/+esm",
@@ -199,6 +208,32 @@ ${html}${scriptTag}
   return { slug, hasJs, cssFiles };
 }
 
+/** Collect the original, human-readable sources for the detail pages */
+function collectSources(slug) {
+  const srcDir = path.join(SRC_ROOT, slug);
+  const files = [];
+  for (const name of SOURCE_FILES) {
+    const filePath = path.join(srcDir, name);
+    if (!existsSync(filePath)) continue;
+    const code = readFileSync(filePath, "utf8").trim();
+    if (code.length === 0) continue;
+    // Skip JS that is nothing but CSS imports (Parcel-style entry shims)
+    if (
+      name.endsWith(".js") &&
+      code.replace(/^\s*import\s+["']\.\/[\w.-]+\.css["'];?\s*$/gm, "").trim()
+        .length === 0
+    ) {
+      continue;
+    }
+    files.push({
+      name,
+      language: SOURCE_LANGUAGES[name.split(".").pop()],
+      code,
+    });
+  }
+  return files;
+}
+
 // --- Run ---
 rmSync(OUT_ROOT, { recursive: true, force: true });
 mkdirSync(OUT_ROOT, { recursive: true });
@@ -211,7 +246,15 @@ const slugs = readdirSync(SRC_ROOT).filter((d) => {
 });
 
 const results = slugs.map(buildSandbox);
+
+const sources = Object.fromEntries(
+  slugs.map((slug) => [slug, collectSources(slug)])
+);
+mkdirSync(path.dirname(SOURCES_OUT), { recursive: true });
+writeFileSync(SOURCES_OUT, JSON.stringify(sources, null, 2) + "\n");
+
 console.log(`Built ${results.length} sandboxes into ${OUT_ROOT}`);
+console.log(`Wrote sources manifest to ${SOURCES_OUT}`);
 for (const r of results) {
   console.log(`  ${r.slug} ${r.hasJs ? "(js)" : "(static)"} [${r.cssFiles.join(", ")}]`);
 }

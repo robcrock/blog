@@ -61,11 +61,16 @@ export interface Exhibit {
   src?: string;
   /** Scale-down factor for demos designed for a full browser window */
   frameScale?: number;
+  /** Repo-relative source paths shown on the detail page (native exhibits) */
+  sourceFiles?: string[];
 }
 
 type ExhibitInput = Omit<Exhibit, "number">;
 
 const sandboxSrc = (slug: string) => `/lab/sandboxes/${slug}/index.html`;
+
+const exhibitSources = (...files: string[]) =>
+  files.map((file) => `src/features/lab/exhibits/${file}`);
 
 const INTERACTION: ExhibitInput[] = [
   {
@@ -77,6 +82,7 @@ const INTERACTION: ExhibitInput[] = [
     hint: "Hover",
     essayHref: "/craft/proximity-reveal",
     Component: DistanceTriangleExhibit,
+    sourceFiles: exhibitSources("distance-triangle-exhibit.tsx", "math.ts"),
   },
   {
     slug: "range-mapping",
@@ -87,6 +93,7 @@ const INTERACTION: ExhibitInput[] = [
     hint: "Hover",
     essayHref: "/craft/interactive-dot-grid",
     Component: RangeMappingExhibit,
+    sourceFiles: exhibitSources("range-mapping-exhibit.tsx", "math.ts"),
   },
   {
     slug: "dot-grid-field",
@@ -97,6 +104,7 @@ const INTERACTION: ExhibitInput[] = [
     hint: "Hover",
     essayHref: "/craft/interactive-dot-grid",
     Component: DotGridExhibit,
+    sourceFiles: exhibitSources("dot-grid-exhibit.tsx", "math.ts"),
   },
   {
     slug: "proximity-reveal",
@@ -106,6 +114,7 @@ const INTERACTION: ExhibitInput[] = [
     hint: "Hover",
     essayHref: "/craft/proximity-reveal",
     Component: ProximityRevealExhibit,
+    sourceFiles: exhibitSources("proximity-reveal-exhibit.tsx", "math.ts"),
   },
   {
     slug: "transform-play",
@@ -116,6 +125,7 @@ const INTERACTION: ExhibitInput[] = [
     hint: "Hover",
     essayHref: "/craft/transform-explorer",
     Component: TransformExhibit,
+    sourceFiles: exhibitSources("transform-exhibit.tsx", "math.ts"),
   },
   {
     slug: "origin-aware-popover",
@@ -125,6 +135,7 @@ const INTERACTION: ExhibitInput[] = [
     chapter: "interaction",
     hint: "Click",
     Component: PopoverOriginExhibit,
+    sourceFiles: exhibitSources("popover-origin-exhibit.tsx"),
   },
   {
     slug: "ripple-button",
@@ -134,6 +145,7 @@ const INTERACTION: ExhibitInput[] = [
     chapter: "interaction",
     hint: "Click",
     Component: RippleExhibit,
+    sourceFiles: exhibitSources("ripple-exhibit.tsx"),
   },
   {
     slug: "toast-choreography",
@@ -143,6 +155,7 @@ const INTERACTION: ExhibitInput[] = [
     chapter: "interaction",
     hint: "Click",
     Component: ToastExhibit,
+    sourceFiles: exhibitSources("toast-exhibit.tsx"),
   },
 ];
 
@@ -354,6 +367,7 @@ const SVG_DRAWING: ExhibitInput[] = [
     chapter: "svg",
     hint: "Click",
     Component: TimerExhibit,
+    sourceFiles: exhibitSources("timer-exhibit.tsx"),
   },
   {
     slug: "fey-chart",
@@ -363,6 +377,7 @@ const SVG_DRAWING: ExhibitInput[] = [
     chapter: "svg",
     hint: "Click",
     Component: FeyChartExhibit,
+    sourceFiles: exhibitSources("fey-chart-exhibit.tsx"),
   },
 ];
 
@@ -545,6 +560,7 @@ const PARTICLES: ExhibitInput[] = [
     chapter: "particles",
     hint: "Click",
     Component: LikeButtonExhibit,
+    sourceFiles: exhibitSources("like-button-exhibit.tsx", "math.ts"),
   },
 ];
 

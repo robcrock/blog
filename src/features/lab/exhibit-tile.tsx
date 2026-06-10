@@ -1,5 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 import type { Exhibit } from "./registry";
 import { SandboxFrame } from "./sandbox-frame";
@@ -9,21 +8,16 @@ interface ExhibitTileProps {
 }
 
 export function ExhibitTile({ exhibit }: ExhibitTileProps) {
-  const {
-    number,
-    title,
-    description,
-    hint,
-    essayHref,
-    Component,
-    src,
-    frameScale,
-  } = exhibit;
+  const { number, slug, title, description, hint, Component, src, frameScale } =
+    exhibit;
 
   return (
     <article className="flex flex-col border-b border-r border-border bg-card">
-      {/* Live canvas */}
-      <div className="relative h-64 overflow-hidden">
+      {/* Live canvas — freely interactive, not wrapped in a link */}
+      <div
+        className="relative h-64 overflow-hidden"
+        style={{ viewTransitionName: `lab-canvas-${slug}` }}
+      >
         {Component ? (
           <Component />
         ) : src ? (
@@ -38,20 +32,18 @@ export function ExhibitTile({ exhibit }: ExhibitTileProps) {
             <span className="font-mono text-[11px] text-muted-foreground tabular-nums">
               {number}
             </span>
-            {essayHref ? (
-              <Link
-                href={essayHref}
-                className="group inline-flex items-center gap-1 rounded font-medium transition-colors duration-200 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            <Link
+              href={`/lab/${slug}`}
+              className="group inline-flex items-baseline gap-2 rounded font-medium transition-colors duration-200 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              <h3 className="text-base">{title}</h3>
+              <span
+                aria-hidden
+                className="font-mono text-[11px] text-muted-foreground opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
               >
-                <h3 className="text-base">{title}</h3>
-                <ArrowUpRight
-                  aria-hidden
-                  className="size-3.5 text-muted-foreground opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
-                />
-              </Link>
-            ) : (
-              <h3 className="text-base font-medium">{title}</h3>
-            )}
+                {"</>"}
+              </span>
+            </Link>
           </div>
           <p className="mt-1 text-pretty text-sm text-muted-foreground">
             {description}

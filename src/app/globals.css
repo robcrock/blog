@@ -72,6 +72,9 @@ code {
 
     /* Radius - Minimal, functional */
     --radius: 0.25rem;
+
+    /* Motion - natural deceleration for entering/moving elements */
+    --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
   }
 
   .dark {
@@ -199,4 +202,56 @@ code {
 
 .dark [data-rehype-pretty-code-figure] pre code {
   color: #c9d1d9;
+}
+
+/* ---------------------------------------------------------------- */
+/* Lab specimen detail pages: direct Shiki output (no rehype layer)  */
+/* ---------------------------------------------------------------- */
+
+.lab-code pre.shiki {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  border-radius: 0;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+}
+
+.lab-code pre.shiki code {
+  background: transparent;
+  padding: 0;
+}
+
+/* Shiki inlines the light theme and stows the dark theme in CSS vars */
+.dark .lab-code .shiki,
+.dark .lab-code .shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+}
+
+/* ---------------------------------------------------------------- */
+/* View Transition API: gallery tile ↔ specimen detail canvas morph  */
+/* ---------------------------------------------------------------- */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 250ms;
+  animation-timing-function: var(--ease-out-quart);
+}
+
+/* Shared lab-canvas-<slug> groups morph between tile and hero */
+::view-transition-group(*) {
+  animation-duration: 300ms;
+  animation-timing-function: var(--ease-out-quart);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-image-pair(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
 }

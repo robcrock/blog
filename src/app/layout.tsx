@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 
 import Script from "next/script";
+import { ViewTransitions } from "next-view-transitions";
 import { Analytics } from "@vercel/analytics/react";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
@@ -69,35 +70,37 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={`${GeistSans.variable} ${GeistMono.variable}`}
-    >
-      <head>
-        {process.env.NODE_ENV === "development" && (
-          <>
-            <Script
-              src="//unpkg.com/react-grab/dist/index.global.js"
-              crossOrigin="anonymous"
-              strategy="beforeInteractive"
-            />
-            <Script
-              src="https://mcp.figma.com/mcp/html-to-design/capture.js"
-              async
-            />
-          </>
-        )}
-      </head>
-      <body className="container px-4 mx-auto max-w-6xl">
-        <ThemeProvider>
-          <Header />
-          <main className="relative z-10">{children}</main>
-          <Footer />
-          <Toaster />
-          <Analytics />
-        </ThemeProvider>
-      </body>
-    </html>
+    <ViewTransitions>
+      <html
+        lang="en"
+        suppressHydrationWarning
+        className={`${GeistSans.variable} ${GeistMono.variable}`}
+      >
+        <head>
+          {process.env.NODE_ENV === "development" && (
+            <>
+              <Script
+                src="//unpkg.com/react-grab/dist/index.global.js"
+                crossOrigin="anonymous"
+                strategy="beforeInteractive"
+              />
+              <Script
+                src="https://mcp.figma.com/mcp/html-to-design/capture.js"
+                async
+              />
+            </>
+          )}
+        </head>
+        <body className="container px-4 mx-auto max-w-6xl">
+          <ThemeProvider>
+            <Header />
+            <main className="relative z-10">{children}</main>
+            <Footer />
+            <Toaster />
+            <Analytics />
+          </ThemeProvider>
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }
