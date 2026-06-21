@@ -2,9 +2,9 @@
 
 import { Card } from "@/shared/components/card";
 import { NAVIGATION_ITEMS, PROJECTS } from "@/shared/lib/constants";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 const DISPLAY_COUNT = 6;
 
@@ -45,16 +45,14 @@ export default function ProjectsSection() {
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {displayedProjects.map((project, index) => (
           <Card
-            key={project.link}
+            key={project.slug}
             id={`project-${index}`}
             className="ring-2 ring-transparent ring-offset-1 transition-all duration-200 group hover:ring-primary focus-within:ring-primary"
           >
             <Link
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`/projects/${project.slug}`}
               className="block overflow-hidden relative z-0 w-full h-48 rounded focus-visible:outline-none"
-              aria-label={`View ${project.title} on Frontend Mentor (opens in new tab)`}
+              aria-label={`View ${project.title} details`}
               title={project.title}
             >
               <Image
@@ -65,11 +63,12 @@ export default function ProjectsSection() {
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 style={{
                   objectFit: "cover",
+                  viewTransitionName: `projects-canvas-${project.slug}`,
                 }}
               />
-              {/* External link indicator */}
+              {/* View-details indicator */}
               <div className="absolute top-3 text-primary-foreground right-3 p-1.5 bg-primary backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity shadow">
-                <ArrowUpRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4" />
               </div>
             </Link>
           </Card>
