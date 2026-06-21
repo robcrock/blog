@@ -11,6 +11,12 @@ interface SandboxFrameProps {
    * viewport so nothing overflows the fixed-height tile.
    */
   scale?: number;
+  /**
+   * Overrides the iframe sandbox allow-list. Defaults to the value the
+   * Lab demos rely on; embedded full sites (forms, clipboard, popups)
+   * pass a broader list.
+   */
+  sandbox?: string;
 }
 
 /**
@@ -19,7 +25,12 @@ interface SandboxFrameProps {
  * on page load. Once mounted it stays mounted — browsers throttle
  * offscreen iframes, and remounting would flash a reload.
  */
-export function SandboxFrame({ src, title, scale = 1 }: SandboxFrameProps) {
+export function SandboxFrame({
+  src,
+  title,
+  scale = 1,
+  sandbox = "allow-scripts allow-same-origin",
+}: SandboxFrameProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
 
@@ -52,7 +63,7 @@ export function SandboxFrame({ src, title, scale = 1 }: SandboxFrameProps) {
           src={src}
           title={title}
           className="relative border-0"
-          sandbox="allow-scripts allow-same-origin"
+          sandbox={sandbox}
           style={{
             width: inverse,
             height: inverse,
