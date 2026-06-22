@@ -17,15 +17,19 @@ const HeroSection = () => {
       </div>
 
       {/* Right col: name, tagline, socials — vertically centered */}
-      <div className="flex flex-col gap-6 px-8 py-10 md:px-10 md:pt-44 lg:px-14">
+      <div className="flex flex-col gap-8 px-8 py-10 md:px-10 md:pt-44 lg:px-14">
         <div>
           <h1 className="text-5xl font-bold leading-none tracking-tighter md:text-7xl lg:text-8xl xl:text-[84px]">
             Robert
             <br />
             Crocker
           </h1>
-          <p className="mt-4 text-lg text-muted-foreground md:text-xl">
+          <p className="mt-3 text-lg text-muted-foreground md:text-xl">
             Craft obsessed developer who designs.
+          </p>
+          <p className="mt-2 max-w-md text-sm font-light leading-relaxed text-muted-foreground md:text-base">
+            Senior frontend engineer at Abbott. Previously Helix and product
+            engineer for Apple, Nike, and IBM via Vizsimply.
           </p>
         </div>
 

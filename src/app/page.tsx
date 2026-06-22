@@ -1,5 +1,4 @@
 import {
-  ConnectSection,
   CraftSection,
   HeroSection,
   LabSection,
@@ -13,7 +12,6 @@ export default function Home() {
       <LabSection />
       <CraftSection />
       <ProjectSection />
-      <ConnectSection />
     </>
   );
 }

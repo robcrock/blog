@@ -1,7 +1,6 @@
 import React from "react";
-import { SiGithub, SiMentorcruise, SiX } from "@icons-pack/react-simple-icons";
-import { LucideLinkedin } from "lucide-react";
-import SkoolIcon from "@/shared/icons/skool-icon";
+import { SiGithub, SiX } from "@icons-pack/react-simple-icons";
+import { LucideLinkedin, Mail } from "lucide-react";
 import { SOCIAL_LINKS } from "@/shared/lib/constants";
 
 type IconName = (typeof SOCIAL_LINKS)[number]["icon"];
@@ -22,10 +21,8 @@ export function renderSocialIcon({
       return <SiGithub size={size} />;
     case "X":
       return <SiX size={size} />;
-    case "MentorCruise":
-      return <SiMentorcruise size={size} />;
-    case "Skool":
-      return <SkoolIcon width={size} height={size} />;
+    case "Email":
+      return <Mail size={size} />;
     default:
       // TypeScript should prevent this, but just in case
       const _exhaustive: never = iconName;
