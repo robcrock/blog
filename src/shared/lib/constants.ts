@@ -6,21 +6,13 @@ export const NAVIGATION_ITEMS = [
   { id: "lab", label: "LAB", href: "#lab", page: "/lab" },
   { id: "craft", label: "CRAFT", href: "#craft", page: "/craft" },
   { id: "projects", label: "WORK", href: "#projects", page: "/projects" },
-  { id: "connect", label: "CONNECT", href: "#connect", page: null },
 ] as const;
 
 export const SOCIAL_LINKS = [
   { href: "https://www.linkedin.com/in/robertcrocker/", icon: "LinkedIn" },
   { href: "https://github.com/robcrock", icon: "GitHub" },
   { href: "https://x.com/robcrock", icon: "X" },
-  {
-    href: "https://mentorcruise.com/mentor/robertcrocker/",
-    icon: "MentorCruise",
-  },
-  {
-    href: "https://www.skool.com/design-engineering",
-    icon: "Skool",
-  },
+  { href: "mailto:robert@robcrock.com", icon: "Email" },
 ] as const;
 
 export interface Project {
@@ -129,52 +121,3 @@ export const PROJECTS: Project[] = [
   },
 ];
 
-export interface ConnectOffering {
-  title: string;
-  description: string;
-  platform: "MentorCruise" | "Skool" | "Email";
-  link: string;
-  features: string[];
-}
-
-export const CONNECT_OFFERINGS: ConnectOffering[] = [
-  {
-    title: "1-on-1 Mentorship",
-    description:
-      "Personalized guidance for your frontend development journey. Whether you're transitioning careers or leveling up your skills, I'll help you get there faster.",
-    platform: "MentorCruise",
-    link: "https://mentorcruise.com/mentor/robertcrocker/",
-    features: [
-      "Weekly 1-on-1 sessions",
-      "Code reviews & feedback",
-      "Career guidance",
-      "Portfolio reviews",
-    ],
-  },
-  {
-    title: "Community Learning",
-    description:
-      "Join a community of like-minded developers learning together. Get access to resources, discussions, and group learning sessions.",
-    platform: "Skool",
-    link: "https://www.skool.com/design-engineering",
-    features: [
-      "Community discussions",
-      "Shared resources",
-      "Group challenges",
-      "Peer networking",
-    ],
-  },
-  {
-    title: "Quick Chat",
-    description:
-      "Have a project idea, a quick question, or just want to connect? Drop me an email and let's start a conversation.",
-    platform: "Email",
-    link: "mailto:robert@robcrock.com",
-    features: [
-      "Project inquiries",
-      "Quick questions",
-      "Collaboration opportunities",
-      "General networking",
-    ],
-  },
-] as const;
