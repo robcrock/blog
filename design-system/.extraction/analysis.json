@@ -1,0 +1,1821 @@
+{
+  "version": 1,
+  "generatedAt": "2026-08-21T11:10:06.657Z",
+  "outDir": "/Users/robcrock/Documents/Code/robcrock.com/design-system",
+  "targets": [
+    {
+      "root": "/Users/robcrock/Documents/Code/robcrock.com",
+      "packageName": "project-blog",
+      "frameworks": [
+        "next",
+        "react"
+      ],
+      "stylingMethods": [
+        "tailwind-v3",
+        "vanilla-css"
+      ],
+      "componentLibraries": [
+        {
+          "name": "Radix UI",
+          "kind": "package",
+          "evidence": [
+            "@radix-ui/react-icons"
+          ]
+        },
+        {
+          "name": "CVA (class-variance-authority)",
+          "kind": "package",
+          "evidence": [
+            "class-variance-authority"
+          ]
+        }
+      ],
+      "styleSources": [
+        {
+          "file": "src/app/globals.css",
+          "kind": "css",
+          "note": "defines 40 custom properties"
+        },
+        {
+          "file": "tailwind.config.js",
+          "kind": "tailwind-config"
+        }
+      ],
+      "icons": [
+        {
+          "name": "apple-icon",
+          "file": "public/icons/apple-icon.svg",
+          "source": "svg-file"
+        },
+        {
+          "name": "icon",
+          "file": "public/icons/icon.svg",
+          "source": "svg-file"
+        },
+        {
+          "name": "clamped-normalize-playground",
+          "file": "src/features/craft/playgrounds/clamped-normalize-playground.tsx",
+          "source": "inline-svg"
+        },
+        {
+          "name": "distance-triangle-playground",
+          "file": "src/features/craft/playgrounds/distance-triangle-playground.tsx",
+          "source": "inline-svg"
+        },
+        {
+          "name": "interactive-dot-grid-playground",
+          "file": "src/features/craft/playgrounds/interactive-dot-grid-playground.tsx",
+          "source": "inline-svg"
+        },
+        {
+          "name": "interactive-dot-grid",
+          "file": "src/features/home/components/interactive-dot-grid.tsx",
+          "source": "inline-svg"
+        },
+        {
+          "name": "distance-triangle-exhibit",
+          "file": "src/features/lab/exhibits/distance-triangle-exhibit.tsx",
+          "source": "inline-svg"
+        },
+        {
+          "name": "dot-grid-exhibit",
+          "file": "src/features/lab/exhibits/dot-grid-exhibit.tsx",
+          "source": "inline-svg"
+        },
+        {
+          "name": "fey-chart-exhibit",
+          "file": "src/features/lab/exhibits/fey-chart-exhibit.tsx",
+          "source": "inline-svg"
+        },
+        {
+          "name": "like-button-exhibit",
+          "file": "src/features/lab/exhibits/like-button-exhibit.tsx",
+          "source": "inline-svg"
+        },
+        {
+          "name": "proximity-reveal-exhibit",
+          "file": "src/features/lab/exhibits/proximity-reveal-exhibit.tsx",
+          "source": "inline-svg"
+        },
+        {
+          "name": "range-mapping-exhibit",
+          "file": "src/features/lab/exhibits/range-mapping-exhibit.tsx",
+          "source": "inline-svg"
+        },
+        {
+          "name": "timer-exhibit",
+          "file": "src/features/lab/exhibits/timer-exhibit.tsx",
+          "source": "inline-svg"
+        },
+        {
+          "name": "logo",
+          "file": "src/shared/brand/logo.tsx",
+          "source": "inline-svg"
+        }
+      ],
+      "typography": [],
+      "stats": {
+        "filesScanned": 158,
+        "filesSkipped": 557,
+        "durationMs": 271
+      }
+    }
+  ],
+  "components": [
+    {
+      "name": "Container",
+      "file": "src/shared/layout/container.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "default",
+      "props": [
+        {
+          "name": "className",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "usage": {
+        "importCount": 8,
+        "tagCount": 8,
+        "files": [
+          "src/app/lab/[slug]/page.tsx",
+          "src/app/lab/page.tsx",
+          "src/app/projects/[slug]/page.tsx",
+          "src/app/projects/page.tsx",
+          "src/features/craft/pages/craft-detail-page.tsx",
+          "src/features/craft/pages/craft-list-page.tsx",
+          "src/features/posts/pages/posts-detail-page.tsx",
+          "src/features/posts/pages/posts-list-page.tsx"
+        ]
+      },
+      "observedProps": {
+        "className": [
+          "pt-8 pb-20",
+          "pt-8 pb-20 space-y-4"
+        ]
+      }
+    },
+    {
+      "name": "PlaygroundCanvas",
+      "file": "src/features/craft/playground/playground-canvas.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [
+        {
+          "name": "className",
+          "required": false,
+          "defaultValue": "\"\""
+        },
+        {
+          "name": "backgroundPattern",
+          "required": false,
+          "defaultValue": "\"none\""
+        },
+        {
+          "name": "fullWidth",
+          "required": false,
+          "defaultValue": "false"
+        }
+      ],
+      "usage": {
+        "importCount": 6,
+        "tagCount": 7,
+        "files": [
+          "src/features/craft/playgrounds/clamped-normalize-playground.tsx",
+          "src/features/craft/playgrounds/distance-triangle-playground.tsx",
+          "src/features/craft/playgrounds/interactive-dot-grid-playground.tsx",
+          "src/features/craft/playgrounds/playgrounds.stories.tsx",
+          "src/features/craft/playgrounds/popover-playground.tsx",
+          "src/features/craft/playgrounds/toast-playground.tsx",
+          "src/features/craft/playgrounds/transform-playground.tsx"
+        ]
+      },
+      "observedProps": {
+        "backgroundPattern": [
+          "dots",
+          "grid",
+          "none"
+        ],
+        "className": [
+          "!overflow-visible",
+          "min-h-[360px] flex-1 rounded-lg bg-[hsl(210deg_15%_8%)]",
+          "min-h-[400px]",
+          "rounded-lg bg-[hsl(210deg_15%_8%)]"
+        ]
+      }
+    },
+    {
+      "name": "Playground",
+      "file": "src/features/craft/playground/playground.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [
+        {
+          "name": "className",
+          "required": false,
+          "defaultValue": "\"\""
+        },
+        {
+          "name": "allowOverflow",
+          "required": false,
+          "defaultValue": "false"
+        }
+      ],
+      "usage": {
+        "importCount": 6,
+        "tagCount": 7,
+        "files": [
+          "src/features/craft/playgrounds/clamped-normalize-playground.tsx",
+          "src/features/craft/playgrounds/distance-triangle-playground.tsx",
+          "src/features/craft/playgrounds/interactive-dot-grid-playground.tsx",
+          "src/features/craft/playgrounds/playgrounds.stories.tsx",
+          "src/features/craft/playgrounds/popover-playground.tsx",
+          "src/features/craft/playgrounds/toast-playground.tsx",
+          "src/features/craft/playgrounds/transform-playground.tsx"
+        ]
+      },
+      "observedProps": {
+        "title": [
+          "CSS Transform Explorer",
+          "Interactive Dot Grid",
+          "My Interactive Demo",
+          "Popover Transform Origin Demo",
+          "The Distance Triangle",
+          "Toast Notification Demo",
+          "clampedNormalize"
+        ],
+        "description": [
+          "Adjust the ranges and drag the input to see how values map.",
+          "Click the button and watch how the transform-origin affects the popover animation.",
+          "Explore this concept with live controls",
+          "Hover on the element to see smooth transitions using custom easing functions.",
+          "Hover to disturb. Tweak the knobs to make it yours.",
+          "Move your cursor to see the right triangle formed between two points—and the Pythagorean theorem in action.",
+          "Trigger toast notifications with different styles."
+        ]
+      }
+    },
+    {
+      "name": "Card",
+      "file": "src/shared/components/card.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 5,
+        "tagCount": 8,
+        "files": [
+          "src/app/projects/page.tsx",
+          "src/features/craft/pages/craft-list-page.tsx",
+          "src/features/home/sections/craft-section.tsx",
+          "src/features/home/sections/project-section.tsx",
+          "src/shared/components/card.stories.tsx"
+        ]
+      },
+      "observedProps": {
+        "className": [
+          "overflow-hidden ring-2 ring-transparent ring-offset-1 transition-all duration-200 focus-within:ring-primary hover:ring-primary",
+          "ring-2 ring-transparent ring-offset-1 transition-all duration-200 group focus-within:ring-primary hover:ring-primary",
+          "ring-2 ring-transparent ring-offset-1 transition-all duration-200 group hover:ring-primary focus-within:ring-primary",
+          "w-[300px]",
+          "w-[350px] overflow-hidden",
+          "w-[380px]"
+        ]
+      }
+    },
+    {
+      "name": "Button",
+      "file": "src/shared/components/button.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [
+        {
+          "name": "render",
+          "required": false,
+          "type": "React.ReactElement"
+        }
+      ],
+      "usage": {
+        "importCount": 6,
+        "tagCount": 2,
+        "files": [
+          "src/features/home/sections/hero-section.tsx",
+          "src/features/posts/transformer-copy-button.tsx",
+          "src/shared/components/button.stories.tsx",
+          "src/shared/layout/footer.tsx",
+          "src/shared/layout/header.tsx",
+          "src/shared/theme/theme-switcher.tsx"
+        ]
+      },
+      "observedProps": {
+        "variant": [
+          "ghost"
+        ],
+        "size": [
+          "icon"
+        ],
+        "className": [
+          "absolute top-3 right-4 p-2 group"
+        ]
+      }
+    },
+    {
+      "name": "PlaygroundCode",
+      "file": "src/features/craft/playground/playground-code.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [
+        {
+          "name": "language",
+          "required": false,
+          "defaultValue": "\"css\""
+        },
+        {
+          "name": "className",
+          "required": false,
+          "defaultValue": "\"\""
+        }
+      ],
+      "usage": {
+        "importCount": 4,
+        "tagCount": 5,
+        "files": [
+          "src/features/craft/playgrounds/clamped-normalize-playground.tsx",
+          "src/features/craft/playgrounds/distance-triangle-playground.tsx",
+          "src/features/craft/playgrounds/playgrounds.stories.tsx",
+          "src/features/craft/playgrounds/popover-playground.tsx",
+          "src/features/craft/playgrounds/transform-playground.tsx"
+        ]
+      },
+      "observedProps": {
+        "className": [
+          "mt-0"
+        ],
+        "language": [
+          "css",
+          "javascript"
+        ]
+      }
+    },
+    {
+      "name": "PlaygroundControls",
+      "file": "src/features/craft/playground/playground-controls.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [
+        {
+          "name": "className",
+          "required": false,
+          "defaultValue": "\"\""
+        }
+      ],
+      "usage": {
+        "importCount": 4,
+        "tagCount": 5,
+        "files": [
+          "src/features/craft/playgrounds/clamped-normalize-playground.tsx",
+          "src/features/craft/playgrounds/playgrounds.stories.tsx",
+          "src/features/craft/playgrounds/popover-playground.tsx",
+          "src/features/craft/playgrounds/toast-playground.tsx",
+          "src/features/craft/playgrounds/transform-playground.tsx"
+        ]
+      },
+      "observedProps": {
+        "className": [
+          "mt-6 space-y-4"
+        ]
+      }
+    },
+    {
+      "name": "RangeControl",
+      "file": "src/features/craft/playground/controls/range-control.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [
+        {
+          "name": "min",
+          "required": false,
+          "defaultValue": "0"
+        },
+        {
+          "name": "max",
+          "required": false,
+          "defaultValue": "100"
+        },
+        {
+          "name": "step",
+          "required": false,
+          "defaultValue": "1"
+        },
+        {
+          "name": "unit",
+          "required": false,
+          "defaultValue": "\"\""
+        },
+        {
+          "name": "showValue",
+          "required": false,
+          "defaultValue": "true"
+        }
+      ],
+      "usage": {
+        "importCount": 2,
+        "tagCount": 6,
+        "files": [
+          "src/features/craft/playgrounds/clamped-normalize-playground.tsx",
+          "src/features/craft/playgrounds/playgrounds.stories.tsx",
+          "src/features/craft/playgrounds/transform-playground.tsx"
+        ]
+      },
+      "observedProps": {
+        "label": [
+          "Input (distance)",
+          "Rotate",
+          "Scale",
+          "Translate X",
+          "Translate Y"
+        ],
+        "step": [
+          "0.1",
+          "1"
+        ],
+        "min": [
+          "-200",
+          "0",
+          "0.5"
+        ],
+        "max": [
+          "100",
+          "2",
+          "200",
+          "360"
+        ],
+        "unit": [
+          "deg",
+          "px"
+        ]
+      }
+    },
+    {
+      "name": "SelectControl",
+      "file": "src/features/craft/playground/controls/select-control.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 3,
+        "tagCount": 3,
+        "files": [
+          "src/features/craft/playgrounds/playgrounds.stories.tsx",
+          "src/features/craft/playgrounds/popover-playground.tsx",
+          "src/features/craft/playgrounds/toast-playground.tsx",
+          "src/features/craft/playgrounds/transform-playground.tsx"
+        ]
+      },
+      "observedProps": {
+        "label": [
+          "Option",
+          "Toast Type",
+          "Transform Origin"
+        ]
+      }
+    },
+    {
+      "name": "SandboxFrame",
+      "file": "src/features/lab/sandbox-frame.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [
+        {
+          "name": "src",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "scale",
+          "required": false,
+          "type": "number",
+          "defaultValue": "1"
+        },
+        {
+          "name": "sandbox",
+          "required": false,
+          "type": "string",
+          "defaultValue": "\"allow-scripts allow-same-origin\""
+        }
+      ],
+      "usage": {
+        "importCount": 3,
+        "tagCount": 3,
+        "files": [
+          "src/app/lab/[slug]/page.tsx",
+          "src/app/projects/[slug]/page.tsx",
+          "src/features/lab/exhibit-tile.tsx"
+        ]
+      },
+      "observedProps": {
+        "scale": [
+          "0.55"
+        ],
+        "sandbox": [
+          "allow-scripts allow-same-origin allow-forms allow-popups allow-modals"
+        ]
+      }
+    },
+    {
+      "name": "PopoverPlayground",
+      "file": "src/features/craft/playgrounds/popover-playground.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 3,
+        "tagCount": 2,
+        "files": [
+          "src/features/craft/playgrounds/playgrounds.stories.tsx",
+          "src/features/craft/playgrounds/popover-playground.stories.tsx",
+          "src/mdx-components.tsx"
+        ]
+      }
+    },
+    {
+      "name": "TransformPlayground",
+      "file": "src/features/craft/playgrounds/transform-playground.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 3,
+        "tagCount": 2,
+        "files": [
+          "src/features/craft/playgrounds/playgrounds.stories.tsx",
+          "src/features/craft/playgrounds/transform-playground.stories.tsx",
+          "src/mdx-components.tsx"
+        ]
+      }
+    },
+    {
+      "name": "ButtonControl",
+      "file": "src/features/craft/playground/controls/button-control.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [
+        {
+          "name": "variant",
+          "required": false,
+          "defaultValue": "\"primary\""
+        }
+      ],
+      "usage": {
+        "importCount": 2,
+        "tagCount": 2,
+        "files": [
+          "src/features/craft/playgrounds/popover-playground.tsx",
+          "src/features/craft/playgrounds/toast-playground.tsx"
+        ]
+      },
+      "observedProps": {
+        "label": [
+          "Show Toast"
+        ],
+        "variant": [
+          "primary"
+        ]
+      }
+    },
+    {
+      "name": "ToastPlayground",
+      "file": "src/features/craft/playgrounds/toast-playground.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 2,
+        "tagCount": 2,
+        "files": [
+          "src/features/craft/playgrounds/playgrounds.stories.tsx",
+          "src/mdx-components.tsx"
+        ]
+      }
+    },
+    {
+      "name": "ExhibitTile",
+      "file": "src/features/lab/exhibit-tile.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [
+        {
+          "name": "exhibit",
+          "required": true,
+          "type": "Exhibit"
+        }
+      ],
+      "usage": {
+        "importCount": 2,
+        "tagCount": 2,
+        "files": [
+          "src/features/home/sections/lab-section.tsx",
+          "src/features/lab/lab-gallery.tsx"
+        ]
+      },
+      "observedProps": {}
+    },
+    {
+      "name": "MDXContent",
+      "file": "src/features/posts/mdx-content.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [
+        {
+          "name": "code",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "usage": {
+        "importCount": 2,
+        "tagCount": 2,
+        "files": [
+          "src/features/craft/pages/craft-detail-page.tsx",
+          "src/features/posts/pages/posts-detail-page.tsx"
+        ]
+      },
+      "observedProps": {}
+    },
+    {
+      "name": "CardContent",
+      "file": "src/shared/components/card.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 4,
+        "files": [
+          "src/shared/components/card.stories.tsx"
+        ]
+      }
+    },
+    {
+      "name": "CardHeader",
+      "file": "src/shared/components/card.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 4,
+        "files": [
+          "src/shared/components/card.stories.tsx"
+        ]
+      }
+    },
+    {
+      "name": "CardTitle",
+      "file": "src/shared/components/card.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 4,
+        "files": [
+          "src/shared/components/card.stories.tsx"
+        ]
+      }
+    },
+    {
+      "name": "SandpackEditor",
+      "file": "src/features/posts/sandpack-editor.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [
+        {
+          "name": "files",
+          "required": false,
+          "type": "SandpackProps[\"files\"]"
+        },
+        {
+          "name": "template",
+          "required": false,
+          "type": "SandpackProps[\"template\"]",
+          "defaultValue": "\"react-ts\""
+        },
+        {
+          "name": "customSetup",
+          "required": false,
+          "type": "SandpackProps[\"customSetup\"]"
+        },
+        {
+          "name": "options",
+          "required": false,
+          "type": "SandpackProps[\"options\"]"
+        }
+      ],
+      "usage": {
+        "importCount": 2,
+        "tagCount": 1,
+        "files": [
+          "src/features/posts/sandpack-editor.stories.tsx",
+          "src/mdx-components.tsx"
+        ]
+      },
+      "observedProps": {}
+    },
+    {
+      "name": "Avatar",
+      "file": "src/shared/components/avatar.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 3,
+        "files": [
+          "src/shared/components/avatar.stories.tsx"
+        ]
+      },
+      "observedProps": {
+        "className": [
+          "w-[120px] h-[120px] border-2"
+        ]
+      }
+    },
+    {
+      "name": "AvatarFallback",
+      "file": "src/shared/components/avatar.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 3,
+        "files": [
+          "src/shared/components/avatar.stories.tsx"
+        ]
+      }
+    },
+    {
+      "name": "CardDescription",
+      "file": "src/shared/components/card.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 3,
+        "files": [
+          "src/shared/components/card.stories.tsx"
+        ]
+      }
+    },
+    {
+      "name": "DualRangeControl",
+      "file": "src/features/craft/playground/controls/dual-range-control.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [
+        {
+          "name": "min",
+          "required": false,
+          "defaultValue": "0"
+        },
+        {
+          "name": "max",
+          "required": false,
+          "defaultValue": "100"
+        },
+        {
+          "name": "step",
+          "required": false,
+          "defaultValue": "1"
+        },
+        {
+          "name": "unit",
+          "required": false,
+          "defaultValue": "\"\""
+        }
+      ],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 2,
+        "files": [
+          "src/features/craft/playgrounds/clamped-normalize-playground.tsx"
+        ]
+      },
+      "observedProps": {
+        "label": [
+          "Input Range",
+          "Output Range"
+        ]
+      }
+    },
+    {
+      "name": "AvatarImage",
+      "file": "src/shared/components/avatar.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 2,
+        "files": [
+          "src/shared/components/avatar.stories.tsx"
+        ]
+      },
+      "observedProps": {
+        "src": [
+          "/images/avatar.png"
+        ],
+        "alt": [
+          "Robert Crocker"
+        ]
+      }
+    },
+    {
+      "name": "CardFooter",
+      "file": "src/shared/components/card.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 2,
+        "files": [
+          "src/shared/components/card.stories.tsx"
+        ]
+      },
+      "observedProps": {
+        "className": [
+          "gap-2"
+        ]
+      }
+    },
+    {
+      "name": "CraftDetailPage",
+      "file": "src/features/craft/pages/craft-detail-page.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [
+        {
+          "name": "craft",
+          "required": true,
+          "type": "Craft"
+        },
+        {
+          "name": "prevCraft",
+          "required": true,
+          "type": "Craft | null"
+        },
+        {
+          "name": "nextCraft",
+          "required": true,
+          "type": "Craft | null"
+        }
+      ],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 1,
+        "files": [
+          "src/app/craft/[slug]/page.tsx"
+        ]
+      },
+      "observedProps": {}
+    },
+    {
+      "name": "CraftListPage",
+      "file": "src/features/craft/pages/craft-list-page.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [
+        {
+          "name": "crafts",
+          "required": true,
+          "type": "Craft[]"
+        }
+      ],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 1,
+        "files": [
+          "src/app/craft/page.tsx"
+        ]
+      },
+      "observedProps": {}
+    },
+    {
+      "name": "ProximityReveal",
+      "file": "src/features/craft/playgrounds/proximity-reveal.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 1,
+        "files": [
+          "src/mdx-components.tsx"
+        ]
+      }
+    },
+    {
+      "name": "InteractiveDotGrid",
+      "file": "src/features/home/components/interactive-dot-grid.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "default",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 1,
+        "files": [
+          "src/features/home/sections/hero-section.tsx"
+        ]
+      }
+    },
+    {
+      "name": "CraftSection",
+      "file": "src/features/home/sections/craft-section.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "default",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 1,
+        "files": [
+          "src/app/page.tsx"
+        ]
+      }
+    },
+    {
+      "name": "HeroSection",
+      "file": "src/features/home/sections/hero-section.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "default",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 1,
+        "files": [
+          "src/app/page.tsx"
+        ]
+      }
+    },
+    {
+      "name": "LabSection",
+      "file": "src/features/home/sections/lab-section.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "default",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 1,
+        "files": [
+          "src/app/page.tsx"
+        ]
+      }
+    },
+    {
+      "name": "ExhibitCode",
+      "file": "src/features/lab/exhibit-code.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [
+        {
+          "name": "files",
+          "required": true,
+          "type": "HighlightedFile[]"
+        }
+      ],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 1,
+        "files": [
+          "src/app/lab/[slug]/page.tsx"
+        ]
+      },
+      "observedProps": {}
+    },
+    {
+      "name": "LabGallery",
+      "file": "src/features/lab/lab-gallery.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [
+        {
+          "name": "exhibits",
+          "required": true,
+          "type": "Exhibit[]"
+        }
+      ],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 1,
+        "files": [
+          "src/app/lab/page.tsx"
+        ]
+      },
+      "observedProps": {}
+    },
+    {
+      "name": "PostsDetailPage",
+      "file": "src/features/posts/pages/posts-detail-page.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [
+        {
+          "name": "post",
+          "required": true,
+          "type": "Post"
+        }
+      ],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 1,
+        "files": [
+          "src/app/posts/[slug]/page.tsx"
+        ]
+      },
+      "observedProps": {}
+    },
+    {
+      "name": "PostsListPage",
+      "file": "src/features/posts/pages/posts-list-page.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [
+        {
+          "name": "posts",
+          "required": true,
+          "type": "Post[]"
+        }
+      ],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 1,
+        "files": [
+          "src/app/posts/page.tsx"
+        ]
+      },
+      "observedProps": {}
+    },
+    {
+      "name": "TransformerCopyButton",
+      "file": "src/features/posts/transformer-copy-button.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "default",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 1,
+        "files": [
+          "src/mdx-components.tsx"
+        ]
+      }
+    },
+    {
+      "name": "Logo",
+      "file": "src/shared/brand/logo.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 1,
+        "files": [
+          "src/shared/layout/header.tsx"
+        ]
+      },
+      "observedProps": {
+        "className": [
+          "h-[54px] w-[54px] md:h-[68px] md:w-[68px]"
+        ]
+      }
+    },
+    {
+      "name": "AspectRatio",
+      "file": "src/shared/components/aspect-ratio.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [
+        {
+          "name": "ratio",
+          "required": false,
+          "type": "number"
+        }
+      ],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 1,
+        "files": [
+          "src/features/posts/post-image.tsx"
+        ]
+      },
+      "observedProps": {}
+    },
+    {
+      "name": "Footer",
+      "file": "src/shared/layout/footer.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "default",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 1,
+        "files": [
+          "src/app/layout.tsx"
+        ]
+      }
+    },
+    {
+      "name": "Header",
+      "file": "src/shared/layout/header.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "default",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 1,
+        "files": [
+          "src/app/layout.tsx"
+        ]
+      }
+    },
+    {
+      "name": "ThemeProvider",
+      "file": "src/shared/theme/theme-provider.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [
+        {
+          "name": "children",
+          "required": true,
+          "type": "React.ReactNode"
+        }
+      ],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 1,
+        "files": [
+          "src/app/layout.tsx"
+        ]
+      }
+    },
+    {
+      "name": "ClampedNormalizePlayground",
+      "file": "src/features/craft/playgrounds/clamped-normalize-playground.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 0,
+        "files": [
+          "src/mdx-components.tsx"
+        ]
+      }
+    },
+    {
+      "name": "DistanceTrianglePlayground",
+      "file": "src/features/craft/playgrounds/distance-triangle-playground.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 0,
+        "files": [
+          "src/mdx-components.tsx"
+        ]
+      }
+    },
+    {
+      "name": "InteractiveDotGridPlayground",
+      "file": "src/features/craft/playgrounds/interactive-dot-grid-playground.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 0,
+        "files": [
+          "src/mdx-components.tsx"
+        ]
+      }
+    },
+    {
+      "name": "DistanceTriangleExhibit",
+      "file": "src/features/lab/exhibits/distance-triangle-exhibit.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 0,
+        "files": [
+          "src/features/lab/registry.ts"
+        ]
+      }
+    },
+    {
+      "name": "DotGridExhibit",
+      "file": "src/features/lab/exhibits/dot-grid-exhibit.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 0,
+        "files": [
+          "src/features/lab/registry.ts"
+        ]
+      }
+    },
+    {
+      "name": "FeyChartExhibit",
+      "file": "src/features/lab/exhibits/fey-chart-exhibit.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 0,
+        "files": [
+          "src/features/lab/registry.ts"
+        ]
+      }
+    },
+    {
+      "name": "LikeButtonExhibit",
+      "file": "src/features/lab/exhibits/like-button-exhibit.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 0,
+        "files": [
+          "src/features/lab/registry.ts"
+        ]
+      }
+    },
+    {
+      "name": "PopoverOriginExhibit",
+      "file": "src/features/lab/exhibits/popover-origin-exhibit.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 0,
+        "files": [
+          "src/features/lab/registry.ts"
+        ]
+      }
+    },
+    {
+      "name": "ProximityRevealExhibit",
+      "file": "src/features/lab/exhibits/proximity-reveal-exhibit.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 0,
+        "files": [
+          "src/features/lab/registry.ts"
+        ]
+      }
+    },
+    {
+      "name": "RangeMappingExhibit",
+      "file": "src/features/lab/exhibits/range-mapping-exhibit.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 0,
+        "files": [
+          "src/features/lab/registry.ts"
+        ]
+      }
+    },
+    {
+      "name": "RippleExhibit",
+      "file": "src/features/lab/exhibits/ripple-exhibit.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 0,
+        "files": [
+          "src/features/lab/registry.ts"
+        ]
+      }
+    },
+    {
+      "name": "TimerExhibit",
+      "file": "src/features/lab/exhibits/timer-exhibit.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 0,
+        "files": [
+          "src/features/lab/registry.ts"
+        ]
+      }
+    },
+    {
+      "name": "ToastExhibit",
+      "file": "src/features/lab/exhibits/toast-exhibit.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 0,
+        "files": [
+          "src/features/lab/registry.ts"
+        ]
+      }
+    },
+    {
+      "name": "TransformExhibit",
+      "file": "src/features/lab/exhibits/transform-exhibit.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 0,
+        "files": [
+          "src/features/lab/registry.ts"
+        ]
+      }
+    },
+    {
+      "name": "PostImage",
+      "file": "src/features/posts/post-image.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "default",
+      "props": [
+        {
+          "name": "src",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "alt",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "usage": {
+        "importCount": 1,
+        "tagCount": 0,
+        "files": [
+          "src/mdx-components.tsx"
+        ]
+      }
+    },
+    {
+      "name": "MyPlayground",
+      "file": "src/features/craft/playgrounds/playgrounds.stories.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 0,
+        "tagCount": 0,
+        "files": []
+      }
+    },
+    {
+      "name": "RippleButtonDemo",
+      "file": "src/features/craft/playgrounds/ripple-button.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 0,
+        "tagCount": 0,
+        "files": []
+      }
+    },
+    {
+      "name": "ProjectsSection",
+      "file": "src/features/home/sections/project-section.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "default",
+      "props": [],
+      "usage": {
+        "importCount": 0,
+        "tagCount": 0,
+        "files": []
+      }
+    },
+    {
+      "name": "App",
+      "file": "src/features/posts/sandpack-editor.stories.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "default",
+      "props": [],
+      "usage": {
+        "importCount": 0,
+        "tagCount": 0,
+        "files": []
+      }
+    },
+    {
+      "name": "Skeleton",
+      "file": "src/shared/components/skeleton.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 0,
+        "tagCount": 0,
+        "files": []
+      }
+    },
+    {
+      "name": "Tooltip",
+      "file": "src/shared/components/tooltip.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [
+        {
+          "name": "children",
+          "required": true,
+          "type": "React.ReactElement"
+        },
+        {
+          "name": "content",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "side",
+          "required": false,
+          "type": "\"top\" | \"bottom\" | \"left\" | \"right\"",
+          "defaultValue": "\"top\""
+        },
+        {
+          "name": "sideOffset",
+          "required": false,
+          "type": "number",
+          "defaultValue": "8"
+        },
+        {
+          "name": "className",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "usage": {
+        "importCount": 0,
+        "tagCount": 0,
+        "files": []
+      }
+    },
+    {
+      "name": "Section",
+      "file": "src/shared/layout/section.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "default",
+      "props": [
+        {
+          "name": "backgroundColor",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "spacing",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "usage": {
+        "importCount": 0,
+        "tagCount": 0,
+        "files": []
+      }
+    },
+    {
+      "name": "ThemeSwitcher",
+      "file": "src/shared/theme/theme-switcher.tsx",
+      "targetIndex": 0,
+      "framework": "react",
+      "classification": "bespoke",
+      "exportKind": "named",
+      "props": [],
+      "usage": {
+        "importCount": 0,
+        "tagCount": 0,
+        "files": []
+      }
+    }
+  ],
+  "duplicateGroups": [],
+  "architecture": {
+    "levels": {
+      "Container": "unclassified",
+      "PlaygroundCanvas": "organism",
+      "Playground": "unclassified",
+      "Card": "molecule",
+      "Button": "atom",
+      "PlaygroundCode": "unclassified",
+      "PlaygroundControls": "unclassified",
+      "RangeControl": "unclassified",
+      "SelectControl": "unclassified",
+      "SandboxFrame": "organism",
+      "PopoverPlayground": "unclassified",
+      "TransformPlayground": "unclassified",
+      "ButtonControl": "unclassified",
+      "ToastPlayground": "unclassified",
+      "ExhibitTile": "unclassified",
+      "MDXContent": "unclassified",
+      "CardContent": "unclassified",
+      "CardHeader": "organism",
+      "CardTitle": "unclassified",
+      "SandpackEditor": "molecule",
+      "Avatar": "atom",
+      "AvatarFallback": "unclassified",
+      "CardDescription": "unclassified",
+      "DualRangeControl": "unclassified",
+      "AvatarImage": "atom",
+      "CardFooter": "organism",
+      "CraftDetailPage": "template",
+      "CraftListPage": "template",
+      "ProximityReveal": "unclassified",
+      "InteractiveDotGrid": "unclassified",
+      "CraftSection": "organism",
+      "HeroSection": "organism",
+      "LabSection": "organism",
+      "ExhibitCode": "unclassified",
+      "LabGallery": "organism",
+      "PostsDetailPage": "template",
+      "PostsListPage": "template",
+      "TransformerCopyButton": "atom",
+      "Logo": "atom",
+      "AspectRatio": "unclassified",
+      "Footer": "organism",
+      "Header": "organism",
+      "ThemeProvider": "unclassified",
+      "ClampedNormalizePlayground": "unclassified",
+      "DistanceTrianglePlayground": "unclassified",
+      "InteractiveDotGridPlayground": "unclassified",
+      "DistanceTriangleExhibit": "unclassified",
+      "DotGridExhibit": "unclassified",
+      "FeyChartExhibit": "unclassified",
+      "LikeButtonExhibit": "unclassified",
+      "PopoverOriginExhibit": "unclassified",
+      "ProximityRevealExhibit": "unclassified",
+      "RangeMappingExhibit": "unclassified",
+      "RippleExhibit": "unclassified",
+      "TimerExhibit": "unclassified",
+      "ToastExhibit": "unclassified",
+      "TransformExhibit": "unclassified",
+      "PostImage": "atom",
+      "MyPlayground": "unclassified",
+      "RippleButtonDemo": "unclassified",
+      "ProjectsSection": "organism",
+      "App": "unclassified",
+      "Skeleton": "atom",
+      "Tooltip": "atom",
+      "Section": "organism",
+      "ThemeSwitcher": "unclassified"
+    },
+    "specializations": [
+      {
+        "component": "PlaygroundCanvas",
+        "genericOf": "Canvas",
+        "qualifier": "playground",
+        "suggestion": "\"PlaygroundCanvas\" is a playground USAGE of a generic Canvas — in a general-purpose system it becomes a Canvas variant/recipe, not a component of its own."
+      },
+      {
+        "component": "SandboxFrame",
+        "genericOf": "Frame",
+        "qualifier": "sandbox",
+        "suggestion": "\"SandboxFrame\" is a sandbox USAGE of a generic Frame — in a general-purpose system it becomes a Frame variant/recipe, not a component of its own."
+      },
+      {
+        "component": "CardHeader",
+        "genericOf": "Header",
+        "qualifier": "card",
+        "suggestion": "\"CardHeader\" is a card USAGE of a generic Header — in a general-purpose system it becomes a Header variant/recipe, not a component of its own."
+      },
+      {
+        "component": "SandpackEditor",
+        "genericOf": "Editor",
+        "qualifier": "sandpack",
+        "suggestion": "\"SandpackEditor\" is a sandpack USAGE of a generic Editor — in a general-purpose system it becomes a Editor variant/recipe, not a component of its own."
+      },
+      {
+        "component": "AvatarImage",
+        "genericOf": "Image",
+        "qualifier": "avatar",
+        "suggestion": "\"AvatarImage\" is a avatar USAGE of a generic Image — in a general-purpose system it becomes a Image variant/recipe, not a component of its own."
+      },
+      {
+        "component": "CardFooter",
+        "genericOf": "Footer",
+        "qualifier": "card",
+        "suggestion": "\"CardFooter\" is a card USAGE of a generic Footer — in a general-purpose system it becomes a Footer variant/recipe, not a component of its own."
+      },
+      {
+        "component": "CraftSection",
+        "genericOf": "Section",
+        "qualifier": "craft",
+        "suggestion": "\"CraftSection\" is a craft USAGE of a generic Section — in a general-purpose system it becomes a Section variant/recipe, not a component of its own."
+      },
+      {
+        "component": "HeroSection",
+        "genericOf": "Section",
+        "qualifier": "hero",
+        "suggestion": "\"HeroSection\" is a hero USAGE of a generic Section — in a general-purpose system it becomes a Section variant/recipe, not a component of its own."
+      },
+      {
+        "component": "LabSection",
+        "genericOf": "Section",
+        "qualifier": "lab",
+        "suggestion": "\"LabSection\" is a lab USAGE of a generic Section — in a general-purpose system it becomes a Section variant/recipe, not a component of its own."
+      },
+      {
+        "component": "LabGallery",
+        "genericOf": "Gallery",
+        "qualifier": "lab",
+        "suggestion": "\"LabGallery\" is a lab USAGE of a generic Gallery — in a general-purpose system it becomes a Gallery variant/recipe, not a component of its own."
+      },
+      {
+        "component": "TransformerCopyButton",
+        "genericOf": "Button",
+        "qualifier": "transformer copy",
+        "suggestion": "\"TransformerCopyButton\" is a transformer copy USAGE of a generic Button — in a general-purpose system it becomes a Button variant/recipe, not a component of its own."
+      },
+      {
+        "component": "PostImage",
+        "genericOf": "Image",
+        "qualifier": "post",
+        "suggestion": "\"PostImage\" is a post USAGE of a generic Image — in a general-purpose system it becomes a Image variant/recipe, not a component of its own."
+      },
+      {
+        "component": "ProjectsSection",
+        "genericOf": "Section",
+        "qualifier": "projects",
+        "suggestion": "\"ProjectsSection\" is a projects USAGE of a generic Section — in a general-purpose system it becomes a Section variant/recipe, not a component of its own."
+      }
+    ],
+    "missingPrimitives": [
+      "Canvas",
+      "Editor",
+      "Frame",
+      "Gallery",
+      "Image"
+    ],
+    "summary": {
+      "unclassified": 40,
+      "organism": 12,
+      "molecule": 2,
+      "atom": 8,
+      "template": 4
+    }
+  }
+}

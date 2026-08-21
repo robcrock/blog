@@ -1,0 +1,42 @@
+{
+  "name": "Tooltip",
+  "file": "src/shared/components/tooltip.tsx",
+  "targetIndex": 0,
+  "framework": "react",
+  "classification": "bespoke",
+  "exportKind": "named",
+  "props": [
+    {
+      "name": "children",
+      "required": true,
+      "type": "React.ReactElement"
+    },
+    {
+      "name": "content",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "side",
+      "required": false,
+      "type": "\"top\" | \"bottom\" | \"left\" | \"right\"",
+      "defaultValue": "\"top\""
+    },
+    {
+      "name": "sideOffset",
+      "required": false,
+      "type": "number",
+      "defaultValue": "8"
+    },
+    {
+      "name": "className",
+      "required": false,
+      "type": "string"
+    }
+  ],
+  "usage": {
+    "importCount": 0,
+    "tagCount": 0,
+    "files": []
+  }
+}

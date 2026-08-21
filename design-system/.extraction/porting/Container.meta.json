@@ -1,0 +1,35 @@
+{
+  "name": "Container",
+  "file": "src/shared/layout/container.tsx",
+  "targetIndex": 0,
+  "framework": "react",
+  "classification": "bespoke",
+  "exportKind": "default",
+  "props": [
+    {
+      "name": "className",
+      "required": false,
+      "type": "string"
+    }
+  ],
+  "usage": {
+    "importCount": 8,
+    "tagCount": 8,
+    "files": [
+      "src/app/lab/[slug]/page.tsx",
+      "src/app/lab/page.tsx",
+      "src/app/projects/[slug]/page.tsx",
+      "src/app/projects/page.tsx",
+      "src/features/craft/pages/craft-detail-page.tsx",
+      "src/features/craft/pages/craft-list-page.tsx",
+      "src/features/posts/pages/posts-detail-page.tsx",
+      "src/features/posts/pages/posts-list-page.tsx"
+    ]
+  },
+  "observedProps": {
+    "className": [
+      "pt-8 pb-20",
+      "pt-8 pb-20 space-y-4"
+    ]
+  }
+}

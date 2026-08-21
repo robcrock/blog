@@ -1,0 +1,357 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-21T11:17:40.399Z",
+  "components": {
+    "Container": {
+      "status": "ported",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "storyFile": "src/components/Container/Container.stories.tsx",
+      "notes": "max-w-[80rem] layout primitive"
+    },
+    "PlaygroundCanvas": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "Playground": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "Card": {
+      "status": "ported",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "storyFile": "src/components/Card/Card.stories.tsx",
+      "notes": "Compound Card + subcomponents"
+    },
+    "Button": {
+      "status": "ported",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "storyFile": "src/components/Button/Button.stories.tsx",
+      "notes": "CVA variants × sizes from shared kit"
+    },
+    "PlaygroundCode": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "PlaygroundControls": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "RangeControl": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "SelectControl": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "SandboxFrame": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "PopoverPlayground": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "TransformPlayground": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "ButtonControl": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "ToastPlayground": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "ExhibitTile": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "MDXContent": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "CardContent": {
+      "status": "ported",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "storyFile": "src/components/Card/Card.stories.tsx",
+      "notes": "Part of Card compound"
+    },
+    "CardHeader": {
+      "status": "ported",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "storyFile": "src/components/Card/Card.stories.tsx",
+      "notes": "Part of Card compound"
+    },
+    "CardTitle": {
+      "status": "ported",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "storyFile": "src/components/Card/Card.stories.tsx",
+      "notes": "Part of Card compound"
+    },
+    "SandpackEditor": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "Avatar": {
+      "status": "ported",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "storyFile": "src/components/Avatar/Avatar.stories.tsx",
+      "notes": "Base UI Avatar wrap"
+    },
+    "AvatarFallback": {
+      "status": "ported",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "storyFile": "src/components/Avatar/Avatar.stories.tsx",
+      "notes": "Part of Avatar"
+    },
+    "CardDescription": {
+      "status": "ported",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "storyFile": "src/components/Card/Card.stories.tsx",
+      "notes": "Part of Card compound"
+    },
+    "DualRangeControl": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "AvatarImage": {
+      "status": "ported",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "storyFile": "src/components/Avatar/Avatar.stories.tsx",
+      "notes": "Part of Avatar"
+    },
+    "CardFooter": {
+      "status": "ported",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "storyFile": "src/components/Card/Card.stories.tsx",
+      "notes": "Part of Card compound"
+    },
+    "CraftDetailPage": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "CraftListPage": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "ProximityReveal": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "InteractiveDotGrid": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "CraftSection": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "HeroSection": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "LabSection": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "ExhibitCode": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "LabGallery": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "PostsDetailPage": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "PostsListPage": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "TransformerCopyButton": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "Logo": {
+      "status": "ported",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "storyFile": "src/components/Logo/Logo.stories.tsx",
+      "notes": "Theme-aware via currentColor"
+    },
+    "AspectRatio": {
+      "status": "ported",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "storyFile": "src/components/AspectRatio/AspectRatio.stories.tsx",
+      "notes": ""
+    },
+    "Footer": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "Header": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "ThemeProvider": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "ClampedNormalizePlayground": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "DistanceTrianglePlayground": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "InteractiveDotGridPlayground": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "DistanceTriangleExhibit": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "DotGridExhibit": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "FeyChartExhibit": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "LikeButtonExhibit": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "PopoverOriginExhibit": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "ProximityRevealExhibit": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "RangeMappingExhibit": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "RippleExhibit": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "TimerExhibit": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "ToastExhibit": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "TransformExhibit": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "PostImage": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "MyPlayground": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "RippleButtonDemo": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "ProjectsSection": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "App": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "Skeleton": {
+      "status": "ported",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "storyFile": "src/components/Skeleton/Skeleton.stories.tsx",
+      "notes": ""
+    },
+    "Tooltip": {
+      "status": "ported",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "storyFile": "src/components/Tooltip/Tooltip.stories.tsx",
+      "notes": "Bound popup to popover tokens"
+    },
+    "Section": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "ThemeSwitcher": {
+      "status": "skipped",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "notes": "v1 scope: shared UI kit + brand/layout only"
+    },
+    "SectionHeader": {
+      "status": "ported",
+      "updatedAt": "2026-08-21T11:17:40.399Z",
+      "storyFile": "src/components/SectionHeader/SectionHeader.stories.tsx",
+      "notes": "Hairline section header pattern"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "name": "Button",
+  "file": "src/shared/components/button.tsx",
+  "targetIndex": 0,
+  "framework": "react",
+  "classification": "bespoke",
+  "exportKind": "named",
+  "props": [
+    {
+      "name": "render",
+      "required": false,
+      "type": "React.ReactElement"
+    }
+  ],
+  "usage": {
+    "importCount": 6,
+    "tagCount": 2,
+    "files": [
+      "src/features/home/sections/hero-section.tsx",
+      "src/features/posts/transformer-copy-button.tsx",
+      "src/shared/components/button.stories.tsx",
+      "src/shared/layout/footer.tsx",
+      "src/shared/layout/header.tsx",
+      "src/shared/theme/theme-switcher.tsx"
+    ]
+  },
+  "observedProps": {
+    "variant": [
+      "ghost"
+    ],
+    "size": [
+      "icon"
+    ],
+    "className": [
+      "absolute top-3 right-4 p-2 group"
+    ]
+  }
+}

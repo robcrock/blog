@@ -1,0 +1,21 @@
+{
+  "name": "Logo",
+  "file": "src/shared/brand/logo.tsx",
+  "targetIndex": 0,
+  "framework": "react",
+  "classification": "bespoke",
+  "exportKind": "named",
+  "props": [],
+  "usage": {
+    "importCount": 1,
+    "tagCount": 1,
+    "files": [
+      "src/shared/layout/header.tsx"
+    ]
+  },
+  "observedProps": {
+    "className": [
+      "h-[54px] w-[54px] md:h-[68px] md:w-[68px]"
+    ]
+  }
+}

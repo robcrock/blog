@@ -44,3 +44,5 @@ storybook-static
 # Lab screenshot output + raw sandbox extracts (zips are the source of truth)
 .lab-shots
 codesandboxes/_extracted
+
+*storybook.log

@@ -1,0 +1,23 @@
+{
+  "name": "AspectRatio",
+  "file": "src/shared/components/aspect-ratio.tsx",
+  "targetIndex": 0,
+  "framework": "react",
+  "classification": "bespoke",
+  "exportKind": "named",
+  "props": [
+    {
+      "name": "ratio",
+      "required": false,
+      "type": "number"
+    }
+  ],
+  "usage": {
+    "importCount": 1,
+    "tagCount": 1,
+    "files": [
+      "src/features/posts/post-image.tsx"
+    ]
+  },
+  "observedProps": {}
+}

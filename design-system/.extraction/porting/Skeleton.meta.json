@@ -1,0 +1,14 @@
+{
+  "name": "Skeleton",
+  "file": "src/shared/components/skeleton.tsx",
+  "targetIndex": 0,
+  "framework": "react",
+  "classification": "bespoke",
+  "exportKind": "named",
+  "props": [],
+  "usage": {
+    "importCount": 0,
+    "tagCount": 0,
+    "files": []
+  }
+}

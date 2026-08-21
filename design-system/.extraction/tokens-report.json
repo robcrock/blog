@@ -1,0 +1,151 @@
+{
+  "version": 1,
+  "generatedAt": "2026-08-21T11:10:07.203Z",
+  "counts": {
+    "dimension": 3,
+    "string": 1,
+    "number": 1,
+    "color": 19
+  },
+  "warnings": [
+    "Name conflict: \"card\" is both a token and a group (needed by \"card/foreground\"). Kept both — the leaf token \"card\" was emitted under \"card/@\" and round-trips back to its original name.",
+    "Name conflict: \"popover\" is both a token and a group (needed by \"popover/foreground\"). Kept both — the leaf token \"popover\" was emitted under \"popover/@\" and round-trips back to its original name.",
+    "Name conflict: \"primary\" is both a token and a group (needed by \"primary/foreground\"). Kept both — the leaf token \"primary\" was emitted under \"primary/@\" and round-trips back to its original name.",
+    "Name conflict: \"secondary\" is both a token and a group (needed by \"secondary/foreground\"). Kept both — the leaf token \"secondary\" was emitted under \"secondary/@\" and round-trips back to its original name.",
+    "Name conflict: \"muted\" is both a token and a group (needed by \"muted/foreground\"). Kept both — the leaf token \"muted\" was emitted under \"muted/@\" and round-trips back to its original name.",
+    "Name conflict: \"accent\" is both a token and a group (needed by \"accent/foreground\"). Kept both — the leaf token \"accent\" was emitted under \"accent/@\" and round-trips back to its original name.",
+    "Name conflict: \"destructive\" is both a token and a group (needed by \"destructive/foreground\"). Kept both — the leaf token \"destructive\" was emitted under \"destructive/@\" and round-trips back to its original name."
+  ],
+  "belowThreshold": [
+    {
+      "value": "#cb5142",
+      "type": "color",
+      "frequency": 3
+    },
+    {
+      "value": "radius:0.25rem",
+      "type": "dimension",
+      "frequency": 3
+    },
+    {
+      "value": "space:3px",
+      "type": "dimension",
+      "frequency": 3
+    },
+    {
+      "value": "#adb8c2",
+      "type": "color",
+      "frequency": 3
+    },
+    {
+      "value": "#0d0f12",
+      "type": "color",
+      "frequency": 3
+    },
+    {
+      "value": "#1e2429",
+      "type": "color",
+      "frequency": 3
+    },
+    {
+      "value": "#313131",
+      "type": "color",
+      "frequency": 3
+    },
+    {
+      "value": "#222222",
+      "type": "color",
+      "frequency": 3
+    },
+    {
+      "value": "#eeeeee",
+      "type": "color",
+      "frequency": 3
+    },
+    {
+      "value": "#2a2a2a",
+      "type": "color",
+      "frequency": 3
+    },
+    {
+      "value": "#e85545",
+      "type": "color",
+      "frequency": 2
+    },
+    {
+      "value": "#24292f",
+      "type": "color",
+      "frequency": 2
+    },
+    {
+      "value": "#c9d1d9",
+      "type": "color",
+      "frequency": 2
+    },
+    {
+      "value": "space:0.5rem",
+      "type": "dimension",
+      "frequency": 2
+    },
+    {
+      "value": "space:1rem",
+      "type": "dimension",
+      "frequency": 2
+    },
+    {
+      "value": "#6c8093",
+      "type": "color",
+      "frequency": 2
+    },
+    {
+      "value": "#303841",
+      "type": "color",
+      "frequency": 2
+    },
+    {
+      "value": "#d4623a",
+      "type": "color",
+      "frequency": 2
+    },
+    {
+      "value": "#576675",
+      "type": "color",
+      "frequency": 2
+    },
+    {
+      "value": "#b4b4b4",
+      "type": "color",
+      "frequency": 2
+    },
+    {
+      "value": "#eaec8a",
+      "type": "color",
+      "frequency": 2
+    },
+    {
+      "value": "#111111",
+      "type": "color",
+      "frequency": 2
+    },
+    {
+      "value": "#191919",
+      "type": "color",
+      "frequency": 2
+    },
+    {
+      "value": "#000000",
+      "type": "color",
+      "frequency": 2
+    },
+    {
+      "value": "#09090b14",
+      "type": "color",
+      "frequency": 2
+    }
+  ],
+  "filesWritten": [
+    "/Users/robcrock/Documents/Code/robcrock.com/design-system/tokens/tokens.json",
+    "/Users/robcrock/Documents/Code/robcrock.com/design-system/tokens/tokens.css",
+    "/Users/robcrock/Documents/Code/robcrock.com/design-system/tokens/tailwind.tokens.js"
+  ]
+}

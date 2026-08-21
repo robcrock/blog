@@ -1,0 +1,21 @@
+{
+  "name": "Avatar",
+  "file": "src/shared/components/avatar.tsx",
+  "targetIndex": 0,
+  "framework": "react",
+  "classification": "bespoke",
+  "exportKind": "named",
+  "props": [],
+  "usage": {
+    "importCount": 1,
+    "tagCount": 3,
+    "files": [
+      "src/shared/components/avatar.stories.tsx"
+    ]
+  },
+  "observedProps": {
+    "className": [
+      "w-[120px] h-[120px] border-2"
+    ]
+  }
+}
