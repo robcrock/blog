@@ -15,7 +15,7 @@ module.exports = {
     background: "#fafafa",
     border: "#ebebeb",
     brand: {
-      primary: "#CB5142",
+      primary: "#C84837",
     },
     card: {
       foreground: "#1a1a1a",

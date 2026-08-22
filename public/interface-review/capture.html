@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Interface proposal capture</title>
+    <style>
+      :root {
+        --bg: #fafafa;
+        --surface: #fff;
+        --ink: #191919;
+        --muted: #666;
+        --line: #e7e7e7;
+        --soft: #f2f2f2;
+        --accent: #c84837;
+        --accent-old: #cb5343;
+        --focus: #0349b4;
+        --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--ink); font-family: var(--sans); }
+      body { padding: 0; }
+      button, select, input { font: inherit; }
+      .screen { min-height: 100vh; padding: 28px max(16px, calc((100vw - 1140px) / 2)); }
+      .proposal-label { margin: 0 0 14px; color: var(--muted); font: 600 11px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+      .site-header { display: flex; align-items: center; min-height: 88px; gap: 16px; border-bottom: 1px solid #efefef; background: color-mix(in srgb, var(--bg) 95%, transparent); }
+      .mark { position: relative; width: 48px; height: 48px; flex: 0 0 48px; overflow: hidden; }
+      .mark::before { content: ""; position: absolute; inset: 0 16px 0 0; border-radius: 24px 24px 0 0; background: #222; opacity: .72; }
+      .mark::after { content: ""; position: absolute; left: 0; bottom: 0; border-left: 32px solid #111; border-top: 32px solid transparent; opacity: .72; }
+      .identity { min-width: 0; }
+      .identity strong { display: block; font-size: 30px; line-height: 1; letter-spacing: -.045em; }
+      .identity span { display: block; margin-top: 5px; color: var(--muted); font-size: 15px; line-height: 1.25; }
+      .socials { display: flex; gap: 4px; margin-left: auto; }
+      .icon-button { position: relative; display: grid; width: 44px; height: 44px; place-items: center; border: 0; border-radius: 6px; background: transparent; color: #6c6c6c; }
+      .icon-button:hover { background: #eee; color: #222; }
+      .icon-button:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+      .icon { width: 19px; height: 19px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+      .skip-link { position: absolute; z-index: 5; top: 10px; left: 12px; min-height: 44px; padding: 0 16px; border: 2px solid #fff; border-radius: 7px; background: var(--accent); color: #fff; box-shadow: 0 0 0 3px var(--accent); font-size: 14px; font-weight: 700; line-height: 40px; }
+      .meta-note { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; padding: 8px 10px; border: 1px solid #dbe7ff; border-radius: 6px; background: #f4f8ff; color: #234372; font: 12px/1.4 var(--mono); }
+      .good-dot { width: 8px; height: 8px; border-radius: 50%; background: #14804a; }
+
+      .mobile-chrome { padding: 0 15px; }
+      .mobile-chrome .site-header { min-height: 92px; gap: 10px; }
+      .mobile-chrome .mark { width: 40px; height: 40px; flex-basis: 40px; }
+      .mobile-chrome .mark::before { right: 13px; }
+      .mobile-chrome .mark::after { border-left-width: 27px; border-top-width: 27px; }
+      .mobile-chrome .identity strong { font-size: 22px; }
+      .mobile-chrome .identity span { max-width: 216px; font-size: 13px; line-height: 1.25; text-wrap: pretty; }
+      .mobile-chrome .body-copy { padding-top: 22px; }
+      .mobile-chrome .body-copy a { display: inline-flex; min-height: 44px; align-items: center; color: var(--muted); font-size: 14px; text-decoration: none; }
+
+      .source-screen { padding: 28px 16px; }
+      .source-heading { display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px; }
+      .source-heading h2 { margin: 0; font-size: 18px; }
+      .source-heading::after { content: ""; height: 1px; flex: 1; background: var(--line); }
+      .file-count { font: 11px var(--mono); color: var(--muted); white-space: nowrap; }
+      .code-shell { overflow: hidden; border: 1px solid var(--line); border-radius: 5px; background: var(--surface); }
+      .code-tools { display: grid; grid-template-columns: minmax(0, 1fr) auto; border-bottom: 1px solid var(--line); }
+      .tabs-scroll { position: relative; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+      .tabs { display: flex; width: max-content; min-width: 100%; }
+      .tab { min-height: 44px; padding: 0 13px; border: 0; border-right: 1px solid var(--line); background: transparent; color: #6b6b6b; font: 11px var(--mono); }
+      .tab[aria-selected="true"] { background: var(--bg); color: var(--ink); box-shadow: inset 0 -2px var(--accent); }
+      .copy { min-width: 70px; min-height: 44px; border: 0; border-left: 1px solid var(--line); background: var(--surface); color: #444; font: 600 11px var(--mono); text-transform: uppercase; }
+      .copy:focus-visible, .tab:focus-visible { position: relative; z-index: 1; outline: 2px solid var(--focus); outline-offset: -3px; }
+      .scroll-cue { display: flex; gap: 6px; align-items: center; padding: 7px 12px; border-bottom: 1px solid var(--line); background: #f7f7f7; color: var(--muted); font: 10px var(--mono); text-transform: uppercase; }
+      .scroll-cue::before { content: "↔"; font-size: 13px; color: var(--accent); }
+      pre { margin: 0; min-height: 500px; overflow: hidden; padding: 14px; background: #fff; color: #0e1116; font: 12px/1.65 var(--mono); }
+      .kw { color: #a0111f; font-weight: 600; }
+      .fn { color: #622cbc; }
+      .str { color: #032563; }
+      .prop { color: #023b95; }
+      .comment { color: #66707b; }
+
+      .nav-screen { padding: 28px 16px; }
+      .preview-block { height: 370px; margin-bottom: 24px; border: 1px solid var(--line); border-radius: 5px; background: radial-gradient(#dedede 1px, transparent 1px); background-size: 18px 18px; }
+      .previous-next { display: grid; gap: 10px; padding-top: 16px; border-top: 1px solid var(--line); }
+      .nav-card { display: block; min-height: 70px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 7px; background: var(--surface); color: inherit; text-decoration: none; }
+      .nav-card small { display: block; margin-bottom: 5px; color: var(--muted); font: 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+      .nav-card strong { display: block; font-size: 15px; line-height: 1.35; text-wrap: pretty; }
+      .nav-card.next { text-align: right; }
+
+      .article-screen { padding: 32px 26px; }
+      .article { max-width: 700px; margin: 0 auto; }
+      .article h2 { margin: 0 0 16px; font-size: 28px; letter-spacing: -.035em; }
+      .article p, .article li { font-size: 18px; line-height: 1.6; }
+      .article li { margin: 12px 0; padding-left: 4px; }
+      .article a { color: var(--accent); text-decoration-thickness: from-font; text-underline-offset: 4px; overflow-wrap: anywhere; }
+      .link-list { margin: 0; padding-left: 22px; }
+      .link-list a { font-weight: 560; }
+      .url-note { margin-top: 20px; padding: 10px 12px; border-left: 3px solid #18834d; background: #f2faf6; color: #2a684b; font: 12px/1.45 var(--mono); }
+
+      .playground-screen { padding: 30px max(24px, calc((100vw - 980px) / 2)); }
+      .playground { overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+      .playground-head { padding: 18px 22px; border-bottom: 1px solid var(--line); }
+      .playground-head h2 { margin: 0 0 4px; font-size: 22px; letter-spacing: -.025em; }
+      .playground-head p { margin: 0; color: var(--muted); font-size: 14px; }
+      .playground-body { display: grid; grid-template-columns: minmax(0,1fr) 330px; gap: 24px; padding: 24px; }
+      .transform-stage { display: grid; min-height: 460px; place-items: center; border-radius: 8px; background: radial-gradient(#ddd 1px, transparent 1px); background-size: 18px 18px; }
+      .transform-object { width: 150px; height: 150px; transform: rotate(8deg); border-radius: 22px; background: linear-gradient(145deg, #d95b49, #b63b2e); box-shadow: 0 18px 50px rgba(116,33,23,.18); }
+      .controls { display: grid; align-content: start; gap: 18px; }
+      .field label { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; font-weight: 650; }
+      .field output { color: var(--muted); font: 13px var(--mono); font-variant-numeric: tabular-nums; }
+      input[type="range"] { width: 100%; min-height: 44px; margin: 0; accent-color: var(--accent); }
+      select { width: 100%; min-height: 44px; padding: 0 12px; border: 1px solid #ccc; border-radius: 6px; background: #fff; font-size: 16px; }
+      .semantics-strip { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 22px; border-top: 1px solid var(--line); background: #f8fafc; }
+      .check { padding: 5px 8px; border-radius: 999px; background: #e7f6ed; color: #20633e; font: 11px var(--mono); }
+
+      .motion-screen { padding: 32px max(20px, calc((100vw - 1120px) / 2)); }
+      .motion-title { margin: 0 0 8px; font-size: 40px; letter-spacing: -.045em; }
+      .motion-description { margin: 0 0 26px; color: var(--muted); font-size: 18px; }
+      .motion-canvas { position: relative; height: 520px; overflow: hidden; border: 1px solid var(--line); border-radius: 6px; background: radial-gradient(#e2e2e2 1px, transparent 1px), #fff; background-size: 20px 20px; }
+      .motion-actions { position: absolute; z-index: 2; top: 12px; right: 12px; display: flex; gap: 8px; }
+      .motion-actions button { display: inline-flex; min-height: 44px; align-items: center; gap: 7px; padding: 0 14px; border: 1px solid #d8d8d8; border-radius: 7px; background: rgba(255,255,255,.94); color: #333; box-shadow: 0 4px 18px rgba(0,0,0,.06); font-size: 13px; font-weight: 650; }
+      .circuit { position: absolute; inset: 110px 120px; }
+      .wire { position: absolute; height: 2px; border-radius: 2px; background: #d5d5d5; }
+      .wire.one { top: 25%; left: 4%; width: 72%; transform: rotate(7deg); }
+      .wire.two { top: 57%; left: 18%; width: 66%; transform: rotate(-12deg); }
+      .wire.three { top: 78%; left: 5%; width: 84%; transform: rotate(4deg); }
+      .pulse { position: absolute; top: -2px; left: 0; width: 74px; height: 6px; border-radius: 99px; background: linear-gradient(90deg, transparent, var(--accent), transparent); animation: travel 2.6s cubic-bezier(.16,1,.3,1) infinite; }
+      @keyframes travel { from { transform: translateX(-100%); } to { transform: translateX(1100%); } }
+      @media (prefers-reduced-motion: reduce) { .pulse { animation: none; left: 42%; } }
+      .motion-status { position: absolute; right: 14px; bottom: 12px; display: flex; align-items: center; gap: 7px; color: #555; font: 11px var(--mono); text-transform: uppercase; }
+
+      .contrast-screen { padding: 46px max(24px, calc((100vw - 760px) / 2)); }
+      .contrast-card { padding: 28px 30px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+      .contrast-card h2 { margin: 0 0 12px; font-size: 30px; letter-spacing: -.035em; }
+      .contrast-card p { margin: 0 0 18px; font-size: 18px; line-height: 1.65; }
+      .contrast-card a { color: var(--accent); text-underline-offset: 4px; }
+      .ratio { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 26px; padding: 12px 14px; border-radius: 7px; background: #f2faf6; color: #236542; font: 12px var(--mono); }
+      .pass-pill { padding: 5px 8px; border-radius: 999px; background: #157348; color: white; font-weight: 700; }
+
+      .code-contrast-screen { padding: 46px max(24px, calc((100vw - 880px) / 2)); }
+      .code-contrast-screen .code-shell { box-shadow: 0 14px 40px rgba(0,0,0,.05); }
+      .code-contrast-screen pre { min-height: 450px; font-size: 13px; }
+      .theme-note { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+      .theme-note h2 { margin: 0; font-size: 24px; }
+      .theme-badge { padding: 7px 9px; border: 1px solid #cfd8e3; border-radius: 6px; background: #f7faff; color: #234b83; font: 11px var(--mono); }
+
+      .work-screen { padding: 32px max(20px, calc((100vw - 1140px) / 2)); }
+      .work-screen h1 { margin: 24px 0 8px; font-size: 48px; letter-spacing: -.05em; }
+      .work-intro { margin: 0 0 30px; color: var(--muted); font-size: 18px; }
+      .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+      .project-card { overflow: hidden; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); color: inherit; text-decoration: none; box-shadow: 0 1px 1px rgba(0,0,0,.02); }
+      .project-card img { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; outline: 1px solid rgba(0,0,0,.08); outline-offset: -1px; }
+      .project-copy { padding: 16px; }
+      .project-copy h2 { margin: 0 0 7px; font-size: 18px; letter-spacing: -.02em; }
+      .project-copy p { min-height: 42px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+      .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 13px; }
+      .tag { padding: 4px 7px; border-radius: 999px; background: var(--soft); color: #555; font: 10px var(--mono); text-transform: uppercase; }
+
+      @media (max-width: 700px) {
+        .screen { padding: 22px 16px; }
+        .site-header { align-items: center; }
+        .socials { display: none; }
+        .playground-body { grid-template-columns: 1fr; }
+        .project-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <main id="app"></main>
+    <script>
+      const icon = (kind) => ({
+        linkedin: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9v9M6 6.5v.01M10 18v-5.2c0-2 4-2.2 4 0V18M10 9v9"/></svg>',
+        github: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4 1.4-4-2.4-5-3m10 6v-3.4c0-1 .1-1.5-.5-2 3-.3 6.1-1.5 6.1-6.7A5.2 5.2 0 0018.2 6a4.8 4.8 0 00-.1-3.7S17 2 14 3.8a13 13 0 00-6 0C5 2 3.9 2.3 3.9 2.3A4.8 4.8 0 003.8 6a5.2 5.2 0 00-1.4 3.9c0 5.2 3.1 6.4 6.1 6.7-.5.4-.7 1-.5 2V22"/></svg>',
+        x: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4l14 16M19 4L5 20"/></svg>',
+        mail: '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>'
+      })[kind];
+      const header = () => `
+        <header class="site-header">
+          <div class="mark" aria-hidden="true"></div>
+          <div class="identity"><strong>Robert Crocker</strong><span>Craft obsessed developer who designs.</span></div>
+          <nav class="socials" aria-label="Social links">
+            <button class="icon-button" aria-label="Robert Crocker on LinkedIn">${icon('linkedin')}</button>
+            <button class="icon-button" aria-label="Robert Crocker on GitHub">${icon('github')}</button>
+            <button class="icon-button" aria-label="Robert Crocker on X">${icon('x')}</button>
+            <button class="icon-button" aria-label="Email Robert Crocker">${icon('mail')}</button>
+          </nav>
+        </header>`;
+      const templates = {
+        chrome: () => `<div class="screen"><a class="skip-link" href="#main">Skip to content</a>${header()}<div class="meta-note"><span class="good-dot"></span>Header is inert while hidden · one page h1 · every icon has a name · 44 px targets</div></div>`,
+        mobileHeader: () => `<div class="mobile-chrome">${header()}<div class="body-copy"><a href="#">← Back to the lab</a><h1>Radial Progress</h1></div></div>`,
+        sourceToolbar: () => `<div class="source-screen"><p class="proposal-label">Mobile source viewer · 320 px</p><div class="source-heading"><h2>Source</h2><span class="file-count">4 files</span></div><section class="code-shell" aria-label="Source code"><div class="code-tools"><div class="tabs-scroll"><div class="tabs" role="tablist"><button class="tab" aria-selected="true">index.html</button><button class="tab">index.js</button><button class="tab">utils.js</button><button class="tab">styles.css</button></div></div><button class="copy">⧉ Copy</button></div><div class="scroll-cue">Swipe to see every file</div><pre><span class="kw">&lt;!doctype</span> html&gt;\n&lt;html <span class="prop">lang</span>=<span class="str">&quot;en&quot;</span>&gt;\n  &lt;head&gt;\n    &lt;meta <span class="prop">name</span>=<span class="str">&quot;viewport&quot;</span> /&gt;\n  &lt;/head&gt;\n  &lt;body&gt;\n    &lt;div <span class="prop">class</span>=<span class="str">&quot;progress&quot;</span>&gt;\n      <span class="comment">&lt;!-- Interactive specimen --&gt;</span>\n    &lt;/div&gt;\n  &lt;/body&gt;\n&lt;/html&gt;</pre></section></div>`,
+        prevNext: () => `<div class="nav-screen"><p class="proposal-label">Project detail · complete titles at 320 px</p><div class="preview-block"></div><nav class="previous-next" aria-label="Project navigation"><a class="nav-card" href="#"><small>← Previous project</small><strong>Bookmark Landing Page</strong></a><a class="nav-card next" href="#"><small>Next project →</small><strong>Loopstudio Landing Page</strong></a></nav></div>`,
+        longLinks: () => `<div class="article-screen"><article class="article"><p class="proposal-label">Readable destinations · no horizontal overflow</p><h2>Development: Bring the layout to life</h2><p>Before writing components, outline the interface and decide where each responsibility belongs.</p><p>Useful React guides:</p><ul class="link-list"><li><a href="#">Understand your UI as a tree</a></li><li><a href="#">Pass props to a component</a></li><li><a href="#">Keep components pure</a></li></ul><div class="url-note">Descriptive link names work out of context, wrap naturally, and keep the page at 320 px with no horizontal scroll.</div></article></div>`,
+        playground: () => `<div class="playground-screen"><p class="proposal-label">Craft playground · semantic controls</p><section class="playground"><header class="playground-head"><h2>CSS Transform Explorer</h2><p>Adjust the controls and see the transform update immediately.</p></header><div class="playground-body"><div class="transform-stage"><div class="transform-object"></div></div><form class="controls"><div class="field"><label for="translate-x">Translate X <output>0 px</output></label><input id="translate-x" name="translate-x" type="range" min="-100" max="100" value="0" /></div><div class="field"><label for="rotate">Rotate <output>8°</output></label><input id="rotate" name="rotate" type="range" min="0" max="360" value="8" /></div><div class="field"><label for="scale">Scale <output>1.00</output></label><input id="scale" name="scale" type="range" min="0" max="2" value="1" step=".01" /></div><div class="field"><label for="origin">Transform origin</label><select id="origin" name="origin"><option>Center</option><option>Top left</option><option>Bottom right</option></select></div></form></div><div class="semantics-strip"><span class="check">✓ h2 follows page h1</span><span class="check">✓ labels announce names</span><span class="check">✓ 44 px controls</span><span class="check">✓ 16 px mobile select</span></div></section></div>`,
+        motion: () => `<div class="motion-screen"><p class="proposal-label">Autoplay specimen · explicit motion contract</p><h1 class="motion-title">Animated Circuit</h1><p class="motion-description">Three dashes race a circuit board, growing and shrinking as they go.</p><section class="motion-canvas"><div class="motion-actions"><button aria-pressed="false">Ⅱ&nbsp; Pause</button><button>↻&nbsp; Restart</button></div><div class="circuit"><div class="wire one"><i class="pulse"></i></div><div class="wire two"><i class="pulse" style="animation-delay:-.8s"></i></div><div class="wire three"><i class="pulse" style="animation-delay:-1.6s"></i></div></div><div class="motion-status"><span class="good-dot"></span>Motion on · honors reduced motion</div></section></div>`,
+        accent: () => `<div class="contrast-screen"><p class="proposal-label">MDX body links · accessible accent</p><article class="contrast-card"><h2>Hide scrollbars in Tailwind</h2><p>I recently wrapped up Build UI’s <a href="#">Tailwind Mastery</a> course. The technique works without hiding the page’s ability to scroll.</p><p>For a second approach, read <a href="#">Subframe’s scrollbar guide</a>.</p><div class="ratio"><span>#C84837 on #FAFAFA · 18 px regular</span><strong class="pass-pill">4.53:1 · AA</strong></div></article></div>`,
+        codeContrast: () => `<div class="code-contrast-screen"><div class="theme-note"><h2>Source</h2><span class="theme-badge">github-light-high-contrast</span></div><section class="code-shell"><div class="code-tools"><div class="tabs-scroll"><div class="tabs"><button class="tab" aria-selected="true">ripple-exhibit.tsx</button><button class="tab">math.ts</button></div></div><button class="copy">⧉ Copy</button></div><pre><span class="kw">export function</span> <span class="fn">RippleExhibit</span>() {\n  <span class="kw">const</span> [ripples, setRipples] = <span class="fn">useState</span>([]);\n\n  <span class="kw">if</span> (!window.<span class="prop">matchMedia</span>(\n    <span class="str">&quot;(prefers-reduced-motion: no-preference)&quot;</span>\n  ).matches) {\n    <span class="kw">return</span>;\n  }\n\n  <span class="kw">return</span> (\n    &lt;button <span class="prop">type</span>=<span class="str">&quot;button&quot;</span>&gt;\n      Create ripple\n    &lt;/button&gt;\n  );\n}\n\n<span class="comment">// Minimum token contrast in this theme exceeds 4.5:1.</span></pre></section></div>`,
+        workCards: () => `<div class="work-screen"><p class="proposal-label">Work index · visible identity without hover</p><h1>Work</h1><p class="work-intro">Frontend builds, implementation decisions, and the details each project sharpened.</p><div class="project-grid"><a class="project-card" href="#"><img src="/images/featured-projects/bookmark_landing_page.png" alt="" /><div class="project-copy"><h2>Bookmark Landing Page</h2><p>Responsive product page with tabbed features, validation, and an accessible FAQ flow.</p><div class="tags"><span class="tag">Next.js</span><span class="tag">Tailwind</span><span class="tag">Interaction</span></div></div></a><a class="project-card" href="#"><img src="/images/featured-projects/room_homepage.png" alt="" /><div class="project-copy"><h2>Room Homepage</h2><p>Editorial commerce layout with an adaptive hero carousel and keyboard navigation.</p><div class="tags"><span class="tag">React</span><span class="tag">CSS Grid</span><span class="tag">A11y</span></div></div></a><a class="project-card" href="#"><img src="/images/featured-projects/loopstudio_landing_page.png" alt="" /><div class="project-copy"><h2>Loopstudios Landing Page</h2><p>Image-led campaign page built around resilient grid composition and responsive type.</p><div class="tags"><span class="tag">Next.js</span><span class="tag">Grid</span><span class="tag">Responsive</span></div></div></a></div></div>`
+      };
+      const id = new URLSearchParams(location.search).get('id') || 'chrome';
+      document.getElementById('app').innerHTML = (templates[id] || templates.chrome)();
+    </script>
+  </body>
+</html>

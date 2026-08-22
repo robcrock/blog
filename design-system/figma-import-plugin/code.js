@@ -103,7 +103,7 @@ var TOKENS = [
   {
     "path": "semantic/brand/primary",
     "type": "color",
-    "value": "#CB5142",
+    "value": "#C84837",
     "modes": {
       "Dark": "#E85545"
     },
@@ -202,7 +202,7 @@ var TOKENS = [
   {
     "path": "semantic/primary",
     "type": "color",
-    "value": "#cb5343",
+    "value": "#c84837",
     "modes": {
       "Dark": "#eb5847"
     },

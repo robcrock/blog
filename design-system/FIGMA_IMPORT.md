@@ -28,6 +28,6 @@ figma_import_tokens({
 
 ## Notes
 
-- Brand primary exact hex: `#CB5142` / Dark `#E85545` (`semantic/brand/primary`)
-- Mined shadcn HSL→hex may differ slightly (`#cb5343`) — prefer `brand/primary` for brand work
+- Brand primary hex: `#C84837` / Dark `#E85545` (`semantic/brand/primary`)
+- The light primary was darkened just enough for body-link contrast; prefer `brand/primary` for brand work
 - Easing/typography recipe strings are skipped by the import plugin (not first-class Figma variable types)

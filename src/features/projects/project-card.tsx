@@ -16,7 +16,7 @@ export function ProjectCard({ project, headingLevel, id }: ProjectCardProps) {
   return (
     <Card
       id={id}
-      className="group/card overflow-hidden ring-2 ring-transparent ring-offset-1 transition-shadow duration-200 focus-within:ring-primary hover:ring-primary"
+      className="group/card overflow-hidden ring-2 ring-transparent ring-offset-1 transition-shadow duration-200 [transition-timing-function:var(--ease-out-quart)] focus-within:ring-primary hover:ring-primary"
     >
       <Link
         href={`/projects/${project.slug}`}
@@ -26,7 +26,7 @@ export function ProjectCard({ project, headingLevel, id }: ProjectCardProps) {
           <Image
             src={project.image}
             alt={project.title}
-            className="object-cover transition-transform duration-300 group-hover/project:scale-105"
+            className="object-cover transition-transform duration-200 [transition-timing-function:var(--ease-out-quart)] group-hover/project:scale-105"
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             style={{

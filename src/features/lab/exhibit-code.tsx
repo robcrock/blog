@@ -48,7 +48,7 @@ export function ExhibitCode({ files }: ExhibitCodeProps) {
                   setActive(i);
                   setCopied(false);
                 }}
-                className={`focus-visible:ring-ring relative min-h-11 shrink-0 border-r border-border px-4 py-2.5 font-mono text-[11px] tracking-wide transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset ${
+                className={`focus-visible:ring-ring relative min-h-11 shrink-0 border-r border-border px-4 py-2.5 font-mono text-[11px] tracking-wide transition-colors duration-200 [transition-timing-function:var(--ease-out-quart)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset ${
                   i === active
                     ? "bg-background text-foreground"
                     : "text-muted-foreground hover:text-foreground"
@@ -69,7 +69,7 @@ export function ExhibitCode({ files }: ExhibitCodeProps) {
         <button
           onClick={copy}
           aria-label={copied ? "Copied" : `Copy ${file.name}`}
-          className="focus-visible:ring-ring z-10 inline-flex min-h-11 min-w-[4.75rem] items-center justify-center gap-1.5 border-l border-border bg-card px-2 font-mono text-[11px] uppercase tracking-wide text-muted-foreground transition-colors duration-200 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset"
+          className="focus-visible:ring-ring z-10 inline-flex min-h-11 min-w-[4.75rem] items-center justify-center gap-1.5 border-l border-border bg-card px-2 font-mono text-[11px] uppercase tracking-wide text-muted-foreground transition-colors duration-200 [transition-timing-function:var(--ease-out-quart)] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset"
         >
           {copied ? (
             <>
