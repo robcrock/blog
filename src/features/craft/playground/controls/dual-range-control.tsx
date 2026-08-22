@@ -1,6 +1,8 @@
 // src/components/playground/controls/dual-range-control.tsx
 "use client";
 
+import { useId } from "react";
+
 import { cn } from "@/shared/lib/utils";
 
 import { DualRangeControlProps } from "../types";
@@ -44,6 +46,10 @@ export function DualRangeControl({
   unit = "",
   formatValue = (v) => String(v),
 }: DualRangeControlProps) {
+  const inputId = useId();
+  const labelId = `${inputId}-label`;
+  const minLabelId = `${inputId}-minimum`;
+  const maxLabelId = `${inputId}-maximum`;
   const toPercent = (v: number) => ((v - min) / (max - min)) * 100;
   const minPct = toPercent(minValue);
   const maxPct = toPercent(maxValue);
@@ -53,32 +59,38 @@ export function DualRangeControl({
   const midPct = (minPct + maxPct) / 2;
 
   const inputBase = cn(
-    "absolute inset-0 w-full h-full appearance-none bg-transparent cursor-pointer z-10",
+    "absolute inset-0 z-10 h-full w-full cursor-pointer appearance-none bg-transparent",
     "[&::-webkit-slider-runnable-track]:bg-transparent",
     "[&::-moz-range-track]:bg-transparent",
-    thumbClass,
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+    thumbClass
   );
 
   return (
     <div className="space-y-2">
-      <div className="flex justify-between items-center">
-        <label className="text-sm font-medium text-foreground">{label}</label>
+      <div className="flex items-center justify-between">
+        <span id={labelId} className="text-sm font-medium text-foreground">
+          {label}
+        </span>
         <span className="font-mono text-sm tabular-nums text-muted-foreground">
           {formatValue(minValue)}
           {unit} – {formatValue(maxValue)}
           {unit}
         </span>
       </div>
-      <div className="relative h-4 flex items-center">
+      <div className="relative flex h-11 items-center">
         {/* Track background */}
-        <div className="absolute inset-x-0 h-2 rounded bg-muted pointer-events-none" />
+        <div className="pointer-events-none absolute inset-x-0 h-2 rounded bg-muted" />
         {/* Active fill between thumbs */}
         <div
-          className="absolute h-2 rounded bg-primary/40 pointer-events-none"
+          className="pointer-events-none absolute h-2 rounded bg-primary/40"
           style={{ left: `${minPct}%`, right: `${100 - maxPct}%` }}
         />
         {/* Min input — clip-path restricts its pointer area to the left portion */}
         <input
+          id={`${inputId}-min`}
+          name={`${inputId}-min`}
+          aria-labelledby={`${labelId} ${minLabelId}`}
           type="range"
           min={min}
           max={max}
@@ -89,10 +101,16 @@ export function DualRangeControl({
             onMinChange(Math.min(v, maxValue - step));
           }}
           className={inputBase}
-          style={{ clipPath: `inset(-6px ${100 - midPct}% -6px 0)` }}
+          style={{ clipPath: `inset(0 ${100 - midPct}% 0 0)` }}
         />
+        <span id={minLabelId} className="sr-only">
+          Minimum
+        </span>
         {/* Max input — clip-path restricts its pointer area to the right portion */}
         <input
+          id={`${inputId}-max`}
+          name={`${inputId}-max`}
+          aria-labelledby={`${labelId} ${maxLabelId}`}
           type="range"
           min={min}
           max={max}
@@ -103,8 +121,11 @@ export function DualRangeControl({
             onMaxChange(Math.max(v, minValue + step));
           }}
           className={inputBase}
-          style={{ clipPath: `inset(-6px 0 -6px ${midPct}%)` }}
+          style={{ clipPath: `inset(0 0 0 ${midPct}%)` }}
         />
+        <span id={maxLabelId} className="sr-only">
+          Maximum
+        </span>
       </div>
     </div>
   );

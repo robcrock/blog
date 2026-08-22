@@ -1,8 +1,6 @@
+import { ProjectCard } from "@/features/projects/project-card";
 import Container from "@/shared/layout/container";
-import { Card } from "@/shared/components/card";
 import { PROJECTS } from "@/shared/lib/constants";
-import { ArrowRight } from "lucide-react";
-import Image from "next/image";
 import { Link } from "next-view-transitions";
 
 export const metadata = {
@@ -38,33 +36,7 @@ export default function ProjectsPage() {
       {/* Projects Grid */}
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {PROJECTS.map((project) => (
-          <Card
-            key={project.slug}
-            className="ring-2 ring-transparent ring-offset-1 transition-all duration-200 group focus-within:ring-primary hover:ring-primary"
-          >
-            <Link
-              href={`/projects/${project.slug}`}
-              className="block overflow-hidden relative w-full h-48 rounded focus-visible:outline-none"
-              aria-label={`View ${project.title} details`}
-              title={project.title}
-            >
-              <Image
-                src={project.image}
-                alt={project.title}
-                className="transition-all duration-300 group-hover:scale-105"
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                style={{
-                  objectFit: "cover",
-                  viewTransitionName: `projects-canvas-${project.slug}`,
-                }}
-              />
-              {/* View-details indicator */}
-              <div className="absolute right-3 top-3 rounded-full bg-primary p-1.5 text-primary-foreground opacity-0 shadow backdrop-blur-sm transition-opacity group-hover:opacity-100">
-                <ArrowRight className="w-4 h-4" />
-              </div>
-            </Link>
-          </Card>
+          <ProjectCard key={project.slug} project={project} headingLevel="h2" />
         ))}
       </div>
     </Container>

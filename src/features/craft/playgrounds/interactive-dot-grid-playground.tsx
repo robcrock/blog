@@ -231,6 +231,7 @@ export function InteractiveDotGridPlayground() {
     <Playground
       title="Interactive Dot Grid"
       description="Hover to disturb. Tweak the knobs to make it yours."
+      headingLevel="h2"
     >
       <div className="flex flex-col gap-4">
         {/* Mood presets */}

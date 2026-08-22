@@ -3,6 +3,8 @@ import path from "node:path";
 
 import { codeToHtml } from "shiki";
 
+import { SHIKI_THEMES } from "@/shared/lib/shiki-themes";
+
 import sandboxSources from "./generated/sandbox-sources.json";
 import type { Exhibit } from "./registry";
 
@@ -11,7 +13,7 @@ export interface HighlightedFile {
   name: string;
   /** Raw source for the copy button */
   code: string;
-  /** Shiki-rendered HTML (dual github-light / github-dark themes) */
+  /** Shiki-rendered HTML (dual high-contrast GitHub themes) */
   html: string;
 }
 
@@ -57,7 +59,7 @@ export async function highlightedSourcesFor(
       code: file.code,
       html: await codeToHtml(file.code, {
         lang: file.language,
-        themes: { light: "github-light", dark: "github-dark" },
+        themes: SHIKI_THEMES,
         defaultColor: "light",
       }),
     }))

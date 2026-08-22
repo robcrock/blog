@@ -1,6 +1,8 @@
 // src/components/playground/controls/RangeControl.tsx
 "use client";
 
+import { useId } from "react";
+
 import { cn } from "@/shared/lib/utils";
 
 import { RangeControlProps } from "../types";
@@ -15,10 +17,17 @@ export function RangeControl({
   unit = "",
   showValue = true,
 }: RangeControlProps) {
+  const inputId = useId();
+
   return (
     <div className="space-y-2">
-      <div className="flex justify-between items-center">
-        <label className="text-sm font-medium text-foreground">{label}</label>
+      <div className="flex items-center justify-between">
+        <label
+          htmlFor={inputId}
+          className="text-sm font-medium text-foreground"
+        >
+          {label}
+        </label>
         {showValue && (
           <span className="font-mono text-sm tabular-nums text-muted-foreground">
             {value}
@@ -27,6 +36,8 @@ export function RangeControl({
         )}
       </div>
       <input
+        id={inputId}
+        name={inputId}
         type="range"
         min={min}
         max={max}
@@ -34,8 +45,11 @@ export function RangeControl({
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
         className={cn(
-          "w-full h-2 rounded appearance-none cursor-pointer",
-          "bg-muted",
+          "h-11 w-full cursor-pointer appearance-none bg-transparent",
+          "focus-visible:ring-ring focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+          "[&::-webkit-slider-runnable-track]:h-2",
+          "[&::-webkit-slider-runnable-track]:rounded",
+          "[&::-webkit-slider-runnable-track]:bg-muted",
           "[&::-webkit-slider-thumb]:appearance-none",
           "[&::-webkit-slider-thumb]:w-4",
           "[&::-webkit-slider-thumb]:h-4",
@@ -43,6 +57,10 @@ export function RangeControl({
           "[&::-webkit-slider-thumb]:bg-primary",
           "[&::-webkit-slider-thumb]:cursor-pointer",
           "[&::-webkit-slider-thumb]:hover:scale-110",
+          "[&::-webkit-slider-thumb]:-mt-1",
+          "[&::-moz-range-track]:h-2",
+          "[&::-moz-range-track]:rounded",
+          "[&::-moz-range-track]:bg-muted",
           "[&::-moz-range-thumb]:w-4",
           "[&::-moz-range-thumb]:h-4",
           "[&::-moz-range-thumb]:rounded-full",

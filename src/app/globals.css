@@ -43,8 +43,8 @@ code {
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 10%;
 
-    /* Primary - The signature red #CB5142 */
-    --primary: 7 57% 53%;
+    /* Primary - The accessible signature red #C84837 */
+    --primary: 7 57% 50%;
     --primary-foreground: 0 0% 100%;
 
     /* Secondary - Subtle gray for less prominent actions */

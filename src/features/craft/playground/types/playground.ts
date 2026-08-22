@@ -3,6 +3,7 @@
 export interface PlaygroundProps {
   title?: string;
   description?: string;
+  headingLevel?: "h2" | "h3";
   className?: string;
   children: React.ReactNode;
   allowOverflow?: boolean;

@@ -45,6 +45,7 @@ transform-origin: ${transformOrigin};`;
     <Playground
       title="CSS Transform Explorer"
       description="Hover on the element to see smooth transitions using custom easing functions."
+      headingLevel="h2"
     >
       <PlaygroundCanvas backgroundPattern="dots">
         <MotionDiv

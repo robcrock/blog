@@ -8,10 +8,13 @@ import { PlaygroundProps } from "./types";
 export function Playground({
   title,
   description,
+  headingLevel = "h3",
   className = "",
   children,
   allowOverflow = false,
 }: PlaygroundProps) {
+  const Heading = headingLevel;
+
   return (
     // Spans full grid width for visual impact
     <div
@@ -25,7 +28,7 @@ export function Playground({
     >
       {title && (
         <div className="px-6 py-4 border-b border-border">
-          <h3 className="mb-1 text-xl font-bold">{title}</h3>
+          <Heading className="mb-1 text-xl font-bold">{title}</Heading>
           {description && (
             <p className="text-sm text-muted-foreground">{description}</p>
           )}

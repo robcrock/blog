@@ -34,7 +34,7 @@ export const PROJECTS: Project[] = [
   {
     title: "Bookmark Landing Page",
     description:
-      "This challenge will really test your layout skills. There are also areas that will require some JavaScript, such as the tabbed features section and the FAQ accordion.",
+      "Responsive product page with tabbed features, form validation, and an accessible FAQ flow.",
     tags: ["Next.js", "Tailwind", "Shadcn"],
     image: "/images/featured-projects/bookmark_landing_page.png",
     slug: "bookmark-landing-page",
@@ -45,7 +45,7 @@ export const PROJECTS: Project[] = [
   {
     title: "Room Homepage",
     description:
-      "This small homepage challenge packs a big punch to test your layout skills. There's also a slider in there to add a JS layer for extra practice.",
+      "Editorial commerce layout with an adaptive hero carousel and clear product storytelling.",
     tags: ["Next.js", "Tailwind", "Shadcn"],
     image: "/images/featured-projects/room_homepage.png",
     slug: "room-homepage",
@@ -56,7 +56,7 @@ export const PROJECTS: Project[] = [
   {
     title: "Loopstudio Landing Page",
     description:
-      "This challenge is perfect if you're looking to test your CSS Grid chops. Even without Grid, this project will be a fun one to help you practice your layout skills!",
+      "Image-led campaign page built around resilient grid composition and responsive typography.",
     tags: ["Next.js", "Tailwind", "Shadcn"],
     image: "/images/featured-projects/loopstudio_landing_page.png",
     slug: "loopstudio-landing-page",
@@ -67,7 +67,7 @@ export const PROJECTS: Project[] = [
   {
     title: "NFT Card Component",
     description:
-      "This HTML & CSS only challenge is perfect for anyone just starting out or anyone wanting a small project to play around with.",
+      "Collectible preview with layered hover states, responsive imagery, and structured pricing.",
     tags: ["Next.js", "Tailwind", "Shadcn"],
     image: "/images/featured-projects/nft_preview_card.png",
     slug: "nft-card-component",
@@ -78,7 +78,7 @@ export const PROJECTS: Project[] = [
   {
     title: "Password Generator App",
     description:
-      "This app will be an excellent test of your HTML, CSS, and JS skills. You'll build custom form controls and use JavaScript to generate random passwords.",
+      "Password generator with custom controls, strength feedback, and clipboard support.",
     tags: ["Next.js", "Tailwind", "Shadcn"],
     image: "/images/featured-projects/password_generator_app.png",
     slug: "password-generator-app",
@@ -89,7 +89,7 @@ export const PROJECTS: Project[] = [
   {
     title: "Frontend Quiz App",
     description:
-      "This app will test your skills (as well as your knowledge!) as you build out a fully functional quiz. We provide a local JSON file to help you practice working with JSON!",
+      "Multi-topic quiz flow with clear answer states, score tracking, and a responsive theme.",
     tags: ["Next.js", "Tailwind", "Shadcn"],
     image: "/images/featured-projects/frontend_quiz_app.png",
     slug: "frontend-quiz-app",
@@ -100,7 +100,7 @@ export const PROJECTS: Project[] = [
   {
     title: "Tip Calculator App",
     description:
-      "This small app is perfect for anyone starting to get to grips with JavaScript. The calculator functionality will be a nice test!",
+      "Real-time bill splitter with validated inputs, custom tip controls, and per-person totals.",
     tags: ["Next.js", "Tailwind", "Shadcn"],
     image: "/images/featured-projects/tip_calculator_app.png",
     slug: "tip-calculator-app",
@@ -111,7 +111,7 @@ export const PROJECTS: Project[] = [
   {
     title: "Time Tracking Dashboard",
     description:
-      "A perfect opportunity to practice your CSS Grid skills. For anyone wanting to take it up a notch, we provide a JSON data file to practice working with data.",
+      "Responsive activity dashboard with daily, weekly, and monthly summaries driven by local data.",
     tags: ["Next.js", "Tailwind", "Shadcn"],
     image: "/images/featured-projects/time_tracking_dashboard.png",
     slug: "time-tracking-dashboard",
@@ -120,4 +120,3 @@ export const PROJECTS: Project[] = [
     link: "https://www.frontendmentor.io/solutions/time-tracking-dashboard-solution-q42DUSOvk5",
   },
 ];
-

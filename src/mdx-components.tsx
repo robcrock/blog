@@ -77,7 +77,7 @@ const mdxComponents = {
   ),
   a: ({ children, ...props }: AnchorProps) => (
     <a
-      className="underline text-primary underline-offset-4 hover:text-primary/80"
+      className="text-primary underline underline-offset-4 [overflow-wrap:anywhere] hover:decoration-2"
       {...props}
     >
       {children}

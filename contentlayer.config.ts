@@ -4,6 +4,8 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 
+import { SHIKI_THEMES } from "./src/shared/lib/shiki-themes";
+
 // =============================================================================
 // CRAFT - Interactive experiments with deep-dive explanations
 // =============================================================================
@@ -146,10 +148,7 @@ export default makeSource({
       [
         rehypePrettyCode,
         {
-          theme: {
-            light: "github-light",
-            dark: "github-dark",
-          },
+          theme: SHIKI_THEMES,
           keepBackground: true,
           onVisitLine(node: any) {
             // Prevent lines from collapsing in display
