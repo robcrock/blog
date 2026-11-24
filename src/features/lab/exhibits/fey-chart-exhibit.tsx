@@ -52,11 +52,16 @@ function toPoints(data: ChartData): string {
 }
 
 function usePrevious<T>(value: T): T {
-  const ref = useRef(value);
-  useEffect(() => {
-    ref.current = value;
-  }, [value]);
-  return ref.current;
+  // Previous value is derived during render. The committed render after a
+  // change still returns the prior value, which the SMIL `from` and the
+  // label tween both read. A ref read here is illegal during render.
+  const [snapshot, setSnapshot] = useState({ value, previous: value });
+
+  if (!Object.is(value, snapshot.value)) {
+    setSnapshot({ value, previous: snapshot.value });
+  }
+
+  return snapshot.previous;
 }
 
 const ease = cubicBezier(0.25, 0.1, 0.25, 1);

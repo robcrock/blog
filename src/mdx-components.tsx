@@ -1,6 +1,11 @@
 // This file must remain at src/mdx-components.tsx — Next.js and contentlayer2
 // require it at this exact path for MDX component resolution.
-import { ComponentPropsWithoutRef } from "react";
+import {
+  isValidElement,
+  type ComponentProps,
+  type ComponentPropsWithoutRef,
+  type ReactNode,
+} from "react";
 
 import PostImage from "@/features/posts/post-image";
 import { SandpackEditor } from "@/features/posts/sandpack-editor";
@@ -23,7 +28,9 @@ type AnchorProps = ComponentPropsWithoutRef<"a">;
 type BlockquoteProps = ComponentPropsWithoutRef<"blockquote">;
 
 // Wrapper component for SandpackEditor to apply grid spanning
-const SandpackEditorWrapper = (props: any) => (
+const SandpackEditorWrapper = (
+  props: ComponentProps<typeof SandpackEditor>
+) => (
   <div className="col-span-3 col-start-1 my-8">
     <SandpackEditor {...props} />
   </div>
@@ -109,11 +116,10 @@ const mdxComponents = {
   ),
   pre: ({ children, ...props }: ComponentPropsWithoutRef<"pre">) => {
     // Extract raw text from code element for reliable copying
-    let rawCode = "";
-    if (children && typeof children === "object" && "props" in children) {
-      const codeProps = (children as any).props;
+    let rawCode: ReactNode = "";
+    if (isValidElement<{ children?: ReactNode }>(children)) {
       // Try to get raw code from the code element's children
-      rawCode = codeProps?.children || "";
+      rawCode = children.props.children || "";
     }
 
     return (

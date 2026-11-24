@@ -1,7 +1,7 @@
 // src/components/playgrounds/playgrounds.stories.tsx
 import React from "react";
 
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Toaster } from "sonner";
 
 import { PopoverPlayground, ToastPlayground, TransformPlayground } from "./";

@@ -1,6 +1,9 @@
 // contentlayer.config.ts
 import { defineDocumentType, makeSource } from "contentlayer2/source-files";
-import rehypePrettyCode from "rehype-pretty-code";
+import rehypePrettyCode, {
+  type CharsElement,
+  type LineElement,
+} from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 
@@ -150,16 +153,19 @@ export default makeSource({
         {
           theme: SHIKI_THEMES,
           keepBackground: true,
-          onVisitLine(node: any) {
+          onVisitLine(node: LineElement) {
             // Prevent lines from collapsing in display
             if (node.children.length === 0) {
               node.children = [{ type: "text", value: " " }];
             }
           },
-          onVisitHighlightedLine(node: any) {
-            node.properties.className.push("highlighted-line");
+          onVisitHighlightedLine(node: LineElement) {
+            node.properties.className = [
+              ...(node.properties.className ?? []),
+              "highlighted-line",
+            ];
           },
-          onVisitHighlightedChars(node: any) {
+          onVisitHighlightedChars(node: CharsElement) {
             node.properties.className = ["highlighted-chars"];
           },
         },

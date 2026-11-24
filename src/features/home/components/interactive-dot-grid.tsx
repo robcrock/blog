@@ -68,7 +68,8 @@ export default function InteractiveDotGrid() {
           el.setAttribute("opacity", "1");
         }
       });
-      setEntered(true);
+      // `entered` only starts cursor tracking, and that effect already
+      // returns early while reduced motion is set. Skip the extra render.
       return;
     }
 
