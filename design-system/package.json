@@ -8,6 +8,12 @@
     "dist",
     "tokens"
   ],
+  "exports": {
+    "./tokens.css": "./tokens/tokens.css",
+    "./studio-theme.css": "./tokens/studio-theme.css",
+    "./tokens.json": "./tokens/tokens.json",
+    "./components": "./src/components/index.ts"
+  },
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18"

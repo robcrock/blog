@@ -1,58 +1,14 @@
 @import "tailwindcss";
+@import "../tokens/channels.css";
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *, .dark, .dark *));
 
-/* Site source-of-truth: HSL channel tokens (shadcn). Hex projections in
-   tokens/tokens.css are for Figma/CSS consumers — keep them out of the
-   cascade here so hsl(var(--primary)) utilities resolve correctly. */
+/* Channel values come from tokens/channels.css, generated from the site.
+   Hex in tokens.css stays out of this cascade so hsl(var(--primary)) resolves. */
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 0 0% 10%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
-    --primary: 7 57% 53%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 10%;
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
-    --accent: 7 57% 53%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 92%;
-    --input: 0 0% 92%;
-    --ring: 7 57% 53%;
-    --radius: 0.25rem;
-    --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
     --font-geist-sans: ui-sans-serif, system-ui, sans-serif;
     --font-geist-mono: ui-monospace, "SF Mono", Menlo, monospace;
-  }
-
-  .dark,
-  [data-theme="dark"] {
-    --background: 0 0% 8%;
-    --foreground: 0 0% 95%;
-    --card: 0 0% 12%;
-    --card-foreground: 0 0% 95%;
-    --popover: 0 0% 12%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 6 80% 60%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 18%;
-    --secondary-foreground: 0 0% 95%;
-    --muted: 0 0% 18%;
-    --muted-foreground: 0 0% 60%;
-    --accent: 6 80% 60%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 75% 55%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 6 80% 60%;
   }
 
   * {
