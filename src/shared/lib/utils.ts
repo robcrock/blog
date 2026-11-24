@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const range = (start: number, end?: number, step: number = 1) => {
-  let output: number[] = [];
+  const output: number[] = [];
   if (typeof end === "undefined") {
     end = start;
     start = 0;
