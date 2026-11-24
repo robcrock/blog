@@ -8,7 +8,7 @@ import Container from "@/shared/layout/container";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Lab | Robert Crocker",
+  title: "Lab",
   description:
     "A gallery of live animation and interaction studies — SVG drawing, particle systems, cursor physics, and motion details you can play with.",
 };

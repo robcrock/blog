@@ -1,4 +1,5 @@
 import { PostsDetailPage } from "@/features/posts";
+import { SITE_URL } from "@/shared/lib/constants";
 import { allPosts } from "contentlayer/generated";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -27,7 +28,7 @@ export async function generateMetadata({
     };
   }
 
-  const url = `https://robcrock.com/posts/${slug}`;
+  const url = `${SITE_URL}/posts/${slug}`;
   const ogImage = "/og-image.png";
 
   return {

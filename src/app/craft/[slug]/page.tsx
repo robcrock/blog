@@ -1,5 +1,6 @@
 // src/app/craft/[slug]/page.tsx
 import { CraftDetailPage } from "@/features/craft";
+import { SITE_URL } from "@/shared/lib/constants";
 import { allCrafts } from "contentlayer/generated";
 import { compareDesc } from "date-fns";
 import type { Metadata } from "next";
@@ -33,7 +34,7 @@ export async function generateMetadata({
 
   // Use craft image or fallback to default OG image
   const ogImage = craft.image || "/og-image.png";
-  const url = `https://robcrock.com/craft/${slug}`;
+  const url = `${SITE_URL}/craft/${slug}`;
 
   return {
     title: craft.title,

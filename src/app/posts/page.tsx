@@ -3,7 +3,7 @@ import { allPosts } from "contentlayer/generated";
 import { compareDesc } from "date-fns";
 
 export const metadata = {
-  title: "Posts | Robert Crocker",
+  title: "Posts",
   description:
     "Thoughts on frontend development, design, and building great user interfaces.",
 };

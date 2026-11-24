@@ -4,7 +4,7 @@ import { PROJECTS } from "@/shared/lib/constants";
 import { Link } from "next-view-transitions";
 
 export const metadata = {
-  title: "Work | Robert Crocker",
+  title: "Work",
   description:
     "Pixel-perfect solutions to Frontend Mentor challenges, built with care.",
 };

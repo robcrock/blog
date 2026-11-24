@@ -4,7 +4,7 @@ import { allCrafts } from "contentlayer/generated";
 import { compareDesc } from "date-fns";
 
 export const metadata = {
-  title: "Craft | Robert Crocker",
+  title: "Craft",
   description:
     "Interactive experiments and deep-dives into the invisible details of interface design.",
 };

@@ -1,4 +1,7 @@
 // src/constants.ts
+/** Canonical origin. `metadataBase` in the root layout uses this same value. */
+export const SITE_URL = "https://robcrock.com";
+
 export const BLOG_TITLE = "Robert's Site";
 export const COLOR_THEME_COOKIE_NAME = "color-theme";
 
