@@ -11,11 +11,12 @@ import "dialkit/styles.css";
 
 import Footer from "@/shared/layout/footer";
 import Header from "@/shared/layout/header";
+import { SITE_URL } from "@/shared/lib/constants";
 import { ThemeProvider } from "@/shared/theme/theme-provider";
 import { Toaster } from "sonner";
 
 export const metadata = {
-  metadataBase: new URL("https://robcrock.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Robert Crocker - Craft obsessed developer who designs.",
     template: "%s | Robert Crocker",
@@ -37,7 +38,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://robcrock.com",
+    url: SITE_URL,
     title: "Robert Crocker - Craft obsessed developer who designs.",
     description:
       "Personal website of Robert Crocker. I build useful things, write about web development, and share interactive experiments.",
