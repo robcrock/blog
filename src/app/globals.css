@@ -26,6 +26,8 @@
   --color-popover-foreground: hsl(var(--popover-foreground));
   --color-card: hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
 }
 
 @theme {

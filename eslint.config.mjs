@@ -29,7 +29,6 @@ const eslintConfig = defineConfig([
     "design-system/.extraction/**",
     "design-system/figma-desktop-bridge/**",
     "design-system/figma-import-plugin/**",
-    "design-system/tokens/tailwind.tokens.js",
     // ESLint skips dot-directories by default; Storybook's plugin lints these.
     "!.storybook/**",
     "!design-system/.storybook/**",
