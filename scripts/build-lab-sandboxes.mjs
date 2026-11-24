@@ -12,7 +12,7 @@
  * Also emits src/features/lab/generated/sandbox-sources.json with the
  * ORIGINAL (pre-rewrite) sources, powering the "view code" detail pages.
  */
-import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
 const SRC_ROOT = "codesandboxes/_extracted";

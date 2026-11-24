@@ -45,6 +45,8 @@ export function CraftListPage({ crafts }: CraftListPageProps) {
                 {craft.video ? (
                   <>
                     {craft.poster && (
+                      // Poster is a base64 blur placeholder. next/image rejects data URLs.
+                      // eslint-disable-next-line @next/next/no-img-element
                       <img
                         src={craft.poster}
                         alt=""

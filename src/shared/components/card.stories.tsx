@@ -1,6 +1,6 @@
 import React from "react";
 
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
   Card,
@@ -49,6 +49,8 @@ export const WithImage: Story = {
   render: () => (
     <Card className="w-[350px] overflow-hidden">
       <div className="relative w-full h-48">
+        {/* Storybook renders this with Vite, not the Next image optimizer. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/featured-projects/bookmark_landing_page.png"
           alt="Bookmark Landing Page"

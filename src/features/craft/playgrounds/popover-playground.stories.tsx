@@ -1,5 +1,5 @@
 // src/components/playgrounds/popover-playground.stories.tsx
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { PopoverPlayground } from "./";
 

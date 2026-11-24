@@ -57,6 +57,8 @@ export default function CraftSection() {
                   <>
                     {/* Blur placeholder — shows instantly while video loads */}
                     {craft.poster && (
+                      // Poster is a base64 blur placeholder. next/image rejects data URLs.
+                      // eslint-disable-next-line @next/next/no-img-element
                       <img
                         src={craft.poster}
                         alt=""

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef } from "react";
 
 import { DialRoot, DialStore, useDialKit } from "dialkit";
 
@@ -123,9 +123,13 @@ export function InteractiveDotGridPlayground() {
     rows: [15, 5, 30],
   });
 
-  // Keep params in a ref so the rAF loop reads fresh values without re-binding
+  // Keep params in a ref so the rAF loop reads fresh values without re-binding.
+  // Written in layout (not during render) so the commit that follows sees them
+  // before paint and before the update effect below.
   const paramsRef = useRef(p);
-  paramsRef.current = p;
+  useLayoutEffect(() => {
+    paramsRef.current = p;
+  }, [p]);
 
   // Derive dot positions reactively from params
   const dots = useMemo(() => {
@@ -145,7 +149,9 @@ export function InteractiveDotGridPlayground() {
 
   // Store dots in a ref for the rAF loop
   const dotsRef = useRef(dots);
-  dotsRef.current = dots;
+  useLayoutEffect(() => {
+    dotsRef.current = dots;
+  }, [dots]);
 
   // Direct DOM update — bypasses React render cycle entirely
   const updateDots = useCallback(() => {

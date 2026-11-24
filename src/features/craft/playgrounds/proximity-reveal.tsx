@@ -209,6 +209,9 @@ export function ProximityReveal() {
             willChange: "filter, transform",
           }}
         >
+          {/* Sized by the blurred parent (100% box + 64px offset). next/image's
+              fill/intrinsic styles would reposition it inside that transform. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/posts/cursor-interactions/succulent.png"
             alt="A succulent in a small pot"

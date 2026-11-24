@@ -82,7 +82,7 @@ export function PopoverPlayground() {
                 <h4 className="mb-2 font-semibold">Popover Content</h4>
                 <p className="text-sm text-muted-foreground">
                   Notice how the animation feels different based on the
-                  transform origin. The popover appears to "grow" from the
+                  transform origin. The popover appears to &quot;grow&quot; from the
                   anchor point.
                 </p>
               </div>

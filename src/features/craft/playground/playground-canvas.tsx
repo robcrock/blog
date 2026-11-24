@@ -9,7 +9,6 @@ export function PlaygroundCanvas({
   children,
   className = "",
   backgroundPattern = "none",
-  fullWidth = false,
 }: PlaygroundCanvasProps) {
   return (
     <div

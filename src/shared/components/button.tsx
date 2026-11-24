@@ -46,15 +46,27 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const buttonClassName = cn(buttonVariants({ variant, size, className }));
 
     if (render) {
-      return React.cloneElement(render, {
-        ...props,
-        className: cn(buttonClassName, (render.props as any).className),
-        ref,
-        children: children || (render.props as any).children,
-        // Ensure the element is focusable - Links should have tabIndex 0 by default
-        // but we explicitly set it to ensure proper tab order
-        tabIndex: tabIndex !== undefined ? tabIndex : 0,
-      } as any);
+      const renderProps = render.props as {
+        className?: string;
+        children?: React.ReactNode;
+      };
+      // Attach the forwarded ref in JSX. cloneElement would hand the ref
+      // object to a function during render, which react-hooks/refs rejects.
+      const Rendered = render.type as React.ElementType;
+
+      return (
+        <Rendered
+          {...renderProps}
+          {...props}
+          className={cn(buttonClassName, renderProps.className)}
+          ref={ref}
+          // Ensure the element is focusable - Links should have tabIndex 0 by default
+          // but we explicitly set it to ensure proper tab order
+          tabIndex={tabIndex !== undefined ? tabIndex : 0}
+        >
+          {children || renderProps.children}
+        </Rendered>
+      );
     }
 
     return (

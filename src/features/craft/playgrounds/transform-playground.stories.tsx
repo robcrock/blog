@@ -1,5 +1,5 @@
 // src/components/playgrounds/TransformPlayground.stories.tsx
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { TransformPlayground } from "./";
 
