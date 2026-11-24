@@ -52,7 +52,7 @@ export default function Header() {
           pointerEvents: headerVisible ? "auto" : "none",
         }}
         // @ts-expect-error - Framer Motion 11 + React 19 type compatibility issue
-        className="fixed left-0 right-0 top-0 z-[100] bg-background/95 backdrop-blur-sm"
+        className="fixed left-0 right-0 top-0 z-100 bg-background/95 backdrop-blur-xs"
       >
         <div className="container flex flex-col items-center px-4 py-2 mx-auto max-w-6xl md:flex-row">
           {/* Logo and name container - appears first on mobile */}
@@ -61,7 +61,7 @@ export default function Header() {
               <Link
                 href="/"
                 onClick={handleLogoClick}
-                className="block rounded ring-offset-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                className="block rounded ring-offset-1 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary"
               >
                 <Logo className="h-[54px] w-[54px] md:h-[68px] md:w-[68px]" />
               </Link>
@@ -79,7 +79,7 @@ export default function Header() {
           </div>
 
           {/* Social icons - appears below on mobile, to the right on desktop */}
-          <div className="relative z-[101] flex w-full items-center gap-4 md:ml-auto md:w-auto">
+          <div className="relative z-101 flex w-full items-center gap-4 md:ml-auto md:w-auto">
             {/* Social icons */}
             <div className="hidden items-center md:ml-auto md:flex">
               {SOCIAL_LINKS.map(({ href, icon }) => (

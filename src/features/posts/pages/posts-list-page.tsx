@@ -35,7 +35,7 @@ export function PostsListPage({ posts }: PostsListPageProps) {
           <li key={post.slug}>
             <Link
               href={post.url}
-              className="flex flex-col px-8 py-6 rounded-lg border hover:bg-muted hover:shadow hover:border-primary"
+              className="flex flex-col px-8 py-6 rounded-lg border hover:bg-muted hover:shadow-sm hover:border-primary"
               prefetch={true}
             >
               <div className="flex justify-between mb-6 text-sm font-medium text-muted-foreground">

@@ -29,7 +29,7 @@ export function SelectControl<T extends string | number>({
           "min-h-11 w-full rounded px-3 py-2",
           "border-input border bg-background",
           "text-base text-foreground sm:text-sm",
-          "focus:ring-ring focus:outline-none focus:ring-2 focus:ring-offset-2",
+          "focus:ring-ring focus:outline-hidden focus:ring-2 focus:ring-offset-2",
           "disabled:cursor-not-allowed disabled:opacity-50",
           "cursor-pointer"
         )}

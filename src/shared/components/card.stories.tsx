@@ -88,15 +88,15 @@ export const Simple: Story = {
       <CardContent>
         <div className="space-y-2">
           <div className="flex gap-2 items-center">
-            <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full" />
+            <div className="w-8 h-8 bg-linear-to-br from-purple-500 to-pink-500 rounded-full" />
             <span className="text-sm">Sarah Johnson</span>
           </div>
           <div className="flex gap-2 items-center">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full" />
+            <div className="w-8 h-8 bg-linear-to-br from-blue-500 to-cyan-500 rounded-full" />
             <span className="text-sm">Mike Chen</span>
           </div>
           <div className="flex gap-2 items-center">
-            <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-full" />
+            <div className="w-8 h-8 bg-linear-to-br from-orange-500 to-yellow-500 rounded-full" />
             <span className="text-sm">Emily Davis</span>
           </div>
         </div>

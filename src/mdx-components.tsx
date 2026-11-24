@@ -78,13 +78,13 @@ const mdxComponents = {
   ),
   p: (props: ParagraphProps) => (
     <p
-      className="col-span-3 mb-3 text-base leading-relaxed text-gray-800 dark:text-gray-200 md:col-span-1 md:col-start-2 md:text-lg"
+      className="col-span-3 mb-3 text-base leading-relaxed text-gray-800 dark:text-gray-200 md:col-span-1 md:col-start-2 md:text-lg md:leading-7"
       {...props}
     />
   ),
   a: ({ children, ...props }: AnchorProps) => (
     <a
-      className="text-primary underline underline-offset-4 [overflow-wrap:anywhere] hover:decoration-2"
+      className="text-primary underline underline-offset-4 wrap-anywhere hover:decoration-2"
       {...props}
     >
       {children}
@@ -92,7 +92,7 @@ const mdxComponents = {
   ),
   blockquote: (props: BlockquoteProps) => (
     <blockquote
-      className="col-span-3 mb-8 rounded-r-lg border-l-4 border-gray-300 bg-gray-50 py-4 pl-6 dark:border-gray-700 dark:bg-gray-800/50 md:col-span-1 md:col-start-2 [&>p:first-of-type]:mt-0 [&>p:last-of-type]:mb-0 [&>p]:text-gray-700 [&>p]:dark:text-gray-300"
+      className="col-span-3 mb-8 rounded-r-lg border-l-4 border-gray-300 bg-gray-50 py-4 pl-6 dark:border-gray-700 dark:bg-gray-800/50 md:col-span-1 md:col-start-2 [&>p:first-of-type]:mt-0 [&>p:last-of-type]:mb-0 [&>p]:text-gray-700 dark:[&>p]:text-gray-300"
       {...props}
     />
   ),
@@ -110,7 +110,7 @@ const mdxComponents = {
   ),
   li: (props: ListItemProps) => (
     <li
-      className="pl-2 text-base leading-relaxed marker:text-gray-500 dark:marker:text-gray-400 md:text-lg"
+      className="pl-2 text-base leading-relaxed marker:text-gray-500 dark:marker:text-gray-400 md:text-lg md:leading-7"
       {...props}
     />
   ),

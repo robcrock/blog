@@ -53,7 +53,7 @@ export function PopoverPlayground() {
       description="Click the button and watch how the transform-origin affects the popover animation."
       allowOverflow
     >
-      <PlaygroundCanvas backgroundPattern="dots" className="!overflow-visible">
+      <PlaygroundCanvas backgroundPattern="dots" className="overflow-visible!">
         <div className="relative flex items-center justify-center min-h-[400px] py-8">
           <div className="relative">
             <button
@@ -62,7 +62,7 @@ export function PopoverPlayground() {
                 "px-4 py-2 text-sm font-medium rounded",
                 "bg-primary text-primary-foreground",
                 "transition-colors duration-200 hover:bg-primary/90",
-                "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                "focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-primary"
               )}
             >
               {isOpen ? "Close" : "Open"} Popover

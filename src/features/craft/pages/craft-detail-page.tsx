@@ -25,7 +25,7 @@ export function CraftDetailPage({
         ← All craft
       </Link>
 
-      <article className="grid grid-cols-[1fr_min(700px,100%)_1fr] w-full max-w-[860px] mx-auto mb-10">
+      <article className="grid grid-cols-[1fr_min(700px,100%)_1fr] w-full max-w-[860px] mx-auto">
         {/* Craft Header */}
         <header className="col-span-3 mb-8 md:col-start-2 md:col-span-1">
           <div className="flex flex-wrap gap-4 items-center mb-4 text-sm font-medium text-muted-foreground">

@@ -34,7 +34,7 @@ export function ExhibitTile({ exhibit }: ExhibitTileProps) {
             </span>
             <Link
               href={`/lab/${slug}`}
-              className="group inline-flex items-baseline gap-2 rounded font-medium transition-colors duration-200 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="group inline-flex items-baseline gap-2 rounded font-medium transition-colors duration-200 hover:text-primary focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
             >
               <h3 className="text-base">{title}</h3>
               <span

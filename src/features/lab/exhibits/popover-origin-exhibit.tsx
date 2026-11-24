@@ -26,7 +26,7 @@ export function PopoverOriginExhibit() {
   };
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center gap-8 bg-[radial-gradient(hsl(var(--muted-foreground)/0.12)_1px,transparent_1px)] [background-size:24px_24px]">
+    <div className="absolute inset-0 flex items-center justify-center gap-8 bg-[radial-gradient(hsl(var(--muted-foreground)/0.12)_1px,transparent_1px)] bg-size-[24px_24px]">
       {/* The popover, replayed on every origin change */}
       <div
         key={replayKey}
@@ -52,7 +52,7 @@ export function PopoverOriginExhibit() {
               aria-label={`Animate from ${o}`}
               aria-pressed={origin === o}
               onClick={() => selectOrigin(o)}
-              className="group flex size-10 items-center justify-center rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="group flex size-10 items-center justify-center rounded focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
             >
               <span
                 className={`size-2 rounded-full transition-colors duration-200 ${

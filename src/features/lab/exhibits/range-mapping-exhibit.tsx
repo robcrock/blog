@@ -42,7 +42,7 @@ export function RangeMappingExhibit() {
   const outputY = BY - ((output - OUT_MIN) / (OUT_MAX - OUT_MIN)) * SPAN;
 
   return (
-    <div className="absolute inset-0 bg-[radial-gradient(hsl(var(--muted-foreground)/0.12)_1px,transparent_1px)] [background-size:24px_24px]">
+    <div className="absolute inset-0 bg-[radial-gradient(hsl(var(--muted-foreground)/0.12)_1px,transparent_1px)] bg-size-[24px_24px]">
       <svg
         ref={svgRef}
         viewBox={`0 0 ${W} ${H}`}

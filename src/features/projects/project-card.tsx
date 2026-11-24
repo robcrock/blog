@@ -16,24 +16,24 @@ export function ProjectCard({ project, headingLevel, id }: ProjectCardProps) {
   return (
     <Card
       id={id}
-      className="group/card overflow-hidden ring-2 ring-transparent ring-offset-1 transition-shadow duration-200 [transition-timing-function:var(--ease-out-quart)] focus-within:ring-primary hover:ring-primary"
+      className="group/card overflow-hidden ring-2 ring-transparent ring-offset-1 transition-shadow duration-200 ease-(--ease-out-quart) focus-within:ring-primary hover:ring-primary"
     >
       <Link
         href={`/projects/${project.slug}`}
-        className="group/project block rounded focus-visible:outline-none"
+        className="group/project block rounded focus-visible:outline-hidden"
       >
         <div className="relative aspect-video overflow-hidden">
           <Image
             src={project.image}
             alt={project.title}
-            className="object-cover transition-transform duration-200 [transition-timing-function:var(--ease-out-quart)] group-hover/project:scale-105"
+            className="object-cover transition-transform duration-200 ease-(--ease-out-quart) group-hover/project:scale-105"
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             style={{
               viewTransitionName: `projects-canvas-${project.slug}`,
             }}
           />
-          <span className="absolute right-3 top-3 rounded-full bg-primary p-1.5 text-primary-foreground shadow backdrop-blur-sm">
+          <span className="absolute right-3 top-3 rounded-full bg-primary p-1.5 text-primary-foreground shadow-sm backdrop-blur-xs">
             <ArrowRight aria-hidden className="size-4" />
           </span>
         </div>
