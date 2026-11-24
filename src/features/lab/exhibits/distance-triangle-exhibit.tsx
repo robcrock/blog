@@ -46,7 +46,7 @@ export function DistanceTriangleExhibit() {
       ref={canvasRef}
       onPointerMove={handlePointerMove}
       onPointerLeave={() => setCursor(null)}
-      className="absolute inset-0 cursor-crosshair bg-[radial-gradient(hsl(var(--muted-foreground)/0.12)_1px,transparent_1px)] [background-size:24px_24px]"
+      className="absolute inset-0 cursor-crosshair bg-[radial-gradient(hsl(var(--muted-foreground)/0.12)_1px,transparent_1px)] bg-size-[24px_24px]"
     >
       <svg className="absolute inset-0 size-full overflow-visible">
         <circle cx={center.x} cy={center.y} r={4} className="fill-foreground" />

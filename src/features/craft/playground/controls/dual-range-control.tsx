@@ -20,7 +20,7 @@ const thumbClass = [
   "[&::-webkit-slider-thumb]:hover:scale-110",
   // Active/pressed: scale down + darken
   "[&:active::-webkit-slider-thumb]:scale-95",
-  "[&:active::-webkit-slider-thumb]:[filter:brightness(0.8)]",
+  "[&:active::-webkit-slider-thumb]:filter-[brightness(0.8)]",
   // Firefox
   "[&::-moz-range-thumb]:w-4",
   "[&::-moz-range-thumb]:h-4",
@@ -31,7 +31,7 @@ const thumbClass = [
   "[&::-moz-range-thumb]:transition-all",
   "[&::-moz-range-thumb]:hover:scale-110",
   "[&:active::-moz-range-thumb]:scale-95",
-  "[&:active::-moz-range-thumb]:[filter:brightness(0.8)]",
+  "[&:active::-moz-range-thumb]:filter-[brightness(0.8)]",
 ].join(" ");
 
 export function DualRangeControl({
@@ -62,7 +62,7 @@ export function DualRangeControl({
     "absolute inset-0 z-10 h-full w-full cursor-pointer appearance-none bg-transparent",
     "[&::-webkit-slider-runnable-track]:bg-transparent",
     "[&::-moz-range-track]:bg-transparent",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+    "focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
     thumbClass
   );
 

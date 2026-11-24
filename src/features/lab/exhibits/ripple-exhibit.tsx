@@ -37,7 +37,7 @@ export function RippleExhibit() {
   }, []);
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center bg-[radial-gradient(hsl(var(--muted-foreground)/0.12)_1px,transparent_1px)] [background-size:24px_24px]">
+    <div className="absolute inset-0 flex items-center justify-center bg-[radial-gradient(hsl(var(--muted-foreground)/0.12)_1px,transparent_1px)] bg-size-[24px_24px]">
       <style>{`
         @keyframes labRippleGrow {
           from { transform: scale(0); }
@@ -52,7 +52,7 @@ export function RippleExhibit() {
         ref={buttonRef}
         type="button"
         onClick={handleClick}
-        className="relative overflow-hidden rounded bg-foreground px-8 py-3 text-base font-medium text-background transition-transform duration-150 active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        className="relative overflow-hidden rounded bg-foreground px-8 py-3 text-base font-medium text-background transition-transform duration-150 active:scale-[0.96] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       >
         Click me
         {ripples.map((ripple) => (

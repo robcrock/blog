@@ -27,7 +27,7 @@ const HeroSection = () => {
           <p className="mt-3 text-lg text-muted-foreground md:text-xl">
             Craft obsessed developer who designs.
           </p>
-          <p className="mt-2 max-w-md text-sm font-light leading-relaxed text-muted-foreground md:text-base">
+          <p className="mt-2 max-w-md text-sm font-light leading-relaxed text-muted-foreground md:text-base md:leading-6">
             Senior frontend engineer at Abbott. Previously Helix and product
             engineer for Apple, Nike, and IBM via Vizsimply.
           </p>

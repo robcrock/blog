@@ -10,14 +10,14 @@ const VARIANTS = [
 
 export function ToastExhibit() {
   return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 bg-[radial-gradient(hsl(var(--muted-foreground)/0.12)_1px,transparent_1px)] [background-size:24px_24px]">
+    <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 bg-[radial-gradient(hsl(var(--muted-foreground)/0.12)_1px,transparent_1px)] bg-size-[24px_24px]">
       <div className="flex flex-wrap items-center justify-center gap-2">
         {VARIANTS.map(({ type, label, message }) => (
           <button
             key={type}
             type="button"
             onClick={() => toast[type](message)}
-            className="h-11 rounded border border-border bg-card px-5 text-base font-medium transition-colors duration-200 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="h-11 rounded border border-border bg-card px-5 text-base font-medium transition-colors duration-200 hover:bg-muted focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           >
             {label}
           </button>

@@ -31,7 +31,7 @@ export function TransformExhibit() {
       ref={canvasRef}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
-      className="absolute inset-0 flex cursor-crosshair items-center justify-center bg-[radial-gradient(hsl(var(--muted-foreground)/0.12)_1px,transparent_1px)] [background-size:24px_24px]"
+      className="absolute inset-0 flex cursor-crosshair items-center justify-center bg-[radial-gradient(hsl(var(--muted-foreground)/0.12)_1px,transparent_1px)] bg-size-[24px_24px]"
     >
       {/* Ghost of the identity state */}
       <div

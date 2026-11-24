@@ -57,7 +57,7 @@ export function SandboxFrame({
   return (
     <div ref={ref} className="absolute inset-0 overflow-hidden">
       {/* Sits behind the transparent iframe while its styles stream in */}
-      <div className="absolute inset-0 bg-[radial-gradient(hsl(var(--muted-foreground)/0.12)_1px,transparent_1px)] [background-size:24px_24px]" />
+      <div className="absolute inset-0 bg-[radial-gradient(hsl(var(--muted-foreground)/0.12)_1px,transparent_1px)] bg-size-[24px_24px]" />
       {mounted && (
         <iframe
           src={src}

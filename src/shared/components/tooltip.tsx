@@ -66,7 +66,7 @@ export function Tooltip({
           <BaseTooltip.Popup
             className={cn(
               "overflow-hidden z-50 px-3 py-2 text-sm rounded border shadow-xl border-neutral-800 bg-neutral-900 text-neutral-100",
-              "backdrop-blur-sm",
+              "backdrop-blur-xs",
               "data-[starting-style]:animate-in data-[starting-style]:fade-in-0 data-[starting-style]:zoom-in-95",
               "data-[ending-style]:animate-out data-[ending-style]:fade-out-0 data-[ending-style]:zoom-out-95",
               className

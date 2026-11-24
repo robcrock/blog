@@ -37,7 +37,7 @@ export function CraftListPage({ crafts }: CraftListPageProps) {
           <Link
             key={craft.slug}
             href={craft.url}
-            className="group focus-visible:outline-none"
+            className="group focus-visible:outline-hidden"
           >
             <Card className="overflow-hidden ring-2 ring-transparent ring-offset-1 transition-all duration-200 focus-within:ring-primary hover:ring-primary">
               {/* Preview Media */}
@@ -77,7 +77,7 @@ export function CraftListPage({ crafts }: CraftListPageProps) {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 ) : (
-                  <div className="flex h-full w-full items-center justify-center bg-[radial-gradient(hsl(var(--muted-foreground)/0.1)_1px,transparent_1px)] [background-size:20px_20px]">
+                  <div className="flex h-full w-full items-center justify-center bg-[radial-gradient(hsl(var(--muted-foreground)/0.1)_1px,transparent_1px)] bg-size-[20px_20px]">
                     <span className="text-4xl font-bold text-muted-foreground/20">
                       {craft.title.charAt(0)}
                     </span>
@@ -85,7 +85,7 @@ export function CraftListPage({ crafts }: CraftListPageProps) {
                 )}
 
                 {/* Hover indicator */}
-                <div className="absolute right-3 top-3 rounded-full bg-primary p-1.5 text-primary-foreground opacity-0 shadow backdrop-blur-sm transition-opacity group-hover:opacity-100">
+                <div className="absolute right-3 top-3 rounded-full bg-primary p-1.5 text-primary-foreground opacity-0 shadow-sm backdrop-blur-xs transition-opacity group-hover:opacity-100">
                   <ArrowUpRight className="w-4 h-4" />
                 </div>
               </div>
