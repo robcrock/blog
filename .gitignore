@@ -46,3 +46,10 @@ storybook-static
 codesandboxes/_extracted
 
 *storybook.log
+
+# verify-robcrock proof files and the dev server it starts
+.cursor/skills/verify-robcrock/artifacts/
+.cursor/skills/verify-robcrock/.run/
+
+# local decision log for this verification skill
+.audit/verify-robcrock.tsv
