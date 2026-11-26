@@ -51,6 +51,8 @@ node .cursor/skills/verify-robcrock/verify-robcrock.mjs doctor
 
 Doctor does not start the server and does not attach to a `pnpm dev` you started yourself.
 
+On Linux, doctor reads `/proc` to see the process marker, the process tree, and the listening socket. On other systems it uses `ps` and `lsof`. The proof run was Linux. The `ps` and `lsof` path has not been run.
+
 ## Drive
 
 Prefer the accessible name `Toggle theme`, the route path, and the heading text. The viewport is 1280 by 800. Browser commands wait until every `svg circle` is fully opaque, or for 2 seconds. Pages with no such circles return at once.

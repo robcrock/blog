@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { spawn } from "node:child_process";
+import { spawn, execFileSync } from "node:child_process";
 import fs from "node:fs";
 import net from "node:net";
 import path from "node:path";
@@ -341,15 +341,53 @@ function pidAlive(pid) {
 }
 
 function hasMarker(pid) {
+  if (fs.existsSync(`/proc/${pid}/environ`)) {
+    try {
+      const env = fs.readFileSync(`/proc/${pid}/environ`);
+      return env.includes(Buffer.from("VERIFY_ROBCROCK=1"));
+    } catch {
+      return false;
+    }
+  }
   try {
-    const env = fs.readFileSync(`/proc/${pid}/environ`);
-    return env.includes(Buffer.from("VERIFY_ROBCROCK=1"));
+    const out = execFileSync("ps", ["eww", "-p", String(pid)], {
+      encoding: "utf8",
+    });
+    return out.includes("VERIFY_ROBCROCK=1");
   } catch {
     return false;
   }
 }
 
+function walkPids(rootPid, children) {
+  const seen = new Set();
+  const stack = [rootPid];
+  while (stack.length) {
+    const pid = stack.pop();
+    if (seen.has(pid)) continue;
+    seen.add(pid);
+    for (const child of children.get(pid) ?? []) stack.push(child);
+  }
+  return [...seen];
+}
+
 function processTree(rootPid) {
+  if (!fs.existsSync("/proc")) {
+    const out = execFileSync("ps", ["-ax", "-o", "pid=,ppid="], {
+      encoding: "utf8",
+    });
+    const children = new Map();
+    for (const line of out.split("\n")) {
+      const match = line.trim().match(/^(\d+)\s+(\d+)$/);
+      if (!match) continue;
+      const pid = Number(match[1]);
+      const parent = Number(match[2]);
+      const list = children.get(parent) ?? [];
+      list.push(pid);
+      children.set(parent, list);
+    }
+    return walkPids(rootPid, children);
+  }
   const children = new Map();
   for (const name of fs.readdirSync("/proc")) {
     if (!/^\d+$/.test(name)) continue;
@@ -366,15 +404,7 @@ function processTree(rootPid) {
       continue;
     }
   }
-  const seen = new Set();
-  const stack = [rootPid];
-  while (stack.length) {
-    const pid = stack.pop();
-    if (seen.has(pid)) continue;
-    seen.add(pid);
-    for (const child of children.get(pid) ?? []) stack.push(child);
-  }
-  return [...seen];
+  return walkPids(rootPid, children);
 }
 
 function listenInodes(port) {
@@ -407,6 +437,30 @@ function listenInodes(port) {
 }
 
 function portListeners(port) {
+  if (!fs.existsSync("/proc/net/tcp")) {
+    let out = "";
+    try {
+      out = execFileSync(
+        "lsof",
+        ["-nP", `-iTCP:${port}`, "-sTCP:LISTEN", "-t"],
+        { encoding: "utf8" },
+      );
+    } catch (error) {
+      if (error.status === 1) return [];
+      throw new CliError(
+        `Could not check who owns port ${port} (${error.message}). doctor will not guess.`,
+      );
+    }
+    return [
+      ...new Set(
+        out
+          .split(/\s+/)
+          .filter(Boolean)
+          .map(Number)
+          .filter((pid) => Number.isInteger(pid)),
+      ),
+    ];
+  }
   const inodes = listenInodes(port);
   if (inodes.size === 0) return [];
   const pids = new Set();
